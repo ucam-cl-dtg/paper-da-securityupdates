@@ -5,6 +5,8 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{url}
+\usepackage{hyperref}
 \author{Daniel Thomas}
 \begin{document}
 \title{Security of deployed Android devices}
@@ -60,6 +62,7 @@ In \S\ref{sec:background} we will explain where these data comes from and then i
 \begin{figure}[!b]
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
+%TODO make this graph shorter
 \caption{Proportion of devices running insecure versions of android}
 \label{fig:proportioninsecure}
 \end{figure}
@@ -67,8 +70,35 @@ In \S\ref{sec:background} we will explain where these data comes from and then i
 \section{Background}
 \label{sec:background}
 There are two sources of data we needed for this study, information on root exploits and information on installed versions of Android.
+
 \subsection{Root exploits}
-We compiled a list of root exploits for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
+We compiled a list of root exploit vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
+We only looked for \emph{root equivalent} exploits which did not require USB debugging to exploit.
+\emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then be used to gain root.
+Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device.
+This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those exploits.
+Some exploits which grant root are not traditional kernel exploits, for example the discovery of flaws in the verification of signatures on Android applications in ??? 2013 meant that applications could pretend to be signed with system keys and hence gain root privileges.
+
+We have published full details of the vulnerabilities listed below in an accompanying technical report~\cite{TODO} and summarise them in Table \ref{tab:andvulns}.
+We also have a website\footnote{\url{TODO}} which we will keep up to date with future vulnerabilities.
+
+\begin{table}
+\centering
+\begin{tabular}{c|c|c}
+Vulnerability & Date known & How known \\
+\hline
+Exploid & 2010-07-15 & Public disclosure \\
+Psneuter & 2011-01-06 & Public disclosure \\
+Levitator & 2011-03-10 & CVE registered \\
+ZergRush & 2011-10-06 & Exploit developed \\
+APK duplicate file & 2013-02-18 & Fix committed \\
+APK unsigned shorts & 2013-07-03 & Fix committed \\
+% TODO this is an incomplete list, we need to add the rest here and in os-version.py
+\end{tabular}
+\caption{Root equivalent vulnerabilities in Android}
+\label{tab:andvulns}
+\end{table}
+
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
 The only suitable data which is available for this is the DeviceAnalyzer data~\cite{TODO}.
@@ -79,8 +109,9 @@ The only suitable data which is available for this is the DeviceAnalyzer data~\c
 
 \section{Related work}
 \label{sec:related}
-Stopping root exploits working: SEAndroid.
+Stopping root exploits working: SEAndroid, Capsicum, iOS.
 Detecting malware: Android antivirus useless.
+
 
 \section{Conclusion}
 \label{sec:conclusion}
