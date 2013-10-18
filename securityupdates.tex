@@ -37,7 +37,7 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on there not being root privilege exploits which allow apps to bypass all protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used the DeviceAnalyzer data\cite{TODO} and found that over XX\% of devices were exposed to known vulnerabilities on average. %TODO (drt24) proportion of devices exposed on average.
+We used the DeviceAnalyzer data\cite{TODO} and found that on average over XX\% of devices were exposed to known vulnerabilities. %TODO (drt24) proportion of devices exposed on average.
 There was also a period of several months when no devices ran secure versions of Android.
 \end{abstract}
 
@@ -102,7 +102,9 @@ APK unsigned shorts & 2013-07-03 & Fix committed \\
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
 The only suitable data which is available for this is the DeviceAnalyzer data~\cite{TODO}.
-
+%TODO talk about the DeviceAnalyzer project a bit
+Various different kinds of data\footnote{\url{TODO}} are collected by the DeviceAnalyzer Android app\footnote{\url{TODO}}.
+Among these are the build string and API version for the version of Android currently running on the device each day.
 
 \section{Results}
 \label{sec:results}
