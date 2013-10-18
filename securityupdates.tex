@@ -54,6 +54,7 @@ While this shows that much Android malware does not need a root exploit to work,
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
 
 Figure \ref{fig:proportioninsecure} shows the proportion of Android devices in the DeviceAnalyzer data which were running versions of Android known to root exploits at the time.
+In \S\ref{sec:background} we will explain where these data comes from and then in \S\ref{sec:results} we will show these data in more detail.
 
 
 \begin{figure}[!b]
@@ -64,13 +65,24 @@ Figure \ref{fig:proportioninsecure} shows the proportion of Android devices in t
 \end{figure}
 
 \section{Background}
+\label{sec:background}
+There are two sources of data we needed for this study, information on root exploits and information on installed versions of Android.
+\subsection{Root exploits}
+We compiled a list of root exploits for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
+\subsection{Versions of Android running on devices}
+We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
+The only suitable data which is available for this is the DeviceAnalyzer data~\cite{TODO}.
+
 
 \section{Results}
+\label{sec:results}
 
 \section{Related work}
+\label{sec:related}
 Stopping root exploits working: SEAndroid.
 Detecting malware: Android antivirus useless.
 
 \section{Conclusion}
+\label{sec:conclusion}
 
 \end{document}
