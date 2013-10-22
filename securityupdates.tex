@@ -107,8 +107,7 @@ The DeviceAnalyzer data contains data from ??? devices with a total of ??? devic
 Various different kinds of data\footnote{\url{TODO}} are collected by the DeviceAnalyzer Android app\footnote{\url{TODO}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
-The build string is `The user-visible version string', fortunately most devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
-%TODO count proportion of device days where the build string cannot be interpreted
+The build string is `The user-visible version string', fortunately most (99.9\%) devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
 
 \subsection{Running a version of Android known to be vulnerable makes a device vulnerable}
 While we have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable, we are confident that most devices.
