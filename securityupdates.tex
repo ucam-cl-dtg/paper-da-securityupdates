@@ -102,12 +102,43 @@ APK unsigned shorts & 2013-07-03 & Fix committed \\
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
 The only suitable data which is available for this is the DeviceAnalyzer data~\cite{TODO}.
+The DeviceAnalyzer data contains data from ??? devices with a total of ??? device days, it contains data for more than ??? months for ??? devices.
 %TODO talk about the DeviceAnalyzer project a bit
 Various different kinds of data\footnote{\url{TODO}} are collected by the DeviceAnalyzer Android app\footnote{\url{TODO}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
+The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
+The build string is `The user-visible version string', fortunately most devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
+%TODO count proportion of device days where the build string cannot be interpreted
+
+\subsection{Running a version of Android known to be vulnerable makes a device vulnerable}
+While we have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable, we are confident that most devices.
 
 \section{Results}
 \label{sec:results}
+In this section we present the results of our analysis showing ????. %TODO summarise our results
+
+Figure \ref{fig:os} shows the raw data on the number of devices in the DeviceAnalyzer data running different versions of Android each day.
+It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions and the fluctuation in the number of devices in the data.
+\begin{figure}%[!b]
+\centering
+\includegraphics[width=\columnwidth]{figures/os}
+\caption{Android versions in DeviceAnalyzer data over time}
+\label{fig:os}
+\end{figure}
+
+Figure \ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
+For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
+In July 2011 at the beginning of the DeviceAnalyzer data the Exploid and Levitator vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
+However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still unfixed. %TODO put percentages on these things to quantify them
+\begin{figure}%[!b]
+\centering
+\includegraphics[width=\columnwidth]{figures/vulnerabilities}
+\caption{Proportion of devices exposed to each vulnerability with time (1.0 is 100\%)}
+\label{fig:vulnerabilities}
+\end{figure}
+
+\subsection{Update frequency}
+%TODO find out what the frequency of updates is
 
 \section{Related work}
 \label{sec:related}
