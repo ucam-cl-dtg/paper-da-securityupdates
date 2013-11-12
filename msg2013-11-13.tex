@@ -1,0 +1,215 @@
+\documentclass{beamer}
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  %\usetheme{Warsaw}
+  %\usetheme{Goettingen}
+  %\usetheme{Montpellier}
+  \usetheme{Boadilla}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+\beamertemplatenavigationsymbolsempty
+
+%Handout/Notes
+%\setbeameroption{show notes} % un-comment to see the notes
+%\setbeamertemplate{note page}[plain]
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+\usepackage{tikz}
+
+\title[Security Updates] % (optional, use only with long paper titles)
+{Security of deployed Android devices}
+
+\subtitle
+{When do Android devices get security updates for root exploits} % (optional)
+%\pgfdeclareimage[height=2.9cm]{drt24}{img/drt24}
+%\titlegraphic{\pgfuseimage{drt24}}
+
+\author[Daniel Thomas] % (optional, use only with lots of authors)
+{Daniel Thomas\\ \vspace{1em} \tiny{(PhD student, 2\textsuperscript{nd} year)} \\ \vspace{1em} \tiny{Supervised by Alastair Beresford}}
+\institute{\vspace{-1em}
+University of Cambridge
+}
+
+
+\date[2013-11-13] % (optional)
+{Mobile Security Reading Group WIP presentation}
+
+\subject{Mobile Security Reading Group WIP presentation}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+ \pgfdeclareimage[height=0.7cm]{university-logo}{university-logo}
+ \logo{\pgfuseimage{university-logo}}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+% Maximum of 12 slides including title page.
+% 15 minutes talk
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+  \note{We collected data with Device Analyzer, collated a list of root equivalent exploits which apps could use and found that a large proportion of devices are vulnerable.}
+\end{frame}
+
+
+\begin{frame}{Device Analyser collects lots of Data}{}
+ \begin{itemize}
+  \note{}
+  \item Android app by Daniel Wagner installed on user devices collecting data with consent.
+  \note{\\}
+  \item Deployed since May 2011
+  \note{\\}
+  \item ??? records, ??? years, ??? devices
+  \item \url{http://deviceanalyzer.cl.cam.ac.uk/}
+ \end{itemize}
+ \pgfdeclareimage[height=50px]{dalogo}{figures/dalogo100}
+ \begin{center}
+  \pgfuseimage{dalogo}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Device Analyzer collects different kinds of data}{}
+% Specific research aim (3+ year time scale)
+ \pgfdeclareimage[height=0.38\textheight]{da_main}{figures/da_screenshot_main_screen}
+ \pgfdeclareimage[height=0.38\textheight]{da_app_data}{figures/da_screenshot_app_data}
+ \pgfdeclareimage[height=0.38\textheight]{da_phone_usage}{figures/da_screenshot_phone_usage}
+ \begin{center}
+  \pgfuseimage{da_main} \hspace{1em} \pgfuseimage{da_app_data} \hspace{1em} \pgfuseimage{da_phone_usage}
+ \end{center}
+ \vspace{-1.5em}
+ \begin{itemize}
+  \item DA also collects information on the OS version information and build number.
+  \note{}
+ \end{itemize}
+    
+\end{frame}
+
+\begin{frame}{Root equivalent vulnerabilities are interesting}{}
+ \begin{itemize}
+  \item Root exploits break out of the sandbox.
+  \note{}
+  \item They allow applications to do arbitrarily bad things
+  \item They are used in ??-??\% of malware
+  \item How many devices are vulnerable to these exploits?
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Root equivalent vulnerabilities on Android}{}
+\small \url{https://wiki.dtg.cl.cam.ac.uk/drt24/dasecurityupdates}\\
+All Android vulnerabilities:
+ \begin{itemize}
+  \item exploid
+  \item RageAgainstTheCage zygote
+  \item RageAgainstTheCage adb setuid exhaustion
+  \item KillingInTheNameOf psneuter ashmem
+  \item zergRush
+  \item levitator
+  \item Gingerbreak
+  \item APK signature verification - duplicate file entries
+  \item APK signature verification - unsigned shorts
+ \end{itemize}
+
+\end{frame}
+
+% Leverage of colleagues
+\begin{frame}{Old versions of Android still in use}{Coarse grained API information}
+ \pgfdeclareimage[width=0.5\textwidth]{da_norm_api}{figures/da_norm_api}
+ \pgfdeclareimage[width=0.5\textwidth]{play_norm_api}{figures/play_norm_api}
+ \begin{center}
+  \pgfuseimage{da_norm_api}
+  \pgfuseimage{play_norm_api}
+ \end{center}
+Device Analyzer data is representative of the versions of Android actually in use
+\end{frame}
+
+\begin{frame}{Old versions of Android still in use}{Detailed OS version}
+ \pgfdeclareimage[height=0.87\textheight]{da_norm_os}{figures/da_norm_os}
+ \begin{center}
+  \vspace{-0.5em}
+  \pgfuseimage{da_norm_os}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Lots of Android devices are exposed to known root equivalent vulnerabilities}{}
+ \pgfdeclareimage[height=0.87\textheight]{da_proportioninsecure}{figures/proportioninsecure}
+ \begin{center}
+  \vspace{-0.5em}
+  \pgfuseimage{da_proportioninsecure}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Several vulnerabilities contribute to this insecurity}{}
+ \pgfdeclareimage[height=0.95\textheight]{da_vulnerabilities}{figures/vulnerabilities}
+ \begin{center}
+  \vspace{-0.5em}
+  \pgfuseimage{da_vulnerabilities}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Devices do get updated}{}
+ \pgfdeclareimage[height=0.95\textheight]{da_updates_between_versions}{figures/updates_between_versions}
+ \begin{center}
+  \vspace{-0.5em}
+  \pgfuseimage{da_updates_between_versions}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Devices do get security updates}{}
+ \pgfdeclareimage[height=0.95\textheight]{da_w_security_updates}{figures/w_security_updates}
+ \begin{center}
+  \vspace{-0.5em}
+  \pgfuseimage{da_w_security_updates}
+ \end{center}
+\end{frame}
+
+\begin{frame}{There are weaknesses in our current approach}{}
+ \begin{itemize}
+  \item What complementary data should we be using?
+  \item Do we have all known root vulnerabilities? (No)
+  \item Is our inference that if a device is running a version of Android with a known vulnerability then it is vulnerable true?
+  \item Is there anything else we can add to Device Analyzer to improve research into this area?
+ \end{itemize}
+\end{frame}
+
+\end{document}
