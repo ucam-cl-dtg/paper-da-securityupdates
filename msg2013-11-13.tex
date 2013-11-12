@@ -73,8 +73,8 @@ University of Cambridge
 % is a graphic format that can be processed by latex or pdflatex,
 % resp., then you can add a logo as follows:
 
- \pgfdeclareimage[height=0.7cm]{university-logo}{university-logo}
- \logo{\pgfuseimage{university-logo}}
+ %\pgfdeclareimage[height=0.7cm]{university-logo}{university-logo}
+ %\logo{\pgfuseimage{university-logo}}
 
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
@@ -93,17 +93,19 @@ University of Cambridge
 \end{frame}
 
 
-\begin{frame}{Device Analyser collects lots of Data}{}
+\begin{frame}{Device Analyser collects lots of data}{}
  \begin{itemize}
   \note{}
-  \item Android app by Daniel Wagner installed on user devices collecting data with consent.
+  \item Android app installed on user devices
+  \item Collects data with consent and sends it to our server
+  \item Built by Daniel Wagner
   \note{\\}
   \item Deployed since May 2011
   \note{\\}
-  \item ??? records, ??? years, ??? devices
+  \item 70 billion records, 2000 years, 16000 devices %TODO update these numbers
   \item \url{http://deviceanalyzer.cl.cam.ac.uk/}
  \end{itemize}
- \pgfdeclareimage[height=50px]{dalogo}{figures/dalogo100}
+ \pgfdeclareimage[height=90px]{dalogo}{figures/dalogo512}
  \begin{center}
   \pgfuseimage{dalogo}
  \end{center}
@@ -111,18 +113,30 @@ University of Cambridge
 
 \begin{frame}{Device Analyzer collects different kinds of data}{}
 % Specific research aim (3+ year time scale)
- \pgfdeclareimage[height=0.38\textheight]{da_main}{figures/da_screenshot_main_screen}
- \pgfdeclareimage[height=0.38\textheight]{da_app_data}{figures/da_screenshot_app_data}
- \pgfdeclareimage[height=0.38\textheight]{da_phone_usage}{figures/da_screenshot_phone_usage}
+ \pgfdeclareimage[height=0.75\textheight]{da_main}{figures/da_screenshot_main_screen}
+ \pgfdeclareimage[height=0.75\textheight]{da_app_data}{figures/da_screenshot_app_data}
+ \pgfdeclareimage[height=0.75\textheight]{da_phone_usage}{figures/da_screenshot_phone_usage}
  \begin{center}
-  \pgfuseimage{da_main} \hspace{1em} \pgfuseimage{da_app_data} \hspace{1em} \pgfuseimage{da_phone_usage}
+  \vspace{-1em}
+  \pgfuseimage{da_main} \pgfuseimage{da_app_data} \pgfuseimage{da_phone_usage}
  \end{center}
  \vspace{-1.5em}
  \begin{itemize}
   \item DA also collects information on the OS version information and build number.
   \note{}
  \end{itemize}
-    
+\end{frame}
+
+\begin{frame}{Other data}{}
+\begin{itemize}
+ \item \Large{ \emph{OS Version}}
+ \item \emph{Build number}
+ \item Device name
+ \item GPU version
+ \item Phone features
+ \item baseband version
+ \item What else?
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Root equivalent vulnerabilities are interesting}{}
@@ -130,14 +144,14 @@ University of Cambridge
   \item Root exploits break out of the sandbox.
   \note{}
   \item They allow applications to do arbitrarily bad things
-  \item They are used in ??-??\% of malware
+  \item They are used in 37\% of malware %TODO check this figure
   \item How many devices are vulnerable to these exploits?
  \end{itemize}
 \end{frame}
 
 \begin{frame}{Root equivalent vulnerabilities on Android}{}
 \small \url{https://wiki.dtg.cl.cam.ac.uk/drt24/dasecurityupdates}\\
-All Android vulnerabilities:
+Vulnerabilities affecting all of Android (not manufacturer specific):
  \begin{itemize}
   \item exploid
   \item RageAgainstTheCage zygote
@@ -149,16 +163,29 @@ All Android vulnerabilities:
   \item APK signature verification - duplicate file entries
   \item APK signature verification - unsigned shorts
  \end{itemize}
-
+There are also lots of manufacture/device specific vulnerabilities.
 \end{frame}
 
-% Leverage of colleagues
-\begin{frame}{Old versions of Android still in use}{Coarse grained API information}
- \pgfdeclareimage[width=0.5\textwidth]{da_norm_api}{figures/da_norm_api}
- \pgfdeclareimage[width=0.5\textwidth]{play_norm_api}{figures/play_norm_api}
+ \pgfdeclareimage[height=0.9\textheight]{da_norm_api}{figures/da_norm_api}
+ \pgfdeclareimage[height=0.9\textheight]{play_norm_api}{figures/play_norm_api}
+\begin{frame}{Old versions of Android still in use -- Google Play API}{}
+ \begin{center}
+  \pgfuseimage{play_norm_api}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Old versions of Android still in use -- Device Analyzer}{}
  \begin{center}
   \pgfuseimage{da_norm_api}
-  \pgfuseimage{play_norm_api}
+ \end{center}
+\end{frame}
+
+\begin{frame}{Old versions of Android still in use}{Coarse grained API information}
+ \pgfdeclareimage[width=0.5\textwidth]{da_norm_api_small}{figures/da_norm_api}
+ \pgfdeclareimage[width=0.5\textwidth]{play_norm_api_small}{figures/play_norm_api}
+ \begin{center}
+  \pgfuseimage{da_norm_api_small}
+  \pgfuseimage{play_norm_api_small}
  \end{center}
 Device Analyzer data is representative of the versions of Android actually in use
 \end{frame}
