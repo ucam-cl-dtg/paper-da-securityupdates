@@ -93,7 +93,7 @@ University of Cambridge
 \end{frame}
 
 
-\begin{frame}{Device Analyser collects lots of data}{}
+\begin{frame}{Device Analyzer collects lots of data}{}
  \begin{itemize}
   \note{}
   \item Android app installed on user devices
@@ -102,7 +102,7 @@ University of Cambridge
   \note{\\}
   \item Deployed since May 2011
   \note{\\}
-  \item 70 billion records, 2000 years, 16000 devices %TODO update these numbers
+  \item 70 billion records, 2000 years, 16000 devices
   \item \url{http://deviceanalyzer.cl.cam.ac.uk/}
  \end{itemize}
  \pgfdeclareimage[height=90px]{dalogo}{figures/dalogo512}
@@ -144,7 +144,8 @@ University of Cambridge
   \item Root exploits break out of the sandbox.
   \note{}
   \item They allow applications to do arbitrarily bad things
-  \item They are used in 37\% of malware %TODO check this figure
+  \item Malware which uses root exploits cannot be remotely removed
+  \item They are used in 37\% of malware % "Dissecting Android Malware: Characterization and Evolution" at "2012 IEEE Symposium on Security and Privacy"
   \item How many devices are vulnerable to these exploits?
  \end{itemize}
 \end{frame}
@@ -182,7 +183,7 @@ There are also lots of manufacture/device specific vulnerabilities.
 
 \begin{frame}{Old versions of Android still in use}{Coarse grained API information}
  \pgfdeclareimage[width=0.5\textwidth]{da_norm_api_small}{figures/da_norm_api}
- \pgfdeclareimage[width=0.5\textwidth]{play_norm_api_small}{figures/play_norm_api}
+ \pgfdeclareimage[width=0.5\textwidth]{play_norm_api_small}{figures/play_norm_api_trunc}
  \begin{center}
   \pgfuseimage{da_norm_api_small}
   \pgfuseimage{play_norm_api_small}
