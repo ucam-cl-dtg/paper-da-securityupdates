@@ -60,10 +60,10 @@ University of Cambridge
 }
 
 
-\date[2013-11-13] % (optional)
-{Mobile Security Reading Group WIP presentation}
+\date[2014-01-14] % (optional)
+{NetOS talklet}
 
-\subject{Mobile Security Reading Group WIP presentation}
+\subject{NetOS talklet}
 % This is only inserted into the PDF information catalog. Can be left
 % out. 
 
@@ -102,8 +102,8 @@ University of Cambridge
   \note{\\}
   \item Deployed since May 2011
   \note{\\}
-  \item 70 billion records, 2000 years, 16000 devices
-  \item \url{http://deviceanalyzer.cl.cam.ac.uk/}
+  \item 100 billion records, 2000 years, 17000 devices %TODO update years value
+  \item \url{https://deviceanalyzer.cl.cam.ac.uk/}
  \end{itemize}
  \pgfdeclareimage[height=90px]{dalogo}{figures/dalogo512}
  \begin{center}
@@ -151,7 +151,8 @@ University of Cambridge
 \end{frame}
 
 \begin{frame}{Root equivalent vulnerabilities on Android}{}
-\small \url{https://wiki.dtg.cl.cam.ac.uk/drt24/dasecurityupdates}\\
+\small \url{http://androidvulnerabilities.org/}
+
 Vulnerabilities affecting all of Android (not manufacturer specific):
  \begin{itemize}
   \item exploid
@@ -161,73 +162,74 @@ Vulnerabilities affecting all of Android (not manufacturer specific):
   \item zergRush
   \item levitator
   \item Gingerbreak
-  \item APK signature verification - duplicate file entries
-  \item APK signature verification - unsigned shorts
+  \item APK signature verification -- duplicate file entries
+  \item APK signature verification -- unsigned shorts
+  \item APK signature verification -- unchecked name
  \end{itemize}
 There are also lots of manufacture/device specific vulnerabilities.
 \end{frame}
 
- \pgfdeclareimage[height=0.9\textheight]{da_norm_api}{figures/da_norm_api}
- \pgfdeclareimage[height=0.9\textheight]{play_norm_api}{figures/play_norm_api}
-\begin{frame}{Old versions of Android still in use -- Google Play API}{}
+ \pgfdeclareimage[height=0.96\textheight]{da_norm_api}{figures/da_norm_api}
+ \pgfdeclareimage[height=0.96\textheight]{play_norm_api}{figures/play_norm_api}
+\begin{frame}[plain]{Old versions of Android still in use -- Google Play API}{}
  \begin{center}
   \pgfuseimage{play_norm_api}
  \end{center}
 \end{frame}
 
-\begin{frame}{Old versions of Android still in use -- Device Analyzer}{}
+\begin{frame}[plain]{Old versions of Android still in use -- Device Analyzer}{}
  \begin{center}
   \pgfuseimage{da_norm_api}
  \end{center}
 \end{frame}
 
 \begin{frame}{Old versions of Android still in use}{Coarse grained API information}
- \pgfdeclareimage[width=0.5\textwidth]{da_norm_api_small}{figures/da_norm_api}
- \pgfdeclareimage[width=0.5\textwidth]{play_norm_api_small}{figures/play_norm_api_trunc}
+ \pgfdeclareimage[width=0.51\textwidth]{da_norm_api_small}{figures/da_norm_api}
+ \pgfdeclareimage[width=0.51\textwidth]{play_norm_api_small}{figures/play_norm_api_trunc}
  \begin{center}
-  \pgfuseimage{da_norm_api_small}
+  \hspace{-1em}\pgfuseimage{da_norm_api_small}\hspace{-0.5em}
   \pgfuseimage{play_norm_api_small}
  \end{center}
 Device Analyzer data is representative of the versions of Android actually in use
 \end{frame}
 
-\begin{frame}{Old versions of Android still in use}{Detailed OS version}
- \pgfdeclareimage[height=0.87\textheight]{da_norm_os}{figures/da_norm_os}
+\begin{frame}[plain]{Detailed OS version}{}
+ \pgfdeclareimage[height=0.99\textheight]{da_norm_os}{figures/da_norm_os}
  \begin{center}
   \vspace{-0.5em}
   \pgfuseimage{da_norm_os}
  \end{center}
 \end{frame}
 
-\begin{frame}{Lots of Android devices are exposed to known root equivalent vulnerabilities}{}
- \pgfdeclareimage[height=0.87\textheight]{da_proportioninsecure}{figures/proportioninsecure}
+\begin{frame}[plain]{Android devices with root equivalent vulnerabilities}{}
+ \pgfdeclareimage[height=0.98\textheight]{da_proportioninsecure}{figures/proportioninsecure}
  \begin{center}
   \vspace{-0.5em}
   \pgfuseimage{da_proportioninsecure}
  \end{center}
 \end{frame}
 
-\begin{frame}{Several vulnerabilities contribute to this insecurity}{}
- \pgfdeclareimage[height=0.95\textheight]{da_vulnerabilities}{figures/vulnerabilities}
+\begin{frame}[plain]{Several vulnerabilities contribute to this insecurity}{}
+ \pgfdeclareimage[height=0.97\textheight]{da_vulnerabilities}{figures/vulnerabilities}
  \begin{center}
-  \vspace{-0.5em}
+  \vspace{-0.3em}
   \pgfuseimage{da_vulnerabilities}
  \end{center}
 \end{frame}
 
-\begin{frame}{Devices do get updated}{}
- \pgfdeclareimage[height=0.95\textheight]{da_updates_between_versions}{figures/updates_between_versions}
+\begin{frame}[plain]{Devices do get updated}{}
+ \pgfdeclareimage[height=0.98\textheight]{da_updates_between_versions}{figures/updates_between_versions}
  \begin{center}
-  \vspace{-0.5em}
+  \vspace{-0.2em}
   \pgfuseimage{da_updates_between_versions}
  \end{center}
 \end{frame}
 
-\begin{frame}{Devices do get security updates}{}
- \pgfdeclareimage[height=0.95\textheight]{da_w_security_updates}{figures/w_security_updates}
+\begin{frame}[plain]{Devices do get security updates}{}
+ \pgfdeclareimage[height=0.98\textheight]{da_w_security_updates}{figures/w_security_updates}
  \begin{center}
-  \vspace{-0.5em}
-  \pgfuseimage{da_w_security_updates}
+  \vspace{-0.2em}
+  \hspace{-2em}\pgfuseimage{da_w_security_updates}
  \end{center}
 \end{frame}
 
