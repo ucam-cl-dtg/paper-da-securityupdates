@@ -49,15 +49,13 @@
 {Security of deployed Android devices}
 
 \subtitle
-{When do Android devices get security updates for root exploits} % (optional)
+{When do Android devices get security updates for root exploits?} % (optional)
 %\pgfdeclareimage[height=2.9cm]{drt24}{img/drt24}
 %\titlegraphic{\pgfuseimage{drt24}}
 
 \author[Daniel Thomas] % (optional, use only with lots of authors)
 {Daniel Thomas\\ \vspace{1em} \tiny{(PhD student, 2\textsuperscript{nd} year)} \\ \vspace{1em} \tiny{Supervised by Alastair Beresford}}
-\institute{\vspace{-1em}
-University of Cambridge
-}
+\institute{\vspace{-1em}University of Cambridge}
 
 
 \date[2014-01-14] % (optional)
@@ -89,19 +87,21 @@ University of Cambridge
 
 \begin{frame}
   \titlepage
-  \note{We collected data with Device Analyzer, collated a list of root equivalent exploits which apps could use and found that a large proportion of devices are vulnerable.}
+  \note{We collected data with Device Analyzer, collated a list of root equivalent exploits which apps could use and found that a large proportion of devices are vulnerable.\\}
+  \note{I have drawn some graphs to show this data and we will discuss the weaknesses with this approach at the end}
+  \note{I also have a couple of bonus slides on wireless security}
 \end{frame}
 
 
 \begin{frame}{Device Analyzer collects lots of data}{}
  \begin{itemize}
   \note{}
-  \item Android app installed on user devices
+  \item Android app installed on user devices (over 1000 each week)
   \item Collects data with consent and sends it to our server
   \item Built by Daniel Wagner
-  \note{\\}
+  \note{Large engineering effort, rebuilt four times, now starting to deliver\\}
   \item Deployed since May 2011
-  \note{\\}
+  \note{Now longitudinal studies possible\\}
   \item 100 billion records, 2000 years, 17000 devices %TODO update years value
   \item \url{https://deviceanalyzer.cl.cam.ac.uk/}
  \end{itemize}
@@ -120,10 +120,11 @@ University of Cambridge
   \vspace{-1em}
   \pgfuseimage{da_main} \pgfuseimage{da_app_data} \pgfuseimage{da_phone_usage}
  \end{center}
+ \note{Data on applications, on phone calls/text messages, bluetooth, location, power usage, wifi\\}
  \vspace{-1.5em}
  \begin{itemize}
   \item DA also collects information on the OS version information and build number.
-  \note{}
+  \note{More usefully for us it also collects OS version and build number}
  \end{itemize}
 \end{frame}
 
@@ -135,6 +136,7 @@ University of Cambridge
  \item GPU version
  \item Phone features
  \item baseband version
+ \note{DA collects all this information, but what other information should it also collect?}
  \item What else?
 \end{itemize}
 \end{frame}
@@ -142,7 +144,7 @@ University of Cambridge
 \begin{frame}{Root equivalent vulnerabilities are interesting}{}
  \begin{itemize}
   \item Root exploits break out of the sandbox.
-  \note{}
+  \note{Permissions are meaningless if an app has root (modulo SEAndroid etc.)}
   \item They allow applications to do arbitrarily bad things
   \item Malware which uses root exploits cannot be remotely removed
   \item They are used in 37\% of malware % "Dissecting Android Malware: Characterization and Evolution" at "2012 IEEE Symposium on Security and Privacy"
@@ -152,6 +154,7 @@ University of Cambridge
 
 \begin{frame}{Root equivalent vulnerabilities on Android}{}
 \small \url{http://androidvulnerabilities.org/}
+\note{I made a website with this information collated together in a machine readable format (JSON), if there are any you know of which are not listed then please let me know or submit a patch.\\}
 
 Vulnerabilities affecting all of Android (not manufacturer specific):
  \begin{itemize}
@@ -166,7 +169,8 @@ Vulnerabilities affecting all of Android (not manufacturer specific):
   \item APK signature verification -- unsigned shorts
   \item APK signature verification -- unchecked name
  \end{itemize}
-There are also lots of manufacture/device specific vulnerabilities.
+There are also lots of manufacturer/device specific vulnerabilities.
+\note{But I said their would be graphs, so lets look at some graphs}
 \end{frame}
 
  \pgfdeclareimage[height=0.96\textheight]{da_norm_api}{figures/da_norm_api}
@@ -175,12 +179,16 @@ There are also lots of manufacture/device specific vulnerabilities.
  \begin{center}
   \pgfuseimage{play_norm_api}
  \end{center}
+ \note{So we want to look at which versions of Android are still in use, the information we really care about is which OS version is running on devices in the wild.
+ While that data is in DA there is no authoritative source to compare DA against to check it.\\}
+ \note{However Google has published the API versions of devices connecting to its store since the end of 2009 and so I collated that information and graphed it.}
 \end{frame}
 
 \begin{frame}[plain]{Old versions of Android still in use -- Device Analyzer}{}
  \begin{center}
   \pgfuseimage{da_norm_api}
  \end{center}
+ \note{Now we have the same data for Device Analyzer showing old versions hanging around}
 \end{frame}
 
 \begin{frame}{Old versions of Android still in use}{Coarse grained API information}
@@ -190,7 +198,8 @@ There are also lots of manufacture/device specific vulnerabilities.
   \hspace{-1em}\pgfuseimage{da_norm_api_small}\hspace{-0.5em}
   \pgfuseimage{play_norm_api_small}
  \end{center}
-Device Analyzer data is representative of the versions of Android actually in use
+ Device Analyzer data is representative of the versions of Android actually in use
+ \note{These graphs do look fairly similar, I can claim that most of the differences are stylistic or not significant but if you know a statistical measure which could confirm of deny that hypothesis then do let me know (afterwards).}
 \end{frame}
 
 \begin{frame}[plain]{Detailed OS version}{}
@@ -199,6 +208,9 @@ Device Analyzer data is representative of the versions of Android actually in us
   \vspace{-0.5em}
   \pgfuseimage{da_norm_os}
  \end{center}
+ \note{What we actually want is the detailed information about OS versions used which is what Device Analyzer can give us.\\}
+ \note{You can see how version 4.2.0 was quickly replaced entirely by 4.2.1 and how 4.1.2 became big after a later version had already been released.\\}
+ \note{You can see the long tail of very old versions of Android still in use many years after they were superseded.}
 \end{frame}
 
 \begin{frame}[plain]{Android devices with root equivalent vulnerabilities}{}
@@ -207,6 +219,7 @@ Device Analyzer data is representative of the versions of Android actually in us
   \vspace{-0.5em}
   \pgfuseimage{da_proportioninsecure}
  \end{center}
+ \note{This is not a happy graph. The big vertical rise in early 2013 is the discovery of the APK signing vulnerabilities, most devices still haven't been fixed. Now that particular flaw is mitigated by Google Play doing static analysis but it is still illustrative of the problem.}
 \end{frame}
 
 \begin{frame}[plain]{Several vulnerabilities contribute to this insecurity}{}
@@ -215,6 +228,8 @@ Device Analyzer data is representative of the versions of Android actually in us
   \vspace{-0.3em}
   \pgfuseimage{da_vulnerabilities}
  \end{center}
+ \note{I don't like this graph as it gives some incorrect visual impressions but it does show more of the detail of the data.\\
+ A value of 1 here means that all devices are affected by a vulnerability. Being affected by more than one vulnerability is worse than being affected by only one as an attacker is more likely to have included an exploit which works.}
 \end{frame}
 
 \begin{frame}[plain]{Devices do get updated}{}
@@ -223,6 +238,9 @@ Device Analyzer data is representative of the versions of Android actually in us
   \vspace{-0.2em}
   \pgfuseimage{da_updates_between_versions}
  \end{center}
+ \note{Due to the nature of the DA data with a lot of devices only contributing for a short period of time, we don't see all update events.
+ However we do still see quite a few which allows us to see which versions are being upgraded between and when.\\
+ You can see a big spike in updates to the latest version just after it comes out and then often a big but broader spike a few months later.}
 \end{frame}
 
 \begin{frame}[plain]{Devices do get security updates}{}
@@ -231,12 +249,15 @@ Device Analyzer data is representative of the versions of Android actually in us
   \vspace{-0.2em}
   \hspace{-2em}\pgfuseimage{da_w_security_updates}
  \end{center}
+ \note{If we look at these update events in detail we can try and determine whether an update reduced the number of known root vulnerabilities.
+ Some updates don't change the version number, they could include backported security patches, we don't know.}
 \end{frame}
 
 \begin{frame}{There are weaknesses in our current approach}{}
  \begin{itemize}
   \item What complementary data should we be using?
   \item Do we have all known root vulnerabilities? (No)
+  \note{Please submit other vulnerabilities which you know about\\}
   \item Is our inference that if a device is running a version of Android with a known vulnerability then it is vulnerable true?
   \item Is there anything else we can add to Device Analyzer to improve research into this area?
  \end{itemize}
@@ -248,13 +269,18 @@ Device Analyzer data is representative of the versions of Android actually in us
   \vspace{-0.2em}
   \hspace{-3em}\pgfuseimage{wifi-accounts-stotals}
  \end{center}
+ \note{This shows the number of wifi networks connected to which had some sort of security (WPA, WEP etc.), this just uses devices which participated for at least 30 days.
+ The mode is 2 secured networks but there is a long tail, 80 something devices connected to 50 or more secured networks.}
 \end{frame}
+
 \begin{frame}[plain]{Connections to open wifi networks}{}
  \pgfdeclareimage[height=0.95\textheight]{wifi-accounts-ototals}{figures/wifi-accounts-ototals-hist}
  \begin{center}
   \vspace{-0.2em}
   \hspace{-3em}\pgfuseimage{wifi-accounts-ototals}
  \end{center}
+ \note{This is the same graph but for open wifi networks, most people only connect to one open wireless network.
+ Explanations welcome.}
 \end{frame}
 
 \end{document}
