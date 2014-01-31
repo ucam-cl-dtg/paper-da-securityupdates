@@ -5,6 +5,15 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{hyperref}
+\RequirePackage[date=terse,isbn=true,doi=true,url=false,maxbibnames=9,backref=true]{biblatex}
+\addbibresource{securityupdates.bib}
+\renewcommand{\bibfont}{\small}
+
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+ \clearname{editor} % remove editors
+}
+
 \author{Daniel Thomas}
 \title{Platforms for security update research}
 \begin{document}
@@ -26,5 +35,7 @@ Unfortunately this is not the case.
 \section{JVM}
 \section{Xen}
 \section{VMWare}
+
+\printbibliography
 
 \end{document}
