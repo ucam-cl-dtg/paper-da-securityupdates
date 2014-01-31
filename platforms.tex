@@ -40,7 +40,13 @@ However it is still possible to execute arbitrary code on the device~\cite{Wang2
 To analyse update security on iOS we need detailed information on the version of iOS running on deployed devices \emph{from where?} and a database of discovered vulnerabilities which would need to be created.
 
 \section{Firefox}
+Firefox can be extended with extensions which are written in javascript and XML, the APIs allow the equivalent arbitrary code to be run as the Firefox process and so there is no real sandboxing of extensions~\cite{Lerner2013}.
+There is manual review to detect and remove bad extensions.
+Web pages are allowed to run javascript and with html5 are presented with an increasingly rich API they are not allowed to execute arbitrary code on the computer as the user.
+To analyse the update security of Firefox we need data on the version distribution of Firefox over time and a database of vulnerabilities in Firefox.
+
 \section{Chrome}
+
 \section{ChromeOS}
 \section{JVM}
 \section{Xen}
