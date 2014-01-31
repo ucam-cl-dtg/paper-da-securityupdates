@@ -34,6 +34,11 @@ The security boundary is the user but there have been many examples where it is 
 To analyse the proportion of the time deployed Android devices are exposed to vulnerabilities which break their security boundary we can use the Device Analyzer data to look at running versions and the \url{http://androidvulnerabilities.org} website to find out which vulnerabilities applied to which versions at what time.
 
 \section{iOS}
+In iOS every process runs as the same user but mandatory access control is used to restrict what processes can do to permitted things.
+iOS has additional features that make breaking the security boundary more difficult: Address Space Layout Randomization (ASLR), Data Execution Prevention (DEP), and Sandboxing, iOS also enforces the mandatory App Review and code signing mechanisms.
+However it is still possible to execute arbitrary code on the device~\cite{Wang2013a} and hence exploit flaws to Jailbreak the phone.
+To analyse update security on iOS we need detailed information on the version of iOS running on deployed devices \emph{from where?} and a database of discovered vulnerabilities which would need to be created.
+
 \section{Firefox}
 \section{Chrome}
 \section{ChromeOS}
