@@ -28,6 +28,11 @@ This fine grained compartmentalisation only works if there are no known vulnerab
 Unfortunately this is not the case.
 
 \section{Android}
+In Android each app runs in a separate user account and is granted certain permissions statically after user review on installation.
+Apps can use the rich Android API and embed native code which can make use of the Linux API.
+The security boundary is the user but there have been many examples where it is possible for an app to exploit a vulnerability in Android and gain root permissions and do anything.
+To analyse the proportion of the time deployed Android devices are exposed to vulnerabilities which break their security boundary we can use the Device Analyzer data to look at running versions and the \url{http://androidvulnerabilities.org} website to find out which vulnerabilities applied to which versions at what time.
+
 \section{iOS}
 \section{Firefox}
 \section{Chrome}
