@@ -27,19 +27,30 @@ For example the Android permission system restricts what each app can do in a mo
 This fine grained compartmentalisation only works if there are no known vulnerabilities which break it and allow code to do arbitrary things.
 Unfortunately this is not the case.
 
-\section{Android}
+\section{Mobile operating systems}
+
+
+\subsection{Android}
 In Android each app runs in a separate user account and is granted certain permissions statically after user review on installation.
 Apps can use the rich Android API and embed native code which can make use of the Linux API.
 The security boundary is the user but there have been many examples where it is possible for an app to exploit a vulnerability in Android and gain root permissions and do anything.
 To analyse the proportion of the time deployed Android devices are exposed to vulnerabilities which break their security boundary we can use the Device Analyzer data to look at running versions and the \url{http://androidvulnerabilities.org} website to find out which vulnerabilities applied to which versions at what time.
 
-\section{iOS}
+Android has many vendors which provides some heterogeneity in vulnerabilities but most of these vendors are not as good as Google at shipping updates promptly (perhaps partly because Google is better placed to do so).
+
+\subsection{iOS}
 In iOS every process runs as the same user but mandatory access control is used to restrict what processes can do to permitted things.
 iOS has additional features that make breaking the security boundary more difficult: Address Space Layout Randomization (ASLR), Data Execution Prevention (DEP), and Sandboxing, iOS also enforces the mandatory App Review and code signing mechanisms.
 However it is still possible to execute arbitrary code on the device~\cite{Wang2013a} and hence exploit flaws to Jailbreak the phone.
 To analyse update security on iOS we need detailed information on the version of iOS running on deployed devices \emph{from where?} and a database of discovered vulnerabilities which would need to be created.
 
-\section{Firefox}
+The only iOS vendor is Apple who have full control over the OS and its distribution this enables them to make prompt changes but a flaw affecting one device will affect all devices.
+Since there is no competition between iOS vendors competition with other mobile OSes is the only incentive for innovation.
+
+\section{Web browsers}
+There are two sources of arbitrary code execution in web browsers, extensions which typically come through a market and web pages which can come from anywhere.
+
+\subsection{Firefox}
 Firefox can be extended with extensions which are written in javascript and XML, the APIs allow the equivalent arbitrary code to be run as the Firefox process and so there is no real sandboxing of extensions~\cite{Lerner2013}.
 There is manual review to detect and remove bad extensions.
 Web pages are allowed to run javascript and with html5 are presented with an increasingly rich API they are not allowed to execute arbitrary code on the computer as the user.
@@ -47,10 +58,9 @@ To analyse the update security of Firefox we need data on the version distributi
 
 \section{Chrome}
 
-\section{ChromeOS}
-\section{JVM}
-\section{Xen}
-\section{VMWare}
+\section{Hypervisors}
+\subsection{Xen}
+\subsection{VMWare}
 
 \printbibliography
 
