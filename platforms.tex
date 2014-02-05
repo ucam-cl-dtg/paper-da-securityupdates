@@ -55,12 +55,14 @@ Firefox can be extended with extensions which are written in javascript and XML,
 There is manual review to detect and remove bad extensions.
 Web pages are allowed to run javascript and with html5 are presented with an increasingly rich API they are not allowed to execute arbitrary code on the computer as the user.
 To analyse the update security of Firefox we need data on the version distribution of Firefox over time and a database of vulnerabilities in Firefox.
+Firefox has a nice list of vulnerabilities with severities: \url{https://www.mozilla.org/security/known-vulnerabilities/firefox.html}
 
 \subsection{Chrome}
 Chrome uses privilege separation to separate the renderer from the browser kernel by running them in different processes~\cite{Barth2008}.
 Extensions are also split into multiple processes with content scripts running in the host page's renderer process and the extension core running in a separate renderer process~\cite{Liu2012}.
 Malicious extensions can inject adverts and steal data or engage in more nefarious attacks on the user but a vulnerability in the sandbox would be required for them to execute arbitrary code.
 To analyse the update security of Chrome we need data on the version distribution of Chrome over time and a database of vulnerabilities in Chrome.
+There are a fair number of CVEs listed for Chrome \url{http://www.cvedetails.com/vulnerability-list.php?vendor_id=1224&product_id=15031}.
 
 \subsection{ChromeOS}
 
