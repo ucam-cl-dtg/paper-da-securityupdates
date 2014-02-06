@@ -34,7 +34,7 @@ Unfortunately this is not the case.
 In Android each app runs in a separate user account and is granted certain permissions statically after user review on installation.
 Apps can use the rich Android API and embed native code which can make use of the Linux API.
 The security boundary is the user but there have been many examples where it is possible for an app to exploit a vulnerability in Android and gain root permissions and do anything.
-To analyse the proportion of the time deployed Android devices are exposed to vulnerabilities which break their security boundary we can use the Device Analyzer data to look at running versions and the \url{http://androidvulnerabilities.org} website to find out which vulnerabilities applied to which versions at what time.
+To analyse the proportion of the time deployed Android devices are exposed to vulnerabilities which break their security boundary we can use the Device Analyzer data to look at running versions and the website\footnote{\url{http://androidvulnerabilities.org}} to find out which vulnerabilities applied to which versions at what time.
 
 Android has many vendors which provides some heterogeneity in vulnerabilities but most of these vendors are not as good as Google at shipping updates promptly (perhaps partly because Google is better placed to do so).
 
@@ -49,20 +49,21 @@ Since there is no competition between iOS vendors competition with other mobile 
 
 \section{Web browsers}
 There are two sources of arbitrary code execution in web browsers, extensions which typically come through a market and web pages which can come from anywhere.
+Version information for browsers is available.\footnote{\url{http://gs.statcounter.com/#desktop-browser_version-ww-monthly-200807-201401}}
 
 \subsection{Firefox}
 Firefox can be extended with extensions which are written in javascript and XML, the APIs allow the equivalent arbitrary code to be run as the Firefox process and so there is no real sandboxing of extensions~\cite{Lerner2013}.
 There is manual review to detect and remove bad extensions.
 Web pages are allowed to run javascript and with html5 are presented with an increasingly rich API they are not allowed to execute arbitrary code on the computer as the user.
-To analyse the update security of Firefox we need data on the version distribution of Firefox over time and a database of vulnerabilities in Firefox.
-Firefox has a nice list of vulnerabilities with severities: \url{https://www.mozilla.org/security/known-vulnerabilities/firefox.html}
+Firefox has a nice list of vulnerabilities with severities.\footnote{\url{https://www.mozilla.org/security/known-vulnerabilities/firefox.html}}
 
 \subsection{Chrome}
 Chrome uses privilege separation to separate the renderer from the browser kernel by running them in different processes~\cite{Barth2008}.
 Extensions are also split into multiple processes with content scripts running in the host page's renderer process and the extension core running in a separate renderer process~\cite{Liu2012}.
 Malicious extensions can inject adverts and steal data or engage in more nefarious attacks on the user but a vulnerability in the sandbox would be required for them to execute arbitrary code.
 To analyse the update security of Chrome we need data on the version distribution of Chrome over time and a database of vulnerabilities in Chrome.
-There are a fair number of CVEs listed for Chrome \url{http://www.cvedetails.com/vulnerability-list.php?vendor_id=1224&product_id=15031}.
+There are a fair number of CVEs listed for Chrome.\footnote{\url{http://www.cvedetails.com/vulnerability-list.php?vendor_id=1224&product_id=15031}}
+There are some statistics on version distributions for chrome.\footnote{\url{http://www.w3schools.com/browsers/browsers_chrome.asp}}
 
 \subsection{ChromeOS}
 ChromeOS takes the same functionality as Chrome and sticks a more secure OS underneath with better sandboxing, process separation, boot verification and secure updates.\footnote{\url{http://www.chromium.org/chromium-os/chromiumos-design-docs/security-overview}}
@@ -71,7 +72,7 @@ There might still be security flaws particular to ChromeOS but it seems likely t
 \section{Java Virtual Machine (JVM)}
 The Java Virtual Machine has a security manager and attempts to impose fine grained permissions on executing Java code~\cite{Gong1997} this is used by Java plugins in browsers to execute remote code without exposing the user to attacks.
 Unfortunately there are many flaws in the JVM which have allowed arbitrary execute of code bypassing the security manager.
-There are a list of vulnerabilities in the JVM \url{http://www.cvedetails.com/vulnerability-list/vendor_id-5/product_id-1526/opec-1/SUN-JRE.html}.
+There are a list of vulnerabilities in the JVM.\footnote{\url{http://www.cvedetails.com/vulnerability-list/vendor_id-5/product_id-1526/opec-1/SUN-JRE.html}}
 We also need the distribution of running versions over time.
 
 \section{Hypervisors}
