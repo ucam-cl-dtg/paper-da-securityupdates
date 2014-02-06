@@ -76,8 +76,19 @@ There are a list of vulnerabilities in the JVM.\footnote{\url{http://www.cvedeta
 We also need the distribution of running versions over time.
 
 \section{Hypervisors}
+Hypervisors try to improve security by offering a much smaller API to the VM's operating system and enforcing privilege separation by using different CPU ring levels.
+Unfortunately they still have vulnerabilities which break this confinement.
+
 \subsection{Xen}
+Xen is an opensource hypervisor with a commercial version produced by Citrix.
+It is widely used by lots of companies including Amazon which allow multiple mutually untrusting VMs to run on the same machine.
+There is are list of vulnerabilities in Xen.\footnote{\url{http://wiki.xenproject.org/wiki/Security_Announcements_(Historical)} \url{http://xenbits.xen.org/xsa/}}
+Where do we get version distribution information from?
+
 \subsection{VMWare}
+VMWare is a closed source hypervisor.
+There is a list of security advisories affecting VMWare\footnote{\url{http://www.vmware.com/uk/security/advisories/}} though it also includes some other products.
+Where do we get version distribution information from?
 
 \printbibliography
 
