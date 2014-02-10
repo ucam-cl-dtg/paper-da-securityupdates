@@ -1,15 +1,20 @@
 \documentclass[a4paper,twocolumn]{article}
-\usepackage[utf8x]{inputenc}
-\usepackage{ucs}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{tikz}
 \usepackage{hyperref}
 \usepackage{url}
-\usepackage[numbers]{natbib}
 \usepackage{paralist}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\RequirePackage[date=terse,isbn=true,doi=true,url=false,maxbibnames=9,backref=true]{biblatex}
+\addbibresource{securityupdates.bib}
+\renewcommand{\bibfont}{\small}
+
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+ \clearname{editor} % remove editors
+}
 
 \author{Daniel Thomas}
 \title{Android security updates}
@@ -24,5 +29,7 @@
 \section*{One year horizon}
 
 \section*{Conclusion}
+
+\printbibliography
 
 \end{document}
