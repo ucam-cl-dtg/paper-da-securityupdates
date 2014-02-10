@@ -22,9 +22,37 @@
 \begin{document}
 \maketitle
 
-\section*{Introduction and problem definition}
+\section*{Problem definition}
+The Internet of Things means that there will be many more internet connected devices, these will have software / firmware running on them.
+Security vulnerabilities will be found in this software and firmware which will then need to be updated.
+Android is one operating system which is being used for various Internet of Things devices (fridges, toasters etc.) and so examining the trends in security updates for Android gives us insight into how updates for Internet of Things devices might evolve.
+Our preliminary results indicate that most Android devices do not receive security updates in a timely manner.
+I intend to quantify this more precisely and compare different manufacturers to determine which are the best at shipping security updates promptly.
+Initial analysis indicates that perhaps the Qualcomm Innovation Center, Inc. (QuIC) is the best at following best practice\footnote{\url{https://www.codeaurora.org/projects/security-advisories}} and Google the best at shipping updates to devices promptly.
+
 
 \section*{Innovation proposal and relation to the state of the art}
+Presently there is not much visibility into the impact of security vulnerabilities on Android, many root equivalent vulnerabilities do not even have CVEs registered even when they are being actively exploited.
+It is also difficult to determine when vulnerabilities have been fixed and these fixes propagated to users.
+I have produced the Android Vulnerabilities website\footnote{\url{http://androidvulnerabilities.org/}} to collate this information.
+By using the database of root equivalent vulnerabilities that I have collected and the Device Analyzer\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}~\cite{TODO} data we can determine the proportion of devices running vulnerable versions of Android.
+We can then chart how that changes over time as new vulnerabilities are discovered and old ones are fixed, this is shown in Figure \ref{fig:propinsecure}.
+
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/proportioninsecure.pdf}
+ \caption{Proportion of devices running vulnerable versions of Android}
+ \label{fig:propinsecure}
+\end{figure}
+
+There is still much to do to tie down details and give a more representative coverage of root equivalent vulnerabilities on Android.
+In particular manufacturer specific flaws are under-represented and there are many details which need to be tracked down to improve the accuracy of the results.
+
+Existing databases such as the CVE database\footnote{\url{http://www.cvedetails.com/}} lack information vital to performing these sorts of analyses such as dates for discovery, and release dates for fixes.
+Even finding release dates for Android versions is difficult as there is no canonical list.
+For example dates of tags in the Android Open Source Repository are also unreliable indicators of release dates, sometimes being tagged well after devices have started receiving updates to that version.
+Collating all the information together and checking its accuracy is a significant undertaking, the idea is to provide a good starting point and then use crowd-sourcing for the remainder once the Android Vulnerabilities website is a useful resource.
+We have already started getting submissions from other people to improve it.
+
 
 \section*{One year horizon}
 
