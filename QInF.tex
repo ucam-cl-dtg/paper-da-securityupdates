@@ -31,15 +31,15 @@ Android is one operating system which is being used for various Internet of Thin
 Our preliminary results indicate that most Android devices do not receive security updates in a timely manner.
 Android devices are user facing and probably more likely to receive updates than fridges or water meters so the situation is likely to be worse.
 I intend to quantify this more precisely and compare different manufacturers to determine which are the best at shipping security updates promptly.
-Initial analysis indicates that perhaps the Qualcomm Innovation Center, Inc. (QuIC) is the best at following best practice\footnote{\url{https://www.codeaurora.org/projects/security-advisories}} and Google the best at shipping updates to devices promptly.
+Initial analysis indicates that perhaps the Qualcomm Innovation Center, Inc. (QuIC) is the best at following best practice~\cite{codeaurora-security-advisories} and Google the best at shipping updates to devices promptly.
 
 
 \section*{Innovation proposal and relation to the state of the art}
 Presently there is not much visibility into the impact of security vulnerabilities on Android, many root equivalent vulnerabilities do not even have CVEs registered even when they are being actively exploited.
 It is also difficult to determine when vulnerabilities have been fixed and these fixes propagated to users.
-I have produced the Android Vulnerabilities website\footnote{\url{http://androidvulnerabilities.org/}} to collate this information.
+I have produced the Android Vulnerabilities website~\cite{androidvulnerabilities.org} to collate this information.
 Root equivalent vulnerabilities are vulnerabilities which can be exploited either to gain root or to gain privileges which can then be used to gain root on the device.
-By using the database of root equivalent vulnerabilities that I have collected and the Device Analyzer\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}~\cite{TODO} data we can determine the proportion of devices running vulnerable versions of Android.
+By using the database of root equivalent vulnerabilities that I have collected and the Device Analyzer~\cite{Wagner2013} data we can determine the proportion of devices running vulnerable versions of Android.
 We can then chart how that changes over time as new vulnerabilities are discovered and old ones are fixed, this is shown in Figure \ref{fig:propinsecure}.
 
 \begin{figure}
@@ -54,7 +54,7 @@ In particular manufacturer specific flaws are under-represented and there are ma
 There is also information which is not presently publicly available but which it might be possible to ask manufacturers and those who found vulnerabilities for in order to get a better picture of what is actually happening.
 Presently while we can chart the data we have, we cannot be sure that it is representative.
 
-Existing databases such as the CVE database\footnote{\url{http://www.cvedetails.com/}} lack information vital to performing these sorts of analyses such as dates for discovery, and release dates for fixes.
+Existing databases such as the CVE database~\cite{cve-details} lack information vital to performing these sorts of analyses such as dates for discovery, and release dates for fixes.
 Even finding release dates for Android versions is difficult as there is no canonical list.
 For example dates of tags in the Android Open Source Repository are also unreliable indicators of release dates, sometimes being tagged well after devices have started receiving updates to that version.
 Collating all the information together and checking its accuracy is a significant undertaking, the idea is to provide a good starting point and then use crowd-sourcing for the remainder once the Android Vulnerabilities website is a useful resource.
