@@ -32,3 +32,5 @@
 *.tdo
 *.pdf
 androiddevolperdashboardhistory.csv
+*-blx.bib
+*.run.xml
