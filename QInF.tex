@@ -64,6 +64,56 @@ Once we can make accurate comparisons between manufacturers regarding the timeli
 CESG which advises government on how to secure its computer system recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
 Enterprises with Bring Your Own Device (BYOD) policies or which supply smartphones for work purposes are likely to also be interested in this information as if an app can root a phone then any attempt to prevent data leakage are rendered useless.
 
+Figure \ref{fig:da_norm_os} shows the proportion of devices in the Device Analyzer data running different Android OS versions and how that changes with time.
+Figure \ref{fig:norm_os_heat} shows the same data in a way which is easier to read when comparing how a particular version has changed with time.
+Figure \ref{fig:norm_api_heat} shows how the more coarse grained API version varies.
+
+Figure \ref{fig:propinsecure} shows the proportion of devices running versions of Android with known root vulnerabilities, Figure \ref{fig:nvulnerabilities_heat} breaks this down by vulnerability to show how the proportion of devices affected by different vulnerabilities varies.
+It clearly shows how the the APK signing vulnerabilities affected all devices and took a while to get fixed for any device.
+However what is perhaps more worrying is the long tail on vulnerabilities such as Gingerbreak, levitator and exploid which are more dangerous root exploits (not requiring new package installation) and which still affect a significant proportion of devices years after they were discovered.
+
+These graphs only show a small subset of the total vulnerabilities and only those which affect all Android devices, not any that are manufacturer or device specific.
+Hence observations of the proportion of devices affected in total are underestimates.
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/da_norm_os.pdf}
+ \caption{Proportion of devices running different OS versions in the DA data (see also \ref{fig:norm_os_heat})}
+ \label{fig:da_norm_os}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/norm_os_heat.pdf}
+ \caption{Proportion of devices running different OS versions in the DA data (see also \ref{fig:da_norm_os})}
+ \label{fig:norm_os_heat}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/norm_api_heat.pdf}
+ \caption{Proportion of devices running different API versions in the DA data}
+ \label{fig:norm_api_heat}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/nvulnerabilities_heat.pdf}
+ \caption{Proportion of devices affected by different vulnerabilities}
+ \label{fig:nvulnerabilities_heat}
+\end{figure}
+
+Figure \ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
+Device Analyzer observes upgrade events and the figure shows which versions a device is upgrading from and to.
+Mostly the cells with version change are above the diagonal and are upgrades, while many upgrades are from one version to the next version there are also a fair number which skip a few versions.
+Surprisingly there are also a small number of downgrade events when older versions of Android are installed on to devices.
+Figure \ref{fig:weekly_security_updates} shows the number of devices getting security updates each week, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
+Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
+
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/from_to_updates.pdf}
+ \caption{Updates between different Android versions in the DA data}
+ \label{fig:from_to_updates}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/w_security_updates.pdf}
+ \caption{Number of updates each week which fixed or may have fixed security vulnerabilities}
+ \label{fig:weekly_security_updates}
+\end{figure}
+
+
 \section*{One year horizon}
 \begin{itemize}
  \item A comprehensive database of root equivalent vulnerabilities affecting Android in a machine readable format on the website~\cite{androidvulnerabilities.org}.
