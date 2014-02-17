@@ -158,6 +158,36 @@ However when in February 2013 the first APK signing vulnerability was found whic
 \label{fig:vulnerabilities}
 \end{figure}
 
+The variation of the proportion of devices affected by a vulnerability with time tells us how bad a particular vulnerability affected the Android platform.
+Figure \ref{fig:nvulnerabilities_heat} breaks this down by vulnerability to show how the proportion of devices affected by different vulnerabilities varies.
+In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
+These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
+Figure \ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
+However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}, \emph{levitator} and \emph{exploid} vulnerabilities which are more dangerous root exploits (not requiring new APK installation) and which still affect a significant proportion of devices years later.
+
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/nvulnerabilities_heat.pdf}
+ \caption{Proportion of devices affected by different vulnerabilities}
+ \label{fig:nvulnerabilities_heat}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/from_to_updates.pdf}
+ \caption{Updates between different Android versions in the DA data}
+ \label{fig:from_to_updates}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/w_security_updates.pdf}
+ \caption{Number of updates each week which fixed or may have fixed security vulnerabilities}
+ \label{fig:weekly_security_updates}
+\end{figure}
+Figure \ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
+Device Analyzer (DA) observes upgrade events and the figure shows which versions a device is upgrading from and to.
+Mostly the dark cells are above the diagonal and are upgrades.
+While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
+Surprisingly there are also a small number of downgrade events when older versions of Android are installed on to devices.
+Figure \ref{fig:weekly_security_updates} shows the number of devices getting security updates each week, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
+Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
+
 \subsection{Update frequency}
 %TODO find out what the frequency of updates is
 
