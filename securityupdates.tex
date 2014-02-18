@@ -16,12 +16,10 @@
 
 \author{Daniel R.\ Thomas, Daniel Wagner, Alastair R.\ Beresford and Andrew Rice}
 
-\newcommand{\percArdMarketShare}{XX\%}
-\newcommand{\percArdInsec}{XX\%}
-\newcommand{\percCrmMarketShare}{XX\%}
-\newcommand{\percCrmInsec}{X\%}
-\newcommand{\daNumManufacturers}{XX}
-\newcommand{\daNumNetworkOperators}{XXX}
+\newcommand{\percMarketShare}{XX\%~\cite{TODO}}
+\newcommand{\percInsec}{XX\%~\cite{TODO}}
+\newcommand{\daNumManufacturers}{XX~[\S\ref{sec:results}]}
+\newcommand{\daNumNetworkOperators}{XXX~[\S\ref{sec:results}]}
 
 \begin{document}
 \title{Timeliness of security updates for Android}
@@ -59,8 +57,8 @@ There was also a period of several months when no devices ran secure versions of
 \end{abstract}
 
 \section{Introduction}
-Android has XX\% of the smartphone market~\cite{TODO} and while the core development is controlled by Google there are at least XX~\cite{TODO} manufacturers which make devices which run Android.
-Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least XX~\cite{TODO}) make further modifications.
+Android has \percMarketShare of the smartphone market and while the core development is controlled by Google there are at least \daNumManufacturers manufacturers which make devices which run Android.
+Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumNetworkOperators) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
 The manufacturer and user have no financial incentive to perform this work.
 There is ongoing legal action to force some of them to do so~\cite{Soghoian2013}.
