@@ -52,12 +52,13 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on there not being root privilege exploits which allow apps to bypass all protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used the DeviceAnalyzer data\cite{TODO} and found that on average over XX\% of devices were exposed to known vulnerabilities. %TODO (drt24) proportion of devices exposed on average.
+We used the DeviceAnalyzer data~\cite{Wagner2013} and found that on average over \percInsec\ of devices were exposed to known vulnerabilities.
 There was also a period of several months when no devices ran secure versions of Android.
+We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation.
 \end{abstract}
 
 \section{Introduction}
-Android has \percMarketShare of the smartphone market and while the core development is controlled by Google there are at least \daNumManufacturers manufacturers which make devices which run Android.
+Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are at least \daNumManufacturers\ manufacturers which make devices which run Android.
 Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumNetworkOperators) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
 The manufacturer and user have no financial incentive to perform this work.
@@ -66,7 +67,7 @@ CESG which advises the UK government on how to secure its computer system recomm
 
 Android relies on the Linux kernel to provide compartmentalisation and runs each app as a separate unix `user'.
 The Linux kernel is a large piece of software and so there will always be new root exploits found in it~\cite{TODO}.
-Manufacturers of Android devices have also added further root exploits when customising it~\cite{TODO}.
+Manufacturers of Android devices have also added further root exploits when customising it~\cite{Grace2012}.
 Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contains root exploits.
 While this shows that much Android malware does not need a root exploit to work, it can just request the relevant permissions and the user will grant them, a significant proportion does.
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
