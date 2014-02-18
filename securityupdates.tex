@@ -141,13 +141,39 @@ While we have not tried to exploit these vulnerabilities on the devices in order
 \label{sec:results}
 In this section we present the results of our analysis showing ????. %TODO summarise our results
 
+The data from Device Analyzer (DA) we want to use to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
+Unfortunately there is no authoritative source of OS version information and so we cannot check directly whether our data is representative.
+However Google has published API version information every month since December 2009 and we have collated this information.\footnote{\url{https://www.cl.cam.ac.uk/~drt24/android/versiondistribution/}}
+While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the DA data on API versions is similar to the Google Data on API versions then the DA data on OS versions should be representative.
+Figure \ref{fig:play_api} shows the data Google and Figure \ref{fig:da_api} and they appear similar. %TODO we want a statistical metric to claim this strongly with.
+\begin{figure}
+ \centering
+ \includegraphics[width=\columnwidth]{figures/play_norm_api_trunc}
+ \caption{Google Play data on proportion of devices running different Android API versions}
+ \label{fig:play_api}
+\end{figure}
+\begin{figure}
+ \centering
+ \includegraphics[width=\columnwidth]{figures/da_norm_api}
+ \caption{Google Play data on proportion of devices running different Android API versions}
+ \label{fig:da_api}
+\end{figure}
+
+This allows us to have confidence in the OS version information.
 Figure \ref{fig:os} shows the raw data on the number of devices in the Device Analyzer data running different versions of Android each day.
 It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions and the fluctuation in the number of devices in the data.
-\begin{figure}%[!b]
-\centering
-\includegraphics[width=\columnwidth]{figures/os}
-\caption{Android versions in Device Analyzer data over time}
-\label{fig:os}
+Figure \ref{fig:norm_os} shows the normalised OS version distribution.
+\begin{figure}
+ \centering
+ \includegraphics[width=\columnwidth]{figures/os}
+ \caption{Android versions in Device Analyzer data over time}
+ \label{fig:os}
+\end{figure}
+\begin{figure}
+ \centering
+ \includegraphics[width=\columnwidth]{figures/da_norm_os}
+ \caption{Android versions in Device Analyzer data over time}
+ \label{fig:norm_os}
 \end{figure}
 
 Figure \ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
