@@ -7,13 +7,22 @@ import json
 from collections import defaultdict, OrderedDict
 
 
-def count_vulnerable(num_vulnerable, af, version_code):
+def count_vulnerable(num_vulnerable, num_pvulnerable, af, version_code):
     for array in csv.reader(af):
         date = array[0]
+        subcount = 0
         for i in range(2, len(array)):
             code, count = array[i].split(':')
+            count = int(count)
+            subcount += count
             if version_code == code:
-                num_vulnerable[date] += int(count)
+                num_vulnerable[date] += count
+                num_pvulnerable[date] += count
+            elif int(version_code) > int(code):
+                num_pvulnerable[date] += count
+        totalcount = int(array[1])
+        if subcount < totalcount:# Device analyzer did not record some version codes
+            num_pvulnerable[date] += (totalcount - subcount)
 
 
 def count_total(f):
@@ -25,6 +34,7 @@ def count_total(f):
 
 def analyse(installed_dir, vulnerable_file):
     num_vulnerable = defaultdict(int)  # Date -> count
+    num_pvulnerable = defaultdict(int)
     unknown_app_ids = []
     num_known_app_ids = 0
     with open(vulnerable_file) as vf:
@@ -36,14 +46,16 @@ def analyse(installed_dir, vulnerable_file):
         if os.path.exists(file_path):
             num_known_app_ids += 1
             with open(file_path) as af:
-                count_vulnerable(num_vulnerable, af, version_code)
+                count_vulnerable(num_vulnerable, num_pvulnerable, af, version_code)
         else:
             unknown_app_ids.append(app_id)
     print('Knew {known} app ids but did not know {unknown} app ids'.format(
         known=num_known_app_ids, unknown=len(unknown_app_ids)))
     num_vulnerable = OrderedDict(
         sorted(num_vulnerable.items(), key=lambda t: t[0]))
-    return num_vulnerable
+    num_pvulnerable = OrderedDict(
+        sorted(num_pvulnerable.items(), key=lambda t: t[0]))
+    return num_vulnerable, num_pvulnerable
 
 
 def write_out(num_vulnerable, output_file):
@@ -71,6 +83,8 @@ if __name__ == "__main__":
     results = parser.parse_args()
     installed = results.installed
     output_prefix = results.output_prefix
-    num_vulnerable = analyse('{dir}/{installed}/'.format(dir=results.dir,installed=installed), results.vulnerable_file)
+    num_vulnerable, num_pvulnerable = analyse('{dir}/{installed}/'.format(dir=results.dir,installed=installed), results.vulnerable_file)
     write_out(num_vulnerable, '{prefix}_{installed}.csv'.format(prefix=output_prefix,installed=installed))
     write_norm(num_vulnerable, '{dir}/{installed}.csv'.format(dir=results.dir,installed=installed), '{prefix}_{installed}-norm.csv'.format(prefix=output_prefix,installed=installed))
+    write_out(num_pvulnerable, '{prefix}_potential_{installed}.csv'.format(prefix=output_prefix,installed=installed))
+    write_norm(num_pvulnerable, '{dir}/{installed}.csv'.format(dir=results.dir,installed=installed), '{prefix}_potential_{installed}-norm.csv'.format(prefix=output_prefix,installed=installed))
