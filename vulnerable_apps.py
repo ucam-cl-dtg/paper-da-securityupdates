@@ -63,13 +63,14 @@ def write_norm(num_vulnerable, total_file, norm_file):
     write_out(norm, norm_file)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--installed_dir')
-    parser.add_argument('--vulnerable_file')
-    parser.add_argument('--output_file')
-    parser.add_argument('--total_file')
-    parser.add_argument('--norm_file')
+    parser = argparse.ArgumentParser(description='Work out how many apps are vulnerable')
+    parser.add_argument('--dir', help='Directory containing apps data', required=True)
+    parser.add_argument('--installed', choices=['installed', 'started'], required=True)
+    parser.add_argument('--vulnerable_file', required=True)
+    parser.add_argument('--output_prefix', required=True)
     results = parser.parse_args()
-    num_vulnerable = analyse(results.installed_dir, results.vulnerable_file)
-    write_out(num_vulnerable, results.output_file)
-    write_norm(num_vulnerable, results.total_file, results.norm_file)
+    installed = results.installed
+    output_prefix = results.output_prefix
+    num_vulnerable = analyse('{dir}/{installed}/'.format(dir=results.dir,installed=installed), results.vulnerable_file)
+    write_out(num_vulnerable, '{prefix}_{installed}.csv'.format(prefix=output_prefix,installed=installed))
+    write_norm(num_vulnerable, '{dir}/{installed}.csv'.format(dir=results.dir,installed=installed), '{prefix}_{installed}-norm.csv'.format(prefix=output_prefix,installed=installed))
