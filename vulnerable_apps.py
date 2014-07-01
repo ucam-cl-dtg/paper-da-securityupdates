@@ -16,6 +16,13 @@ def count_vulnerable(num_vulnerable, af, version_code):
                 num_vulnerable[date] += int(count)
 
 
+def count_total(f):
+    total = OrderedDict()
+    for row in csv.reader(f):
+        total[row[0]] = int(row[1])
+    return total
+
+
 def analyse(installed_dir, vulnerable_file):
     num_vulnerable = defaultdict(int)  # Date -> count
     unknown_app_ids = []
@@ -45,11 +52,24 @@ def write_out(num_vulnerable, output_file):
         for day, count in num_vulnerable.items():
             writer.writerow([day, count])
 
+
+def write_norm(num_vulnerable, total_file, norm_file):
+
+    with open(total_file) as f:
+        total = count_total(f)
+    norm = OrderedDict()
+    for day, count in num_vulnerable.items():
+        norm[day] = count / total[day]
+    write_out(norm, norm_file)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--installed_dir')
     parser.add_argument('--vulnerable_file')
     parser.add_argument('--output_file')
+    parser.add_argument('--total_file')
+    parser.add_argument('--norm_file')
     results = parser.parse_args()
-    write_out(
-        analyse(results.installed_dir, results.vulnerable_file), results.output_file)
+    num_vulnerable = analyse(results.installed_dir, results.vulnerable_file)
+    write_out(num_vulnerable, results.output_file)
+    write_norm(num_vulnerable, results.total_file, results.norm_file)
