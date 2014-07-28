@@ -16,9 +16,8 @@
 
 \author{Daniel R.\ Thomas, Daniel T.\ Wagner, Alastair R.\ Beresford and Andrew Rice}
 
+\input{dastats}
 \newcommand{\percMarketShare}{XX\%~\cite{TODO}}
-\newcommand{\percInsec}{XX\%}
-\newcommand{\daNumManufacturers}{XX~[\S\ref{sec:results}]}
 \newcommand{\daNumNetworkOperators}{XXX~[\S\ref{sec:results}]}
 \newcommand{\daNumDevices}{XXXX}
 \newcommand{\daDeviceDays}{XXXXX}
@@ -57,7 +56,7 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on there not being root privilege exploits which allow apps to bypass all protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used the DeviceAnalyzer data~\cite{Wagner2013} and found that on average over \percInsec\ of devices were exposed to known vulnerabilities.
+We used the DeviceAnalyzer data~\cite{Wagner2013} and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known vulnerabilities.
 There was also a period of several months when no devices ran secure versions of Android.
 We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation.
 Many phones are sold on long (18 month) contracts with monthly payments yet stop receiving updates before the end of the contract, while Windows XP could be purchased for a one off payment in October 2001 and yet will receive security updates until April 2014.
