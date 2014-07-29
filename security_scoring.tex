@@ -1,0 +1,15 @@
+\subsection{Scoring for security}
+
+Computing how good a particular manufacturer or device model is from a security standpoint is difficult as it depends on a number of factors which are hard to observe, particularly on a large scale.
+Ideally we would consider both prevelance of potential problems which were not exploited and actual security failures.
+However in the absence of such data we propose a scheme for assigning a device a score out of ten based on data which can be observed, and which hopefully correlates with the actual security of the devices.
+
+There are several components to take into account:
+\begin{description}
+  \item[$i$] The proportion of the time were devices exposed to known vulnerabilities. This is equivalent to the BWE score \cite{TODO}
+  \item[$u$] The proportion of devices run the latest version of Android shipped to any device produced by that manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
+  \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the ??? measure \cite{TODO}
+\end{description}
+\begin{equation}
+\mathrm{score} = (1 - i)\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3
+\end{equation}
