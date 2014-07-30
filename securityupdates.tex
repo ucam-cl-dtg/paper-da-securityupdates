@@ -90,7 +90,8 @@ In \S\ref{sec:background} we will explain where these data comes from and then i
 \label{fig:proportioninsecure}
 \end{figure}
 
-Part of the reason why deployed devices do not receive updates in a timely manner is that there is little data on what is actually happening and so it is not possible to determine which manufacturers or operators are doing a better job.
+In the past users of Microsoft IIS were advised to switch to a different web server due to the high rate of vulnerability~\cite{Pescatore2001} this pressure helped cause Microsoft to focus on security so that it now does much better~\cite{TODO}.
+Part of the reason why deployed devices do not receive updates in a timely manner is that there is little data on what is actually happening and so it is not possible to determine which manufacturers or operators are doing a better job, this data is in~\S\ref{sec:security_scoring}.
 Hence there is little incentive for manufacturers and operators to do a better job, we will discuss this further in \S\ref{sec:economics}
 
 \section{Background}
@@ -231,12 +232,21 @@ While many of these things can be done by malware which just requests the releva
 
 \subsection{Incentives and participants}
 \label{sec:economics}
+\cite{Felt2011}
 
 \section{Related work}
 \label{sec:related}
 We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root vulnerabilities, in 2011 Felt et al.\ studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
 This might indicate that over the last 3 years the security of Android has improved, but the data are not directly comparable.
 They also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later larger studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
+Perhaps the malware authors heard about the results in Felt et al.'s paper?
+
+Finding vulnerabilities is frequently a time consuming manual process but, Brumley et al.~\cite{Brumley2008} showed that it is possible to automatically generate exploits from binary patches.
+In a similar way some of the vulnerabilities which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
+This effect has been observed before~\cite{Barth2011} in the Firefox source code repositories, Google does not release the source code until after the release of the update reducing this effect to the delay between an update being released and it reaching the last end user device.
+The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
+The update process itself can allow Android apps to gain privilege~\cite{Xing2014} by registering for new permissions before the update which creates that permission is installed.
+
 
 There are continuing efforts to reduce the impact of root vulnerabilities, both in Android and more widely.
 SEAndroid~\cite{Smalley2013} which is included in Android from version ???~\cite{TODO} claimed to prevent some root vulnerabilities and to reduce the impact of others.
@@ -245,13 +255,19 @@ When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be
 
 The security protections used in iOS such as only allowing signed code to run, jails and reviewing of apps has resulted in a lower level of malware affecting iOS~\cite{TODO} but can still be bypassed~\cite{Wang2013a}. %TODO look at iOS protections again and tighten this up
 
-Various attempts have been made to detect malware, %TODO
+Various attempts have been made to detect malware.
+RiskRanker~\cite{Grace2012a} classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown, an infection rate of 0.6\% across multiple markets. It uses signatures of exploits, static analysis of calls to high risk operations, detection of encrypted native code execution and Dalvik code loading.
+DroidRanger~\cite{Zhou2012a} found 148/182,823 (0.08\%) apps to be malicious across multiple markets of which 29 were previously unknown.
+It used permission-based behavioural fingerprinting -- looking at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
+AnDarwin~\cite{Crussell2013} detects similar apps, it found 169/265,359 (0.06\%) malicious apps based on the difference in permissions between the malicious app and the app which had been cloned.
+It used clustering based on semantic vectors derived from the program dependence graphs to detect similar apps.
+The Malware Genome project~\cite{Zhou2012b} collected 1,260 malware samples from 2010--2011.
+They found that the best case for anti-malware detection on this data was 79.6\%.
 However DroidChameleon~\cite{Rastogi2013} found that antivirus products could not detect malware if it was simply automatically permuted.
+All these app analysis projects have been hampered by the difficulty of obtaining full datasets of Android apps as Google does not make these available (and researchers who automatically download them, violate Google's Terms of Service).
+PlayDrone~\cite{Viennot2014} was a particularly effective project which circumvented Google's protective measures and downloaded over 1,100,000 apps from Google Play, allowing an in depth analysis.
 
-Finding vulnerabilities is frequently a time consuming manual process but, Brumley et al.~\cite{Brumley2008} showed that it is possible to automatically generate exploits from binary patches.
-In a similar way some of the vulnerabilities which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
-The update process itself can allow Android apps to gain privilege~\cite{Xing2014} by registering for new permissions before the update which creates that permission is installed.
-The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
+
 
 
 
