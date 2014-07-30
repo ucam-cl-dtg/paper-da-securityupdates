@@ -56,7 +56,7 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on the absence of root privilege exploits which allow apps to bypass all protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used the DeviceAnalyzer data~\cite{Wagner2013} and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known vulnerabilities.
+We found that on average over \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
 There was also a period of several months when no devices ran secure versions of Android.
 We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation.
 Many phones are sold on long (18 month) contracts with monthly payments yet stop receiving updates before the end of the contract, while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
@@ -66,9 +66,11 @@ Many phones are sold on long (18 month) contracts with monthly payments yet stop
 Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are at least \daNumManufacturers\ manufacturers which make devices which run Android.
 Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumNetworkOperators) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
-The manufacturer and operator have no financial incentive to perform this work.
-There is ongoing legal action to force some of them to do so~\cite{Soghoian2013}.
-CESG which advises the UK government on how to secure its computer system recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
+The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
+Operators are particularly cautious because if they ship a broken update then they will get many support requests which is expensive.
+However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.
+CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
+We provide this information in~\S\ref{sec:security_scoring}.
 
 Android relies on the Linux kernel to provide compartmentalisation and runs each app as a separate unix `user'.
 The Linux kernel is a large piece of software and so there will always be new root exploits found in it~\cite{TODO}.
