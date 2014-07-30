@@ -234,12 +234,30 @@ While many of these things can be done by malware which just requests the releva
 
 \section{Related work}
 \label{sec:related}
-Stopping root exploits working: SEAndroid, Capsicum, iOS.
-Detecting malware: Android antivirus useless.
+We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root vulnerabilities, in 2011 Felt et al.\ studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
+This might indicate that over the last 3 years the security of Android has improved, but the data are not directly comparable.
+They also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later larger studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
+
+There are continuing efforts to reduce the impact of root vulnerabilities, both in Android and more widely.
+SEAndroid~\cite{Smalley2013} which is included in Android from version ???~\cite{TODO} claimed to prevent some root vulnerabilities and to reduce the impact of others.
+Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
+When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root vulnerabilities.
+
+The security protections used in iOS such as only allowing signed code to run, jails and reviewing of apps has resulted in a lower level of malware affecting iOS~\cite{TODO} but can still be bypassed~\cite{Wang2013a}. %TODO look at iOS protections again and tighten this up
+
+Various attempts have been made to detect malware, %TODO
+However DroidChameleon~\cite{Rastogi2013} found that antivirus products could not detect malware if it was simply automatically permuted.
+
+Finding vulnerabilities is frequently a time consuming manual process but, Brumley et al.~\cite{Brumley2008} showed that it is possible to automatically generate exploits from binary patches.
+In a similar way some of the vulnerabilities which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
+The update process itself can allow Android apps to gain privilege~\cite{Xing2014} by registering for new permissions before the update which creates that permission is installed.
+The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
+
 
 
 \section{Conclusion}
 \label{sec:conclusion}
+Google Play services
 
 \printbibliography
 
