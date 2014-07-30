@@ -267,13 +267,24 @@ However DroidChameleon~\cite{Rastogi2013} found that antivirus products could no
 All these app analysis projects have been hampered by the difficulty of obtaining full datasets of Android apps as Google does not make these available (and researchers who automatically download them, violate Google's Terms of Service).
 PlayDrone~\cite{Viennot2014} was a particularly effective project which circumvented Google's protective measures and downloaded over 1,100,000 apps from Google Play, allowing an in depth analysis.
 
+Examining security updates has been a key way of assessing security for many years.
+Many software update systems have been found not to authenticate the connection to the update server and/or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
+Even package management systems designed to provide secure updates have been found to have vulnerabilities~\cite{Cappos2008}.
+Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. %TODO double check that
 
+The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourable with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
+
+User-Agent strings have been used to investigate how web browser versions change with updates~\cite{Frei2008} and found that at most 80\% of Firefox users were running the most recent version.
+The same analysis was used to show that Chrome's use of silent updates seems to increase uptake of upgrades~\cite{Duebendorfer2010} with 97\% of users running the latest version within 3 weeks of release.
+Android's update process is manual, the user is notified but must action the upgrade which will then download the update and install it, the phone is rendered inoperable during the update process which is inconvenient for users and the phone must have sufficient charge so that it will not run out during the update process.
+Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
+The same technique would be more difficult on phones with limited storage space (as for many cheap Android phones which have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
+Google is deploying the same silent update technique through Google Play Services~\cite{TODO} which automatically installs updates for core Google components of Android, this also bypasses the manufacturer and operator.
 
 
 
 \section{Conclusion}
 \label{sec:conclusion}
-Google Play services
 
 \printbibliography
 
