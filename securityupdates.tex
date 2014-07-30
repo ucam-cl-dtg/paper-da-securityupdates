@@ -109,6 +109,13 @@ Some exploits which grant root are not traditional kernel exploits, for example 
 We have published full details of the vulnerabilities listed below in an accompanying technical report~\cite{TODO} and summarise them in Table \ref{tab:andvulns}.
 We also have a website\footnote{\url{http://androidvulnerabilities.org/}} which we will keep up to date with future vulnerabilities and which has successfully solicited submissions from others.
 
+There was much manual effort required to track down details of these vulnerabilities as many of them are not in other databases such as the CVE database, the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
+Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android with several critical root vulnerabilities not having CVE numbers.
+
+Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
+Frei et al.\ propose the definition of the \bf{time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
+Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
+
 \begin{table}
 \centering
 \begin{tabular}{c|c|c}
