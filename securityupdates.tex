@@ -249,6 +249,16 @@ While many of these things can be done by malware which just requests the releva
 \label{sec:economics}
 \cite{Felt2011}
 
+\section{Evaluation}
+Our results rely on the accuracy and representativeness of two data sets, the DeviceAnalyzer data and the AndroidVulnerabilities.org data.
+
+Comparing the API version data from DeviceAnalyzer (Figure~\ref{fig:da_api}) with the ground truth data from Google Play (Figure~\ref{fig:play_api}) using ??? we find that ???.
+Since API version is a coarse grained measure of OS version this means that the OS version distribution in DeviceAnalyzer ??? representative.
+This shows that our data is ??? useful for examining the behaviour across the whole of Android.
+However to compare different manufacturers we need to take small subsets of this data and then compare them.
+Since there is no ground truth data available we cannot check definitively 
+
+
 \section{Related work}
 \label{sec:related}
 We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root vulnerabilities, in 2011 Felt et al.\ studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
