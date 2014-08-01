@@ -26,7 +26,16 @@ There have been many reports that Google's Nexus devices are better at getting u
 Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices.
 \daTabSecScoresmanufacturer
 Different manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ manufacturers with a significant presence in our data.
-Manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDays\ days of contributions.
+Manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
 \daTabSecScoresmodel
 Even within manufacturers different models can have very different update behaviours and hence security.
 Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric.
+
+These tables also show the uncertainty for $i$ and $u$.
+$i$ is calculated by taking the total insecure device days and dividing it by the total insecure and secure device days.
+The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
+Since the numbers involved are large, the uncertainty in $i$ is small.
+$u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
+The Python uncertainties library was used to propagate uncertainties through calculations.
+
+%TODO there must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model
