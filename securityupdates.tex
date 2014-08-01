@@ -110,11 +110,19 @@ We have published full details of the vulnerabilities listed below in an accompa
 We also have a website\footnote{\url{http://androidvulnerabilities.org/}} which we will keep up to date with future vulnerabilities and which has successfully solicited submissions from others.
 
 There was much manual effort required to track down details of these vulnerabilities as many of them are not in other databases such as the CVE database, the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
-Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android with several critical root vulnerabilities not having CVE numbers.
+Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android with several root vulnerabilities not having CVE numbers.
+For some of the vulnerabilities without CVE numbers we checked with Google whether they had one assigned and they confirmed that there was no number and that they did not intend to get one.
 
 Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
-Frei et al.\ propose the definition of the \bf{time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
+Frei et al.\ propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
 Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
+
+Prior work~\cite{Bilge2012} has shown that after public disclosure exploitation rates increase by 5 orders of magnitude and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
+However they also show that zero day exploits are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
+Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using it to when the update hits the user device.
+So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
+We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
+Hence we use dates such as when CVEs were registered, when fixes were committed to source repositories, when exploits were committed to repositories as the date first known about.
 
 \begin{table}
 \centering
