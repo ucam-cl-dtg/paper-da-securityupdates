@@ -124,22 +124,7 @@ So for our vulnerability calculations we use the earliest date we can find recor
 We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
 Hence we use dates such as when CVEs were registered, when fixes were committed to source repositories, when exploits were committed to repositories as the date first known about.
 
-\begin{table}
-\centering
-\begin{tabular}{c|c|c}
-Vulnerability & Date known & How known \\
-\hline
-Exploid & 2010-07-15 & Public disclosure \\
-Psneuter & 2011-01-06 & Public disclosure \\
-Levitator & 2011-03-10 & CVE registered \\
-ZergRush & 2011-10-06 & Exploit developed \\
-APK duplicate file & 2013-02-18 & Fix committed \\
-APK unsigned shorts & 2013-07-03 & Fix committed \\
-% TODO this is an incomplete list, we need to add the rest here and in os-version.py
-\end{tabular}
-\caption{Root equivalent vulnerabilities in Android}
-\label{tab:andvulns}
-\end{table}
+\daTabAndVulns
 
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
