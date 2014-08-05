@@ -11,12 +11,15 @@ cp "$fromdir"device_data/device_data-lg-security.pdf device_data-LG.pdf
 cp "$fromdir"from_to_updates.pdf from_to_updates.pdf
 cp "$fromdir"googleplayapi.pdf googleplayapi.pdf
 cp "$fromdir"googleplayapi-notitle.pdf googleplayapi-notitle.pdf
+cp "$fromdir"norm_api_gpcomp.pdf norm_api_gpcomp.pdf
 cp "$fromdir"norm_api_heat.pdf norm_api_heat.pdf
 cp "$fromdir"norm_os_heat.pdf norm_os_heat.pdf
 cp "$fromdir"norm_versionsecurity.pdf proportioninsecure.pdf
 cp "$fromdir"norm_versionsecurity-notitle.pdf proportioninsecure-notitle.pdf
 cp "$fromdir"updates_between.pdf updates_between_versions.pdf
 cp "$fromdir"vulnerabilities.pdf vulnerabilities.pdf
+cp "$fromdir"nvulnerabilities_heat.pdf nvulnerabilities_heat.pdf
 cp "$fromdir"updates_weekly.pdf w_security_updates.pdf
 cp "$fromdir"wifi-accounts-ototals-hist.pdf wifi-accounts-ototals-hist.pdf
 cp "$fromdir"wifi-accounts-stotals-hist.pdf wifi-accounts-stotals-hist.pdf
+cp "$fromdir"api_gpcomp_diff.pdf api_gpcomp_diff.pdf
