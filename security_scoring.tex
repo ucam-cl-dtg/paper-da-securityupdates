@@ -7,35 +7,39 @@ However in the absence of such data we propose a scheme for assigning a device a
 
 This score is computed from several components:
 \begin{description}
-  \item[$i$] The proportion of the time were devices exposed to known vulnerabilities. This is equivalent to Acer and Jackson's proposal~\cite{Acer2010} to measure the security based on the proportion of users with at least one unpatched critical vulnerability and is also $1 -$ the Vulnerability Free Days score~\cite{Wright2014}.
+  \item[$f$] The proportion of the time where devices were free from known critical vulnerabilities. This is equivalent to Acer and Jackson's proposal~\cite{Acer2010} to measure the security based on the proportion of users with at least one unpatched critical vulnerability and is the Vulnerability Free Days score~\cite{Wright2014}.
   \item[$u$] The proportion of devices run the latest version of Android shipped to any device produced by that manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
-  \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities measure~\cite{Wright2014} but is the mean rather than the median.
+  \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
 %TODO should we compute the median instead?
+
+We want to provide a score out of 10, since $f$ is the most important metric we weight it more highly.
+Since $m$ is an unbounded positive real number, we map it into the range [0--1).
 \end{description}
 \begin{equation}
-\mathrm{score} = (1 - i)\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3
+\mathrm{score} = f\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3
 \end{equation}
 
 The scores across the whole of android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
 There are on average \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device.
 Only on average \daUpdatednessPerc\ of devices run the most recent version of Android.
-This gives a security score of \daSecurityScore/10.
+This gives a security score of \daSecurityScore / 10.
 \daTabSecScoressummary
 However there are a wide variety of scores depending on the source of the device.
 There have been many reports that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices.
 Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices.
 \daTabSecScoresmanufacturer
-Different manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ manufacturers with a significant presence in our data.
+Different manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ manufacturers with a significant presence in our data with \daSecScoreBestmanufacturer\ (\daSecScoreBestmanufacturerScore\ / 10) doing best and \daSecScoreWorstmanufacturer\ (\daSecScoreWorstmanufacturerScore\ / 10) doing worst.
 Manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
 \daTabSecScoresmodel
 Even within manufacturers different models can have very different update behaviours and hence security.
-Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric.
+Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with \daSecScoreBestmodel\ (\daSecScoreBestmodelScore\ / 10) doing best and \daSecScoreWorstmodel\ (\daSecScoreWorstmodelScore\ / 10) doing worst.
 
-These tables also show the uncertainty for $i$ and $u$.
-$i$ is calculated by taking the total insecure device days and dividing it by the total insecure and secure device days.
+
+These tables also show the uncertainty for $f$ and $u$.
+$f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
 The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
-Since the numbers involved are large, the uncertainty in $i$ is small.
+Since the numbers involved are large, the uncertainty in $f$ is small.
 $u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
-The Python uncertainties library was used to propagate uncertainties through calculations.
+The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 
 %TODO there must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model
