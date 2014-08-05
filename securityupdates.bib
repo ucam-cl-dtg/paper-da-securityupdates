@@ -1,14 +1,10 @@
-@article{Viennot2014,
-    author = "Viennot, Nicolas and Garcia, Edward and Nieh, Jason",
-    doi = "10.1145/2591971.2592003",
-    isbn = "9781450327893",
-    title = "{A measurement study of google play}",
-    url = "http://dl.acm.org/citation.cfm?id=2592003",
-    abstract = "Although millions of users download and use third-party Android applications from the Google Play store, little in- formation is known on an aggregated level about these ap- plications. We have built PlayDrone, the first scalable Google Play store crawler, and used it to index and analyze over 1,100,000 applications in the Google Play store on a daily basis, the largest such index of Android applications. PlayDrone leverages various hacking techniques to circum- vent Google’s roadblocks for indexing Google Play store con- tent, and makes proprietary application sources available, including source code for over 880,000 free applications. We demonstrate the usefulness of PlayDrone in decompiling and analyzing application content by exploring four pre- viously unaddressed issues: the characterization of Google Play application content at large scale and its evolution over time, library usage in applications and its impact on appli- cation portability, duplicative application content in Google Play, and the ineffectiveness of OAuth and related service authentication mechanisms resulting in malicious users be- ing able to easily gain unauthorized access to user data and resources on Amazon Web Services and Facebook.",
-    file = ":home/drt24/Downloads/p221-viennot.pdf:pdf",
-    year = "2014",
-    keywords = "android,authentication,clone detection,decompilation,google play,mobile computing,oauth,security",
-    journal = "SIGMETRICS"
+@book{Taylor1997,
+    author = "Taylor, John R.",
+    year = "1997",
+    edition = "2",
+    title = "{An introduction to error analysis}",
+    isbn = "093570275X",
+    publisher = "University Science Books Sausalito, California"
 }
 
 @inproceedings{Dawson-Haggerty2010a,
@@ -2643,11 +2639,11 @@
 
 @techreport{Thacker2010,
     author = "Thacker, N A",
-    abstract = "This document derives estimators of frequency and probability for the elimination of numerical insta- bility when processing small samples. The analysis uses the quantitative methodology motivated in previous documents [6, 7]. In particular we show that the expectation of the mean of a Poisson sample is n + 1/2, and for a Binomial sample is (n + 1/2)/(N + 1). We argue that this is a better estimator of the underlying generator than conventional Likelihood in these cases. Some of the consequences of these results are illustrated on the ‘reference class problem’",
+    abstract = "This document derives estimators of frequency and probability for the elimination of numerical instability when processing small samples. The analysis uses the quantitative methodology motivated in previous documents [6, 7]. In particular we show that the expectation of the mean of a Poisson sample is n + 1/2, and for a Binomial sample is (n + 1/2)/(N + 1). We argue that this is a better estimator of the underlying generator than conventional Likelihood in these cases. Some of the consequences of these results are illustrated on the ‘reference class problem’",
     year = "2010",
     number = "2009",
     file = ":home/drt24/Library/papers/Unknown/Thacker/Thacker - 2010 - Avoiding Zero and Infinity in Sample Based Algorithms Avoiding Zero and Infinity in Sample Based Algorithms.pdf:pdf",
-    title = "{Avoiding Zero and Infinity in Sample Based Algorithms Avoiding Zero and Infinity in Sample Based Algorithms}"
+    title = "{Avoiding Zero and Infinity in Sample Based Algorithms}"
 }
 
 @article{Enck2011,
@@ -3058,6 +3054,19 @@
     booktitle = "proceedings of the 20th USENIX Security Symposium"
 }
 
+@article{Viennot2014,
+    author = "Viennot, Nicolas and Garcia, Edward and Nieh, Jason",
+    doi = "10.1145/2591971.2592003",
+    isbn = "9781450327893",
+    title = "{A measurement study of google play}",
+    url = "http://dl.acm.org/citation.cfm?id=2592003",
+    abstract = "Although millions of users download and use third-party Android applications from the Google Play store, little in- formation is known on an aggregated level about these ap- plications. We have built PlayDrone, the first scalable Google Play store crawler, and used it to index and analyze over 1,100,000 applications in the Google Play store on a daily basis, the largest such index of Android applications. PlayDrone leverages various hacking techniques to circum- vent Google’s roadblocks for indexing Google Play store con- tent, and makes proprietary application sources available, including source code for over 880,000 free applications. We demonstrate the usefulness of PlayDrone in decompiling and analyzing application content by exploring four pre- viously unaddressed issues: the characterization of Google Play application content at large scale and its evolution over time, library usage in applications and its impact on appli- cation portability, duplicative application content in Google Play, and the ineffectiveness of OAuth and related service authentication mechanisms resulting in malicious users be- ing able to easily gain unauthorized access to user data and resources on Amazon Web Services and Facebook.",
+    file = ":home/drt24/Downloads/p221-viennot.pdf:pdf",
+    year = "2014",
+    keywords = "android,authentication,clone detection,decompilation,google play,mobile computing,oauth,security",
+    journal = "SIGMETRICS"
+}
+
 @article{Hao2007,
     author = "Hao, Feng",
     doi = "10.1007/978-3-540-77156-2_16",
@@ -3416,7 +3425,7 @@
     author = "Watson, Robert N M and Anderson, Jonathan and Kennaway, Kris and Laurie, Ben",
     publisher = "USENIX Association",
     isbn = "8887666655554",
-    title = "{Capsicum : practical capabilities for UNIX}",
+    title = "{Capsicum: practical capabilities for UNIX}",
     url = "http://www.usenix.org/events/sec10/tech/full_papers/Watson.pdf",
     series = "USENIX Security'10",
     abstract = "Capsicum is a lightweight operating system capabil- ity and sandbox framework planned for inclusion in FreeBSD 9. Capsicum extends, rather than replaces, UNIX APIs, providing newkernel primitives (sandboxed capability mode and capabilities) and a userspace sand- box API. These tools support compartmentalisation of monolithic UNIX applications into logical applications, an increasingly common goal supported poorly by dis- cretionary and mandatory access control. We demon- strate our approach by adapting core FreeBSD utilities and Googles Chromium web browser to use Capsicum primitives, and compare the complexity and robustness of Capsicum with other sandboxing techniques.",
@@ -3475,7 +3484,7 @@
     abstract = "The popularity and utility of smartphones rely on their vibrant application markets; however, plagiarism threatens the long-term health of these markets. In this paper, we present a scalable approach to detecting similar Android apps based on semantic information. We implement our approach in a tool called AnDarwin and evaluate it on 265,359 apps collected from 17 markets including Google Play and numerous third-party markets. In contrast with earlier approaches, AnDarwin does not compare apps pairwise, thus greatly increasing its scalability. Additionally, AnDarwin does not rely on information other than the app code — such as the app’s market, signature, or description — thus greatly increasing its reliability. AnDarwin can automatically detect library code and remove it from the similarity analysis. We present two use cases for AnDarwin: finding similar apps by different developers (“clones”) and similar apps from the same developer (“rebranded”). In ten hours, AnDarwin detected at least 4,295 apps which have been the victims of cloning and 36,106 apps that are rebranded. By analyzing the clusters found by AnDarwin, we found 88 new variants of malware and identified 169 malicious apps based on differences in the requested permissions. In contrast to earlier approaches, AnDarwin can detect both full and partial app similarity. Additionally, AnDarwin can automatically detect similar code that is injected into many apps, which may indicate the spread of malware. Our evaluation demonstrates AnDarwin’s ability to accurately detect similar apps on a large scale.",
     file = ":home/drt24/Downloads/CSE-2013-73.pdf:pdf",
     year = "2013",
-    booktitle = "Computer Security–ESORICS 2013"
+    booktitle = "Computer Security–ESORICS"
 }
 
 @inproceedings{Osterweil2012,
@@ -5067,22 +5076,6 @@
     journal = "ISPRS Journal of Photogrammetry and Remote Sensing"
 }
 
-@inproceedings{Chen2012,
-    author = "Chen, Yu-Yuan and Jamkhedkar, Pramod a. and Lee, Ruby B.",
-    publisher = "ACM Press",
-    doi = "10.1145/2382196.2382201",
-    isbn = "9781450316514",
-    title = "{A software-hardware architecture for self-protecting data}",
-    url = "http://dl.acm.org/citation.cfm?doid=2382196.2382201",
-    abstract = "We propose a software-hardware architecture, DataSafe, that realizes the concept of self-protecting data: data that is protected by a given policy whenever it is accessed by any application -- including unvetted third-party applications. Our architecture provides dynamic instantiations of secure data compartments (SDCs), with hardware monitoring of the information flows from the compartment using hardware policy tags associated with the data at runtime. Unbypassable hardware output control prevents confidential information from being leaked out. Unlike previous hardware information flow tracking systems, DataSafe software architecture bridges the semantic gap by supporting flexible, high-level software policies for the data, seamlessly translating these policies to efficient hardware tags at runtime. Applications need not be modified to interface to these software-hardware mechanisms. DataSafe architecture is designed to prevent illegitimate secondary dissemination of protected plaintext data by authorized recipients, to track and protect data derived from sensitive data, and to provide lifetime enforcement of the confidentiality policies associated with the sensitive data.",
-    year = "2012",
-    pages = "14",
-    file = ":home/drt24/Downloads/p14-chen.pdf:pdf",
-    address = "New York, New York, USA",
-    keywords = "architecture,information flow tracking,self-protecting data",
-    booktitle = "Proceedings of the 2012 ACM conference on Computer and communications security - CCS '12"
-}
-
 @article{Clulow2003,
     author = "Clulow, Jolyon",
     title = "{On the security of PKCS\# 11}",
@@ -5558,6 +5551,22 @@
     year = "2006",
     booktitle = "SIGCOMM workshop on Large-scale attack \ldots",
     pages = "131--138"
+}
+
+@inproceedings{Chen2012,
+    author = "Chen, Yu-Yuan and Jamkhedkar, Pramod a. and Lee, Ruby B.",
+    publisher = "ACM Press",
+    doi = "10.1145/2382196.2382201",
+    isbn = "9781450316514",
+    title = "{A software-hardware architecture for self-protecting data}",
+    url = "http://dl.acm.org/citation.cfm?doid=2382196.2382201",
+    abstract = "We propose a software-hardware architecture, DataSafe, that realizes the concept of self-protecting data: data that is protected by a given policy whenever it is accessed by any application -- including unvetted third-party applications. Our architecture provides dynamic instantiations of secure data compartments (SDCs), with hardware monitoring of the information flows from the compartment using hardware policy tags associated with the data at runtime. Unbypassable hardware output control prevents confidential information from being leaked out. Unlike previous hardware information flow tracking systems, DataSafe software architecture bridges the semantic gap by supporting flexible, high-level software policies for the data, seamlessly translating these policies to efficient hardware tags at runtime. Applications need not be modified to interface to these software-hardware mechanisms. DataSafe architecture is designed to prevent illegitimate secondary dissemination of protected plaintext data by authorized recipients, to track and protect data derived from sensitive data, and to provide lifetime enforcement of the confidentiality policies associated with the sensitive data.",
+    year = "2012",
+    pages = "14",
+    file = ":home/drt24/Downloads/p14-chen.pdf:pdf",
+    address = "New York, New York, USA",
+    keywords = "architecture,information flow tracking,self-protecting data",
+    booktitle = "Proceedings of the 2012 ACM conference on Computer and communications security - CCS '12"
 }
 
 @inproceedings{Demers1994,
