@@ -9,6 +9,7 @@ This score is computed from several components:
 \begin{description}
   \item[$f$] The proportion of the time where devices were free from known critical vulnerabilities. This is equivalent to Acer and Jackson's proposal~\cite{Acer2010} to measure the security based on the proportion of users with at least one unpatched critical vulnerability and is the Vulnerability Free Days score~\cite{Wright2014}.
   \item[$u$] The proportion of devices run the latest version of Android shipped to any device produced by that manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
+  This assumes that newer versions are better with stronger security, historically steps have been taken to improve Android security in newer versions so this assumption should generally hold, but sometimes new updates introduce new vulnerabilities.
   \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
 %TODO should we compute the median instead?
 
