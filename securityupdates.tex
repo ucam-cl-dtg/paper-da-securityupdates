@@ -80,7 +80,7 @@ Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android
 While this shows that much Android malware does not need a root exploit to work, as it can just request the relevant permissions and the user will grant them, a significant proportion does.
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
 
-The proportion of Android devices in the DeviceAnalyzer data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure \ref{fig:proportioninsecure}.
+The proportion of Android devices in the DeviceAnalyzer data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
 In \S\ref{sec:background} we will explain where these data come from and then in \S\ref{sec:results} we will show these data in more detail.
 
 \begin{figure}[!b]
@@ -121,7 +121,7 @@ Unfortunately many published exploits use adb for convenience and so determining
 Some exploits which grant root are not traditional kernel exploits, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen, make and receive calls.
 
-We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table \ref{tab:andvulns}.
+We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
 We also have a website\footnote{\url{http://androidvulnerabilities.org/}} which we will keep up to date with future vulnerabilities and which has successfully solicited submissions from others.
 In this analysis we only use vulnerabilities which affected all Android devices, not any of the manufacturer or hardware specific vulnerabilities
 
@@ -172,7 +172,7 @@ We verify the validity of this data in \S\ref{sec:representative}.
  \label{fig:norm_os}
 \end{figure}
 
-Figure \ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
+Figure~\ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
 In July 2011 at the beginning of the Device Analyzer data the Exploid and Levitator vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
 However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still unfixed. %TODO put percentages on these things to quantify them
@@ -184,10 +184,10 @@ However when in February 2013 the first APK signing vulnerability was found whic
 \end{figure}
 
 The variation of the proportion of devices affected by a vulnerability with time tells us how bad a particular vulnerability affected the Android platform.
-Figure \ref{fig:nvulnerabilities_heat} breaks this down by vulnerability to show how the proportion of devices affected by different vulnerabilities varies.
+Figure~\ref{fig:nvulnerabilities_heat} breaks this down by vulnerability to show how the proportion of devices affected by different vulnerabilities varies.
 In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
-Figure \ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
+Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
 However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}, \emph{levitator} and \emph{exploid} vulnerabilities which are more dangerous root exploits (not requiring new APK installation) and which still affect a significant proportion of devices years later.
 
 \begin{figure}
@@ -208,12 +208,12 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
  \caption{Number of updates each week which fixed or may have fixed security vulnerabilities}
  \label{fig:weekly_security_updates}
 \end{figure}
-Figure \ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
+Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
 Device Analyzer (DA) observes upgrade events and the figure shows which versions a device is upgrading from and to.
 Mostly the dark cells are above the diagonal and are upgrades.
 While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
 Surprisingly there are also a small number of downgrade events when older versions of Android are installed on to devices.
-The number of devices getting security updates each week, is shown in Figure \ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
+The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
 %TODO summary stats, what does this mean
 
@@ -267,8 +267,8 @@ The data from Device Analyzer (DA) we used to investigate the proportion of devi
 Unfortunately there is no authoritative source of OS version information and so we cannot check directly whether our data is representative.
 However Google has published API version information every month since December 2009 and we have collated this information.\footnote{\url{https://www.cl.cam.ac.uk/~drt24/android/versiondistribution/}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the DA data on API versions is similar to the Google Data on API versions then the DA data on OS versions should be representative.
-Figure \ref{fig:play_api} shows the data from Google and Figure \ref{fig:da_api} shows the data from Device Analyzer and they appear similar.
-Figure \ref{fig:da_gp_comp_diff} shows the difference between Figures \ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
+Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from Device Analyzer and they appear similar.
+Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
 It shows that the Device Analyzer data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
 This means that the OS version information from Device Analyzer is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
 %TODO we want a statistical metric to claim this strongly with.
