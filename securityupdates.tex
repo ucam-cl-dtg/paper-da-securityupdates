@@ -115,7 +115,7 @@ We need information on the distribution of installed versions of Android so that
 \subsection{Root exploits}
 We compiled a list of root exploit vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
 We only looked for \emph{root equivalent} exploits which did not require USB debugging to exploit.
-\emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then be used to gain root.
+\emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then either be used to gain root or provide sufficiently many permissions as to be as bad as root.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
 This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those exploits.
 Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
