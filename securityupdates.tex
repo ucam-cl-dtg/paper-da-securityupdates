@@ -219,9 +219,10 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 \end{figure}
 Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
 Device Analyzer (DA) observes upgrade events and the figure shows which versions a device is upgrading from and to.
-Mostly the dark cells are above the diagonal and are upgrades.
+Mostly the dark cells are above the diagonal and are upgrades (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
-Surprisingly there are also a small number of downgrade events when older versions of Android are installed on to devices.
+Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
+
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
 %TODO summary stats, what does this mean
