@@ -234,23 +234,6 @@ Red indicates updates which changed the build number but not the version number 
 
 \input{security_scoring}
 
-\subsection{User-Agent data}
-Device Analyzer provides one view on the state of Android phones, however some of the data available in Device Analyzer can also be obtained from alternative sources.
-OS version information for both Android and iOS (for which it is not possible to write a Device Analyzer app) is published in the User-Agent header sent by mobile devices making http requests.
-We obtained data from the Apache web server access logs of the Student-Run Computing Facility\footnote{\url{https://www.srcf.net}} which hosts thousands of websites.
-These data are shown in Figures \ref{fig:ua_android_month} and \ref{fig:ua_ios_month}.
-\begin{figure}
- \includegraphics[width=0.5\textwidth]{figures/ua-versions-android-month-norm}
- \caption{Versions of Android over time from SRCF User-Agent data}
- \label{fig:ua_android_month}
-\end{figure}
-\begin{figure}
- \includegraphics[width=0.5\textwidth]{figures/ua-versions-ios-month-norm}
- \caption{Versions of iOS over time from SRCF User-Agent data}
- \label{fig:ua_ios_month}
-\end{figure}
-Clearly this data is nosier than the Device Analyzer data...
-TODO
 
 \subsection{Comparison with iOS}
 TODO
