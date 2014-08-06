@@ -23,5 +23,6 @@ cp "$fromdir"updates_weekly.pdf w_security_updates.pdf
 cp "$fromdir"wifi-accounts-ototals-hist.pdf wifi-accounts-ototals-hist.pdf
 cp "$fromdir"wifi-accounts-stotals-hist.pdf wifi-accounts-stotals-hist.pdf
 cp "$fromdir"api_gpcomp_diff.pdf api_gpcomp_diff.pdf
+cp "$fromdir"api_gpcomp_rdiff.pdf api_gpcomp_rdiff.pdf
 cp "$fromdir"ua-versions-android-month-norm.pdf ua-versions-android-month-norm.pdf
 cp "$fromdir"ua-versions-ios-month-norm.pdf ua-versions-ios-month-norm.pdf

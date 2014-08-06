@@ -152,7 +152,7 @@ Unfortunately there is no authoritative source of OS version information and so 
 However Google has published API version information every month since December 2009 and we have collated this information.\footnote{\url{https://www.cl.cam.ac.uk/~drt24/android/versiondistribution/}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the DA data on API versions is similar to the Google Data on API versions then the DA data on OS versions should be representative.
 Figure \ref{fig:play_api} shows the data from Google and Figure \ref{fig:da_api} shows the data from Device Analyzer and they appear similar.
-Figure \ref{fig:da_gp_comp_diff} shows the difference between Figures \ref{fig:play_api} and \ref{fig:da_api}.
+Figure \ref{fig:da_gp_comp_diff} shows the difference between Figures \ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
 It shows that the Device Analyzer data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
 This means that the OS version information from Device Analyzer is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
 %TODO we want a statistical metric to claim this strongly with.
@@ -170,7 +170,7 @@ This means that the OS version information from Device Analyzer is likely to be 
 \end{figure}
 \begin{figure}
  \centering
- \includegraphics[width=\columnwidth]{figures/api_gpcomp_diff}
+ \includegraphics[width=\columnwidth]{figures/api_gpcomp_rdiff}
  \caption{Difference between Device Analyzer and Google Play data on the proportion of devices running different Android API versions}
  \label{fig:da_gp_comp_diff}
 \end{figure}
