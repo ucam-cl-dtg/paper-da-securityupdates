@@ -7,15 +7,40 @@ However in the absence of such data we propose a scheme for assigning a device a
 
 This score is computed from several components:
 \begin{description}
-  \item[$f$] The proportion of the time where devices were free from known critical vulnerabilities. This is equivalent to Acer and Jackson's proposal~\cite{Acer2010} to measure the security based on the proportion of users with at least one unpatched critical vulnerability and is the Vulnerability Free Days score~\cite{Wright2014}.
+  \item[$f$] The proportion of the time where devices were free from known critical vulnerabilities. This is equivalent to Acer and Jackson's proposal~\cite{Acer2010} to measure the security based on the proportion of users with at least one unpatched critical vulnerability and to the Vulnerability Free Days (VFD) score~\cite{Wright2014}.
+  Unlike VFD this is the proportion of running devices which were free from critical vulnerabilities, rather than days which the manufacturer was free from outstanding critical vulnerabilities as that does not take account of the update process.
   \item[$u$] The proportion of devices run the latest version of Android shipped to any device produced by that manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
   This assumes that newer versions are better with stronger security, historically steps have been taken to improve Android security in newer versions so this assumption should generally hold, but sometimes new updates introduce new vulnerabilities.
   \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
+  An example is given in Figure~\ref{fig:mcalculation}.
 %TODO should we compute the median instead?
+\end{description}
+
+\begin{figure}
+\centering
+%\includegraphics[width=\columnwidth]{figures/mcalculation}
+\include{figures/mcalculation}
+\begin{tabular}{c|c|c}
+active vulnerabilities & \# days & percent\\
+\hline
+0 & 3 & 15\%\\
+1 & 5 & 25\%\\
+2 & 10 & 50\%\\
+3 & 2 & 10\%\\
+\hline
+\hline
+$m$ & \multicolumn{2}{c}{1.55}\\
+MAV & \multicolumn{2}{c}{2}\\
+VFD & \multicolumn{2}{c}{15\%}\\
+
+\end{tabular}
+\caption{Example $m$ calculation based on the one given in by Wright~\cite{Wright2014} giving MAV and VFD for comparison.}
+\label{fig:mcalculation}
+\end{figure}
 
 We want to provide a score out of 10, since $f$ is the most important metric we weight it more highly.
 Since $m$ is an unbounded positive real number, we map it into the range [0--1).
-\end{description}
+
 \begin{equation}
 \mathrm{score} = f\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3
 \end{equation}
