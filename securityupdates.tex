@@ -64,7 +64,7 @@ We compare different manufacturers and operators to find which are best at promp
 \end{abstract}
 
 \section{Introduction}
-Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{From the Device Analyzer data} manufacturers which make devices which run Android.
+Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{We computed this from the Device Analyzer~\cite{Wagner2013} data.} manufacturers which make devices which run Android.
 Android receives regular updates  which add new features and fix bugs, including security vulnerabilities.
 Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumNetworkOperators) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
@@ -82,7 +82,7 @@ Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android
 While this shows that much Android malware does not need a root exploit to work, as it can just request the relevant permissions and the user will grant them, a significant proportion does.
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
 
-The proportion of Android devices in the DeviceAnalyzer data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
+The proportion of Android devices in the Device Analyzer data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
 In \S\ref{sec:background} we will explain where these data come from and then in \S\ref{sec:results} we will show these data in more detail.
 
 \begin{figure}[!b]
@@ -223,6 +223,7 @@ Device Analyzer (DA) observes upgrade events and the figure shows which versions
 Mostly the dark cells are above the diagonal and are upgrades (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
+Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
@@ -285,10 +286,16 @@ This means that the OS version information from Device Analyzer is likely to be 
 %TODO we want a statistical metric to claim this strongly with.
 This allows us to have confidence in the OS version information.
 
+\section{Discussion}
+There are continuing efforts to reduce the impact of root vulnerabilities, both in Android and more widely.
+SEAndroid~\cite{Smalley2013} which is included in Android from version ???~\cite{TODO} claimed to prevent some root vulnerabilities and to reduce the impact of others.
+Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
+When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root vulnerabilities.
+
 \section{Related work}
 \label{sec:related}
 We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root vulnerabilities, in 2011 Felt et al.\ studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
-This might indicate that over the last 3 years the security of Android has not improved, but these data are not directly comparable.
+This might indicate that over the last 3 years the security of Android has not improved, but these data are not directly comparable as their study was on 6 handsets considering the best possible update distribution while ours is on a large sample of devices with the real update distribution.
 They also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later larger studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
 Perhaps the malware authors heard about the results in Felt et al.'s paper?
 Our results show root exploits are still a severe threat.
@@ -299,12 +306,6 @@ This effect has been observed before~\cite{Barth2011} in the Firefox source code
 There have been other attempts to automatically find vulnerabilities.
 The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
 The update process itself can allow Android apps to gain privilege through `Pileup' vulnerabilities~\cite{Xing2014} by registering for new permissions before the update which creates that permission is installed.
-
-
-There are continuing efforts to reduce the impact of root vulnerabilities, both in Android and more widely.
-SEAndroid~\cite{Smalley2013} which is included in Android from version ???~\cite{TODO} claimed to prevent some root vulnerabilities and to reduce the impact of others.
-Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
-When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root vulnerabilities.
 
 The security protections used in iOS such as only allowing signed code to run, jails and reviewing of apps has resulted in a lower level of malware affecting iOS~\cite{TODO} but can still be bypassed~\cite{Wang2013a}. %TODO look at iOS protections again and tighten this up
 
@@ -327,6 +328,7 @@ Even package management systems designed to provide secure updates have been fou
 Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. %TODO double check that
 
 The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourable with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
+However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}} -- four months after it went out of security support.
 
 User-Agent strings have been used to investigate how web browser versions change with updates~\cite{Frei2008} and found that at most 80\% of Firefox users were running the most recent version.
 The same analysis was used to show that Chrome's use of silent updates seems to increase uptake of upgrades~\cite{Duebendorfer2010} with 97\% of users running the latest version within 3 weeks of release.
