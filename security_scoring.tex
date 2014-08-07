@@ -11,7 +11,7 @@ This score is computed from several components:
   Unlike VFD this is the proportion of running devices which were free from critical vulnerabilities, rather than days which the manufacturer was free from outstanding critical vulnerabilities as that does not take account of the update process.
   \item[$u$] The proportion of devices run the latest version of Android shipped to any device produced by that manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
   This assumes that newer versions are better with stronger security, historically steps have been taken to improve Android security in newer versions so this assumption should generally hold, but sometimes new updates introduce new vulnerabilities.
-  \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
+  \item[$m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities (MAV) measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
   An example is given in Figure~\ref{fig:mcalculation}.
 %TODO should we compute the median instead?
 \end{description}
@@ -38,11 +38,23 @@ VFD & \multicolumn{2}{c}{15\%}\\
 \label{fig:mcalculation}
 \end{figure}
 
-We want to provide a score out of 10, since $f$ is the most important metric we weight it more highly.
+These three metrics $f$, $u$ and $m$ together measure the security of a platform with respect to known vulnerabilities and updates.
+$f$ is a key measure of the direct risk to users as if there is any known but unfixed vulnerability then they are vulnerable.
+However it does not capture the increased risk caused by there being multiple known vulnerabilities which gives an attacker more opportunities and increases the likelihood of a piece of malware having a matching exploit.
+This is captured by the $m$ score which measures the size of the manufacturers queue of outstanding vulnerabilities but does not take into account the update process or measure the actual end user security.
+Neither of these metrics capture whether devices are being left behind and not being kept up to date with the most recent (and hopefully most secure) version which is captured by $u$.
+
+$f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
+A high value of $u$ could be achieved by only ever shipping one version but that would give low values for $f$ and $m$ (and not be attractive to new customers).
+A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.
+
+We want to provide a score out of 10 as this is easy for people to understand.
+Since $f$ is the most important metric we weight it more highly.
 Since $m$ is an unbounded positive real number, we map it into the range [0--1).
+This gives us Equation~\ref{eq:score}:
 
 \begin{equation}
-\mathrm{score} = f\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3
+\mathrm{score} = f\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3 \label{eq:score}
 \end{equation}
 
 The scores across the whole of android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
