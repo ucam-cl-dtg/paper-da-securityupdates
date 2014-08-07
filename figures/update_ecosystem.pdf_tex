@@ -49,16 +49,25 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.95652174)%
-    \put(0,0.005){\includegraphics[width=\unitlength]{figures/update_ecosystem.pdf}}%
-    \put(0.13618884,0.92025593){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24622761\unitlength}\centering OpenSSL\end{minipage}}}%
-    \put(0.39737812,0.90501683){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.33433257\unitlength}\centering BouncyCastle\end{minipage}}}%
-    \put(0.48755852,0.0769859){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.12981587\unitlength}\centering User\end{minipage}}}%
-    \put(0.47661239,0.24384686){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.17586405\unitlength}\centering Carrier\end{minipage}}}%
-    \put(0.40637333,0.43047306){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32073411\unitlength}\centering Manufacturer\end{minipage}}}%
-    \put(0.73375895,0.65208341){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.2500946\unitlength}\centering Hardware developer\end{minipage}}}%
-    \put(0.60168595,0.77317653){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14970736\unitlength}\centering Linux\end{minipage}}}%
-    \put(0.03079656,0.79287394){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.27474553\unitlength}\centering Apache libs\end{minipage}}}%
-    \put(0.27670788,0.61943006){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32313491\unitlength}\centering Google / OHA\end{minipage}}}%
-    \put(0.41521749,0.80592611){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Upstream open source projects}}}%
+    \put(0,0){\includegraphics[width=\unitlength]{update_ecosystem.pdf}}%
+    \put(0.41521749,0.82331741){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Upstream open source projects}}}%
+    \put(0.03111396,0.79690458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.27411072\unitlength}\centering Apache libs\\ \end{minipage}}}%
+    \put(0.16381987,0.72111803){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\apacheLibsNumLibs)}}}%
+    \put(0.34839079,0.76257762){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\opensslNumVersions}}}%
+    \put(0.47587874,0.72065217){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\bouncyCastleNumVersions}}}%
+    \put(0.60334108,0.66397519){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\linuxNumVersions}}}%
+    \put(0.4065431,0.43465111){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32039457\unitlength}\centering Manufacturer\end{minipage}}}%
+    \put(0.56909936,0.36195652){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumManufacturers)}}}%
+    \put(0.49564295,0.51723606){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\daNumSigOSVersions}}}%
+    \put(0.56268729,0.14223606){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\daNumFullVersions}}}%
+    \put(0.13618884,0.9246038){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24622763\unitlength}\centering OpenSSL\end{minipage}}}%
+    \put(0.39737811,0.90936464){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.33433257\unitlength}\centering BouncyCastle\end{minipage}}}%
+    \put(0.60168596,0.77752433){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14970736\unitlength}\centering Linux\end{minipage}}}%
+    \put(0.27670787,0.62377783){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32313489\unitlength}\centering Google / OHA\end{minipage}}}%
+    \put(0.73375894,0.65643124){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.2500946\unitlength}\centering Hardware developer\end{minipage}}}%
+    \put(0.47661239,0.24819468){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.17586405\unitlength}\centering Carrier\end{minipage}}}%
+    \put(0.4877116,0.08118033){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.12950967\unitlength}\centering User\end{minipage}}}%
+    \put(0.55341614,0.00714297){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumOSDevices)}}}%
+    \put(0.28465387,0.66055894){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\apacheLibsNumVersions}}}%
   \end{picture}%
 \endgroup%

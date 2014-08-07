@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="update_ecosystem.svg">
   <defs
      id="defs4">
     <marker
@@ -40,9 +40,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="204.28422"
-     inkscape:cy="358.37559"
+     inkscape:zoom="1.4"
+     inkscape:cx="178.76395"
+     inkscape:cy="172.6613"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -68,250 +68,117 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-612.36218)">
-    <g
-       id="g5267"
-       transform="translate(-40.324881,545.48238)">
-      <rect
-         y="83.562073"
-         x="102.97175"
-         height="28.411901"
-         width="113.26471"
-         id="rect5257"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.87236983;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5259"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5261"><use
-             id="use5263"
-             xlink:href="#rect5257"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5265">OpenSSL</flowPara></flowRoot>    </g>
-    <g
-       id="g5284"
-       transform="translate(-43.35534,595.99001)">
-      <rect
-         y="40.064426"
-         x="226.14928"
-         height="27.523926"
-         width="153.793"
-         id="rect5274"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.75019348;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5276"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5278"><use
-             id="use5280"
-             xlink:href="#rect5274"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5282">BouncyCastle</flowPara></flowRoot>    </g>
-    <g
-       id="g5329"
-       transform="translate(-61.538085,597.00015)">
-      <rect
-         y="419.94852"
-         x="285.815"
-         height="29.410728"
-         width="59.715298"
-         id="rect5303"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.88369614;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5305"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5307"><use
-             id="use5309"
-             xlink:href="#rect5303"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5311">User</flowPara></flowRoot>    </g>
-    <g
-       id="g5336"
-       transform="translate(-61.538085,597.00015)">
-      <rect
-         y="343.19247"
-         x="280.77979"
-         height="28.369543"
-         width="80.897476"
-         id="rect5301"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.91472816;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5313"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5315"><use
-             id="use5317"
-             xlink:href="#rect5301"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5319">Carrier</flowPara></flowRoot>    </g>
-    <g
-       id="g5343"
-       transform="translate(-61.538085,597.00015)">
-      <rect
-         y="257.34442"
-         x="248.46982"
-         height="30.36001"
-         width="147.5377"
-         id="rect5299"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.94456738;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5321"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5323"><use
-             id="use5325"
-             xlink:href="#rect5299"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5327">Manufacturer</flowPara></flowRoot>    </g>
-    <g
-       id="g5358"
-       transform="translate(-61.538085,603.06107)">
-      <rect
-         y="149.34274"
-         x="399.0672"
-         height="56.45467"
-         width="115.04352"
-         id="rect5293"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.11387217;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5350"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5352"><use
-             id="use5354"
-             xlink:href="#rect5293"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5356">Hardware developer</flowPara></flowRoot>    </g>
-    <g
-       id="g5388"
-       transform="translate(-26.182746,600.03061)">
-      <rect
-         y="96.670364"
-         x="302.95828"
-         height="28.459286"
-         width="68.865379"
-         id="rect5291"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.82498688;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5365"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5367"><use
-             id="use5369"
-             xlink:href="#rect5291"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5371">Linux</flowPara></flowRoot>    </g>
-    <g
-       id="g5381"
-       transform="translate(-45.375644,570.73619)">
-      <rect
-         y="116.90398"
-         x="59.542061"
-         height="27.387993"
-         width="126.38294"
-         id="rect5297"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.88612604;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5373"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5375"><use
-             id="use5377"
-             xlink:href="#rect5297"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5379">Apache libs</flowPara></flowRoot>    </g>
-    <g
-       id="g5403"
-       transform="translate(-9.010152,591.94939)">
-      <rect
-         y="175.47496"
-         x="136.29578"
-         height="28.43392"
-         width="148.64206"
-         id="rect5295"
-         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.85035592;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
-      <flowRoot
-         id="flowRoot5395"
-         style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-         xml:space="preserve"><flowRegion
-           id="flowRegion5397"><use
-             id="use5399"
-             xlink:href="#rect5295"
-             y="0"
-             x="0"
-             width="744.09448"
-             height="1052.3622" /></flowRegion><flowPara
-           id="flowPara5401">Google / OHA</flowPara></flowRoot>    </g>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.87236983;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5257"
+       width="113.26471"
+       height="28.411901"
+       x="62.646866"
+       y="625.04443" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.75019348;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5274"
+       width="153.793"
+       height="27.523926"
+       x="182.79393"
+       y="632.05444" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.02454948;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5303"
+       width="59.574444"
+       height="39.627018"
+       x="224.34734"
+       y="1013.0192" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.91472816;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5301"
+       width="80.897476"
+       height="28.369543"
+       x="219.2417"
+       y="936.19263" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10077035;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5299"
+       width="147.3815"
+       height="41.275234"
+       x="187.00983"
+       y="850.42267" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.11387217;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5293"
+       width="115.04352"
+       height="56.45467"
+       x="337.52911"
+       y="748.40381" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.82498688;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5291"
+       width="68.865379"
+       height="28.459286"
+       x="276.77554"
+       y="692.70099" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.17813182;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5297"
+       width="126.09093"
+       height="48.524559"
+       x="14.31242"
+       y="683.78607" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.85035592;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect5295"
+       width="148.64206"
+       height="28.43392"
+       x="127.28562"
+       y="763.42438" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="M 343.53309,752.34687 327.37065,724.0626"
+       d="M 343.53309,748.34687 327.37065,720.0626"
        id="path5410"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 288.98485,726.08291 -35.35534,42.4264"
+       d="m 288.98485,722.08291 -35.35534,42.4264"
        id="path5856"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 258.68028,663.45345 -36.3655,103.03556"
+       d="m 258.68028,659.45345 -36.3655,103.03556"
        id="path6050"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 149.5838,656.38238 16.16244,111.11678"
+       d="m 149.5838,652.38238 16.16244,111.11678"
        id="path6052"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.74505395px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 112.08068,715.85391 27.52906,49.75242"
+       d="m 112.08068,711.85391 27.52906,49.75242"
        id="path6054"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 214.23356,793.76313 28.28427,58.58885"
+       d="m 216.37642,791.1917 26.14141,57.16028"
        id="path6056"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 355.65492,808.91542 -64.64977,45.45686"
+       d="m 355.65492,804.91542 -64.64977,45.45686"
        id="path6058"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 259.69042,884.67686 1.01016,53.53808"
+       style="fill:none;stroke:#000000;stroke-width:0.96180069px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="m 260.40115,892.08633 0.30069,42.14771"
        id="path6060"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Lend)"
-       d="m 256.65997,968.51952 0,48.48728"
+       d="m 256.65997,964.51952 0,48.48728"
        id="path6062"
        inkscape:connector-curvature="0" />
     <rect
@@ -320,32 +187,250 @@
        width="15.152299"
        height="15.152286"
        x="247.56859"
-       y="667.47375" />
+       y="663.47375" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect7530"
        width="19.192898"
        height="21.213203"
        x="143.52289"
-       y="665.47375" />
+       y="661.47375" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        x="191.00005"
-       y="681.63617"
+       y="673.63617"
        id="text7526"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan7528"
          x="191.00005"
-         y="681.63617">Upstream open source projects</tspan></text>
+         y="673.63617">Upstream open source projects</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1.61739743;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:none;stroke:#000000;stroke-width:1.66703272;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect7536"
-       width="353.94617"
-       height="130.70241"
-       x="5.4406796"
-       y="618.3053"
-       ry="46.794609" />
+       width="353.89655"
+       height="138.86707"
+       x="5.465497"
+       y="614.33014"
+       ry="49.717751" />
+    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4315"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4317"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5297"
+           id="use4319"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4353">Apache libs</flowPara><flowPara
+         id="flowPara4357" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="75.35714"
+       y="720.64789"
+       id="text4359"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4361"
+         x="75.35714"
+         y="720.64789"
+         style="font-size:10px">(\apacheLibsNumLibs)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="160.25977"
+       y="701.57648"
+       id="text4363"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4365"
+         x="160.25977"
+         y="701.57648">\opensslNumVersions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="218.90422"
+       y="720.86218"
+       id="text4367"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4369"
+         x="218.90422"
+         y="720.86218">\bouncyCastleNumVersions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="277.5369"
+       y="746.93359"
+       id="text4371"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4373"
+         x="277.5369"
+         y="746.93359">\linuxNumVersions</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4380"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4382"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5299"
+           id="use4384"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4386">Manufacturer</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="261.78571"
+       y="885.86218"
+       id="text4388"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4390"
+         x="261.78571"
+         y="885.86218">(\daNumManufacturers)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="227.99576"
+       y="814.43359"
+       id="text4392"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4394"
+         x="227.99576"
+         y="814.43359">\daNumSigOSVersions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="258.83615"
+       y="986.93359"
+       id="text4396"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4398"
+         x="307.85715"
+         y="986.93359">\daNumFullVersions</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Sans"
+       id="flowRoot4424"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4426"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5257"
+           id="use4428"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4430">OpenSSL</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4437"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4439"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5274"
+           id="use4441"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4443">BouncyCastle</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4450"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4452"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5291"
+           id="use4454"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4456">Linux</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4463"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4465"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5295"
+           id="use4467"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4469">Google / OHA</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4476"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4478"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5293"
+           id="use4480"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4482">Hardware developer</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4489"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4491"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5301"
+           id="use4493"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4495">Carrier</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot4502"
+       transform="translate(0,2)"><flowRegion
+         id="flowRegion4504"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5303"
+           id="use4506"
+           width="460"
+           height="440"
+           transform="translate(0,-2)" /></flowRegion><flowPara
+         id="flowPara4508">User</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="254.57143"
+       y="1049.0764"
+       id="text4510"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4512"
+         x="254.57143"
+         y="1049.0764">(\daNumOSDevices)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="130.94078"
+       y="748.50507"
+       id="text4609"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4611"
+         x="130.94078"
+         y="748.50507">\apacheLibsNumVersions</tspan></text>
   </g>
 </svg>

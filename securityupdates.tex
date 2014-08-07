@@ -4,6 +4,8 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\graphicspath{figures/}
+\usepackage{import}
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{subcaption}
@@ -26,6 +28,12 @@
 \newcommand{\daDeviceDays}{XXXXX}
 \newcommand{\daMonths}{X}% Number of months for which we have the below number of devices
 \newcommand{\daMonthsDevices}{XXX}
+% Num versions since \daStartDate
+\newcommand{\bouncyCastleNumVersions}{A}
+\newcommand{\opensslNumVersions}{B}
+\newcommand{\apacheLibsNumVersions}{C}
+\newcommand{\apacheLibsNumLibs}{E}
+\newcommand{\linuxNumVersions}{D}
 
 \begin{document}
 \title{Timeliness of security updates for Android}
@@ -167,8 +175,9 @@ While we have not tried to exploit these vulnerabilities on the devices in order
 \begin{figure}
  \centering
  \def\svgwidth{\columnwidth}
- \input{figures/update_ecosystem.pdf_tex}
- \caption{Flow of updates between participants in the Android ecosystem}
+ \import{figures/}{update_ecosystem.pdf_tex}
+ \caption{Flow of updates between participants in the Android ecosystem.
+ Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.}
  \label{fig:update_ecosystem}
 \end{figure}
 \cite{Vidas2011}
