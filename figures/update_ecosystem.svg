@@ -46,11 +46,11 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1274"
-     inkscape:window-height="1417"
-     inkscape:window-x="0"
-     inkscape:window-y="17"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1231"
+     inkscape:window-height="776"
+     inkscape:window-x="49"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -88,14 +88,14 @@
        width="59.574444"
        height="39.627018"
        x="224.34734"
-       y="1013.0192" />
+       y="1011.0192" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.91472816;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.08955944;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect5301"
-       width="80.897476"
-       height="28.369543"
-       x="219.2417"
-       y="936.19263" />
+       width="80.722649"
+       height="40.33757"
+       x="219.32912"
+       y="930.28003" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10077035;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect5299"
@@ -172,15 +172,16 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.96180069px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 260.40115,892.08633 0.30069,42.14771"
+       d="m 256.40115,892.08633 0.30069,37.862"
        id="path6060"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow1Lend)"
-       d="m 256.65997,964.51952 0,48.48728"
+       d="m 256.65997,969.66238 0,41.34442"
        id="path6062"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect7532"
@@ -432,5 +433,16 @@
          id="tspan4611"
          x="130.94078"
          y="748.50507">\apacheLibsNumVersions</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="260.42856"
+       y="965.93359"
+       id="text3062"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3064"
+         x="260.42856"
+         y="965.93359">(\daNumOperators)</tspan></text>
   </g>
 </svg>
