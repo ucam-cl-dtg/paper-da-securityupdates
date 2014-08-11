@@ -232,6 +232,16 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
  \label{fig:nvulnerabilities_heat}
 \end{figure}
 
+Those graphs summarise data across all the devices, however one of the advantages of the Device Analyzer data is that it allows us to look at what happens to individual devices over time.
+Figure~\ref{fig:device_data} shows how the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to Device Analyzer changes over time.
+The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
+It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{figures/device-data-all-security}
+ \caption{Number of vulnerabilities affecting the top \daNumDeviceDataDevices\ devices by days of contribution in the Device Analyzer data}
+ \label{fig:device_data}
+\end{figure}
+
 \subsection{Update frequency}
 %TODO find out what the frequency of updates is
 \begin{figure}
