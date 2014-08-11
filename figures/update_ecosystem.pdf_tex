@@ -65,10 +65,10 @@
     \put(0.60168596,0.77752433){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14970736\unitlength}\centering Linux\end{minipage}}}%
     \put(0.27670787,0.62377783){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32313489\unitlength}\centering Google / OHA\end{minipage}}}%
     \put(0.73375894,0.65643124){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.2500946\unitlength}\centering Hardware developer\end{minipage}}}%
-    \put(0.47680243,0.26104815){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.175484\unitlength}\centering Carrier\end{minipage}}}%
+    \put(0.44739304,0.26095435){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.20479965\unitlength}\centering Operator\end{minipage}}}%
     \put(0.4877116,0.08552816){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.12950967\unitlength}\centering User\end{minipage}}}%
     \put(0.55341614,0.00714297){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumOSDevices)}}}%
     \put(0.28465387,0.66055894){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\apacheLibsNumVersions}}}%
-    \put(0.56614904,0.18788823){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumOperators)}}}%
+    \put(0.54875774,0.18788823){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumOperators)}}}%
   \end{picture}%
 \endgroup%

@@ -46,11 +46,11 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1231"
-     inkscape:window-height="776"
-     inkscape:window-x="49"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="1274"
+     inkscape:window-height="1417"
+     inkscape:window-x="0"
+     inkscape:window-y="17"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -59,7 +59,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -90,12 +90,12 @@
        x="224.34734"
        y="1011.0192" />
     <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.08955944;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.17579615;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect5301"
-       width="80.722649"
-       height="40.33757"
-       x="219.32912"
-       y="930.28003" />
+       width="94.207848"
+       height="40.251331"
+       x="205.8008"
+       y="930.32318" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.10077035;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect5299"
@@ -398,7 +398,7 @@
            width="460"
            height="440"
            transform="translate(0,-2)" /></flowRegion><flowPara
-         id="flowPara4495">Carrier</flowPara></flowRoot>    <flowRoot
+         id="flowPara4495">Operator</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        id="flowRoot4502"
@@ -436,13 +436,13 @@
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="260.42856"
+       x="252.42856"
        y="965.93359"
        id="text3062"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3064"
-         x="260.42856"
+         x="252.42856"
          y="965.93359">(\daNumOperators)</tspan></text>
   </g>
 </svg>
