@@ -24,10 +24,8 @@
 \input{avostats}
 \newcommand{\percMarketShare}{XX\%~\cite{TODO}}
 \newcommand{\daNumNetworkOperators}{XXX~[\S\ref{sec:results}]}
-\newcommand{\daNumDevices}{XXXX}
-\newcommand{\daDeviceDays}{XXXXX}
-\newcommand{\daMonths}{X}% Number of months for which we have the below number of devices
-\newcommand{\daMonthsDevices}{XXX}
+\newcommand{\daNumDevices}{\daNumOSDevices}
+\newcommand{\daDeviceDays}{\daOSTotalDaysData}
 % Num versions since \daStartDate
 \newcommand{\bouncyCastleNumVersions}{A}
 \input{countversions}
@@ -161,7 +159,7 @@ We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use f
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
 The only suitable data which is available for this is the Device Analyzer data~\cite{Wagner2013}.
-The Device Analyzer data contains data from \daNumDevices\ devices with a total of \daDeviceDays\ device days, it contains data for more than \daMonths months for \daMonthsDevices\ devices.
+The Device Analyzer data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
 %TODO talk about the Device Analyzer project a bit
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the Device Analyzer Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
