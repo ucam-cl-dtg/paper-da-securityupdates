@@ -181,8 +181,17 @@ While we have not tried to exploit these vulnerabilities on the devices in order
  Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.}
  \label{fig:update_ecosystem}
 \end{figure}
-\cite{Vidas2011}
-TODO
+A simple update process would be for a developer, who wrote the program, to write an update and ship it to the user who installs it.
+The process for Android is rather more complicated and is shown in Figure~\ref{fig:update_ecosystem}.
+Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and various Apache Java libraries.
+It also incorporates various drivers for different bits of hardware.
+The Android platform is then built on top of those with kernel and userspace components by Google and the Open Handset Alliance. %TODO work out the exact arrangements.
+Usually the code for each update is kept secret until after the update has been published.
+Then the Manufacturers take stock Android and customise it with different themes, apps, drivers and so on and ship updates on, to the carrier.
+The Carrier may then make further customisations and do further testing before shipping the update to the User.
+Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
+An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
+This multi-stage multi-party release process increases the exposure of Android devices to vulnerabilities as it takes a long time for them to be patched.
 
 \section{Results}
 \label{sec:results}
