@@ -70,7 +70,7 @@ We compare different manufacturers and operators to find which are best at promp
 \end{abstract}
 
 \section{Introduction}
-Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the Device Analyzer~\cite{Wagner2013} data, see \S\ref{sec:results}.} manufacturers which make devices which run Android.
+Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the Device Analyzer~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.} manufacturers which make devices which run Android.
 Android receives regular updates  which add new features and fix bugs, including security vulnerabilities.
 Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumOperators\textsuperscript{\ref{foot:dadata}}) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
@@ -170,25 +170,39 @@ On a large proportion of devices `random string' is a well defined build number 
 While we have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable, we are confident that most devices will be if they are running a vesion known to be vulnerable. %TODO WHY?
 
 \subsection{Android update process}
+\label{sec:android_update_process}
 \begin{figure}
  \centering
  \def\svgwidth{\columnwidth}
  \import{figures/}{update_ecosystem.pdf_tex}
  \caption{Flow of updates between participants in the Android ecosystem.
- Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.}
+ Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.
+ Dotted arrows indicate flows where we do not know how many updates are being produced.}
  \label{fig:update_ecosystem}
 \end{figure}
-A simple update process would be for a developer, who wrote the program, to write an update and ship it to the user who installs it.
-The process for Android is rather more complicated and is shown in Figure~\ref{fig:update_ecosystem}.
-Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and various Apache Java libraries.
+
+A model of the Android update process is shown in Figure~\ref{fig:update_ecosystem}.
+There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
+Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and various Apache Java libraries and so can include any of the versions of those projects, including those which fix security vulnerabilities in them.
 It also incorporates various drivers for different bits of hardware.
-The Android platform is then built on top of those with kernel and userspace components by Google and the Open Handset Alliance. %TODO work out the exact arrangements.
-Usually the code for each update is kept secret until after the update has been published.
-Then the Manufacturers take stock Android and customise it with different themes, apps, drivers and so on and ship updates on, to the operator.
-The Operator may then make further customisations and do further testing before shipping the update to the User.
+The Android platform is then built on top of those with kernel and userspace components by Google. %TODO work out the exact arrangements.
+Usually the code for each update is kept secret until after the update has been published though through the Open Handset Alliance some manufacturers see it in advance.
+Then the Manufacturers take the update and customise it before passing it on to the operator.
+The Operator may then make further customisations and do further testing before shipping the update to the Device.
 Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
-An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
-This multi-stage multi-party release process increases the exposure of Android devices to vulnerabilities as it takes a long time for them to be patched.
+Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqllite in their release of Android
+%An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
+%TODO talk about update latency
+
+The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the Device Analyzer data.
+Manufacturer and Operator counts were obtained by normalising the results reported by Android to Device Analyzer of the device manufacturer and active network operator.
+This normalisation involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `lg'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
+This normalisation is not perfect and so these are overestimates on the Device Analyzer data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the Device Analyzer data.
+
+The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in Device Analyzer.
+The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in Device Analyzer which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. %TODO this is the wrong number to be using
+
+The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects.
 
 \section{Results}
 \label{sec:results}
