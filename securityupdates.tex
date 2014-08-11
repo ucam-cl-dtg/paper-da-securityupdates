@@ -23,7 +23,6 @@
 \input{dastats}
 \input{avostats}
 \newcommand{\percMarketShare}{XX\%~\cite{TODO}}
-\newcommand{\daNumNetworkOperators}{XXX~[\S\ref{sec:results}]}
 \newcommand{\daNumDevices}{\daNumOSDevices}
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
 % Num versions since \daStartDate
@@ -71,9 +70,9 @@ We compare different manufacturers and operators to find which are best at promp
 \end{abstract}
 
 \section{Introduction}
-Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{We computed this from the Device Analyzer~\cite{Wagner2013} data.} manufacturers which make devices which run Android.
+Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the Device Analyzer~\cite{Wagner2013} data, see \S\ref{sec:results}.} manufacturers which make devices which run Android.
 Android receives regular updates  which add new features and fix bugs, including security vulnerabilities.
-Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumNetworkOperators) make further modifications.
+Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumOperators\textsuperscript{\ref{foot:dadata}}) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
 The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
 Operators are cautious because if they ship a broken update then they will get many support requests which is expensive.
@@ -193,7 +192,7 @@ This multi-stage multi-party release process increases the exposure of Android d
 
 \section{Results}
 \label{sec:results}
-In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \daSecScoreBestmanufacturer\ to be the best manufacturer and ????. %TODO summarise our results
+In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. %TODO summarise our results
 The Device Analyzer data used here was collected between \daStartDate\ and \daEndDate.
 The \texttt{androidvulnerabilities.org} data was collected between \avoStartDate\ and \avoEndDate.
 %TODO comparison of nexus update rates with iOS
