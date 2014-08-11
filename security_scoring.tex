@@ -70,10 +70,13 @@ Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getti
 Different manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ manufacturers with a significant presence in our data with \daSecScoreBestmanufacturer\ (\daSecScoreBestmanufacturerScore\ / 10) doing best and \daSecScoreWorstmanufacturer\ (\daSecScoreWorstmanufacturerScore\ / 10) doing worst.
 Manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
 Additionally for $m$ and $u$ we ignore days with less than \daSigNumDevicesDay\ devices contributing to that day's score.
+
 \daTabSecScoresmodel
 Even within manufacturers different models can have very different update behaviours and hence security.
 Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with \daSecScoreBestmodel\ (\daSecScoreBestmodelScore\ / 10) doing best and \daSecScoreWorstmodel\ (\daSecScoreWorstmodelScore\ / 10) doing worst.
 
+\daTabSecScoresoperator
+We also analysed different carriers, for the \daNumSigOperators\ operators with a significant presence in our data Table~\ref{tab:sec_operator} shows the results \daSecScoreBestoperator\ (\daSecScoreBestoperatorScore\ / 10) doing best and \daSecScoreWorstoperator\ (\daSecScoreWorstoperatorScore\ / 10) doing worst.
 
 These tables also show the uncertainty for $f$ and $u$.
 $f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
