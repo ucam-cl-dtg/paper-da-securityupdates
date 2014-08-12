@@ -20,21 +20,7 @@ This score is computed from several components:
 \centering
 %\includegraphics[width=\columnwidth]{figures/mcalculation}
 \include{figures/mcalculation}
-\begin{tabular}{c|c|c}
-active vulnerabilities & \# days & percent\\
-\hline
-0 & 3 & 15\%\\
-1 & 5 & 25\%\\
-2 & 10 & 50\%\\
-3 & 2 & 10\%\\
-\hline
-\hline
-$m$ & \multicolumn{2}{c}{1.55}\\
-MAV & \multicolumn{2}{c}{2}\\
-VFD & \multicolumn{2}{c}{15\%}\\
-
-\end{tabular}
-\caption{Example $m$ calculation based on the one given in by Wright~\cite{Wright2014} giving MAV and VFD for comparison.}
+\caption{As vulnerabilities are discovered and patched the sum of known but unpatched vulnerabilities each day varies. From this we can calculate $m = (0 \times 3 + 1 \times 5 + 2 \times 10 + 3 \times 2) / 20 = 1.55$ For comparison VFD = 0.15 and MAV = 2. Example based on the one given by Wright~\cite{Wright2014}.}
 \label{fig:mcalculation}
 \end{figure}
 
