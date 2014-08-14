@@ -36,3 +36,8 @@ androiddevolperdashboardhistory.csv
 QINF2014_Cambridge_Daniel_Thomas
 /*.pdf
 *.bcf
+iso8601.py
+dahelpers.py
+avo.py
+*.swp
+__pycache__
