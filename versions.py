@@ -6,6 +6,10 @@ import dateutil.parser
 import datetime
 import urllib.request
 
+import latex_value
+from latex_value import set_latex_value
+latex_value.latex_value_filename('countversions.tex')
+
 from dahelpers import da_start_date, da_end_date, warning, save_csv_list_file
 from collections import OrderedDict
 
@@ -43,13 +47,13 @@ def save_to_csv(name, version_dates):
 def update_versions():
     targz = re.compile(r'.*\.tar\.gz.*')
     openssl_version_dates = get_version_dates(get_lines('https://www.openssl.org/source/', targz),re.compile(r'.*"openssl-([^"]+)\.tar\.gz".*'),re.compile(r'.*?\d+ ([^<]+) <.*')) 
-    print('openssl', num_in_range(openssl_version_dates))
+    set_latex_value('opensslNumVersions', num_in_range(openssl_version_dates))
     save_to_csv('openssl', openssl_version_dates)
 
     linux_lines = get_lines('https://www.kernel.org/pub/linux/kernel/v2.6/', targz)
     linux_lines.extend(get_lines('https://www.kernel.org/pub/linux/kernel/v3.0/', targz))
     linux_version_dates = get_version_dates(linux_lines, re.compile(r'.*"linux-([0-9.]+)\.tar\.gz".*'), re.compile('.*?\s+\s([0-9\-A-z: ]+)\s+\d+M.*'))
-    print('linux', num_in_range(linux_version_dates))
+    set_latex_value('linuxNumVersions', num_in_range(linux_version_dates))
     save_to_csv('linux', linux_version_dates)
 
 if __name__ == "__main__":

@@ -41,3 +41,5 @@ dahelpers.py
 avo.py
 *.swp
 __pycache__
+latex_value.py
+countversions.tex
