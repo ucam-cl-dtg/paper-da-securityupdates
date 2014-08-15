@@ -103,7 +103,7 @@ def update_versions():
 
 
 def load_versions():
-    names = ['openssl', 'linux']
+    names = ['openssl', 'linux', 'bouncycastle']
     version_dates = dict()
     for name in names:
         version_dates[name] = OrderedDict(load_from_csv(name))
@@ -138,6 +138,8 @@ def calculate_latencies(version_dates):
     set_latex_value('linuxMeanUpdateLatency', ufloat(statistics.mean(linux_latencies.values()),statistics.stdev(linux_latencies.values())))
     openssl_latencies = latency(version_dates['openssl'], OrderedDict(avo.os_to_openssl_version))
     set_latex_value('opensslMeanUpdateLatency', ufloat(statistics.mean(openssl_latencies.values()),statistics.stdev(openssl_latencies.values())))
+    bouncycastle_latencies = latency(version_dates['bouncycastle'], OrderedDict(avo.os_to_bouncycastle_version))
+    set_latex_value('bouncycastleMeanUpdateLatency',ufloat(statistics.mean(bouncycastle_latencies.values()),statistics.stdev(bouncycastle_latencies.values())))
 
 
 if __name__ == "__main__":

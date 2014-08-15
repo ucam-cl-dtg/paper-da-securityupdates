@@ -26045,12 +26045,12 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="211.94974"
-     inkscape:cy="229.80416"
+     inkscape:cx="205.84456"
+     inkscape:cy="315.51845"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1274"
+     inkscape:window-width="634"
      inkscape:window-height="1417"
      inkscape:window-x="1280"
      inkscape:window-y="17"
@@ -26268,7 +26268,7 @@
          sodipodi:role="line"
          id="tspan4369"
          x="218.90422"
-         y="720.86218">\bouncyCastleNumVersions</tspan></text>
+         y="720.86218">\bouncycastleNumVersions, \bouncycastleMeanUpdateLatency</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
