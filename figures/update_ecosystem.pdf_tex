@@ -53,9 +53,9 @@
     \put(0.41521749,0.82331741){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Upstream open source projects}}}%
     \put(0.03111396,0.79690458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.27411072\unitlength}\centering Apache libs\\ \end{minipage}}}%
     \put(0.16381987,0.72111803){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\apacheLibsNumLibs)}}}%
-    \put(0.36143427,0.76257762){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\opensslNumVersions}}}%
+    \put(0.36143427,0.76257762){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\opensslNumVersions, \opensslMeanUpdateLatency}}}%
     \put(0.47587874,0.72065217){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\bouncyCastleNumVersions}}}%
-    \put(0.5902976,0.66397519){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\linuxNumVersions}}}%
+    \put(0.5902976,0.66397519){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\linuxNumVersions, \linuxMeanUpdateLatency}}}%
     \put(0.4065431,0.43465111){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32039457\unitlength}\centering Manufacturer\end{minipage}}}%
     \put(0.56909936,0.36195652){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumManufacturers)}}}%
     \put(0.49564295,0.51723606){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\daNumSigOSVersions}}}%

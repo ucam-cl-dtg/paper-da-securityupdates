@@ -11064,15 +11064,6 @@
        xlink:href="#XMLID_18_"
        y1="74.100822"
        y2="-16.266243" />
-    <filter
-       color-interpolation-filters="sRGB"
-       id="filter3408"
-       inkscape:collect="always">
-      <feGaussianBlur
-         id="feGaussianBlur3410"
-         inkscape:collect="always"
-         stdDeviation="0.36" />
-    </filter>
     <linearGradient
        gradientUnits="userSpaceOnUse"
        id="linearGradient3414"
@@ -11105,15 +11096,6 @@
        xlink:href="#linearGradient4838"
        y1="46"
        y2="46" />
-    <filter
-       color-interpolation-filters="sRGB"
-       id="filter3430"
-       inkscape:collect="always">
-      <feGaussianBlur
-         id="feGaussianBlur3432"
-         inkscape:collect="always"
-         stdDeviation="0.42" />
-    </filter>
     <linearGradient
        gradientUnits="userSpaceOnUse"
        id="linearGradient3440"
@@ -11133,15 +11115,6 @@
          sodipodi:nodetypes="ccccccccc"
          style="opacity:0.60962572;fill:#000000;fill-opacity:1;stroke:none" />
     </clipPath>
-    <filter
-       color-interpolation-filters="sRGB"
-       id="filter3607"
-       inkscape:collect="always">
-      <feGaussianBlur
-         id="feGaussianBlur3609"
-         inkscape:collect="always"
-         stdDeviation="0.395" />
-    </filter>
     <linearGradient
        gradientUnits="userSpaceOnUse"
        id="linearGradient3618"
@@ -18538,15 +18511,6 @@
          id="rect4107"
          height="105.56025" />
     </clipPath>
-    <filter
-       inkscape:collect="always"
-       id="filter3916"
-       color-interpolation-filters="sRGB">
-      <feGaussianBlur
-         stdDeviation="0.93171352"
-         inkscape:collect="always"
-         id="feGaussianBlur3918" />
-    </filter>
     <clipPath
        id="clipPath4108"
        clipPathUnits="userSpaceOnUse">
@@ -26088,7 +26052,7 @@
      showgrid="false"
      inkscape:window-width="1274"
      inkscape:window-height="1417"
-     inkscape:window-x="0"
+     inkscape:window-x="1280"
      inkscape:window-y="17"
      inkscape:window-maximized="0" />
   <metadata
@@ -26293,7 +26257,7 @@
          sodipodi:role="line"
          id="tspan4365"
          x="166.25977"
-         y="701.57648">\opensslNumVersions</tspan></text>
+         y="701.57648">\opensslNumVersions, \opensslMeanUpdateLatency</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -26315,7 +26279,7 @@
          sodipodi:role="line"
          id="tspan4373"
          x="271.5369"
-         y="746.93359">\linuxNumVersions</tspan></text>
+         y="746.93359">\linuxNumVersions, \linuxMeanUpdateLatency</tspan></text>
     <flowRoot
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -26613,7 +26577,6 @@
       </linearGradient>
     </g>
     <path
-       d="m 36,46 a 0,26 0 1 1 0,0 0,26 0 1 1 0,0 z"
        id="path19270"
        sodipodi:cx="36"
        sodipodi:cy="46"
