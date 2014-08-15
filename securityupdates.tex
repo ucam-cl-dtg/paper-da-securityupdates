@@ -200,7 +200,20 @@ This normalisation is not perfect and so these are overestimates on the Device A
 The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in Device Analyzer.
 The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in Device Analyzer which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. %TODO this is the wrong number to be using
 
-The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects.
+The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects, from which we can also obtain the release dates.
+By comparing the tags in the android git version repositories for upstream projects with Android version numbers and examining the version of the upstream project under that tag we computed which upstream project versions were included in each version of Android.
+This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
+\begin{table}
+\centering
+\begin{tabular}{l|r|r}
+Project	&	\# releases	&	latency \\ \hline
+linux	&	\linuxNumVersions	&	\linuxMeanUpdateLatency \\
+openssl	&	\opensslNumVersions	&	\opensslMeanUpdateLatency \\
+bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
+\end{tabular}
+\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.}
+\label{tab:update_ecosystem}
+\end{table}
 
 \section{Results}
 \label{sec:results}

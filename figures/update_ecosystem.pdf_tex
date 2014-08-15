@@ -53,22 +53,22 @@
     \put(0.41521749,0.82331741){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Upstream open source projects}}}%
     \put(0.03111396,0.79690458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.27411072\unitlength}\centering Apache libs\\ \end{minipage}}}%
     \put(0.16381987,0.72111803){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\apacheLibsNumLibs)}}}%
-    \put(0.36143427,0.76257762){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\opensslNumVersions, \opensslMeanUpdateLatency}}}%
-    \put(0.47587874,0.72065217){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\bouncycastleNumVersions, \bouncycastleMeanUpdateLatency}}}%
-    \put(0.5902976,0.66397519){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\linuxNumVersions, \linuxMeanUpdateLatency}}}%
+    \put(0.35522312,0.77655281){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\opensslNumVersions}}}%
+    \put(0.47587874,0.72065217){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\bouncycastleNumVersions}}}%
+    \put(0.70520444,0.67950319){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\linuxNumVersions}}}%
     \put(0.4065431,0.43465111){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.32039457\unitlength}\centering Manufacturer\end{minipage}}}%
     \put(0.56909936,0.36195652){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumManufacturers)}}}%
     \put(0.49564295,0.51723606){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\daNumSigOSVersions}}}%
     \put(0.56703511,0.1161491){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\daNumFullVersions}}}%
     \put(0.13618884,0.9246038){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.24622763\unitlength}\centering OpenSSL\end{minipage}}}%
     \put(0.39737811,0.90936464){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.33433257\unitlength}\centering BouncyCastle\end{minipage}}}%
-    \put(0.60168596,0.77752433){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14970736\unitlength}\centering Linux\end{minipage}}}%
     \put(0.36805609,0.62404453){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.16217758\unitlength}\centering Google\end{minipage}}}%
-    \put(0.73375894,0.65643124){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.2500946\unitlength}\centering Hardware developer\end{minipage}}}%
+    \put(0.73065333,0.60984737){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.2500946\unitlength}\centering Hardware developer\end{minipage}}}%
     \put(0.52130608,0.29138913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.20479965\unitlength}\centering Operator\end{minipage}}}%
     \put(0.46152811,0.08531387){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.18498227\unitlength}\centering Device\end{minipage}}}%
     \put(0.55341614,0.01583862){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumOSDevices)}}}%
     \put(0.32378431,0.67360242){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\apacheLibsNumVersions}}}%
     \put(0.62267078,0.21832301){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(\daNumOperators)}}}%
+    \put(0.81472944,0.78187215){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14970736\unitlength}\centering Linux\end{minipage}}}%
   \end{picture}%
 \endgroup%

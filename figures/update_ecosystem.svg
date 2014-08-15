@@ -26045,7 +26045,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="205.84456"
+     inkscape:cx="241.81276"
      inkscape:cy="315.51845"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -26113,14 +26113,14 @@
        id="rect5293"
        width="115.04352"
        height="56.45467"
-       x="337.52911"
-       y="748.40381" />
+       x="336.81482"
+       y="759.1181" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.82498688;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        id="rect5291"
        width="68.865379"
        height="28.459286"
-       x="276.77554"
+       x="374.77554"
        y="692.70099" />
     <rect
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.17813182;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
@@ -26137,13 +26137,14 @@
        x="169.3058"
        y="763.3017" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:1,1;stroke-dashoffset:0"
-       d="M 343.53309,748.34687 327.37065,720.0626"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
+       d="m 405.67595,759.06116 0.26613,-38.28427"
        id="path5410"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
-       d="m 288.98485,722.08291 -45.35534,41.71211"
+       d="m 373.27056,706.36862 -129.64105,57.4264"
        id="path5856"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -26172,10 +26173,11 @@
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:1,1;stroke-dashoffset:0"
-       d="m 355.65492,804.91542 -64.64977,45.45686"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:1, 1;stroke-dashoffset:0;marker-end:url(#Arrow1Lend)"
+       d="m 349.22635,814.91542 -58.2212,35.45686"
        id="path6058"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.96180069;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend);stroke-miterlimit:4;stroke-dasharray:0.96180069,0.96180069;stroke-dashoffset:0"
        d="m 256.40115,892.08633 0.30069,22.862"
@@ -26214,13 +26216,13 @@
          x="191.00005"
          y="673.63617">Upstream open source projects</tspan></text>
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1.66703272;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.33406544,10.00219631;stroke-dashoffset:0"
+       style="fill:none;stroke:#000000;stroke-width:1.88450742;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.76901482, 11.30704445;stroke-dashoffset:0"
        id="rect7536"
-       width="353.89655"
-       height="138.86707"
-       x="5.465497"
-       y="614.33014"
-       ry="49.717751" />
+       width="452.96478"
+       height="138.6496"
+       x="5.5742345"
+       y="614.4389"
+       ry="49.639889" />
     <flowRoot
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -26250,14 +26252,14 @@
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="166.25977"
-       y="701.57648"
+       x="163.40263"
+       y="695.14789"
        id="text4363"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4365"
-         x="166.25977"
-         y="701.57648">\opensslNumVersions, \opensslMeanUpdateLatency</tspan></text>
+         x="163.40263"
+         y="695.14789">\opensslNumVersions</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -26268,18 +26270,18 @@
          sodipodi:role="line"
          id="tspan4369"
          x="218.90422"
-         y="720.86218">\bouncycastleNumVersions, \bouncycastleMeanUpdateLatency</tspan></text>
+         y="720.86218">\bouncycastleNumVersions</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:10px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="271.5369"
-       y="746.93359"
+       x="324.39404"
+       y="739.79071"
        id="text4371"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4373"
-         x="271.5369"
-         y="746.93359">\linuxNumVersions, \linuxMeanUpdateLatency</tspan></text>
+         x="324.39404"
+         y="739.79071">\linuxNumVersions</tspan></text>
     <flowRoot
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -26355,19 +26357,6 @@
          id="flowPara4443">BouncyCastle</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       id="flowRoot4450"
-       transform="translate(0,2)"><flowRegion
-         id="flowRegion4452"><use
-           x="0"
-           y="0"
-           xlink:href="#rect5291"
-           id="use4454"
-           width="460"
-           height="440"
-           transform="translate(0,-2)" /></flowRegion><flowPara
-         id="flowPara4456">Linux</flowPara></flowRoot>    <flowRoot
-       xml:space="preserve"
-       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        id="flowRoot4463"
        transform="translate(0,2)"><flowRegion
          id="flowRegion4465"><use
@@ -26390,7 +26379,7 @@
            id="use4480"
            width="460"
            height="440"
-           transform="translate(0,-2)" /></flowRegion><flowPara
+           transform="translate(0.71428571,-12.714286)" /></flowRegion><flowPara
          id="flowPara4482">Hardware developer</flowPara></flowRoot>    <flowRoot
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -26793,7 +26782,7 @@
        id="Foreground_Grid_1_-1"
        transform="matrix(0.333692,0,0,0.333692,-373.56515,775.18416)" />
     <g
-       transform="translate(256.71574,595.26614)"
+       transform="translate(352.43003,593.83757)"
        id="g15725-2">
       <path
          d="m 75.714283,88.790756 c 0,1.577957 -1.279187,2.857143 -2.857143,2.857143 -1.577957,0 -2.857143,-1.279186 -2.857143,-2.857143 0,-1.577956 1.279186,-2.857143 2.857143,-2.857143 1.577956,0 2.857143,1.279187 2.857143,2.857143 z"
@@ -26841,7 +26830,7 @@
        transform="translate(0,612.36218)"
        sodipodi:nodetypes="cc" />
     <g
-       transform="translate(347.55357,714.08929)"
+       transform="translate(346.83928,724.80358)"
        id="g15725-2-8">
       <path
          d="m 75.714283,88.790756 c 0,1.577957 -1.279187,2.857143 -2.857143,2.857143 -1.577957,0 -2.857143,-1.279186 -2.857143,-2.857143 0,-1.577956 1.279186,-2.857143 2.857143,-2.857143 1.577956,0 2.857143,1.279187 2.857143,2.857143 z"
@@ -27010,5 +26999,14 @@
          sodipodi:type="arc"
          transform="translate(28.321432,-2.607147)" />
     </g>
-  </g>
+    <flowRoot
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       id="flowRoot6991"><flowRegion
+         id="flowRegion6993"><use
+           x="0"
+           y="0"
+           xlink:href="#rect5291"
+           id="use6995" /></flowRegion><flowPara
+         id="flowPara6997">Linux</flowPara></flowRoot>  </g>
 </svg>
