@@ -81,6 +81,8 @@ def latency(version_dates, version_map):
             upstream_release_date = version_dates[upstream_version[:-2]]
         else:
             upstream_release_date = version_dates[upstream_version]
+        if not android_version in android_release_dates:
+            continue
         android_release_date = android_release_dates[android_version]
         if android_release_date < upstream_release_date:
             warning('Data bug, android released before the upstream it contains', android_version, upstream_version, android_release_date, upstream_release_date)
@@ -94,6 +96,14 @@ def latency(version_dates, version_map):
             latencies[upstream_version] = delay
     return latencies
 
+
+def calculate_latencies(version_dates):
+    linux_latencies = latency(version_dates['linux'], OrderedDict(avo.os_to_kernel))
+    set_latex_value('linuxMeanUpdateLatency', ufloat(statistics.mean(linux_latencies.values()),statistics.stdev(linux_latencies.values())))
+    openssl_latencies = latency(version_dates['openssl'], OrderedDict(avo.os_to_openssl_version))
+    set_latex_value('opensslMeanUpdateLatency', ufloat(statistics.mean(openssl_latencies.values()),statistics.stdev(openssl_latencies.values())))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--update-versions', action='store_true')
@@ -102,6 +112,5 @@ if __name__ == "__main__":
         version_dates = update_versions()
     else:
         version_dates = load_versions()
-    linux_latencies = latency(version_dates['linux'], OrderedDict(avo.os_to_kernel))
-    set_latex_value('linuxMeanUpdateLatency', ufloat(statistics.mean(linux_latencies.values()),statistics.stdev(linux_latencies.values())))
+    calculate_latencies(version_dates)
 
