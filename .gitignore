@@ -43,3 +43,4 @@ avo.py
 __pycache__
 latex_value.py
 countversions.tex
+version_dates_*.csv
