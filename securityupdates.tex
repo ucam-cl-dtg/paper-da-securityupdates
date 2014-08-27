@@ -118,14 +118,14 @@ There are two sources of data we needed for this study, information on root vuln
 We need data on root vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
 We need information on the distribution of installed versions of Android so that we know what proportion of Android devices were affected by these vulnerabilities.
 
-\subsection{Root exploits}
-We compiled a list of root exploit vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
-We only looked for \emph{root equivalent} exploits which did not require USB debugging to exploit.
+\subsection{Root vulnerabilities}
+We compiled a list of root vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
+We only looked for \emph{root equivalent} vulnerabilities which did not require USB debugging to exploit.
 \emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then either be used to gain root or provide sufficiently many permissions as to be as bad as root.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
-This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those exploits.
+This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
 Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
-Some exploits which grant root are not traditional kernel exploits, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
+Some vulnerabilities which grant root are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen, make and receive calls.
 
 We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
@@ -142,7 +142,7 @@ Unfortunately before we collated this information much of it was not published b
 Hence we have collated this information and made it publicly available.
 
 Prior work~\cite{Bilge2012} by Symantec on desktop malware has shown that after public disclosure exploitation rates increase by 5 orders of magnitude and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
-However they also show that zero day exploits are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
+However they also show that zero day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
 Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using the vulnerability to when the update hits the user device.
 So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
 We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
@@ -249,7 +249,7 @@ Figure~\ref{fig:nvulnerabilities_heat} breaks this down by vulnerability to show
 In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
-However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator} and \emph{exploid} vulnerabilities which are more dangerous root exploits (not requiring new APK installation) and which still affect a significant proportion of devices years later.
+However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator} and \emph{exploid} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which still affect a significant proportion of devices years later.
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/nvulnerabilities_heat.pdf}
