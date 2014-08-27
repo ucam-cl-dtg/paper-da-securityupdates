@@ -29,3 +29,4 @@ cp "$fromdir"ua-versions-android-month-norm.pdf ua-versions-android-month-norm.p
 cp "$fromdir"ua-versions-ios-month-norm.pdf ua-versions-ios-month-norm.pdf
 cp "$fromdir""model/Galaxy Nexus/norm_full.pdf" "full_version_Galaxy Nexus.pdf"
 cp "$fromdir""model/HTC Desire HD A9191/norm_full.pdf" "full_version_HTC Desire HD A9191.pdf"
+cp "$fromdir"vulnerabilities_timeline.pdf vulnerabilities_timeline.pdf
