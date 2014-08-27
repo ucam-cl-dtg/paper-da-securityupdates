@@ -153,6 +153,19 @@ Hence we use dates such as: when CVEs were registered, when fixes were committed
 The database of vulnerabilities which we maintain at \texttt{androidvulnerabilities.org} contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
 We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
 
+\begin{figure}
+ \centering
+ \includegraphics[width=\columnwidth]{figures/vulnerabilities_timeline}
+ \caption{Timeline of vulnerabilities}
+ \label{fig:vulnerabilities_timeline}
+\end{figure}
+
+The dates of discovery of vulnerabilities in the \texttt{androidvulnerabilities.org} is not uniform.
+Figure~\ref{fig:vulnerabilities_timeline} shows the dates of discovery and, when later, the dates when a version of Android which fixed the vulnerability was shipped.
+Some vulnerabilities (RageAgainstTheCage adb, levitator, zergRush abd TwerkMyMoto) were fixed in released versions of Android before they were discovered and so are shown as vertical lines while others were known for months before a version of Android which fixed them was shipped.
+During the period in which Device Analyzer data was collected the date when a version of Android with the fix was observed on a Device Analyzer device is taken as the date that version was released, before that the release date as best as we can determine is used.
+There is no canonical source of Android release dates, our best guesses and supporting references are available from \texttt{androidvulnerabilities.org}.
+
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
 The only suitable data which is available for this is the Device Analyzer data~\cite{Wagner2013}.
