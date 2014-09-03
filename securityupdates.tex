@@ -316,6 +316,39 @@ Red indicates updates which changed the build number but not the version number 
 TODO
 
 \subsection{Predicting future version distributions}
+Examining the way that the OS version distribution changes over time in Figure~\ref{fig:norm_os} shows some regularity to the behaviour.
+Figure~\ref{fig:frvh_os_versions} is a plot of the proportion of of devices in Device Analyzer running each Android version or a later Android version (i.e. for 2.1.0 it includes all devices as they all run later versions of Android).
+The data are all normalised to the number of days since the version was released and is smoothed by forcing it to be monotonically increasing.\footnote{While sometimes an older version becomes more popular after a later version has been released causing the values to actually decrease, mostly this was just noise or changes in the distribution of devices (e.g.\ the sudden arrival of 1000 devices from Bangladesh due to a study being conducted there) and this assumption makes the graph clearer.}
+\begin{figure}
+ \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
+ \caption{Proportion of devices running particular versions of Android or any later version}
+ \label{fig:frvh_os_versions}
+\end{figure}
+\begin{figure}
+ \includegraphics[width=\columnwidth]{figures/frms_os_versions}
+ \caption{Proportion of devices running particular versions of Android or any later version}
+ \label{fig:frms_os_versions}
+\end{figure}
+There is a general pattern to the data, Figure~\ref{fig:frms_os_versions} shows the mean and standard deviation of the same data.
+It also shows the curve of best fit, which has a root mean squared error (RMSE) of \daOSCurveFitRMSE, the curve we chose is not a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) as we wanted a better model of behaviour than would be given by simply fitting a curve.
+
+The data appears to have an inverse exponential decay as it tends to 1 but with a slow start.
+This gives us a $1 - e^{-x}$ component for the main behaviour and a $\frac{1}{x}$ component to provide a slow start.
+The general form is then:
+\begin{equation}
+y = (s - \frac{1}{e^{dx}} + \frac{1}{cx + a})l
+\end{equation}
+However there are two constraints we can apply, $\underset{x\rightarrow\infty}{\mathrm{lim}} y\rightarrow 1$ and the curve passes through the origin.
+This gives us $l = \frac{1}{s}$ and $a = \frac{1}{1-s}$.
+\begin{equation}
+y = (s - \frac{1}{e^{dx}} + \frac{1}{cx + \frac{1}{1-s}})\frac{1}{s}
+\end{equation}
+We get the parameters ????? for OS versions and ???? for API versions.
+From this the number of days from release of a new version of Android until 50\% of devices are running that version or higher is \daOSCurveHalfDeployed\ and full deployment to \daFullDeployedAt\ of devices takes \daOSCurveFullDeployed\ days.
+For API versions this is \daAPICurveHalfDeployed\ and \daAPICurveFullDeployed\ respectively.
+
+Hence if a security vulnerability is fixed through the release of a particular Android version it will be \daOSCurveFullDeployed\ days after until the fix is fully deployed.
+
 TODO
 
 \subsection{Lifetime of a vulnerability}

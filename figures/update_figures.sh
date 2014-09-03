@@ -30,4 +30,7 @@ cp "$fromdir"ua-versions-ios-month-norm.pdf ua-versions-ios-month-norm.pdf
 cp "$fromdir""model/Galaxy Nexus/norm_full.pdf" "full_version_Galaxy Nexus.pdf"
 cp "$fromdir""model/HTC Desire HD A9191/norm_full.pdf" "full_version_HTC Desire HD A9191.pdf"
 cp "$fromdir"vulnerabilities_timeline.pdf vulnerabilities_timeline.pdf
+cp "$fromdir"frvh_os_versions.pdf frvh_os_versions.pdf
+cp "$fromdir"frvh_api_versions.pdf frvh_api_versions.pdf
+cp "$fromdir"frms_os_versions.pdf frms_os_versions.pdf
 cp ~/Library/papers/library.filtered.bib ../securityupdates.bib
