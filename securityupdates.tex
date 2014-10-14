@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{subcaption}
 \usepackage{tikz}
+\usepackage{siunitx}
 \RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex]{biblatex}
 \addbibresource{securityupdates.bib}
 \renewcommand{\bibfont}{\small}
@@ -316,34 +317,35 @@ Red indicates updates which changed the build number but not the version number 
 TODO
 
 \subsection{Predicting future version distributions}
-Examining the way that the OS version distribution changes over time in Figure~\ref{fig:norm_os} shows some regularity to the behaviour.
-Figure~\ref{fig:frvh_os_versions} is a plot of the proportion of of devices in Device Analyzer running each Android version or a later Android version (i.e. for 2.1.0 it includes all devices as they all run later versions of Android).
-The data are all normalised to the number of days since the version was released and is smoothed by forcing it to be monotonically increasing.\footnote{While sometimes an older version becomes more popular after a later version has been released causing the values to actually decrease, mostly this was just noise or changes in the distribution of devices (e.g.\ the sudden arrival of 1000 devices from Bangladesh due to a study being conducted there) and this assumption makes the graph clearer.}
+Examining the way that the OS version distribution changes over time in Figure~\ref{fig:norm_os} we see some regularity to the behaviour.
+To show this behaviour more clearly we normalised the data to the number of days since the version was released and is smoothed by forcing it to be monotonically decreasing.\footnote{While sometimes an older version becomes more popular after a later version has been released causing the values to actually increase, mostly this was just noise or changes in the distribution of devices (e.g.\ the sudden arrival of 1000 devices from Bangladesh due to a study being conducted there) and this assumption makes the graph clearer.}
+Then we can plot Figure~\ref{fig:frvh_os_versions} which shows the proportion of of devices in Device Analyzer not upgraded to each Android version or a later Android version (i.e. for 2.1.0 it includes 2.1.1, 2.2.0 and indeed all devices as they all run later versions of Android).
+
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
- \caption{Proportion of devices running particular versions of Android or any later version}
+ \caption{Proportion of devices not updated to particular versions of Android or any later version}
  \label{fig:frvh_os_versions}
 \end{figure}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frms_os_versions}
- \caption{Proportion of devices running particular versions of Android or any later version}
+ \caption{Proportion of devices not updated to particular versions of Android or any later version}
  \label{fig:frms_os_versions}
 \end{figure}
-There is a general pattern to the data, Figure~\ref{fig:frms_os_versions} shows the mean and standard deviation of the same data.
-It also shows the curve of best fit, which has a root mean squared error (RMSE) of \daOSCurveFitRMSE, the curve we chose is not a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) as we wanted a better model of behaviour than would be given by simply fitting a curve.
+There is a general pattern to these data, Figure~\ref{fig:frms_os_versions} shows the mean and standard deviation of the same data.
+It also shows the curve of best fit, which has a root mean squared error (RMSE) of \daOSCurveFitRMSE, the curve we chose is not a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) as we wanted a meaningful model of behaviour rather than a generic curve.
 
-The data appears to have an inverse exponential decay as it tends to 1 but with a slow start.
-This gives us a $1 - e^{-x}$ component for the main behaviour and a $\frac{1}{x}$ component to provide a slow start.
-The general form is then:
+The data appears to have an exponential decay as it tends to 1 but with a slow start as few devices are upgraded initially.
+We approximate this with a a $e^{-x}$ component for the main behaviour and a which is offset to start later when uptake takes off.
+The equation is then:
 \begin{equation}
-y = (s - \frac{1}{e^{dx}} + \frac{1}{cx + a})l
+y =
+ \begin{cases}
+  1.0 & \text{if }x<\mathrm{undeployed}\\
+  e^{-\mathrm{decay}(x-\mathrm{undeployed})} & \text{otherwise}
+ \end{cases}
 \end{equation}
-However there are two constraints we can apply, $\underset{x\rightarrow\infty}{\mathrm{lim}} y\rightarrow 1$ and the curve passes through the origin.
-This gives us $l = \frac{1}{s}$ and $a = \frac{1}{1-s}$.
-\begin{equation}
-y = (s - \frac{1}{e^{dx}} + \frac{1}{cx + \frac{1}{1-s}})\frac{1}{s}
-\end{equation}
-We get the parameters ????? for OS versions and ???? for API versions.
+
+Fitting that curve to the data using \texttt{scipy.optimize}, we get the parameters $\mathrm{undeployed} = \daOSCurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daOSCurveFitParamSecond ~\si{days^{-1}}$ for OS versions and $\mathrm{undeployed} = \daAPICurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daAPICurveFitParamSecond ~\si{days^{-1}}$ for API versions.
 From this the number of days from release of a new version of Android until 50\% of devices are running that version or higher is \daOSCurveHalfDeployed\ and full deployment to \daFullDeployedAt\ of devices takes \daOSCurveFullDeployed\ days.
 For API versions this is \daAPICurveHalfDeployed\ and \daAPICurveFullDeployed\ respectively.
 
