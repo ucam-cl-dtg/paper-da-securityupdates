@@ -12,6 +12,9 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
+\usepackage{todonotes}
+\let\OldTodo\todo
+\renewcommand{\todo}{\OldTodo[inline]}
 \RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex]{biblatex}
 \addbibresource{securityupdates.bib}
 \renewcommand{\bibfont}{\small}
@@ -176,7 +179,7 @@ Or that manufacturer specific vulnerabilities proved to be easier to find and so
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
 The only suitable data which is available for this is the Device Analyzer data~\cite{Wagner2013}.
 The Device Analyzer data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
-%TODO talk about the Device Analyzer project a bit
+\todo{ talk about the Device Analyzer project a bit}
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the Device Analyzer Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
@@ -184,7 +187,7 @@ The build string is `The user-visible version string', fortunately most (99.9\%)
 On a large proportion of devices `random string' is a well defined build number but different manufacturers use different schema.
 
 \subsection{Running a version of Android known to be vulnerable makes a device vulnerable}
-While we have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable, we are confident that most devices will be if they are running a vesion known to be vulnerable. %TODO WHY?
+While we have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable, we are confident that most devices will be if they are running a vesion known to be vulnerable. \todo{WHY?}
 
 \subsection{Android update process}
 \label{sec:android_update_process}
@@ -202,14 +205,14 @@ A model of the Android update process is shown in Figure~\ref{fig:update_ecosyst
 There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
 Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and various Apache Java libraries and so can include any of the versions of those projects, including those which fix security vulnerabilities in them.
 It also incorporates various drivers for different bits of hardware.
-The Android platform is then built on top of those with kernel and userspace components by Google. %TODO work out the exact arrangements.
+The Android platform is then built on top of those with kernel and userspace components by Google. \todo{ work out the exact arrangements.}
 Usually the code for each update is kept secret until after the update has been published though through the Open Handset Alliance some manufacturers see it in advance.
 Then the Manufacturers take the update and customise it before passing it on to the operator.
 The Operator may then make further customisations and do further testing before shipping the update to the Device.
 Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
 Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android
 %An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
-%TODO talk about update latency
+\todo{talk about update latency}
 
 The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the Device Analyzer data.
 Manufacturer and Operator counts were obtained by normalising the results reported by Android to Device Analyzer of the device manufacturer and active network operator.
@@ -217,7 +220,7 @@ This normalisation involves removing invalid values (such as `manufacturer' or `
 This normalisation is not perfect and so these are overestimates on the Device Analyzer data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the Device Analyzer data.
 
 The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in Device Analyzer.
-The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in Device Analyzer which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. %TODO this is the wrong number to be using
+The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in Device Analyzer which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todo{this is the wrong number to be using}
 
 The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects, from which we can also obtain the release dates.
 By comparing the tags in the android git version repositories for upstream projects with Android version numbers and examining the version of the upstream project under that tag we computed which upstream project versions were included in each version of Android.
@@ -236,10 +239,10 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 
 \section{Results}
 \label{sec:results}
-In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. %TODO summarise our results
+In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
 The Device Analyzer data used here was collected between \daStartDate\ and \daEndDate.
 The \texttt{androidvulnerabilities.org} data was collected between \avoStartDate\ and \avoEndDate.
-%TODO comparison of nexus update rates with iOS
+\todo{comparison of nexus update rates with iOS}
 
 
 The proportion of devices in the Device Analyzer data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
@@ -255,7 +258,7 @@ We verify the validity of this data in \S\ref{sec:representative}.
 Figure~\ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
 In July 2011 at the beginning of the Device Analyzer data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
-However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. %TODO put percentages on these things to quantify them
+However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. \todo{put percentages on these things to quantify them}
 \begin{figure}%[!b]
 \centering
 \includegraphics[width=\columnwidth]{figures/vulnerabilities}
@@ -287,7 +290,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
 \end{figure}
 
 \subsection{Update frequency}
-%TODO find out what the frequency of updates is
+\todo{ find out what the frequency of updates is}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
  \caption{Updates between different Android versions in the DA data}
@@ -307,14 +310,14 @@ Possible reasons why users are downgrading are to free up space on their device,
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
-%TODO summary stats, what does this mean
+\todo{ summary stats, what does this mean}
 
 
 \input{security_scoring}
 
 
 \subsection{Comparison with iOS}
-TODO
+\todo{Get data from Richard so that we can do this comparison}
 
 \subsection{Predicting future version distributions}
 Examining the way that the OS version distribution changes over time in Figure~\ref{fig:norm_os} we see some regularity to the behaviour.
@@ -351,13 +354,27 @@ For API versions this is \daAPICurveHalfDeployed\ and \daAPICurveFullDeployed\ r
 
 Hence if a security vulnerability is fixed through the release of a particular Android version it will be \daOSCurveFullDeployed\ days after until the fix is fully deployed.
 
-TODO
+\todo{Our handling of errors here is not quite good enough as the uncertainty from our y value interacts badly with the logarithm function when computing the inverse and we compute the log of ~0 which means our error ends up much bigger than our value - but that is an upper bound, not a +- bound.}
 
 \subsection{Lifetime of a vulnerability}
-TODO
+The key events in the lifetime of a vulnerability are:
+
+\begin{LaTeXdescription}
+ \item[introduction] When a vulnerability was introduced into the source code.
+ \item[introducing release] When the first release was made containing the vulnerability.
+ \item[fix] When a vulnerability was first fixed in the source code.
+ \item[fixing release] When the first release containing the fix was made.
+ \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored.
+ \item[discovery] When the vulnerability is first discovered
+ \item[exploit] When the vulnerability is first exploited
+ \item[disclosed] When the vulnerability is first disclosed % publically or to a smaller set of people?
+\end{LaTeXdescription}
+
+\todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
 
 \subsection{Monetisation}
-%TODO redo this section in light of related work
+\todo{redo this section in light of related work}
+
 One of the key differences between smartphones and desktops is that it is easier to directly cash out on a smartphone as malware can send premium rate texts or make premium rate phone calls.
 It can also steal personal data which already has semantic information associated with it, this also makes it easier to perform ransomware attacks where malware deletes this information from the device and charges a ransom for its return.
 It can also do more conventional things such as use the devices for DDoS attacks and altering the ads displayed to send the fees to the malware author.
@@ -397,7 +414,7 @@ Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api}
 Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
 It shows that the Device Analyzer data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
 This means that the OS version information from Device Analyzer is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
-%TODO we want a statistical metric to claim this strongly with.
+\todo{we want a statistical metric to claim this strongly with.}
 This allows us to have confidence in the OS version information.
 
 \section{Discussion}
@@ -421,7 +438,7 @@ There have been other attempts to automatically find vulnerabilities.
 The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
 The update process itself can allow Android apps to gain privilege through `Pileup' vulnerabilities~\cite{Xing2014} by registering for new permissions before the update which creates that permission is installed.
 
-The security protections used in iOS such as only allowing signed code to run, jails and reviewing of apps has resulted in a lower level of malware affecting iOS~\cite{TODO} but can still be bypassed~\cite{Wang2013a}. %TODO look at iOS protections again and tighten this up
+The security protections used in iOS such as only allowing signed code to run, jails and reviewing of apps has resulted in a lower level of malware affecting iOS~\cite{TODO} but can still be bypassed~\cite{Wang2013a}. \todo{look at iOS protections again and tighten this up}
 
 Various attempts have been made to detect malware.
 RiskRanker~\cite{Grace2012a} classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown, an infection rate of 0.6\% across multiple markets.
@@ -439,7 +456,7 @@ PlayDrone~\cite{Viennot2014} was a particularly effective project which circumve
 Examining security updates has been a key way of assessing security for many years.
 Many software update systems have been found not to authenticate the connection to the update server and/or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
 Even package management systems designed to provide secure updates have been found to have vulnerabilities~\cite{Cappos2008}.
-Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. %TODO double check that
+Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. \todo{double check that}
 
 The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourable with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
 However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}} -- four months after it went out of security support.
@@ -455,7 +472,7 @@ Google is deploying the same silent update technique through Google Play Service
 
 \section{Conclusion}
 \label{sec:conclusion}
-TODO
+\todo{Conclude}
 
 \section*{Acknowledgements}
 Thanks to David Robertson for helpful advice on statistical analysis.
