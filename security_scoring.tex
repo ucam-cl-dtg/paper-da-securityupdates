@@ -1,5 +1,11 @@
-\subsection{Scoring for security}
-\label{sec:security_scoring}
+\subsection{Experiment 3: Comparing manufacturers, operators and devices}
+\label{sec:security_scoring}\label{sec:exp:security_score}
+
+To allow buyers of Android devices to purchase those devices which have the best security they need to know how different manufactuers, devices and network operators compare in terms of the security they provide.
+We propose a method to score a manufacturer, operator or device based on its historic performance at keeping devices up to date and fixing security vulnerabilities.
+We find that Android as a whole gits a score of \daSecurityScore / 10, the best manufacturer is \daSecScoreBestmanufacturer\ (\daSecScoreBestmanufacturerScore\ / 10) and the worst is \daSecScoreWorstmanufacturer\ (\daSecScoreWorstmanufacturerScore\ / 10).
+
+\subsubsection{Method: Scoring for security}
 
 Computing how good a particular manufacturer or device model is from a security standpoint is difficult as it depends on a number of factors which are hard to observe, particularly on a large scale.
 Ideally we would consider both prevelance of potential problems which were not exploited and actual security failures.
@@ -44,6 +50,7 @@ This gives us Equation~\ref{eq:score}:
 \mathrm{score} = f\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3 \label{eq:score}
 \end{equation}
 
+\subsubsection{Results: Security scores}
 The scores across the whole of android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
 There are on average \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device.
 Only on average \daUpdatednessPerc\ of devices run the most recent version of Android.
@@ -91,4 +98,4 @@ Since the numbers involved are large, the uncertainty in $f$ is small.
 $u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 
-%TODO there must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model
+\todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model}

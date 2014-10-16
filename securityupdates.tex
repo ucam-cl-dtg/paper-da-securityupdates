@@ -26,7 +26,9 @@
 \author{Daniel R.\ Thomas, Alastair R.\ Beresford, Daniel T.\ Wagner and Andrew Rice}
 
 \input{dastats}
+\newcommand{\da}{Device Analyzer}
 \input{avostats}
+\newcommand{\avo}{\texttt{androidvulnerabilities.org}}
 \newcommand{\percMarketShare}{XX\%~\cite{TODO}}
 \newcommand{\daNumDevices}{\daNumOSDevices}
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
@@ -70,13 +72,13 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on the absence of root privilege exploits which allow apps to bypass protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used Device Analyzer data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
+We used da data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
 There was also a period of several months when no devices ran secure versions of Android.
 We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation. %TODO operators analysis
 \end{abstract}
 
 \section{Introduction}
-Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the Device Analyzer~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.} manufacturers which make devices which run Android.
+Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.} manufacturers which make devices which run Android.
 Android receives regular updates  which add new features and fix bugs, including security vulnerabilities.
 Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumOperators\textsuperscript{\ref{foot:dadata}}) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
@@ -94,7 +96,7 @@ Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android
 While this shows that much Android malware does not need a root exploit to work, as it can just request the relevant permissions and the user will grant them, a significant proportion does.
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
 
-The proportion of Android devices in the Device Analyzer data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
+The proportion of Android devices in the da data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
 In \S\ref{sec:background} we will explain where these data come from and then in \S\ref{sec:results} we will show these data in more detail.
 
 \begin{figure}[!b]
@@ -122,7 +124,7 @@ The contributions of this paper are:
 
 \section{Background}
 \label{sec:background}
-There are two sources of data we needed for this study, information on root vulnerabilities and information on installed versions of Android.
+There are two sources of data we needed to have and to link for this study, information on root vulnerabilities and information on installed versions of Android.
 We need data on root vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
 We need information on the distribution of installed versions of Android so that we know what proportion of Android devices were affected by these vulnerabilities.
 
@@ -158,7 +160,7 @@ Hence we use dates such as: when CVEs were registered, when fixes were committed
 
 \avoTabAndVulns
 
-The database of vulnerabilities which we maintain at \texttt{androidvulnerabilities.org} contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
+The database of vulnerabilities which we maintain at \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
 We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
 
 \begin{figure}
@@ -168,11 +170,11 @@ We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use f
  \label{fig:vulnerabilities_timeline}
 \end{figure}
 
-The dates of discovery of vulnerabilities in the \texttt{androidvulnerabilities.org} is not uniform.
+The dates of discovery of vulnerabilities in the \avo\ is not uniform.
 Figure~\ref{fig:vulnerabilities_timeline} shows the dates of discovery and, when later, the dates when a version of Android which fixed the vulnerability was shipped.
 Some vulnerabilities (RageAgainstTheCage adb, levitator, zergRush abd TwerkMyMoto) were fixed in released versions of Android before they were discovered and so are shown as vertical lines while others were known for months before a version of Android which fixed them was shipped.
-During the period in which Device Analyzer data was collected the date when a version of Android with the fix was observed on a Device Analyzer device is taken as the date that version was released, before that the release date as best as we can determine is used.
-There is no canonical source of Android release dates, our best guesses and supporting references are available from \texttt{androidvulnerabilities.org}.
+During the period in which \da\ data was collected the date when a version of Android with the fix was observed on a \da\ device is taken as the date that version was released, before that the release date as best as we can determine is used.
+There is no canonical source of Android release dates, our best guesses and supporting references are available from \avo.
 
 This data shows a large gap in the middle where we do not know of any discoveries of root equivalent vulnerabilities affecting all of Android.
 The cause of this quiet period is unclear, perhaps from Figure~\ref{fig:proportioninsecure} the reason was that since most devices were exposed to known vulnerabilities there was no point in looking for new ones?
@@ -181,10 +183,10 @@ Or that manufacturer specific vulnerabilities proved to be easier to find and so
 
 \subsection{Versions of Android running on devices}
 We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
-The only suitable data which is available for this is the Device Analyzer data~\cite{Wagner2013}.
-The Device Analyzer data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
-\todo{ talk about the Device Analyzer project a bit}
-Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the Device Analyzer Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
+The only suitable data which is available for this is the \da\ data~\cite{Wagner2013}.
+The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
+\todo{ talk about the \da\ project a bit}
+Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
 The build string is `The user-visible version string', fortunately most (99.9\%) devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
@@ -218,13 +220,13 @@ Sometimes Manufacturers incorporate upstream open source project releases direct
 %An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
 \todo{talk about update latency}
 
-The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the Device Analyzer data.
-Manufacturer and Operator counts were obtained by normalising the results reported by Android to Device Analyzer of the device manufacturer and active network operator.
+The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
+Manufacturer and Operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
 This normalisation involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `lg'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
-This normalisation is not perfect and so these are overestimates on the Device Analyzer data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the Device Analyzer data.
+This normalisation is not perfect and so these are overestimates on the \da\ data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the \da\ data.
 
-The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in Device Analyzer.
-The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in Device Analyzer which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todo{this is the wrong number to be using}
+The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
+The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todo{this is the wrong number to be using}
 
 The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects, from which we can also obtain the release dates.
 By comparing the tags in the Android git version repositories for upstream projects with Android version numbers and examining the version of the upstream project under that tag we computed which upstream project versions were included in each version of Android.
@@ -241,27 +243,29 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \label{tab:update_ecosystem}
 \end{table}
 
-\section{Results}
+\section{Experiments}
 \label{sec:results}
 In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
-The Device Analyzer data used here was collected between \daStartDate\ and \daEndDate.
-The \texttt{androidvulnerabilities.org} data was collected between \avoStartDate\ and \avoEndDate.
+The \da\ data used here was collected between \daStartDate\ and \daEndDate.
+The \avo\ data was collected between \avoStartDate\ and \avoEndDate.
 \todo{comparison of nexus update rates with iOS}
-
-
-The proportion of devices in the Device Analyzer data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
+We conducted four experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}), comparisons between different manufacturers and operators (\S\ref{sec:exp:security_score}) and modeling the replacement by new Android versions in order to predict how long it will take for an update to be fixed (\S\ref{sec:exp:predicting_distributions}).
+\todo{In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is}
+\subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
+To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
+The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
 It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions and the fluctuation in the number of devices in the data.
 We verify the validity of this data in \S\ref{sec:representative}.
 \begin{figure}
  \centering
  \includegraphics[width=\columnwidth]{figures/da_norm_os}
- \caption{Android versions in Device Analyzer data over time}
+ \caption{Android versions in \da\ data over time}
  \label{fig:norm_os}
 \end{figure}
 
 Figure~\ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
-In July 2011 at the beginning of the Device Analyzer data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
+In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
 However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. \todo{put percentages on these things to quantify them}
 \begin{figure}%[!b]
 \centering
@@ -283,13 +287,14 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
  \label{fig:nvulnerabilities_heat}
 \end{figure}
 
-Those graphs summarise data across all the devices, however one of the advantages of the Device Analyzer data is that it allows us to look at what happens to individual devices over time.
-Figure~\ref{fig:device_data} shows how the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to Device Analyzer changes over time.
+\subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
+Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that it allows us to look at what happens to individual devices over time.
+Figure~\ref{fig:device_data} shows how the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
 It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
- \caption{Number of vulnerabilities affecting the top \daNumDeviceDataDevices\ devices by days of contribution in the Device Analyzer data}
+ \caption{Number of vulnerabilities affecting the top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data}
  \label{fig:device_data}
 \end{figure}
 
@@ -306,7 +311,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
  \label{fig:weekly_security_updates}
 \end{figure}
 Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
-Device Analyzer (DA) observes upgrade events and the figure shows which versions a device is upgrading from and to.
+\da\ (DA) observes upgrade events and the figure shows which versions a device is upgrading from and to.
 Mostly the dark cells are above the diagonal and are upgrades (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
@@ -319,14 +324,14 @@ Red indicates updates which changed the build number but not the version number 
 
 \input{security_scoring}
 
+% We don't need this for this paper
+%\subsection{Comparison with iOS}
+%\todo{Get data from Richard so that we can do this comparison}
 
-\subsection{Comparison with iOS}
-\todo{Get data from Richard so that we can do this comparison}
-
-\subsection{Predicting future version distributions}
+\subsection{Experiment 4: Predicting future version distributions}\label{sec:exp:predicting_distributions}
 Examining the way that the OS version distribution changes over time in Figure~\ref{fig:norm_os} we see some regularity to the behaviour.
 To show this behaviour more clearly we normalised the data to the number of days since the version was released and is smoothed by forcing it to be monotonically decreasing.\footnote{While sometimes an older version becomes more popular after a later version has been released causing the values to actually increase, mostly this was just noise or changes in the distribution of devices (e.g.\ the sudden arrival of 1000 devices from Bangladesh due to a study being conducted there) and this assumption makes the graph clearer.}
-Then we can plot Figure~\ref{fig:frvh_os_versions} which shows the proportion of of devices in Device Analyzer not upgraded to each Android version or a later Android version (i.e. for 2.1.0 it includes 2.1.1, 2.2.0 and indeed all devices as they all run later versions of Android).
+Then we can plot Figure~\ref{fig:frvh_os_versions} which shows the proportion of of devices in \da\ not upgraded to each Android version or a later Android version (i.e. for 2.1.0 it includes 2.1.1, 2.2.0 and indeed all devices as they all run later versions of Android).
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
@@ -388,7 +393,8 @@ While many of these things can be done by malware which just requests the releva
 \label{sec:economics}
 \cite{Felt2011}
 
-\subsection{The Device Analyzer data gives a conservative estimate of the Android version distribution}
+\section{Threats to validity}
+\subsection{The \da\ data gives a conservative estimate of the Android version distribution}
 \label{sec:representative}
 \begin{figure}
  \centering
@@ -399,7 +405,7 @@ While many of these things can be done by malware which just requests the releva
 \end{subfigure}
 \begin{subfigure}[b]{\columnwidth}
  \includegraphics[width=\columnwidth]{figures/norm_api_gpcomp}
- \caption{Device Analyzer data on proportion of devices running different Android API versions}
+ \caption{\da\ data on proportion of devices running different Android API versions}
  \label{fig:da_api}
 \end{subfigure}
 \caption{Monthly Android API version data}
@@ -407,17 +413,17 @@ While many of these things can be done by malware which just requests the releva
 \begin{figure}
  \centering
  \includegraphics[width=\columnwidth]{figures/api_gpcomp_rdiff}
- \caption{Difference between Device Analyzer and Google Play data on the proportion of devices running different Android API versions}
+ \caption{Difference between \da\ and Google Play data on the proportion of devices running different Android API versions}
  \label{fig:da_gp_comp_diff}
 \end{figure}
-The data from Device Analyzer (DA) we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
+The data from \da\ (DA) we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
 Unfortunately there is no authoritative source of OS version information and so we cannot check directly whether our data is representative.
 However Google has published API version information every month since December 2009 and we have collated this information.\footnote{\url{https://www.cl.cam.ac.uk/~drt24/android/versiondistribution/}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the DA data on API versions is similar to the Google Data on API versions then the DA data on OS versions should be representative.
-Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from Device Analyzer and they appear similar.
+Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from \da\ and they appear similar.
 Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
-It shows that the Device Analyzer data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
-This means that the OS version information from Device Analyzer is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
+It shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
+This means that the OS version information from \da\ is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
 \todo{we want a statistical metric to claim this strongly with.}
 This allows us to have confidence in the OS version information.
 
