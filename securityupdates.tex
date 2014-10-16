@@ -23,7 +23,7 @@
  \clearname{editor} % remove editors
 }
 
-\author{Daniel R.\ Thomas, Daniel T.\ Wagner, Alastair R.\ Beresford and Andrew Rice}
+\author{Daniel R.\ Thomas, Alastair R.\ Beresford, Daniel T.\ Wagner and Andrew Rice}
 
 \input{dastats}
 \input{avostats}
@@ -55,6 +55,10 @@ Firstname.Lastname@cl.cam.ac.uk
 }
 }
 
+% Terminology
+
+% Android, Unix
+
 
 \maketitle
 
@@ -79,11 +83,11 @@ Hence when Google produces an update to Android, the update may have to pass thr
 The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
 Operators are cautious because if they ship a broken update then they will get many support requests which is expensive.
 However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.
-Many phones are sold on long (18 month) contracts with monthly payments yet stop receiving updates before the end of the contract, while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
-CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
+Many phones are sold on long (12--24 month) contracts with monthly payments yet stop receiving updates before the end of the contract, while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
+Corporate or public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance. For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
 We provide this information in~\S\ref{sec:security_scoring}.
 
-Android relies on the Linux kernel to provide compartmentalisation and runs each app as a separate unix `user'.
+Android relies on the Linux kernel to provide compartmentalisation and runs each app as a separate Unix `user'.
 The Linux kernel is a large piece of software and so there will always be new root exploits found in it~\cite{TODO}.
 Manufacturers of Android devices have also added further root exploits when customising it~\cite{Grace2012}.
 Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained root exploits in 2012.
@@ -97,23 +101,23 @@ In \S\ref{sec:background} we will explain where these data come from and then in
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
 %TODO make this graph shorter
-\caption{Proportion of devices running insecure versions of android}
+\caption{Proportion of devices running insecure versions of Android against time}
 \label{fig:proportioninsecure}
 \end{figure}
 
-In the past users of Microsoft IIS were advised to switch to a different web server due to the high rate of vulnerability~\cite{Pescatore2001} this pressure helped cause Microsoft to focus on security so that it now does much better~\cite{TODO}.
+In the past users of Microsoft IIS were advised to switch to a different web server due to the frequent discovery of vulnerabilities~\cite{Pescatore2001}.
+This pressure encouraged Microsoft to improve the security of their products~\cite{TODO}.
 Part of the reason why deployed devices do not receive updates in a timely manner is that there is little data on what is actually happening and so it is not possible to determine which manufacturers or operators are doing a better job.
-Hence there is little incentive for manufacturers and operators to do a better job, we provide this data  in~\S\ref{sec:security_scoring} and discuss incentives further in \S\ref{sec:economics}
+Hence there is little incentive for manufacturers and operators to do a better job.
+We provide this data  in~\S\ref{sec:security_scoring} and discuss incentives further in \S\ref{sec:economics}.
 
 The contributions of this paper are:
 \begin{itemize}
- \item We quantify the vulnerability of Android to root equivalent vulnerabilities.
- \item We characterise the Android update ecosystem.
- \item We collate information on vulnerabilities which affect Android.
+ \item We characterise the Android update ecosystem and quantify its vulnerability to root equivalent vulnerabilities.
+ \item We collate information on vulnerabilities which affect Android and investigate their time-lines.
  \item We measure the security of Android according to three metrics and compare different manufacturers. and device models to allow consumers to differentiate between them based on security.
- \item We investigate the time-lines of vulnerabilities in Android.
  \item We provide models of how the distribution of Android versions changes allowing future version distributions to be predicted.
- \item We propose methods which could be used to improve the situation in future.
+% \item We propose methods which could be used to improve the situation in future.
 \end{itemize}
 
 \section{Background}
@@ -154,7 +158,7 @@ Hence we use dates such as: when CVEs were registered, when fixes were committed
 
 \avoTabAndVulns
 
-The database of vulnerabilities which we maintain at \texttt{androidvulnerabilities.org} contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
+The database of vulnerabilities which we maintain at \texttt{androidvulnerabilities.org} contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
 We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
 
 \begin{figure}
@@ -223,7 +227,7 @@ The number of updates received by devices (\daNumFullVersions) is the number of 
 The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in Device Analyzer which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todo{this is the wrong number to be using}
 
 The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects, from which we can also obtain the release dates.
-By comparing the tags in the android git version repositories for upstream projects with Android version numbers and examining the version of the upstream project under that tag we computed which upstream project versions were included in each version of Android.
+By comparing the tags in the Android git version repositories for upstream projects with Android version numbers and examining the version of the upstream project under that tag we computed which upstream project versions were included in each version of Android.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
 \begin{table}
 \centering
