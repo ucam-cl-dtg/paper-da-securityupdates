@@ -243,6 +243,35 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \label{tab:update_ecosystem}
 \end{table}
 
+\subsection{Lifetime of a vulnerability}
+The key events in the lifetime of a vulnerability are:
+
+\begin{LaTeXdescription}
+ \item[introduction] When a vulnerability was introduced into the source code.
+ \item[introducing release] When the first release was made containing the vulnerability.
+ \item[fix] When a vulnerability was first fixed in the source code.
+ \item[fixing release] When the first release containing the fix was made.
+ \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored.
+ \item[discovery] When the vulnerability is first discovered
+ \item[exploit] When the vulnerability is first exploited
+ \item[disclosed] When the vulnerability is first disclosed % publically or to a smaller set of people?
+\end{LaTeXdescription}
+
+\todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
+
+\subsection{Monetisation}
+\todo{redo this section in light of related work}
+
+One of the key differences between smartphones and desktops is that it is easier to directly cash out on a smartphone as malware can send premium rate texts or make premium rate phone calls.
+It can also steal personal data which already has semantic information associated with it, this also makes it easier to perform ransomware attacks where malware deletes this information from the device and charges a ransom for its return.
+It can also do more conventional things such as use the devices for DDoS attacks and altering the ads displayed to send the fees to the malware author.
+While many of these things can be done by malware which just requests the relevant permissions, root exploits make this easier, particularly for ransomware and altering the ads displayed.
+
+\subsection{Incentives and participants}
+\label{sec:economics}
+\cite{Felt2011}
+
+
 \section{Experiments}
 \label{sec:results}
 In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
@@ -298,7 +327,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
  \label{fig:device_data}
 \end{figure}
 
-\subsection{Update frequency}
+\subsubsection{Update frequency}
 \todo{ find out what the frequency of updates is}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
@@ -365,33 +394,6 @@ Hence if a security vulnerability is fixed through the release of a particular A
 
 \todo{Our handling of errors here is not quite good enough as the uncertainty from our y value interacts badly with the logarithm function when computing the inverse and we compute the log of ~0 which means our error ends up much bigger than our value - but that is an upper bound, not a +- bound.}
 
-\subsection{Lifetime of a vulnerability}
-The key events in the lifetime of a vulnerability are:
-
-\begin{LaTeXdescription}
- \item[introduction] When a vulnerability was introduced into the source code.
- \item[introducing release] When the first release was made containing the vulnerability.
- \item[fix] When a vulnerability was first fixed in the source code.
- \item[fixing release] When the first release containing the fix was made.
- \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored.
- \item[discovery] When the vulnerability is first discovered
- \item[exploit] When the vulnerability is first exploited
- \item[disclosed] When the vulnerability is first disclosed % publically or to a smaller set of people?
-\end{LaTeXdescription}
-
-\todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
-
-\subsection{Monetisation}
-\todo{redo this section in light of related work}
-
-One of the key differences between smartphones and desktops is that it is easier to directly cash out on a smartphone as malware can send premium rate texts or make premium rate phone calls.
-It can also steal personal data which already has semantic information associated with it, this also makes it easier to perform ransomware attacks where malware deletes this information from the device and charges a ransom for its return.
-It can also do more conventional things such as use the devices for DDoS attacks and altering the ads displayed to send the fees to the malware author.
-While many of these things can be done by malware which just requests the relevant permissions, root exploits make this easier, particularly for ransomware and altering the ads displayed.
-
-\subsection{Incentives and participants}
-\label{sec:economics}
-\cite{Felt2011}
 
 \section{Threats to validity}
 \subsection{The \da\ data gives a conservative estimate of the Android version distribution}
