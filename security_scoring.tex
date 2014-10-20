@@ -41,7 +41,7 @@ A high value of $u$ could be achieved by only ever shipping one version but that
 A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.
 One way to influence our scores would be to add additional devices to Device Analyzer which have good security, these would have to be real end user devices as we could detect fake ones, this would increase the size of our data set and would require providing genuinely good security to some users.
 
-We want to provide a score out of 10 as this is easy for people to understand.
+We want to provide a score out of 10 as this is easy for phone buyers to understand as many ratings are given as a score out of 10.
 Since $f$ is the most important metric we weight it more highly.
 Since $m$ is an unbounded positive real number, we map it into the range [0--1).
 This gives us Equation~\ref{eq:score}:
@@ -90,6 +90,7 @@ We also analysed different operators, for the \daNumSigOperators\ operators with
 However the score of an operator is affected by the manufacturers of the devices which are in use on it's network.
 This is in turn affected by both what devices an operator offers to users and on which devices users choose.
 Hence having a worse score does not necessarily mean that an operator is worse, it could be that its users all pick phones from a worse manufacturer, for example because they were cheaper.
+However an operator could exclude insecure devices from those offered to consumers.
 
 These tables also show the uncertainty for $f$ and $u$.
 $f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.

@@ -27,6 +27,7 @@
 
 \input{dastats}
 \newcommand{\da}{Device Analyzer}
+\newcommand{\dafoot}{\textsuperscript{\ref{foot:dadata}}}
 \input{avostats}
 \newcommand{\avo}{\texttt{androidvulnerabilities.org}}
 \newcommand{\percMarketShare}{XX\%~\cite{TODO}}
@@ -72,15 +73,15 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on the absence of root privilege exploits which allow apps to bypass protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used da data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
+We used \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
 There was also a period of several months when no devices ran secure versions of Android.
 We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation. %TODO operators analysis
 \end{abstract}
 
 \section{Introduction}
-Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.} manufacturers which make devices which run Android.
+Android has \percMarketShare\ of the smartphone market and while the core development is controlled by Google there are about \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.} manufacturers which make devices which run Android.
 Android receives regular updates  which add new features and fix bugs, including security vulnerabilities.
-Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumOperators\textsuperscript{\ref{foot:dadata}}) make further modifications.
+Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumOperators\dafoot) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
 The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
 Operators are cautious because if they ship a broken update then they will get many support requests which is expensive.
@@ -96,7 +97,7 @@ Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android
 While this shows that much Android malware does not need a root exploit to work, as it can just request the relevant permissions and the user will grant them, a significant proportion does.
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
 
-The proportion of Android devices in the da data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
+The proportion of Android devices in the \da\ data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
 In \S\ref{sec:background} we will explain where these data come from and then in \S\ref{sec:results} we will show these data in more detail.
 
 \begin{figure}[!b]
@@ -131,37 +132,55 @@ We need information on the distribution of installed versions of Android so that
 \subsection{Root vulnerabilities}
 We compiled a list of root vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
 We only looked for \emph{root equivalent} vulnerabilities which did not require USB debugging to exploit.
-\emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then either be used to gain root or provide sufficiently many permissions as to be as bad as root.
-Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
+\emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then either be used to gain root or provide sufficiently many permissions as to be as bad as root.\todo{refine this definition}
+Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.
 This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
 Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
 Some vulnerabilities which grant root are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
-On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen, make and receive calls.
+On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
+
+\avoTabAndVulns
 
 We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
 We also have a website\footnote{\url{http://androidvulnerabilities.org/}} which we will keep up to date with future vulnerabilities and which has successfully solicited submissions from others.
 In this analysis we only use vulnerabilities which affected all Android devices, not any of the manufacturer or hardware specific vulnerabilities
 
-There was much manual effort required to track down details of these vulnerabilities as many of them are not in other databases such as the CVE database, the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
-Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android with several root vulnerabilities not having CVE numbers.
-For some of the vulnerabilities without CVE numbers we checked with Google whether they had one assigned and they confirmed that there was no number and that they did not intend to get one (though they did give us the Android bug number and tell us to use that).
+The database of vulnerabilities which we maintain at \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
+We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
+
+
+Tracking vulnerabilities is a manual task as they are not all in other databases such as the CVE database and the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
+Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android root vulnerabilities.
+For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
 
 Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
 Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
 Hence we have collated this information and made it publicly available.
 
+\subsection{Lifetime of a vulnerability}
+The key events in the lifetime of a vulnerability are:
+
+\begin{LaTeXdescription}
+ \item[introduction] When a vulnerability was introduced into the source code.
+ \item[introducing release] When the first release was made containing the vulnerability.
+ \item[fix] When a vulnerability was first fixed in the source code.
+ \item[fixing release] When the first release containing the fix was made.
+ \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored.
+ \item[discovery] When the vulnerability is first discovered
+ \item[exploit] When the vulnerability is first exploited
+ \item[disclosed] When the vulnerability is first disclosed % publically or to a smaller set of people?
+\end{LaTeXdescription}
+
+\todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
+
 Prior work~\cite{Bilge2012} by Symantec on desktop malware has shown that after public disclosure exploitation rates increase by 5 orders of magnitude and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
 However they also show that zero day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
 Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using the vulnerability to when the update hits the user device.
 So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
 We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
-Hence we use dates such as: when CVEs were registered, when fixes were committed to source repositories, or when exploits were committed to repositories; as the date first known about.
+Hence we use dates such as: when CVEs were registered, when fixes were committed to source repositories, or when exploits were committed to repositories; as the date first known about.\todo{We need to be more precise here}
 
-\avoTabAndVulns
-
-The database of vulnerabilities which we maintain at \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
-We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
 
 \begin{figure}
  \centering
@@ -203,7 +222,7 @@ While we have not tried to exploit these vulnerabilities on the devices in order
  \import{figures/}{update_ecosystem.pdf_tex}
  \caption{Flow of updates between participants in the Android ecosystem.
  Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.
- Dotted arrows indicate flows where we do not know how many updates are being produced.}
+ Dotted arrows indicate flows where we do not know how many updates are being produced as we can't measure those flows directly as they are not public.\todo{Update this diagram}}
  \label{fig:update_ecosystem}
 \end{figure}
 
@@ -212,13 +231,14 @@ There are five entities or groups which contribute towards Android updates: the 
 Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and various Apache Java libraries and so can include any of the versions of those projects, including those which fix security vulnerabilities in them.
 It also incorporates various drivers for different bits of hardware.
 The Android platform is then built on top of those with kernel and userspace components by Google. \todo{ work out the exact arrangements.}
-Usually the code for each update is kept secret until after the update has been published though through the Open Handset Alliance some manufacturers see it in advance.
+Usually the code for each update is kept secret\todo{Can we quantify this keeping the code secret? Is it worth it?} until after the update has been published though through the Open Handset Alliance.
+Manufacturers in the  alliance receive advanced copies in order to prepare handsets.
 Then the Manufacturers take the update and customise it before passing it on to the operator.
 The Operator may then make further customisations and do further testing before shipping the update to the Device.
 Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
 Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android
 %An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
-\todo{talk about update latency}
+\todo{talk about update latency, quantify this in the text as per the figure, giving more explanation, use statistics from samsung-updates.com -> how many binaries are there per device? Do we know the variation between network operators?}
 
 The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
 Manufacturer and Operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
@@ -243,21 +263,7 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \label{tab:update_ecosystem}
 \end{table}
 
-\subsection{Lifetime of a vulnerability}
-The key events in the lifetime of a vulnerability are:
 
-\begin{LaTeXdescription}
- \item[introduction] When a vulnerability was introduced into the source code.
- \item[introducing release] When the first release was made containing the vulnerability.
- \item[fix] When a vulnerability was first fixed in the source code.
- \item[fixing release] When the first release containing the fix was made.
- \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored.
- \item[discovery] When the vulnerability is first discovered
- \item[exploit] When the vulnerability is first exploited
- \item[disclosed] When the vulnerability is first disclosed % publically or to a smaller set of people?
-\end{LaTeXdescription}
-
-\todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
 
 \subsection{Monetisation}
 \todo{redo this section in light of related work}
@@ -274,7 +280,7 @@ While many of these things can be done by malware which just requests the releva
 
 \section{Experiments}
 \label{sec:results}
-In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average, nexus devices to be better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
+In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
 The \da\ data used here was collected between \daStartDate\ and \daEndDate.
 The \avo\ data was collected between \avoStartDate\ and \avoEndDate.
 \todo{comparison of nexus update rates with iOS}
@@ -294,7 +300,7 @@ We verify the validity of this data in \S\ref{sec:representative}.
 
 Figure~\ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
-In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
+In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.\todo{Quantify whether it is replacement of updates which causes the fixes}
 However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. \todo{put percentages on these things to quantify them}
 \begin{figure}%[!b]
 \centering
@@ -309,6 +315,7 @@ In 2013 three vulnerabilities were found in the way which Android verified the s
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
 However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator} and \emph{exploid} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which still affect a significant proportion of devices years later.
+\todo{break things down by attack vector?}
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/nvulnerabilities_heat.pdf}
@@ -331,7 +338,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
 \todo{ find out what the frequency of updates is}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
- \caption{Updates between different Android versions in the DA data}
+ \caption{Updates between different Android versions in the \da data}
  \label{fig:from_to_updates}
 \end{figure}
 \begin{figure}
@@ -376,7 +383,7 @@ There is a general pattern to these data, Figure~\ref{fig:frms_os_versions} show
 It also shows the curve of best fit, which has a root mean squared error (RMSE) of \daOSCurveFitRMSE, the curve we chose is not a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) as we wanted a meaningful model of behaviour rather than a generic curve.
 
 The data appears to have an exponential decay as it tends to 1 but with a slow start as few devices are upgraded initially.
-We approximate this with a a $e^{-x}$ component for the main behaviour and a which is offset to start later when uptake takes off.
+We approximate this with a $e^{-x}$ for the main behaviour and a which is offset to start later when uptake takes off.
 The equation is then:
 \begin{equation}
 y =
@@ -386,7 +393,7 @@ y =
  \end{cases}
 \end{equation}
 
-Fitting that curve to the data using \texttt{scipy.optimize}, we get the parameters $\mathrm{undeployed} = \daOSCurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daOSCurveFitParamSecond ~\si{days^{-1}}$ for OS versions and $\mathrm{undeployed} = \daAPICurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daAPICurveFitParamSecond ~\si{days^{-1}}$ for API versions.
+Fitting that curve to the data using \texttt{scipy.optimize}, we get a RMSE of \daOSCurveFitRMSE\ and parameters $\mathrm{undeployed} = \daOSCurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daOSCurveFitParamSecond ~\si{days^{-1}}$ for OS versions and RMSE of \daAPICurveFitRMSE\, $\mathrm{undeployed} = \daAPICurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daAPICurveFitParamSecond ~\si{days^{-1}}$ for API versions.
 From this the number of days from release of a new version of Android until 50\% of devices are running that version or higher is \daOSCurveHalfDeployed\ and full deployment to \daFullDeployedAt\ of devices takes \daOSCurveFullDeployed\ days.
 For API versions this is \daAPICurveHalfDeployed\ and \daAPICurveFullDeployed\ respectively.
 
@@ -421,7 +428,7 @@ Hence if a security vulnerability is fixed through the release of a particular A
 The data from \da\ (DA) we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
 Unfortunately there is no authoritative source of OS version information and so we cannot check directly whether our data is representative.
 However Google has published API version information every month since December 2009 and we have collated this information.\footnote{\url{https://www.cl.cam.ac.uk/~drt24/android/versiondistribution/}}
-While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the DA data on API versions is similar to the Google Data on API versions then the DA data on OS versions should be representative.
+While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions is similar to the Google Data on API versions then the \da\ data on OS versions should be representative.
 Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from \da\ and they appear similar.
 Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
 It shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
