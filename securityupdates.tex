@@ -130,21 +130,23 @@ We need information on the distribution of installed versions of Android so that
 
 
 \subsection{Versions of Android running on devices}
-We need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of these data which our results depend on.
+We need historical data on the distributions of versions of Android running on devices and additional data about those devices to allows us to investigate variation between devices and confirm the reliability of these data.
 The only suitable data which is available for this is the \da\ data~\cite{Wagner2013}.
 The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
 \todo{ talk about the \da\ project a bit}
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
-The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
-The build string is `The user-visible version string', fortunately most (99.9\%) devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
-On a large proportion of devices `random string' is a well defined build number but different manufacturers use different schema.
+The API version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
+The build string is `The user-visible version string', fortunately most (99.9\%)\todo{use a generated number} devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
+On a large proportion of devices `random string' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} but different manufacturers use different schema.
 
 
 \subsection{Root vulnerabilities}
-We compiled a list of root equivalent vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
+We compiled a list of root equivalent vulnerabilities in Android.
+We collected information on discovery and publication dates, what versions they affected and which versions fixed the problem.
 We only looked for \emph{root equivalent} vulnerabilities which did not require USB debugging to exploit.
-\emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then either be used to gain root or provide sufficiently many permissions as to be as bad as root.\todo{refine this definition}
+\emph{Root equivalent} means that it escalates to privileges equivalent in scope to root in that either they can be used to gain root or they provide permissions as bad as root.
+If an application exploits a root equivalent vulnerability then it gains control of the device.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.\footnote{This is surprisingly high as \daAdbEnabledPerc\ of Android users are not developers.}
 This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
 Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
@@ -157,7 +159,7 @@ On some versions of Android (below 4.1) they could use known system to root esca
 We developed and maintain an open platform for filing root equivalent vulnerabilities in a machine readable format, \url{http://androidvulnerabilities.org/}.
 We seeded it with data from the CVE database, vendor lists, reports from the literature and various forums.
 We have received submissions or amendments from \avoNumSubmitters\ individuals.
-The \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
+\avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
 We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
 We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
 
@@ -166,12 +168,13 @@ Tracking vulnerabilities is a manual task as they are not all in other databases
 Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android root equivalent vulnerabilities.
 For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
 
+\subsection{Lifetime of a vulnerability}
 Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
 Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
 Hence we have collated this information and made it publicly available.
 
-\subsection{Lifetime of a vulnerability}
+
 The key events in the lifetime of a vulnerability are:
 
 \begin{LaTeXdescription}
@@ -187,14 +190,14 @@ The key events in the lifetime of a vulnerability are:
 
 \todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
 
-Prior work~\cite{Bilge2012} by Symantec on desktop malware has shown that after public disclosure exploitation rates increase by 5 orders of magnitude and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
+Symantec's 2012 analysis~\cite{Bilge2012} of desktop malware has shown that after public disclosure exploitation rates increase by 5 orders of magnitude and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
 However they also show that zero day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
 Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using the vulnerability to when the update hits the user device.
 So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
 We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
 Hence we use dates such as: when CVEs were registered, when fixes were committed to source repositories, or when exploits were committed to repositories; as the date first known about.\todo{We need to be more precise here}
 
-
+\subsection{Distribution of vulnerabilities}
 \begin{figure}
  \centering
  \includegraphics[width=\columnwidth]{figures/vulnerabilities_timeline}
@@ -448,6 +451,12 @@ There are continuing efforts to reduce the impact of root equivalent vulnerabili
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root equivalent vulnerabilities.
+
+\subsection{Open questions}
+\begin{itemize}
+ \item Why was there a gap in vulnerability discovery in Android in 2012?
+ \item Why do so many devices have ADB enabled?
+\end{itemize}
 
 \section{Related work}
 \label{sec:related}
