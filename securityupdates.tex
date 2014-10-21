@@ -85,20 +85,19 @@ Many of these manufacturers customise the version of Android they ship and somet
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
 The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
 Operators are cautious because if they ship a broken update then they will get many support requests which is expensive.
-However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.
-Many phones are sold on long (12--24 month) contracts with monthly payments yet stop receiving updates before the end of the contract, while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
-Corporate or public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance. For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
+However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todo{Check on the status of this legal action}
+Many phones are sold on long (12--24 month) contracts with monthly payments yet stop receiving updates before the end of the contract,\todo{Is there a survey of the distribution of contract lengths and phone purchase methods?} while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
+Corporate or public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance. For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.\todo{Which other advisory organisations give that advice?}
 We provide this information in~\S\ref{sec:security_scoring}.
 
 Android relies on the Linux kernel to provide compartmentalisation and runs each app as a separate Unix `user'.
 The Linux kernel is a large piece of software and so there will always be new root exploits found in it~\cite{TODO}.
 Manufacturers of Android devices have also added further root exploits when customising it~\cite{Grace2012}.
 Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained root exploits in 2012.
-While this shows that much Android malware does not need a root exploit to work, as it can just request the relevant permissions and the user will grant them, a significant proportion does.
+While this shows that much Android malware does not need a root exploit to work, since the user will grant the relevant permissions if the app requests them, a significant proportion does use root exploits.
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
 
 The proportion of Android devices in the \da\ data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
-In \S\ref{sec:background} we will explain where these data come from and then in \S\ref{sec:results} we will show these data in more detail.
 
 \begin{figure}[!b]
 \centering
@@ -125,32 +124,46 @@ The contributions of this paper are:
 
 \section{Background}
 \label{sec:background}
-There are two sources of data we needed to have and to link for this study, information on root vulnerabilities and information on installed versions of Android.
+There are two sources of data we needed to have and to link for this study, information on the distribution of installed versions of Android over time and on root vulnerabilities.
 We need data on root vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
 We need information on the distribution of installed versions of Android so that we know what proportion of Android devices were affected by these vulnerabilities.
 
+
+\subsection{Versions of Android running on devices}
+We need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of these data which our results depend on.
+The only suitable data which is available for this is the \da\ data~\cite{Wagner2013}.
+The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
+\todo{ talk about the \da\ project a bit}
+Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
+Among these are the build string and API version for the version of Android currently running on the device each day.
+The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
+The build string is `The user-visible version string', fortunately most (99.9\%) devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
+On a large proportion of devices `random string' is a well defined build number but different manufacturers use different schema.
+
+
 \subsection{Root vulnerabilities}
-We compiled a list of root vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
+We compiled a list of root equivalent vulnerabilities for Android containing information on when they were known about, what versions they affected and which versions fixed the problem.
 We only looked for \emph{root equivalent} vulnerabilities which did not require USB debugging to exploit.
 \emph{Root equivalent} means that it grants privileges equivalent in scope to root which can then either be used to gain root or provide sufficiently many permissions as to be as bad as root.\todo{refine this definition}
-Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.
+Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.\footnote{This is surprisingly high as \daAdbEnabledPerc\ of Android users are not developers.}
 This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
 Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
+
 Some vulnerabilities which grant root are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
 
 \avoTabAndVulns
 
-We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
-We also have a website\footnote{\url{http://androidvulnerabilities.org/}} which we will keep up to date with future vulnerabilities and which has successfully solicited submissions from others.
-In this analysis we only use vulnerabilities which affected all Android devices, not any of the manufacturer or hardware specific vulnerabilities
-
-The database of vulnerabilities which we maintain at \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
+We developed and maintain an open platform for filing root equivalent vulnerabilities in a machine readable format, \url{http://androidvulnerabilities.org/}.
+We seeded it with data from the CVE database, vendor lists, reports from the literature and various forums.
+We have received submissions or amendments from \avoNumSubmitters\ individuals.
+The \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
 We only use the \daNumVulnsUsed\ vulnerabilities which it is convenient to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
+We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
 
 
 Tracking vulnerabilities is a manual task as they are not all in other databases such as the CVE database and the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
-Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android root vulnerabilities.
+Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android root equivalent vulnerabilities.
 For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
 
 Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
@@ -200,19 +213,10 @@ The cause of this quiet period is unclear, perhaps from Figure~\ref{fig:proporti
 Or that manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices?
 Or that manufacturer specific vulnerabilities proved to be easier to find and so people looking for vulnerabilities adjusted their focus?
 
-\subsection{Versions of Android running on devices}
-We also need historical information on which versions of Android were running on devices along with other information about those devices which allows us to go into more detail and confirm the reliability of the data our results depend on.
-The only suitable data which is available for this is the \da\ data~\cite{Wagner2013}.
-The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
-\todo{ talk about the \da\ project a bit}
-Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
-Among these are the build string and API version for the version of Android currently running on the device each day.
-The API/SDK version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
-The build string is `The user-visible version string', fortunately most (99.9\%) devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
-On a large proportion of devices `random string' is a well defined build number but different manufacturers use different schema.
-
+\section{Android Ecosystem}
 \subsection{Running a version of Android known to be vulnerable makes a device vulnerable}
 While we have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable, we are confident that most devices will be if they are running a vesion known to be vulnerable. \todo{WHY?}
+
 
 \subsection{Android update process}
 \label{sec:android_update_process}
@@ -280,7 +284,7 @@ While many of these things can be done by malware which just requests the releva
 
 \section{Experiments}
 \label{sec:results}
-In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
+In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
 The \da\ data used here was collected between \daStartDate\ and \daEndDate.
 The \avo\ data was collected between \avoStartDate\ and \avoEndDate.
 \todo{comparison of nexus update rates with iOS}
@@ -371,7 +375,7 @@ Then we can plot Figure~\ref{fig:frvh_os_versions} which shows the proportion of
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
- \caption{Proportion of devices not updated to particular versions of Android or any later version}
+ \caption{Proportion of devices not updated to particular versions of Android or any later version\todo{make line of best fit thicker}}
  \label{fig:frvh_os_versions}
 \end{figure}
 \begin{figure}
@@ -436,15 +440,19 @@ This means that the OS version information from \da\ is likely to be overestimat
 \todo{we want a statistical metric to claim this strongly with.}
 This allows us to have confidence in the OS version information.
 
+\subsection{Changes in the \da\ sample}
+\todo{Bangladesh etc.}
+
 \section{Discussion}
-There are continuing efforts to reduce the impact of root vulnerabilities, both in Android and more widely.
+There are continuing efforts to reduce the impact of root equivalent vulnerabilities, both in Android and more widely.
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
-When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root vulnerabilities.
+When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root equivalent vulnerabilities.
 
 \section{Related work}
 \label{sec:related}
-We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root vulnerabilities, in 2011 Felt et al.\ studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
+We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root equivalent vulnerabilities.
+In 2011 Felt et al.\ \cite{Felt2011} studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
 This might indicate that over the last 3 years the security of Android has not improved, but these data are not directly comparable as their study was on 6 handsets considering the best possible update distribution while ours is on a large sample of devices with the real update distribution.
 They also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later larger studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
 Perhaps the malware authors heard about the results in Felt et al.'s paper?
