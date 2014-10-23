@@ -239,9 +239,6 @@ We are confident that most devices will be vulnerable if they are running a vers
 A model of the Android update process is shown in Figure~\ref{fig:update_ecosystem}.
 There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
 Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and so can include any of the versions of those projects, including those which fix security vulnerabilities in them.
-There are \avoNumExternalProjects\ external projects in Android, contributing \avoTotalExternalLines\ lines of code.
-We analysed the top \avoNumBigExternalProjects\ by lines of code (contributing \avoNumBigExternalLinesOfCode, \avoBigExternalLinesOfCodePerc\ of the total) and were able to automatically extract the versions of those projects included in different versions of Android for \avoNumBigExternalProjectsAnalysed.
-We found \avoBigExternalTotalVersions\ distinct versions, a median of \avoBigExternalMedianVersions\ and mean of \avoBigExternalMeanVersions\ versions per project.
 Android also incorporates various drivers for different bits of hardware.
 The Android platform is then built on top of those with kernel and userspace components by Google. \todo{ work out the exact arrangements.}
 Usually the code for each update is kept secret\todo{Can we quantify this keeping the code secret? Is it worth it?} until after the update has been published though through the Open Handset Alliance.
@@ -261,8 +258,14 @@ This normalisation is not perfect and so these are overestimates on the \da\ dat
 The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
 The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todo{this is the wrong number to be using}
 
-The number of updates shipped by upstream open source projects is calculated by scraping the releases pages for those projects, from which we can also obtain the release dates.
-By comparing the tags in the Android git version repositories for upstream projects with Android version numbers and examining the version of the upstream project under that tag we computed which upstream project versions were included in each version of Android.
+We extracted data on the external projects used in Android and have included this and the scripts which generated it in \avo.
+These scripts analysed the Android Open Source Project's source tree to examine the source code of each of the external projects to find the project version associated with each Android version tag on the repository.
+There are \avoNumExternalProjects\ external open source projects in Android, contributing \avoTotalExternalLines\ lines of code.\footnote{Lines of code were measured using David A. Wheeler's \texttt{sloccount}.}
+We analysed the top \avoNumBigExternalProjects\ by lines of code (contributing \avoNumBigExternalLinesOfCode\ lines, \avoBigExternalLinesOfCodePerc\ of the total) and were able to automatically extract the versions of those projects included in different versions of Android for \avoNumAnalysedExternalProjects\ (contributing \avoNumAnalysedExternalLinesOfCode\ lines, \avoAnalysedExternalLinesOfCodePerc\ of the total).
+We found \avoBigExternalTotalVersions\ distinct versions, a median of \avoBigExternalMedianVersions\ and mean of \avoBigExternalMeanVersions\ versions per project.
+This shows that Android rarely changes the version of external projects it includes.
+
+To compute the latency between upstream releases and their inclusion in Android we scraped the release pages for those projects, to obtain the version numbers and release dates.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
 \begin{table}
 \centering
@@ -272,7 +275,7 @@ linux	&	\linuxNumVersions	&	\linuxMeanUpdateLatency \\
 openssl	&	\opensslNumVersions	&	\opensslMeanUpdateLatency \\
 bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \end{tabular}
-\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.}
+\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.\todo{scrape the other 26 websites... is it worth it?}}
 \label{tab:update_ecosystem}
 \end{table}
 
