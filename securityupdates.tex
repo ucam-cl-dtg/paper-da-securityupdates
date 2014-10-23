@@ -297,13 +297,13 @@ While many of these things can be done by malware which just requests the releva
 \section{Experiments}
 \label{sec:results}
 In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
-The \da\ data used here was collected between \daStartDate\ and \daEndDate.
-The \avo\ data was collected between \avoStartDate\ and \avoEndDate.
-\todo{comparison of nexus update rates with iOS}
-We conducted four experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}), comparisons between different manufacturers and operators (\S\ref{sec:exp:security_score}) and modeling the replacement by new Android versions in order to predict how long it will take for an update to be fixed (\S\ref{sec:exp:predicting_distributions}).
+%\todo{comparison of nexus update rates with iOS}
+We conducted four experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}), comparisons between different manufacturers and operators (\S\ref{sec:exp:security_score}) and model how long it will take for an update to be fixed once an update is released (\S\ref{sec:exp:predicting_distributions}).
 \todo{In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is}
 \subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
+The \da\ data used here was collected between \daStartDate\ and \daEndDate.
+The \avo\ data was collected between \avoStartDate\ and \avoEndDate\ and covers the period from \avoFirstDataDate\ to \avoLastDataDate.
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
 It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions and the fluctuation in the number of devices in the data.
 We verify the validity of this data in \S\ref{sec:representative}.
