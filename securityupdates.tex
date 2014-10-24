@@ -402,7 +402,7 @@ The mean and standard deviation of the same data are shown in Figure~\ref{fig:fr
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
- \caption{Proportion of devices not updated to particular versions of Android or any later version\todo{make line of best fit thicker}}
+ \caption{Proportion of devices not updated to particular versions of Android or any later version\todo{make line of best fit thicker, I think the drops to 0 at the end of each version are erroneous}}
  \label{fig:frvh_os_versions}
 \end{figure}
 \begin{figure}
@@ -429,10 +429,13 @@ For API versions this is \daAPICurveHalfDeployed\ and \daAPICurveFullDeployed\ r
 
 Hence if a security vulnerability is fixed through the release of a particular Android version it will be \daOSCurveFullDeployed\ days after until the fix is fully deployed.
 
-The equation we chose for the model has a root mean squared error (RMSE) of \daOSCurveFitRMSE for OS versions, which is a comparably good fit to a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) but gives a meaningful model of behaviour rather than a generic curve.
+The equation we chose for the model has a root mean squared error (RMSE) of \daOSCurveFitRMSE\ for OS versions, which is a comparably good fit to a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) but gives a meaningful model of behaviour rather than a generic curve.
+
+\todo{Evaluate our model trained on the DA data against the ground truth Google Play data}
 
 \todo{Our handling of errors here is not quite good enough as the uncertainty from our y value interacts badly with the logarithm function when computing the inverse and we compute the log of ~0 which means our error ends up much bigger than our value - but that is an upper bound, not a +- bound.}
 
+We hope that a consequence of this paper will be a change in behaviour of the Android ecosystem which invalidates this model by speeding up the deployment of new OS versions.
 
 \section{Threats to validity}
 \subsection{The \da\ data gives a conservative estimate of the Android version distribution}
@@ -472,6 +475,7 @@ This allows us to have confidence in the OS version information.
 \subsection{Changes in the \da\ sample}
 \todo{Bangladesh etc.}
 
+\subsection{Uncertainty propagation}
 
 \section{Discussion}
 There are continuing efforts to reduce the impact of root equivalent vulnerabilities, both in Android and more widely.
@@ -508,7 +512,7 @@ The update process itself can allow Android apps to gain privilege through `Pile
 The security protections used in iOS such as only allowing signed code to run, jails and reviewing of apps has resulted in a lower level of malware affecting iOS~\cite{TODO} but can still be bypassed~\cite{Wang2013a}. \todo{look at iOS protections again and tighten this up}
 
 Various attempts have been made to detect malware.
-RiskRanker~\cite{Grace2012a} classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown, an infection rate of 0.6\% across multiple markets.
+RiskRanker~\cite{Grace2012a} classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets.
 It uses signatures of exploits, static analysis of calls to high risk operations, detection of encrypted native code execution and dynamic Dalvik code loading to detect risky apps.
 DroidRanger~\cite{Zhou2012a} found 148/182,823 (0.08\%) apps to be malicious across multiple markets of which 29 were previously unknown.
 It used permission-based behavioural fingerprinting -- looking at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
