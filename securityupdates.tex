@@ -300,13 +300,20 @@ In this section we present the results of our analysis showing \daMeanInsecurity
 %\todo{comparison of nexus update rates with iOS}
 We conducted four experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}), comparisons between different manufacturers and operators (\S\ref{sec:exp:security_score}) and model how long it will take for an update to be fixed once an update is released (\S\ref{sec:exp:predicting_distributions}).
 \todo{In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is}
+
+
 \subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
+
+\subsubsection{Method}
 To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
 The \da\ data used here was collected between \daStartDate\ and \daEndDate.
 The \avo\ data was collected between \avoStartDate\ and \avoEndDate\ and covers the period from \avoFirstDataDate\ to \avoLastDataDate.
+We verify the validity of the \da\ data in \S\ref{sec:representative}.
+
+\subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
 It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions and the fluctuation in the number of devices in the data.
-We verify the validity of this data in \S\ref{sec:representative}.
+
 \begin{figure}
  \centering
  \includegraphics[width=\columnwidth]{figures/da_norm_os}
@@ -339,8 +346,12 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
  \label{fig:nvulnerabilities_heat}
 \end{figure}
 
+
 \subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
 Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that it allows us to look at what happens to individual devices over time.
+\subsubsection{Method}
+\todo{write a method}
+\subsubsection{Results}
 Figure~\ref{fig:device_data} shows how the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
 It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
@@ -354,7 +365,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
 \todo{ find out what the frequency of updates is}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
- \caption{Updates between different Android versions in the \da data}
+ \caption{Updates between different Android versions in the \da\ data}
  \label{fig:from_to_updates}
 \end{figure}
 \begin{figure}
@@ -363,7 +374,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
  \label{fig:weekly_security_updates}
 \end{figure}
 Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
-\da\ (DA) observes upgrade events and the figure shows which versions a device is upgrading from and to.
+\da\ observes upgrade events and the figure shows which versions a device is upgrading from and to.
 Mostly the dark cells are above the diagonal and are upgrades (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
@@ -380,10 +391,13 @@ Red indicates updates which changed the build number but not the version number 
 %\subsection{Comparison with iOS}
 %\todo{Get data from Richard so that we can do this comparison}
 
+
 \subsection{Experiment 4: Predicting future version distributions}\label{sec:exp:predicting_distributions}
+\subsubsection{Method}
 Examining the way that the OS version distribution changes over time in Figure~\ref{fig:norm_os} we see some regularity to the behaviour.
-To show this behaviour more clearly we normalised the data to the number of days since the version was released and is smoothed by forcing it to be monotonically decreasing.\footnote{While sometimes an older version becomes more popular after a later version has been released causing the values to actually increase, mostly this was just noise or changes in the distribution of devices (e.g.\ the sudden arrival of 1000 devices from Bangladesh due to a study being conducted there) and this assumption makes the graph clearer.}
+To show this behaviour more clearly we normalised the data to the number of days since the version was released and smoothed it by forcing it to be monotonically decreasing.\footnote{While sometimes an older version becomes more popular after a later version has been released causing the values to actually increase, mostly this was just noise or changes in the distribution of devices (e.g.\ the sudden arrival of 1000 devices from Bangladesh due to a study being conducted there) and this assumption makes the graph clearer.}
 Then we can plot Figure~\ref{fig:frvh_os_versions} which shows the proportion of of devices in \da\ not upgraded to each Android version or a later Android version (i.e. for 2.1.0 it includes 2.1.1, 2.2.0 and indeed all devices as they all run later versions of Android).
+The mean and standard deviation of the same data are shown in Figure~\ref{fig:frms_os_versions}.
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
@@ -395,8 +409,6 @@ Then we can plot Figure~\ref{fig:frvh_os_versions} which shows the proportion of
  \caption{Proportion of devices not updated to particular versions of Android or any later version}
  \label{fig:frms_os_versions}
 \end{figure}
-There is a general pattern to these data, Figure~\ref{fig:frms_os_versions} shows the mean and standard deviation of the same data.
-It also shows the curve of best fit, which has a root mean squared error (RMSE) of \daOSCurveFitRMSE, the curve we chose is not a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) as we wanted a meaningful model of behaviour rather than a generic curve.
 
 The data appears to have an exponential decay as it tends to 1 but with a slow start as few devices are upgraded initially.
 We approximate this with a $e^{-x}$ for the main behaviour and a which is offset to start later when uptake takes off.
@@ -409,11 +421,14 @@ y =
  \end{cases}
 \end{equation}
 
+\subsubsection{Results}
 Fitting that curve to the data using \texttt{scipy.optimize}, we get a RMSE of \daOSCurveFitRMSE\ and parameters $\mathrm{undeployed} = \daOSCurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daOSCurveFitParamSecond ~\si{days^{-1}}$ for OS versions and RMSE of \daAPICurveFitRMSE\, $\mathrm{undeployed} = \daAPICurveFitParamFirst ~\si{days}$, $\mathrm{decay} = \daAPICurveFitParamSecond ~\si{days^{-1}}$ for API versions.
 From this the number of days from release of a new version of Android until 50\% of devices are running that version or higher is \daOSCurveHalfDeployed\ and full deployment to \daFullDeployedAt\ of devices takes \daOSCurveFullDeployed\ days.
 For API versions this is \daAPICurveHalfDeployed\ and \daAPICurveFullDeployed\ respectively.
 
 Hence if a security vulnerability is fixed through the release of a particular Android version it will be \daOSCurveFullDeployed\ days after until the fix is fully deployed.
+
+The equation we chose for the model has a root mean squared error (RMSE) of \daOSCurveFitRMSE for OS versions, which is a comparably good fit to a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) but gives a meaningful model of behaviour rather than a generic curve.
 
 \todo{Our handling of errors here is not quite good enough as the uncertainty from our y value interacts badly with the logarithm function when computing the inverse and we compute the log of ~0 which means our error ends up much bigger than our value - but that is an upper bound, not a +- bound.}
 
@@ -452,8 +467,10 @@ This means that the OS version information from \da\ is likely to be overestimat
 \todo{we want a statistical metric to claim this strongly with.}
 This allows us to have confidence in the OS version information.
 
+
 \subsection{Changes in the \da\ sample}
 \todo{Bangladesh etc.}
+
 
 \section{Discussion}
 There are continuing efforts to reduce the impact of root equivalent vulnerabilities, both in Android and more widely.
@@ -461,12 +478,15 @@ SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root equivalent vulnerabilities.
 
+
 \subsection{Open questions}
 \begin{itemize}
  \item Why was there a gap in vulnerability discovery in Android in 2012?
  \item Why do so many devices have ADB enabled?
  \item How much of updating is new handsets and how much is updates being deployed?\todo{we should answer this question in this paper}
+ \item Why do users downgrade their phones?
 \end{itemize}
+
 
 \section{Related work}
 \label{sec:related}
@@ -519,6 +539,7 @@ Google is deploying the same silent update technique through Google Play Service
 \section{Conclusion}
 \label{sec:conclusion}
 \todo{Conclude}
+
 
 \section*{Acknowledgements}
 Thanks to David Robertson for helpful advice on statistical analysis.
