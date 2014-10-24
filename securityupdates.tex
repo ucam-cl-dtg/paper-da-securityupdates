@@ -15,6 +15,7 @@
 \usepackage{todonotes}
 \let\OldTodo\todo
 \renewcommand{\todo}{\OldTodo[inline]}
+\newcommand{\todolater}{}%\todo
 \RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex]{biblatex}
 \addbibresource{securityupdates.bib}
 \renewcommand{\bibfont}{\small}
@@ -85,9 +86,9 @@ Many of these manufacturers customise the version of Android they ship and somet
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
 The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
 Operators are cautious because if they ship a broken update then they will get many support requests which is expensive.
-However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todo{Check on the status of this legal action}
-Many phones are sold on long (12--24 month) contracts with monthly payments yet stop receiving updates before the end of the contract,\todo{Is there a survey of the distribution of contract lengths and phone purchase methods?} while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
-Corporate or public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance. For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.\todo{Which other advisory organisations give that advice?}
+However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
+Many phones are sold on long (12--24 month) contracts with monthly payments yet stop receiving updates before the end of the contract,\todolater{Is there a survey of the distribution of contract lengths and phone purchase methods?} while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
+Corporate or public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance. For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.\todolater{Which other advisory organisations give that advice?}
 We provide this information in~\S\ref{sec:security_scoring}.
 
 Android relies on the Linux kernel to provide compartmentalisation and runs each app as a separate Unix `user'.
@@ -137,7 +138,7 @@ The \da\ data contains data from \daNumDevices\ devices with a total of \daDevic
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
-The build string is `The user-visible version string', fortunately most (99.9\%)\todo{use a generated number} devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
+The build string is `The user-visible version string', fortunately most (99.9\%)\todolater{use a generated number} devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
 On a large proportion of devices `random string' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} but different manufacturers use different schema.
 
 
@@ -275,7 +276,7 @@ linux	&	\linuxNumVersions	&	\linuxMeanUpdateLatency \\
 openssl	&	\opensslNumVersions	&	\opensslMeanUpdateLatency \\
 bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \end{tabular}
-\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.\todo{scrape the other 26 websites... is it worth it?}}
+\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.\todolater{scrape the other 26 websites... is it worth it?}}
 \label{tab:update_ecosystem}
 \end{table}
 
@@ -498,7 +499,7 @@ Perhaps the malware authors heard about the results in Felt et al.'s paper?
 Our results show root exploits are still a severe threat.
 
 Finding vulnerabilities is frequently a time consuming manual process but, Brumley et al.~\cite{Brumley2008} showed that it is possible to automatically generate exploits from binary patches.
-In a similar way some of the vulnerabilities which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
+In a similar way some of the vulnerabilities\todolater{which?} which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
 This effect has been observed before~\cite{Barth2011} in the Firefox source code repositories, Google does not release the source code until after the release of the update reducing this effect to the delay between an update being released and it reaching the last end user device.
 There have been other attempts to automatically find vulnerabilities.
 The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
@@ -522,10 +523,10 @@ PlayDrone~\cite{Viennot2014} was a particularly effective project which circumve
 Examining security updates has been a key way of assessing security for many years.
 Many software update systems have been found not to authenticate the connection to the update server and/or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
 Even package management systems designed to provide secure updates have been found to have vulnerabilities~\cite{Cappos2008}.
-Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. \todo{double check that}
+Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. \todolater{double check that}
 
 The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourable with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
-However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}} -- four months after it went out of security support.
+However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}\todolater{Get updated figures before publication}} -- four months after it went out of security support.
 
 User-Agent strings have been used to investigate how web browser versions change with updates~\cite{Frei2008} and found that at most 80\% of Firefox users were running the most recent version.
 The same analysis was used to show that Chrome's use of silent updates seems to increase uptake of upgrades~\cite{Duebendorfer2010} with 97\% of users running the latest version within 3 weeks of release.
@@ -546,5 +547,6 @@ Thanks to David Robertson for helpful advice on statistical analysis.
 Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case and Khilan Gudka for reporting vulnerabilities in Android.
 
 \printbibliography
+
 
 \end{document}
