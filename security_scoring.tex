@@ -50,6 +50,15 @@ This gives us Equation~\ref{eq:score}:
 \mathrm{score} = f\times 4 + u \times 3 + \frac{2}{1+e^m} \times 3 \label{eq:score}
 \end{equation}
 
+We can compute the uncertainty for $f$ and $u$.
+$f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
+The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
+Since the numbers involved are large, the uncertainty in $f$ is small.
+$u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
+The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
+
+\todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model}
+
 \subsubsection{Results: Security scores}
 The scores across the whole of android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
 There are on average \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device.
@@ -66,9 +75,9 @@ Additionally for $m$ and $u$ we ignore days with less than \daSigNumDevicesDay\ 
 
 \daTabSecScoresmodel
 Even within manufacturers different models can have very different update behaviours and hence security.
-Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with \daSecScoreBestmodel\ (\daSecScoreBestmodelScore\ / 10) doing best and \daSecScoreWorstmodel\ (\daSecScoreWorstmodelScore\ / 10) doing worst.
+Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with `\daSecScoreBestmodel' (\daSecScoreBestmodelScore\ / 10) doing best and `\daSecScoreWorstmodel' (\daSecScoreWorstmodelScore\ / 10) doing worst.
 We can then test whether this seems fair by comparing the version data for the best and worst models.
-Figure~\ref{fig:worst_model_full} shows the full version distribution for \daSecScoreWorstmodel\ and Figure~\ref{fig:best_model_full} shows the same for \daSecScoreBestmodel\ there is a marked difference in the distribution of updates between the two with only \daSecScoreWorstmodelNumFullVersions\ full versions for \daSecScoreWorstmodel\ and \daSecScoreBestmodelNumFullVersions\ for \daSecScoreBestmodel.
+Figure~\ref{fig:worst_model_full} shows the full version distribution for `\daSecScoreWorstmodel' and Figure~\ref{fig:best_model_full} shows the same for `\daSecScoreBestmodel' there is a marked difference in the distribution of updates between the two with only \daSecScoreWorstmodelNumFullVersions\ full versions for `\daSecScoreWorstmodel' and \daSecScoreBestmodelNumFullVersions\ for `\daSecScoreBestmodel'.
 
 \begin{figure}
  \centering
@@ -86,17 +95,10 @@ Figure~\ref{fig:worst_model_full} shows the full version distribution for \daSec
 \end{figure}
 
 \daTabSecScoresoperator
-We also analysed different operators, for the \daNumSigOperators\ operators with a significant presence in our data Table~\ref{tab:sec_operator} shows the results \daSecScoreBestoperator\ (\daSecScoreBestoperatorScore\ / 10) doing best and \daSecScoreWorstoperator\ (\daSecScoreWorstoperatorScore\ / 10) doing worst.
+We also analysed different operators, for the \daNumSigOperators\ operators with a significant presence in our data Table~\ref{tab:sec_operator} shows the results `\daSecScoreBestoperator' (\daSecScoreBestoperatorScore\ / 10) doing best and `\daSecScoreWorstoperator' (\daSecScoreWorstoperatorScore\ / 10) doing worst.
 However the score of an operator is affected by the manufacturers of the devices which are in use on it's network.
 This is in turn affected by both what devices an operator offers to users and on which devices users choose.
 Hence having a worse score does not necessarily mean that an operator is worse, it could be that its users all pick phones from a worse manufacturer, for example because they were cheaper.
 However an operator could use data from this paper to exclude insecure devices from those offered to consumers.
 
-These tables also show the uncertainty for $f$ and $u$.
-$f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
-The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
-Since the numbers involved are large, the uncertainty in $f$ is small.
-$u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
-The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 
-\todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model}
