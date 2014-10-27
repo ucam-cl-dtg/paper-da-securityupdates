@@ -230,7 +230,10 @@ Or that manufacturers made it easier to install custom versions of Android, redu
 Or that manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus?
 
 \section{Android Ecosystem}
-\todo{Introduction}
+There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
+It is also hard to quantify due to lack of public information on aspects of the ecosystem such as the number of manufacturers and updates.
+We describe and quantify this ecosystem.
+
 \subsection{Running a version of Android known to be vulnerable makes a device vulnerable}
 We have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable.
 Doing so would be difficult both ethically, as it would pose a high risk to user devices and mean that our code could easily be maliciously repurposed, and practically as getting all the exploits working reliably on all the devices they could be made to work reliably on requires extensive testing.
@@ -295,17 +298,17 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 
 
 
-\subsection{Monetisation}
-\todo{redo this section in light of related work and to fit into ecosystem discussion}
-
-One of the key differences between smartphones and desktops is that it is easier to directly cash out on a smartphone as malware can send premium rate texts or make premium rate phone calls.
-It can also steal personal data which already has semantic information associated with it, this also makes it easier to perform ransomware attacks where malware deletes this information from the device and charges a ransom for its return.
-It can also do more conventional things such as use the devices for DDoS attacks and altering the ads displayed to send the fees to the malware author.
+\subsection{Monetisation of malware}
+Android malware can make money in a variety of different ways~\cite{Felt2011}.
+One of the key differences between smartphones and desktops is that it is easier to directly cash out on a smartphone as malware can send premium rate texts or make premium rate phone calls or send SMS and email spam.
+It can also steal personal data which already has semantic information associated with it, this also makes it easier to sell and to perform ransomware attacks where malware deletes this information from the device and charges a ransom for its return.
+It can steal credentials for external services or use in-app billing.
+It can also do more conventional things such as use the devices for DDoS, SEO or click fraud attacks and altering the ads displayed to send the fees to the malware author.
 While many of these things can be done by malware which just requests the relevant permissions, root exploits make this easier, particularly for ransomware and altering the ads displayed.
 
 \subsection{Incentives and participants}
 \label{sec:economics}
-\cite{Felt2011}
+\todo{write this}
 
 
 \section{Experiments}
