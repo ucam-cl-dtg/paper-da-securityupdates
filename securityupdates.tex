@@ -253,9 +253,9 @@ A model of the Android update process is shown in Figure~\ref{fig:update_ecosyst
 There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
 Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and so can include any of the versions of those projects, including those which fix security vulnerabilities in them.
 Android also incorporates various drivers for different bits of hardware.
-The Android platform is then built on top of those with kernel and userspace components by Google. \todo{ work out the exact arrangements.}
-Usually the code for each update is kept secret\todo{Can we quantify this keeping the code secret? Is it worth it?} until after the update has been published though through the Open Handset Alliance.
-Manufacturers in the  alliance receive advanced copies in order to prepare handsets.
+The Android platform is then built on top of those with kernel and userspace components by Google.
+The code for each update is kept secret\footnote{\url{https://source.android.com/source/code-lines.html}}\todolater{Can we quantify this keeping the code secret? Is it worth it?} until after the update has been published.
+Manufacturers may receive advanced copies in order to prepare handsets.
 Then the Manufacturers take the update and customise it before passing it on to the operator.
 The Operator may then make further customisations and do further testing before shipping the update to the Device.
 Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
