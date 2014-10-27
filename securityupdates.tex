@@ -36,8 +36,8 @@
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
 % Num versions since \daStartDate
 \input{countversions}
-\newcommand{\apacheLibsNumVersions}{C}
-\newcommand{\apacheLibsNumLibs}{E}
+\newcommand{\otherProjNumVersions}{XXX}
+\newcommand{\otherProjNum}{\avoNumExternalProjects}%TODO check we are doing the right calculation here and not overcounting
 
 \begin{document}
 \title{Timeliness of security updates for Android}
@@ -245,7 +245,7 @@ We are confident that most devices will be vulnerable if they are running a vers
  \import{figures/}{update_ecosystem.pdf_tex}
  \caption{Flow of updates between participants in the Android ecosystem.
  Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.
- Dotted arrows indicate flows where we do not know how many updates are being produced as we can't measure those flows directly as they are not public.\todo{Update this diagram}}
+ Dotted arrows indicate flows where we do not know how many updates are being produced as we can't measure those flows directly as they are not public.}
  \label{fig:update_ecosystem}
 \end{figure}
 
