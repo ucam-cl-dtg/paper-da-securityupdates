@@ -171,34 +171,44 @@ Tracking vulnerabilities is a manual task as they are not all in other databases
 Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android root equivalent vulnerabilities.
 For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
 
-\subsection{Lifetime of a vulnerability}
-Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
-Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
-Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
-Hence we have collated this information and made it publicly available.
 
+\subsection{Lifetime of a vulnerability}
 
 The key events in the lifetime of a vulnerability are:
 
 \begin{LaTeXdescription}
- \item[introduction] When a vulnerability was introduced into the source code.
+ \item[created] When a vulnerability was created in the source code.
  \item[introducing release] When the first release was made containing the vulnerability.
- \item[fix] When a vulnerability was first fixed in the source code.
- \item[fixing release] When the first release containing the fix was made.
- \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored.
  \item[discovery] When the vulnerability is first discovered
  \item[exploit] When the vulnerability is first exploited
- \item[disclosed] When the vulnerability is first disclosed % publically or to a smaller set of people?
+ \item[disclosure] When the vulnerability is first disclosed % publically or to a smaller set of people?
+ \item[fix] When a vulnerability was first fixed in the source code.
+ \item[fixing release] When the first release containing the fix was made (equivalent to `patch available'~\cite{Frei2010}).
+ \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored (the ecosystem equivalent to the per instance `patch installed'~\cite{Frei2010}).
 \end{LaTeXdescription}
 
-\todo{Compare this list with the literature and unify it. Pull out figures which illustrate and investigate this in our data.}
+Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
+Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
+Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
+Hence we have collated this information and made it publicly available.
 
 Symantec's 2012 analysis~\cite{Bilge2012} of desktop malware has shown that after public disclosure exploitation rates increase by 5 orders of magnitude and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
 However they also show that zero day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
 Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using the vulnerability to when the update hits the user device.
 So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
 We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
-Hence we use dates such as: when CVEs were registered, when fixes were committed to source repositories, or when exploits were committed to repositories; as the date first known about.\todo{We need to be more precise here}
+
+There are several points we could pick for the point from which a vulnerability poses substantial risk to users.
+{\bf Creation} and {\bf introduction} are the earliest points which could be used but the risk is mostly latent until someone discovers them.
+Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery, for example APTs may keep databases of unknown vulnerabilities to use when they have a particular target, in which case there is a high risk to potential targets from the never disclosed point of discovery.
+However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little risk.
+The date of first {\bf exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
+The date of first {\bf fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party.
+Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{TODO}.
+When the {\bf fix is deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
+
+Hence we use the earliest date we know about for discovery, exploit, disclosure or fix as the date from which a vulnerability poses a substantial risk to users.
+
 
 \subsection{Distribution of vulnerabilities}
 \begin{figure}
