@@ -15,7 +15,7 @@
 \usepackage{todonotes}
 \let\OldTodo\todo
 \renewcommand{\todo}{\OldTodo[inline]}
-\newcommand{\todolater}{}%\todo
+\newcommand{\todolater}[1]{}%\todo
 \RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex]{biblatex}
 \addbibresource{securityupdates.bib}
 \renewcommand{\bibfont}{\small}
