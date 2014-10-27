@@ -156,7 +156,7 @@ Unfortunately many published exploits use adb for convenience and so determining
 
 Some vulnerabilities which grant root are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
-
+\todo{break vulnerabilities down by attack vector?}
 \avoTabAndVulns
 
 We developed and maintain an open platform for filing root equivalent vulnerabilities in a machine readable format, \url{http://androidvulnerabilities.org/}.
@@ -321,11 +321,11 @@ Users want to buy phones which will serve their use cases and which are secure s
 
 \section{Experiments}
 \label{sec:results}
-In this section we present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator. \todo{ summarise our results}
+We present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator and modelling the uptake of new versions of Android. \todo{summarise experiment 2}
 %\todo{comparison of nexus update rates with iOS}
 We conducted four experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}), comparisons between different manufacturers and operators (\S\ref{sec:exp:security_score}) and model how long it will take for an update to be fixed once an update is released (\S\ref{sec:exp:predicting_distributions}).
-\todo{In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is}
 
+%% In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is
 
 \subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 
@@ -334,10 +334,12 @@ To investigate the behaviour of the Android ecosystem as a whole with respect to
 The \da\ data used here was collected between \daStartDate\ and \daEndDate.
 The \avo\ data was collected between \avoStartDate\ and \avoEndDate\ and covers the period from \avoFirstDataDate\ to \avoLastDataDate.
 We verify the validity of the \da\ data in \S\ref{sec:representative}.
+For each device, for every day with version data we record what version it was running and which vulnerabilities it was exposed to at that time (if any).
+We then normalise these totals for each day by the total number of devices with version information seen on that day.
 
 \subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
-It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions and the fluctuation in the number of devices in the data.
+It shows how old versions are gradually replaced by new ones, the long tail of devices which do not see updates to more recent versions.
 
 \begin{figure}
  \centering
@@ -346,24 +348,23 @@ It shows how old versions are gradually replaced by new ones, the long tail of d
  \label{fig:norm_os}
 \end{figure}
 
-Figure~\ref{fig:vulnerabilities} shows which vulnerabilities devices are exposed to.
+The vulnerabilities devices are exposed to are shown in Figure~\ref{fig:nvulnerabilities_heat}.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
-In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.\todo{Quantify whether it is replacement of updates which causes the fixes}
-However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. \todo{put percentages on these things to quantify them}
-\begin{figure}%[!b]
-\centering
-\includegraphics[width=\columnwidth]{figures/vulnerabilities}
-\caption{Proportion of devices exposed to each vulnerability with time (1.0 is 100\%)}
-\label{fig:vulnerabilities}
-\end{figure}
-
 The variation of the proportion of devices affected by a vulnerability with time tells us how bad a particular vulnerability affected the Android platform.
-Figure~\ref{fig:nvulnerabilities_heat} breaks this down by vulnerability to show how the proportion of devices affected by different vulnerabilities varies.
+In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.\todo{Quantify whether it is replacement or updates which causes the fixes}
+However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. \todo{put percentages on these things to quantify them}
+%\begin{figure}%[!b]
+%\centering
+%\includegraphics[width=\columnwidth]{figures/vulnerabilities}
+%\caption{Proportion of devices exposed to each vulnerability with time (1.0 is 100\%)}
+%\label{fig:vulnerabilities}
+%\end{figure}
+
 In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
-However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator} and \emph{exploid} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which still affect a significant proportion of devices years later.
-\todo{break things down by attack vector?}
+However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator}, \emph{exploid} and \emph{zergRush}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/zergRush}} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which still affect a significant proportion of devices years later.
+
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/nvulnerabilities_heat.pdf}
@@ -375,18 +376,21 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 \subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
 Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that it allows us to look at what happens to individual devices over time.
 \subsubsection{Method}
+As in \ref{sec:exp:android_ecosystem}, for each device we used the version information from each day to calculate which vulnerabilities it was vulnerable to that day.
+We also recorded when the version changed and which versions it changed from and to.
 \todo{write a method}
 \subsubsection{Results}
 Figure~\ref{fig:device_data} shows how the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
 It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
+This implies that these devices had been abandoned \todo{finish this sentence}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
  \caption{Number of vulnerabilities affecting the top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data}
  \label{fig:device_data}
 \end{figure}
 
-\subsubsection{Update frequency}
+
 \todo{ find out what the frequency of updates is}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
