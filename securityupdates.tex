@@ -230,6 +230,7 @@ Or that manufacturers made it easier to install custom versions of Android, redu
 Or that manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus?
 
 \section{Android Ecosystem}
+\todo{Introduction}
 \subsection{Running a version of Android known to be vulnerable makes a device vulnerable}
 We have not tried to exploit these vulnerabilities on the devices in order to test whether the devices are actually vulnerable.
 Doing so would be difficult both ethically, as it would pose a high risk to user devices and mean that our code could easily be maliciously repurposed, and practically as getting all the exploits working reliably on all the devices they could be made to work reliably on requires extensive testing.
@@ -237,7 +238,7 @@ We are confident that most devices will be vulnerable if they are running a vers
 
 
 \subsection{Android update process}
-\todo{rewrite this}
+
 \label{sec:android_update_process}
 \begin{figure}
  \centering
@@ -248,10 +249,9 @@ We are confident that most devices will be vulnerable if they are running a vers
  Dotted arrows indicate flows where we do not know how many updates are being produced as we can't measure those flows directly as they are not public.}
  \label{fig:update_ecosystem}
 \end{figure}
-
-A model of the Android update process is shown in Figure~\ref{fig:update_ecosystem}.
+To understand how vulnerabilities in Android are fixed we must examine the Android update process which we model in Figure~\ref{fig:update_ecosystem}.
 There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
-Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and so can include any of the versions of those projects, including those which fix security vulnerabilities in them.
+Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and so can include any compatible versions of those projects, including those which fix security vulnerabilities in them.
 Android also incorporates various drivers for different bits of hardware.
 The Android platform is then built on top of those with kernel and userspace components by Google.
 The code for each update is kept secret\footnote{\url{https://source.android.com/source/code-lines.html}}\todolater{Can we quantify this keeping the code secret? Is it worth it?} until after the update has been published.
@@ -261,7 +261,7 @@ The Operator may then make further customisations and do further testing before 
 Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
 Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android
 %An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
-\todo{talk about update latency, quantify this in the text as per the figure, giving more explanation, use statistics from samsung-updates.com -> how many binaries are there per device? Do we know the variation between network operators?}
+\todolater{use statistics from samsung-updates.com -> how many binaries are there per device?}
 
 The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
 Manufacturer and Operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
@@ -269,7 +269,7 @@ This normalisation involves removing invalid values (such as `manufacturer' or `
 This normalisation is not perfect and so these are overestimates on the \da\ data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the \da\ data.
 
 The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
-The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todo{this is the wrong number to be using}
+The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days. \todolater{this is the wrong number to be using}
 
 We extracted data on the external projects used in Android and have included this and the scripts which generated it in \avo.
 These scripts analysed the Android Open Source Project's source tree to examine the source code of each of the external projects to find the project version associated with each Android version tag on the repository.
@@ -280,6 +280,7 @@ This shows that Android rarely changes the version of external projects it inclu
 
 To compute the latency between upstream releases and their inclusion in Android we scraped the release pages for those projects, to obtain the version numbers and release dates.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
+This shows that the versions included in Android were about half a year old when that version of Android was released.
 \begin{table}
 \centering
 \begin{tabular}{l|r|r}
