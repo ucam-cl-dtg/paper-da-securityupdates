@@ -104,7 +104,7 @@ The proportion of Android devices in the \da\ data which were running versions o
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
 %TODO make this graph shorter
-\caption{Proportion of devices running insecure versions of Android against time}
+\caption{Proportion of devices running insecure versions of Android against time\todo{Disambiguate 'definitely broken' from 'maybe broken'}}
 \label{fig:proportioninsecure}
 \end{figure}
 
@@ -204,7 +204,7 @@ Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as
 However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little risk.
 The date of first {\bf exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
 The date of first {\bf fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party.
-Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{TODO}.
+Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{Brumley2008}.
 When the {\bf fix is deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
 
 Hence we use the earliest date we know about for discovery, exploit, disclosure or fix as the date from which a vulnerability poses a substantial risk to users.
@@ -262,8 +262,7 @@ Manufacturers may receive advanced copies in order to prepare handsets.
 Then the Manufacturers take the update and customise it before passing it on to the operator.
 The Operator may then make further customisations and do further testing before shipping the update to the Device.
 Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
-Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android
-%An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
+Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android.
 \todolater{use statistics from samsung-updates.com -> how many binaries are there per device?}
 
 The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
@@ -281,6 +280,7 @@ We analysed the top \avoNumBigExternalProjects\ by lines of code (contributing \
 We found \avoBigExternalTotalVersions\ distinct versions, a median of \avoBigExternalMedianVersions\ and mean of \avoBigExternalMeanVersions\ versions per project.
 This shows that Android rarely changes the version of external projects it includes.
 
+%An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
 To compute the latency between upstream releases and their inclusion in Android we scraped the release pages for those projects, to obtain the version numbers and release dates.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
 This shows that the versions included in Android were about half a year old when that version of Android was released.
