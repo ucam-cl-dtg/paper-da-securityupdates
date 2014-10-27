@@ -134,7 +134,9 @@ We need information on the distribution of installed versions of Android so that
 We need historical data on the distributions of versions of Android running on devices and additional data about those devices to allows us to investigate variation between devices and confirm the reliability of these data.
 The only suitable data which is available for this is the \da\ data~\cite{Wagner2013}.
 The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
-\todo{ talk about the \da\ project a bit}
+Device Analyzer used an Android app which volunteers install on their Android devices to collect data on what happens on Android phones.
+The data collected is available for researchers to use as we do here.
+
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
