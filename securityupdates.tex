@@ -416,7 +416,8 @@ Surprisingly there are also a small number of downgrade events (\daNumUpdatesDow
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
-Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
+Green indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
+Red indicates updates which did not fix security vulnerabilities (because there were know known security vulnerabilities in the version of Android they were already running).
 
 By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
 This compares badly with the number of vulnerabilities discovered per year of \avoVulnsPerYear.
