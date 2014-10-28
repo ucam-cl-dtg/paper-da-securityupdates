@@ -12,6 +12,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
+\usepackage{fp}
 \usepackage{todonotes}
 \let\OldTodo\todo
 \renewcommand{\todo}{\OldTodo[inline]}
@@ -529,8 +530,9 @@ When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be
 There are several open questions which we have not yet been able to answer and remain future work.
 \begin{itemize}
  \item Why was there a gap in vulnerability discovery in Android in 2012?
- \item Why do so many devices have ADB enabled?
- \item How much of updating is new handsets and how much is updates being deployed?
+ \item Why do so many devices have ADB enabled? \daAdbEnabledPerc\ seems rather high for a developer feature.
+ \item How much of updating is new handsets and how much is updates being deployed? Over time newer versions of Android come to dominate, but quantifying what proportion of that is due to new phones being purchased and what proportion is due to updates to existing devices is a question we cannot answer.
+ The only available large data set we know of with longitudinal traces of Android devices OS version numbers is \da\ but that only records \daNumUpdatesUpgrades\ upgrades which broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ is only \FPeval{\daUpdatesPerMonthPerVersion}{round(\daNumUpdatesUpgrades/(\daOSMonthsOfData * \daNumSigOSVersions),1)}\daUpdatesPerMonthPerVersion\ updates per version per month which is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
  \item Why do users downgrade their phones?
 \end{itemize}
 
