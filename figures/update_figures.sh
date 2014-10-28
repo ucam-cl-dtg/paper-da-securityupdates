@@ -20,7 +20,7 @@ cp "$fromdir"norm_versionsecurity-notitle.pdf proportioninsecure-notitle.pdf
 cp "$fromdir"updates_between.pdf updates_between_versions.pdf
 cp "$fromdir"nvulnerabilities.pdf vulnerabilities.pdf
 cp "$fromdir"nvulnerabilities_heat.pdf nvulnerabilities_heat.pdf
-cp "$fromdir"updates_weekly.pdf w_security_updates.pdf
+cp "$fromdir"nsecurity_updates_weekly.pdf nw_security_updates.pdf
 cp "$fromdir"wifi-accounts-ototals-hist.pdf wifi-accounts-ototals-hist.pdf
 cp "$fromdir"wifi-accounts-stotals-hist.pdf wifi-accounts-stotals-hist.pdf
 cp "$fromdir"api_gpcomp_diff.pdf api_gpcomp_diff.pdf
