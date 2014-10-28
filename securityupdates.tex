@@ -352,8 +352,8 @@ It shows how old versions are gradually replaced by new ones, the long tail of d
 The vulnerabilities devices are exposed to are shown in Figure~\ref{fig:nvulnerabilities_heat}.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
 The variation of the proportion of devices affected by a vulnerability with time tells us how bad a particular vulnerability affected the Android platform.
-In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.\todo{Quantify whether it is replacement or updates which causes the fixes}
-However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices were still vulnerable. \todo{put percentages on these things to quantify them}
+In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
+However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices (\daVulnAPKDuplicateFileOctoberPerc) were still vulnerable.
 %\begin{figure}%[!b]
 %\centering
 %\includegraphics[width=\columnwidth]{figures/vulnerabilities}
@@ -397,8 +397,6 @@ This implies that these devices had been abandoned and were not receiving update
 Some devices start off in 2011 exposed to known security vulnerabilities and are still exposed to those and additional ones in 2014.
 
 
-\todo{ find out what the frequency of updates is}
-
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
  \caption{Updates between different Android versions in the \da\ data}
@@ -411,14 +409,18 @@ Some devices start off in 2011 exposed to known security vulnerabilities and are
 \end{figure}
 We recorded update events and Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
 Mostly the dark cells are above the diagonal and are upgrades (\daNumUpdatesUpgrades).
-While many upgrades are from one version to the next version there are also a fair number which skip a few versions.\todo{quantify that}
+While many upgrades are from one version to the next version there are also a fair number (\daNumUpdatesBigUpgrades, \daPercBigUpgrades) which skip a more than \daNumUpdatesSkippedBig\ versions.
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
-\todo{Is this normalised? If not it is meaningless...}
-\todo{ summary stats, what does this mean}
+
+By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
+This compares badly with the number of vulnerabilities discovered per year of \avoVulnsPerYear.
+
+
+\todo{That comparison is not completely fair as not all of those vulnerabilites will affect all devices, similarly we may be counting device days for which we only have one day and hence could perhaps not observe an update.}
 
 
 \input{security_scoring}
