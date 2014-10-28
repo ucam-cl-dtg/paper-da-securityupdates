@@ -322,7 +322,9 @@ Users want to buy phones which will serve their use cases and which are secure s
 
 \section{Experiments}
 \label{sec:results}
-We present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average. Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator and modelling the uptake of new versions of Android. \todo{summarise experiment 2}
+We present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average.
+On average only \daUpdatesPerYear\ updates reach a device each year and \daPercUpdatesDowngrades\ of version changes are downgrades to older versions.
+Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator and modelling the uptake of new versions of Android.
 %\todo{comparison of nexus update rates with iOS}
 We conducted four experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}), comparisons between different manufacturers and operators (\S\ref{sec:exp:security_score}) and model how long it will take for an update to be fixed once an update is released (\S\ref{sec:exp:predicting_distributions}).
 
@@ -439,7 +441,7 @@ The mean and standard deviation of the same data are shown in Figure~\ref{fig:fr
 
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/frvh_os_versions}
- \caption{Proportion of devices not updated to particular versions of Android or any later version\todo{make line of best fit thicker, I think the drops to 0 at the end of each version are erroneous}}
+ \caption{Proportion of devices not updated to particular versions of Android or any later version}
  \label{fig:frvh_os_versions}
 \end{figure}
 \begin{figure}
