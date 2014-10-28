@@ -74,7 +74,7 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on the absence of root privilege exploits which allow apps to bypass protections.
 Many such exploits have been found and fixed.
 Our hypothesis is that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average over \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
+We used \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
 There was also a period of several months when no devices ran secure versions of Android.
 We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation. %TODO operators analysis
 \end{abstract}
@@ -585,7 +585,10 @@ Google is deploying the same silent update technique through Google Play Service
 
 \section{Conclusion}
 \label{sec:conclusion}
-\todo{Conclude}
+We have investigate the security of the Android operating system with respect to security updates and examined how the Android ecosystem results in different devices receiving different levels of security due to whether or not they get security updates.
+We have compared different models, manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which manufacturer and operator.
+We hope that this analysis will encourage manufacturers and operators to improve the support they provide for devices after sale.
+Android attempts to provide good security to end users but the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known root equivalent vulnerabilities.
 
 
 \section*{Acknowledgements}
