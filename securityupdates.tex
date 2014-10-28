@@ -375,23 +375,29 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 
 \subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
 Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that it allows us to look at what happens to individual devices over time.
+
 \subsubsection{Method}
 As in \ref{sec:exp:android_ecosystem}, for each device we used the version information from each day to calculate which vulnerabilities it was vulnerable to that day.
 We also recorded when the version changed and which versions it changed from and to.
-\todo{write a method}
+Since in the \da\ data many devices only contribute data for a short period, although we have over 1000 devices contributing data in any particular week we do not observe all the upgrades made by a large number of devices, but rather a hopefully representative sample of upgrades which happened when \da\ was installed on the devices.
+\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, few users do that.
+
+
 \subsubsection{Results}
-Figure~\ref{fig:device_data} shows how the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time.
-The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
-It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
-This implies that these devices had been abandoned \todo{finish this sentence}
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
  \caption{Number of vulnerabilities affecting the top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data}
  \label{fig:device_data}
 \end{figure}
+The logitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data}.
+The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
+It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
+This implies that these devices had been abandoned and were not receiving updates.
+Some devices start off in 2011 exposed to known security vulnerabilities and are still exposed to those and additional ones in 2014.
 
 
 \todo{ find out what the frequency of updates is}
+
 \begin{figure}
  \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
  \caption{Updates between different Android versions in the \da\ data}
@@ -402,15 +408,15 @@ This implies that these devices had been abandoned \todo{finish this sentence}
  \caption{Number of updates each week which fixed or may have fixed security vulnerabilities}
  \label{fig:weekly_security_updates}
 \end{figure}
-Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
-\da\ observes upgrade events and the figure shows which versions a device is upgrading from and to.
+We recorded update events and Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
 Mostly the dark cells are above the diagonal and are upgrades (\daNumUpdatesUpgrades).
-While many upgrades are from one version to the next version there are also a fair number which skip a few versions.
+While many upgrades are from one version to the next version there are also a fair number which skip a few versions.\todo{quantify that}
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Red indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
+\todo{Is this normalised? If not it is meaningless...}
 \todo{ summary stats, what does this mean}
 
 
