@@ -141,7 +141,7 @@ The data collected is available for researchers to use as we do here.
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
-The build string is `The user-visible version string', fortunately most (99.9\%)\todolater{use a generated number} devices in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
+The build string is `The user-visible version string', fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
 On a large proportion of devices `random string' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} but different manufacturers use different schema.
 
 
