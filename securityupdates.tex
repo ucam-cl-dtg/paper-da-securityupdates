@@ -388,14 +388,23 @@ Since in the \da\ data many devices only contribute data for a short period, alt
 
 \subsubsection{Results}
 \begin{figure}
- \includegraphics[width=\columnwidth]{figures/device-data-all-security}
- \caption{Number of vulnerabilities affecting the top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data}
- \label{fig:device_data}
+ \centering
+ \begin{subfigure}[b]{\columnwidth}
+  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
+  \caption{Number of vulnerabilities affecting each device over time}
+  \label{fig:device_data_security}
+ \end{subfigure}
+ \begin{subfigure}[b]{\columnwidth}
+  \includegraphics[width=\columnwidth]{figures/device-data-all-os}
+  \caption{OS versions over time}
+  \label{fig:device_data_os}
+ \end{subfigure}
+ \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data}
 \end{figure}
-The logitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data}.
+The logitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data_security}.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
 It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
-This implies that these devices had been abandoned and were not receiving updates.
+This implies that these devices had been abandoned and were not receiving updates which is confirmed by Figure~\ref{fig:device_data_os} which shows which OS versions those devices were running.
 Some devices start off in 2011 exposed to known security vulnerabilities and are still exposed to those and additional ones in 2014.
 
 

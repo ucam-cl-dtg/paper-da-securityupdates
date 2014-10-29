@@ -9,6 +9,7 @@ cp "$fromdir"norm_os.pdf da_norm_os.pdf
 cp "$fromdir"os.pdf da_os.pdf
 cp "$fromdir"device_data/device-data-manufacturer-lg-security.pdf device_data-LG.pdf
 cp "$fromdir"device_data/device-data-all-security.pdf device-data-all-security.pdf
+cp "$fromdir"device_data/device-data-all-os.pdf device-data-all-os.pdf
 cp "$fromdir"from_to_updates.pdf from_to_updates.pdf
 cp "$fromdir"googleplayapi.pdf googleplayapi.pdf
 cp "$fromdir"googleplayapi-notitle.pdf googleplayapi-notitle.pdf
