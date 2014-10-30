@@ -63,6 +63,7 @@ Firstname.Lastname@cl.cam.ac.uk
 % Terminology
 
 % Android, Unix
+% update, release, patch: what do we actually mean and what relevance does that have to security?
 
 
 \maketitle
@@ -124,8 +125,8 @@ The contributions of this paper are:
 
 \section{Background}
 \label{sec:background}
-There are two sources of data we need for this study: (1) information on the distribution of installed versions of Android over time and (2) information on root vulnerabilities.
-We need data on root vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
+There are two sources of data we need for this study: (1) information on the distribution of installed versions of Android over time and (2) information on critical vulnerabilities.
+We need data on critical vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
 We need information on the distribution of installed versions of Android so that we know what proportion of Android devices were affected by these vulnerabilities.
 
 
@@ -142,23 +143,27 @@ The API version is a well defined integer, however it does not always change wit
 The build string is `The user-visible version string', fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z random string' and so it is possible to extract the Android version number.
 On a large proportion of devices `random string' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} but different manufacturers use different schema.
 
+We verify the validity of the \da\ data in \S\ref{sec:representative}.
 
-\subsection{Root vulnerabilities}
-We compiled a list of root equivalent vulnerabilities in Android.
+\todo{acr31: More information about what \da\ records and how we process it to provide data}
+
+
+\subsection{Critical vulnerabilities}
+We compiled a list of critical vulnerabilities in Android.
 We collected information on discovery and publication dates, what versions they affected and which versions fixed the problem.
-We only looked for \emph{root equivalent} vulnerabilities which did not require USB debugging to exploit.
-\emph{Root equivalent} means that it escalates to privileges equivalent in scope to root in that either they can be used to gain root or they provide permissions as bad as root.
-If an application exploits a root equivalent vulnerability then it gains control of the device.
+We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
+Critical vulnerabilities allow a program to escalate to privileges equivalent in scope to root in that either they can be used to gain root or they provide permissions as bad as root.
+If an application exploits a critical vulnerability then it gains control of the device.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.\footnote{This is surprisingly high as \daAdbEnabledPerc\ of Android users are not developers.}
 This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
 Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
 
-Some vulnerabilities which grant root are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
+Some critical vulnerabilities are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
 \todo{break vulnerabilities down by attack vector?}
 \avoTabAndVulns
 
-We developed and maintain an open platform for filing root equivalent vulnerabilities in a machine readable format, \url{http://androidvulnerabilities.org/}.
+We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, \url{http://androidvulnerabilities.org/}.
 We seeded it with data from the CVE database, vendor lists, reports from the literature and various forums.
 We have received submissions or amendments from \avoNumSubmitters\ individuals.
 \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
@@ -167,7 +172,7 @@ We have published full details of the \daNumVulnsUsed\ vulnerabilities used for 
 
 
 Tracking vulnerabilities is a manual task as they are not all in other databases such as the CVE database and the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
-Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for Android root equivalent vulnerabilities.
+Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for critical Android vulnerabilities.
 For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
 
 
@@ -195,18 +200,20 @@ Symantec's 2012 analysis~\cite{Bilge2012} of desktop malware has shown that afte
 However they also show that zero day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
 Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using the vulnerability to when the update hits the user device.
 So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
-We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they probably know.
+We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they may know.
 
 There are several points we could pick for the point from which a vulnerability poses substantial risk to users.
 {\bf Creation} and {\bf introduction} are the earliest points which could be used but the risk is mostly latent until someone discovers them.
-Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery, for example APTs may keep databases of unknown vulnerabilities to use when they have a particular target, in which case there is a high risk to potential targets from the never disclosed point of discovery.
+Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery, for example Advanced Persistent Threats (APTs) may keep databases of unknown vulnerabilities to use when they have a particular target, in which case there is a high risk to potential targets from the never disclosed point of discovery.
 However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little risk.
 The date of first {\bf exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
 The date of first {\bf fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party.
+It can, for example, be determined from the authored on date on the fixing commit in the git repository.
 Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{Brumley2008}.
 When the {\bf fix is deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
 
 Hence we use the earliest date we know about for discovery, exploit, disclosure or fix as the date from which a vulnerability poses a substantial risk to users.
+This is shown in Table~\ref{tab:andvulns}.
 
 
 \subsection{Distribution of vulnerabilities}
@@ -223,7 +230,7 @@ Some vulnerabilities (RageAgainstTheCage adb, levitator, zergRush abd TwerkMyMot
 During the period in which \da\ data was collected the date when a version of Android with the fix was observed on a \da\ device is taken as the date that version was released, before that the release date as best as we can determine is used.
 There is no canonical source of Android release dates, our best guesses and supporting references are available from \avo.
 
-This data shows a large gap in the middle where we do not know of any discoveries of root equivalent vulnerabilities affecting all of Android.
+This data shows a large gap in the middle where we do not know of any discoveries of critical vulnerabilities affecting all of Android.
 The cause of this quiet period is unclear, perhaps from Figure~\ref{fig:proportioninsecure} the reason was that since most devices were exposed to known vulnerabilities there was no point in looking for new ones?
 Or that manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices?
 Or that manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus?
@@ -297,7 +304,7 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 
 \section{Experiments}
 \label{sec:results}
-We present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have root equivalent vulnerabilities on average.
+We present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have critical vulnerabilities on average.
 On average only \daUpdatesPerYear\ updates reach a device each year and \daPercUpdatesDowngrades\ of version changes are downgrades to older versions.
 Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} to be the best manufacturer and \emph{\daSecScoreBestoperator} to be the best network operator and modelling the uptake of new versions of Android.
 %\todo{comparison of nexus update rates with iOS}
@@ -311,7 +318,6 @@ We conducted three experiments examining the behaviour of the Android ecosystem 
 To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
 The \da\ data used here was collected between \daStartDate\ and \daEndDate.
 The \avo\ data was collected between \avoStartDate\ and \avoEndDate\ and covers the period from \avoFirstDataDate\ to \avoLastDataDate.
-We verify the validity of the \da\ data in \S\ref{sec:representative}.
 For each device, for every day with version data we record what version it was running and which vulnerabilities it was exposed to at that time (if any).
 We then normalise these totals for each day by the total number of devices with version information seen on that day.
 
@@ -401,7 +407,7 @@ Possible reasons why users are downgrading are to free up space on their device,
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}, blue shows updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities.
 Green indicates updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability.
-Red indicates updates which did not fix security vulnerabilities (because there were know known security vulnerabilities in the version of Android they were already running).
+Red indicates updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the version of Android they were already running).
 
 By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
 This compares badly with the number of vulnerabilities discovered per year of \avoVulnsPerYear.
@@ -461,10 +467,10 @@ We have endeavoured to propagate information on uncertainties in our results thr
 However we have not propagated information on systematic errors as we are not certain what those are.
 
 \section{Discussion}
-There are continuing efforts to reduce the impact of root equivalent vulnerabilities, both in Android and more widely.
+There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and more widely.
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
-When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming root equivalent vulnerabilities.
+When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
 
 \subsection{Open questions}
@@ -480,7 +486,7 @@ There are several open questions which we have not yet been able to answer and r
 
 \section{Related work}
 \label{sec:related}
-We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known root equivalent vulnerabilities.
+We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known critical vulnerabilities.
 In 2011 Felt et al.\ \cite{Felt2011} studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
 This might indicate that over the last 3 years the security of Android has not improved, but these data are not directly comparable as their study was on 6 handsets considering the best possible update distribution while ours is on a large sample of devices with the real update distribution.
 They also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later larger studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
@@ -531,7 +537,7 @@ Google is deploying the same silent update technique through Google Play Service
 We have investigate the security of the Android operating system with respect to security updates and examined how the Android ecosystem results in different devices receiving different levels of security due to whether or not they get security updates.
 We have compared different models, manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which manufacturer and operator.
 We hope that this analysis will encourage manufacturers and operators to improve the support they provide for devices after sale.
-Android attempts to provide good security to end users but the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known root equivalent vulnerabilities.
+Android attempts to provide good security to end users but the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities.
 
 
 \section*{Acknowledgements}
