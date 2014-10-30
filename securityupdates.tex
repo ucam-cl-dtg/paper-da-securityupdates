@@ -262,13 +262,13 @@ The code for each update is kept secret\footnote{\url{https://source.android.com
 Manufacturers may receive advanced copies in order to prepare handsets.
 Then the Manufacturers take the update and customise it before passing it on to the operator.
 The Operator may then make further customisations and do further testing before shipping the update to the Device.
-Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google are the same entity (at least for the purpose of a particular phone, such as with Nexus phones).
-Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android.
+Sometimes Manufactures ship direct to the user, sometimes the Manufacturer and Google collaborate closely for the purpose of a particular phone, such as with Nexus phones, and hence are harder to separate.
+Sometimes Manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android~\cite{Wagner2013}.
 \todolater{use statistics from samsung-updates.com -> how many binaries are there per device?}
 
 The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
 Manufacturer and Operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
-This normalisation involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `lg'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
+This normalisation is a manual task involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `lg'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
 This normalisation is not perfect and so these are overestimates on the \da\ data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the \da\ data.
 
 The number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
@@ -380,7 +380,7 @@ Since in the \da\ data many devices only contribute data for a short period, alt
   \caption{OS versions over time}
   \label{fig:device_data_os}
  \end{subfigure}
- \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data}
+ \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device.}
 \end{figure}
 The logitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data_security}.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
@@ -410,10 +410,7 @@ Green indicates updates which changed the build number but not the version numbe
 Red indicates updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the version of Android they were already running).
 
 By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
-This compares badly with the number of vulnerabilities discovered per year of \avoVulnsPerYear.
-
-
-\todo{That comparison is not completely fair as not all of those vulnerabilites will affect all devices, similarly we may be counting device days for which we only have one day and hence could perhaps not observe an update.}
+This compares badly with the number of critical vulnerabilities discovered per year of between \avoVulnsPerYearAllAndroid\ (affecting all Android) and \avoVulnsPerYear\ (including the manufacturer specific ones in \avo).
 
 
 \input{security_scoring}
@@ -542,7 +539,7 @@ Android attempts to provide good security to end users but the latency in the se
 
 \section*{Acknowledgements}
 Thanks to David Robertson for helpful advice on statistical analysis.
-Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case and Khilan Gudka for reporting vulnerabilities in Android.
+Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities in Android.
 
 
 \printbibliography
