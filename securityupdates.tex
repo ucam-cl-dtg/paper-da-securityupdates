@@ -85,7 +85,7 @@ Android has \percMarketShare\ of the smartphone market and while the core develo
 Android receives regular updates  which add new features and fix bugs, including security vulnerabilities.
 Many of these manufacturers customise the version of Android they ship and sometimes network operators (of which there are at least \daNumOperators\dafoot) make further modifications.
 Hence when Google produces an update to Android, the update may have to pass through the manufacturer and operator before reaching the user.
-The manufacturer and operator have little financial incentive to perform this work as they have already sold the device.
+The manufacturer has little financial incentive to perform this work as they have already sold the device.
 Operators are cautious because if they ship a broken update then they will get many support requests which is expensive.
 However there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
 Many phones are sold on long (12--24 month) contracts with monthly payments yet stop receiving updates before the end of the contract,\todolater{Is there a survey of the distribution of contract lengths and phone purchase methods?} while Windows XP could be purchased for a one off payment in October 2001 and received security updates until April 2014.
@@ -96,8 +96,8 @@ Android relies on the Linux kernel to provide compartmentalisation and runs each
 The Linux kernel is a large piece of software and so there will always be new root exploits found in it~\cite{TODO}.
 Manufacturers of Android devices have also added further root exploits when customising it~\cite{Grace2012}.
 Between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained root exploits in 2012.
-While this shows that much Android malware does not need a root exploit to work, since the user will grant the relevant permissions if the app requests them, a significant proportion does use root exploits.
-This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used there are no guarantees.
+While this shows that much Android malware does not need a root exploit to work, a significant proportion does include root exploits.
+This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used this is no longer guaranteed to work.
 
 The proportion of Android devices in the \da\ data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
 
@@ -117,22 +117,22 @@ We provide this data  in~\S\ref{sec:security_scoring}.
 
 The contributions of this paper are:
 \begin{itemize}
- \item We characterise the Android update ecosystem and quantify its vulnerability to root equivalent vulnerabilities.
+ \item We characterise the Android update ecosystem and quantify vulnerabilities.
  \item We collate information on vulnerabilities which affect Android and investigate their time-lines.
- \item We measure the security of Android according to three metrics and compare different manufacturers. and device models to allow consumers to differentiate between them based on security.
+ \item We measure the security of Android according to three metrics and compare different manufacturers and device models to allow device purchasers to differentiate between them based on security.
 \end{itemize}
 
 \section{Background}
 \label{sec:background}
-There are two sources of data we needed to have and to link for this study, information on the distribution of installed versions of Android over time and on root vulnerabilities.
+There are two sources of data we need for this study: (1) information on the distribution of installed versions of Android over time and (2) information on root vulnerabilities.
 We need data on root vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
 We need information on the distribution of installed versions of Android so that we know what proportion of Android devices were affected by these vulnerabilities.
 
 
 \subsection{Versions of Android running on devices}
 We need historical data on the distributions of versions of Android running on devices and additional data about those devices to allows us to investigate variation between devices and confirm the reliability of these data.
-The only suitable data which is available for this is the \da\ data~\cite{Wagner2013}.
-The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, it contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
+We used data from the \da\ project~\cite{Wagner2013}.
+The \da\ data contains data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data} device days, contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
 Device Analyzer used an Android app which volunteers install on their Android devices to collect data on what happens on Android phones.
 The data collected is available for researchers to use as we do here.
 
@@ -494,7 +494,7 @@ There have been other attempts to automatically find vulnerabilities.
 The Woodpecker tool~\cite{Grace2012} automatically finds permission leaks in stock Android phone images.
 The update process itself can allow Android apps to gain privilege through `Pileup' vulnerabilities~\cite{Xing2014} by registering for new permissions before the update which creates that permission is installed.
 
-The security protections used in iOS such, app review, code signing, Data Execution Prevention (DEP) and Address Space Layout Randomisation (ASLR) and mandatory access controls has resulted in a lower level of malware affecting iOS~\cite{Felt2011} but can still be bypassed~\cite{Wang2013a}.
+The security protections used in iOS such as, app review, code signing, Data Execution Prevention (DEP) and Address Space Layout Randomisation (ASLR) and mandatory access controls has resulted in a lower level of malware affecting iOS~\cite{Felt2011} but can still be bypassed~\cite{Wang2013a}.
 
 Various attempts have been made to detect malware.
 RiskRanker~\cite{Grace2012a} classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets.
@@ -514,7 +514,7 @@ Many software update systems have been found not to authenticate the connection 
 Even package management systems designed to provide secure updates have been found to have vulnerabilities~\cite{Cappos2008}.
 Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. \todolater{double check that}
 
-The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourable with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
+The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourably with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
 However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}\todolater{Get updated figures before publication}} -- four months after it went out of security support.
 
 User-Agent strings have been used to investigate how web browser versions change with updates~\cite{Frei2008} and found that at most 80\% of Firefox users were running the most recent version.
