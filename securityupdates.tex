@@ -477,6 +477,20 @@ SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
+Malicious apps which use exploits to take control of an Android device must be installed on the device and to an extent this can be prevented if all apps are downloaded from the Google Play store.
+It is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of XXX~\cite{TODO} and XXX~\cite{TODO}.
+However some apps are installed from other markets which are less well policed (infection rates of XXX~\cite{TODO}, XXX~\cite{TODO}).
+Apps can also dynamically download code at runtime which then cannot be detected by static analysis and so bypasses Bouncer.
+
+There are also other ways that malicious code could end up running on Android devices, the addJavascriptInterface vulnerability allows javascript running in a webview which has an expose interface to execute arbitrary Java code and hence load exploits.
+While fixes have been produced for this the change is API breaking and so to be safe an app must target an API version greater than XXX and be running on a device with an API version greater than XXX.
+Since the html loaded into webviews (for example to display adverts) is often loaded over insecure http, malicious javascript can easily be injected by an attacker on the network.
+
+We have not included all the vulnerabilities from \avo\, in particular we have not included any manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+There also tends to be less public information available about manufacturer specific vulnerabilities which makes them harder to tie down.
+For other vulnerabilities which might affect all Android devices it is hard to work out which devices they affect.
+For example \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability, we found 48 commits which fixed it in different branches, it was also accidentally fixed and later reintroduced and so determining which devices were vulnerable relies on knowing where on which branch the kernel was taken from.
+For some vulnerabilities the corresponding patch is not in AOSP despite some manufacturers having shipped builds containing the fix, which makes working out what is going on more difficult.
 
 \subsection{Open questions}
 There are several open questions which we have not yet been able to answer and remain future work.
