@@ -32,12 +32,11 @@
 \newcommand{\dafoot}{\textsuperscript{\ref{foot:dadata}}}
 \input{avostats}
 \newcommand{\avo}{\texttt{androidvulnerabilities.org}}
-\newcommand{\percMarketShare}{XX\%~\cite{TODO}}
+\newcommand{\percMarketShare}{83.6\%~\footnote{\url{http://www.theinquirer.net/inquirer/news/2379036/android-hits-836-percent-marketshare-while-ios-windows-and-blackberry-slide}}}
 \newcommand{\daNumDevices}{\daNumOSDevices}
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
 % Num versions since \daStartDate
 \input{countversions}
-\newcommand{\otherProjNumVersions}{XXX}
 \newcommand{\otherProjNum}{\avoNumExternalProjects}%TODO check we are doing the right calculation here and not overcounting
 
 \begin{document}
@@ -101,12 +100,13 @@ While this shows that much Android malware does not need a root exploit to work,
 This malware is also more dangerous because while ordinary malware can be remotely removed by Google through the Play store, once a root exploit has been used this is no longer guaranteed to work.
 
 The proportion of Android devices in the \da\ data which were running versions of Android known to have root vulnerabilities at the time is shown in Figure~\ref{fig:proportioninsecure}.
+It shows the proportion of devices which are definitely vulnerable as their build was released before the vulnerability was discovered, those which might be insecure but could contain a backported fix and those which are secure as the version of Android they were running contained no known vulnerabilities on that date.
 
 \begin{figure}[!b]
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
 %TODO make this graph shorter
-\caption{Proportion of devices running insecure versions of Android against time\todo{Disambiguate 'definitely broken' from 'maybe broken'}}
+\caption{Proportion of devices running insecure, maybe insecure and secure versions of Android against time}
 \label{fig:proportioninsecure}
 \end{figure}
 
@@ -121,8 +121,8 @@ The contributions of this paper are:
  \item We characterise the Android update ecosystem, showing how updates flow between entities, and quantify vulnerabilities by determining what proportion of devices they affected and how that changes over time.
  \item We collate information on vulnerabilities which affect Android and investigate their time-lines.
  \item We measure the security of Android according to three metrics and compare different manufacturers and device models to allow device purchasers to differentiate between them based on security.
- \todo{make this more concrete}
- \todo{Do we want \avo\ to provide our latest recommendations -- legal advice required}
+ \todo{arb33: make this more concrete}
+ \todo{arb33: Do we want \avo\ to provide our latest recommendations -- legal advice required}
 \end{itemize}
 
 \section{Background}
@@ -167,7 +167,7 @@ We developed and maintain an open platform for filing critical vulnerabilities i
 We seeded it with data from the CVE database, vendor lists, reports from the literature and various forums.
 We have received submissions or amendments from \avoNumSubmitters\ individuals.
 \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
-We only use the \daNumVulnsUsed\ vulnerabilities which we have sufficient data to use for this analysis because they affect all Android devices rather than particular versions and we know enough information about the vulnerability to tie it to the particular versions it affects.
+We only use the \daNumVulnsUsed\ vulnerabilities which we have sufficient data to use for this analysis because they affect all Android devices rather than particular manufacturers and we know enough information about the vulnerability to tie it to the particular versions it affects.
 We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
 
 
@@ -478,12 +478,12 @@ Capability based enforcement systems such as Capsicum~\cite{Watson2010} substant
 When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
 Malicious apps which use exploits to take control of an Android device must be installed on the device and to an extent this can be prevented if all apps are downloaded from the Google Play store.
-It is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of XXX~\cite{TODO} and XXX~\cite{TODO}.
-However some apps are installed from other markets which are less well policed (infection rates of XXX~\cite{TODO}, XXX~\cite{TODO}).
+It is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of 0.02\%~\cite{Zhou2012a}.
+However some apps are installed from other markets which are less well policed (infection rates of between 0.20\%~ and 0.47\%~\cite{Zhou2012a}).
 Apps can also dynamically download code at runtime which then cannot be detected by static analysis and so bypasses Bouncer.
 
-There are also other ways that malicious code could end up running on Android devices, the addJavascriptInterface vulnerability allows javascript running in a webview which has an expose interface to execute arbitrary Java code and hence load exploits.
-While fixes have been produced for this the change is API breaking and so to be safe an app must target an API version greater than XXX and be running on a device with an API version greater than XXX.
+There are also other ways that malicious code could end up running on Android devices, the addJavascriptInterface vulnerability (CVE-2012-6636 ) allows javascript running in a webview which has an expose interface to execute arbitrary Java code and hence load exploits.
+While fixes have been produced for this the change is API breaking and so to be safe an app must target an API version greater than 17 and be running on a device with an Android version of at least 4.2.
 Since the html loaded into webviews (for example to display adverts) is often loaded over insecure http, malicious javascript can easily be injected by an attacker on the network.
 
 We have not included all the vulnerabilities from \avo\, in particular we have not included any manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
@@ -512,7 +512,7 @@ They also found that 4 of the 46 malware samples (8\%) they analysed contained r
 Our results show root exploits are still a severe threat.
 
 Finding vulnerabilities is frequently a time consuming manual process but, Brumley et al. showed that it is possible to automatically generate exploits from binary patches~\cite{Brumley2008}.
-In a similar way some of the vulnerabilities\todolater{which?} which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
+In a similar way some of the vulnerabilities\todolater{which?} in \avo\ which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
 This effect has been observed before in the Firefox source code repositories~\cite{Barth2011}, Google does not release the source code until after the release of the update reducing this effect to the delay between an update being released and it reaching the last end user device.
 There have been other attempts to automatically find vulnerabilities.
 The Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
@@ -641,7 +641,6 @@ Hence if a security vulnerability is fixed through the release of a particular A
 
 The equation we chose for the model has a root mean squared error (RMSE) of \daOSCurveFitRMSE\ for OS versions, which is a comparably good fit to a standard polynomial fit (3 degree polynomial fit gave a RMSE of \daOSCurvePolyRMSE) or a spline fit (RMSE of \daOSCurveSplineRMSE) but gives a meaningful model of behaviour rather than a generic curve.
 
-\todo{Evaluate our model trained on the DA data against the ground truth Google Play data}
 
 \todo{Our handling of errors here is not quite good enough as the uncertainty from our y value interacts badly with the logarithm function when computing the inverse and we compute the log of ~0 which means our error ends up much bigger than our value - but that is an upper bound, not a +- bound.}
 
