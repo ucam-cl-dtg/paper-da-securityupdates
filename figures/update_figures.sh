@@ -36,3 +36,5 @@ cp "$fromdir"frvh_os_versions.pdf frvh_os_versions.pdf
 cp "$fromdir"frvh_api_versions.pdf frvh_api_versions.pdf
 cp "$fromdir"frms_os_versions.pdf frms_os_versions.pdf
 cp ~/Library/papers/library.filtered.bib ../securityupdates.bib
+cp ~/git/da/graphing/stats/latex.tex ../dastats.tex
+cp ~/Documents/androidvulnerabilities/output/latex.tex ../avostats.tex
