@@ -288,7 +288,7 @@ Sometimes Manufacturers incorporate upstream open source project releases direct
 
 The numbers of Devices (\daNumOSDevices), Operators (\daNumOperators) and Manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
 Manufacturer and Operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
-This normalisation is a manual task involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `lg'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
+This normalisation is a manual task involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `LG'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
 This normalisation is not perfect and so these are overestimates on the \da\ data but they are likely still underestimates as there will be some manufacturers and operators which are not included in the \da\ data.
 
 In Figure~\ref{fig:update_ecosystem} the number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
@@ -422,7 +422,7 @@ Some devices start off in 2011 exposed to known security vulnerabilities and are
  \label{fig:weekly_security_updates}
 \end{figure}
 We recorded update events and Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
-Mostly the dark cells are are upgrades (above the diagonal) (\daNumUpdatesUpgrades).
+Mostly the dark cells are upgrades (above the diagonal) (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number (\daNumUpdatesBigUpgrades, \daPercBigUpgrades) which skip more than \daNumUpdatesSkippedBig\ versions.
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
