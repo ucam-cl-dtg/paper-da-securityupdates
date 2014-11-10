@@ -511,6 +511,8 @@ There also tends to be less public information available about manufacturer spec
 For other vulnerabilities which might affect all Android devices it is hard to work out which devices they affect.
 For example \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability, we found 48 commits which fixed it in different branches, it was also accidentally fixed and later reintroduced and so determining which devices were vulnerable relies on knowing where on which branch the kernel was taken from.
 For some vulnerabilities the corresponding patch is not in AOSP despite some manufacturers having shipped builds containing the fix, which makes working out what is going on more difficult.
+For \emph{RageAgainstTheCage adb}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/RageAgainstTheCage_adb}} and \emph{keystore buffer}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/keystore_buffer}} vulnerabilities which we do have sufficient data it is not clear whether they are truly critical vulnerabilities as the former may require physical ADB access and the latter may be protected by a sandbox.
+However those two vulnerabilities make little difference to our results as they affect few devices.
 
 \subsection{Open questions}
 There are several open questions which we have not yet been able to answer and remain future work.
