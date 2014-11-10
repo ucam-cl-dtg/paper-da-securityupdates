@@ -188,7 +188,7 @@ We seeded it with data from the CVE database, vendor lists, reports from the lit
 We have received submissions or amendments from \avoNumSubmitters\ individuals.
 \avo\ contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or manufacturers.
 We only use the \daNumVulnsUsed\ vulnerabilities which we have sufficient data to use for this analysis because they affect all Android devices rather than particular manufacturers and we know enough information about the vulnerability to tie it to the particular versions it affects.
-We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO} and summarise them in Table~\ref{tab:andvulns}.
+We summarise the \daNumVulnsUsed\ vulnerabilities used for this analysis in Table~\ref{tab:andvulns}.\todolater{We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO}}
 
 
 Tracking vulnerabilities is a manual task as they are not consistently recorded in other databases such as the CVE database and the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
@@ -495,7 +495,7 @@ However this technique is unable to account for systematic errors.
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and more widely.
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
-When Capsicum is included in Linux~\cite{TODO} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
+When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
 Malicious apps which use exploits to take control of an Android device must be installed on the device and to an extent this can be prevented if all apps are downloaded from the Google Play store.
 It is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of 0.02\%~\cite{Zhou2012a}.
@@ -558,7 +558,7 @@ PlayDrone was a particularly effective project which circumvented Google's prote
 Examining security updates has been a key way of assessing security for many years.
 Many software update systems have been found not to authenticate the connection to the update server and/or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
 Even package management systems designed to provide secure updates have been found to have vulnerabilities~\cite{Cappos2008}.
-Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}. \todolater{double check that}
+Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}.
 
 The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourably with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
 However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}\todolater{Get updated figures before publication}} -- four months after it went out of security support.
@@ -568,7 +568,7 @@ The same analysis was used to show that Chrome's use of silent updates seems to 
 Android's update process is manual, the user is notified but must action the upgrade which will then download the update and install it, the phone is rendered inoperable during the update process which is inconvenient for users and the phone must have sufficient charge so that it will not run out during the update process.
 Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
 The same technique would be more difficult on phones with limited storage space (as for many cheap Android phones which have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
-Google is deploying the same silent update technique through Google Play Services~\cite{TODO} which automatically installs updates for core Google components of Android, this also bypasses the manufacturer and operator.
+Google is deploying the same silent update technique through Google Play Services\footnote{\url{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this also bypasses the manufacturer and operator.
 
 
 
