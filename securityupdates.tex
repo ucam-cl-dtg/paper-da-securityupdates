@@ -71,21 +71,20 @@ Firstname.Lastname@cl.cam.ac.uk
 % Attempts at fine grained restrictions on running arbitrary code are hampered by updates for security vulnerabilities not reaching users in a timely fashion.
 
 \begin{abstract}
-Android is the most popular smartphone platform and seeks to provide better security than popular desktop operating systems through increased compartmentalisation and a permission system for apps.
-This security relies on the absence of root privilege exploits which allow apps to bypass protections.
-Many such exploits have been found and fixed.
-Fixing them is not enough, we show that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercNominal\ of devices run the most recent version of Android.
-There was also a period of several months when no devices ran secure versions of Android.
-We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation. %TODO operators analysis
+Modern smartphone operating systems protect users from malicious applications by providing a protected execution environment or sandbox.
+This approach relies on the absence of active exploits which allow apps to break out of the sandbox.
+Many such exploits have been found, and therefore the security of a smartphone operating system relies on the prompt delivery of security updates.
+In this paper we tease apart the Android software ecosystem and quantify the extent to which the security sandbox provided by Android protects devices from malicious apps.
+We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercNominal\ of devices run the most recent version of Android.
+We find there is significant variability in the timely delivery of security updates across different manufacturers and mobile network operators, and we define a security metric to rank the performance of manufacturers and operators in our data set.
 \end{abstract}
 
 \section{Introduction}
 %Android is the most popular smartphone operating system today with \percMarketShare\ marketshare.
 
 Support for third-party apps is a key feature of modern smartphone operating systems.
-Such apps are written by many developers from a wide range of backgrounds, which means neither operating system vendors nor users can, fully trust app developers.
-Therefore, in order to secure personal data and prevent the use of expensive operations such as the sending of premium-rate text messages, operating system vendors provide a protected execution environment, or \emph{sandbox}, for apps.
+Such apps are written by many developers from a wide range of backgrounds, which means neither operating system vendors nor users can fully trust app developers.
+Therefore, in order to secure personal data and prevent the use of expensive operations, such as the sending of premium-rate text messages, operating system vendors provide a protected execution environment, or \emph{sandbox}, for apps.
 
 In this paper we quantify the extent to which the app sandbox provided by Android protects devices from malicious apps attempting to gain control over the entire handset.
 %We have analysed Android because it is the most popular smartphone operating system by market share (~\percMarketShare) and 
@@ -96,10 +95,10 @@ To the best of our knowledge, this is the first paper to provide detailed number
 Not all malicious apps need to break the sandbox in order to misbehave.
 Indeed, the above figures suggest the majority of malicious apps do not attempt to do so.
 We focus on this issue because malware which is able to take full control of a handset can do significantly more harm and is much harder to remove.
-Ordinary malware can uninstalled by the user or remotely by Google through the Play Store, but such removal is unlikely to work once the security features of Android are broken.
+Ordinary malware can be uninstalled by the user, or remotely by Google through the Play Store, and returns the device to a secure state. 
+Removing an app which has used an exploit to take control of the handset is unlikely to return the device to secure state.
 
-The development of Android is distributed among many parties.
-The security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform. 
+The development of Android is distributed among many parties and the security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform. 
 In addition, manufacturers (of which we are aware of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers. 
 Understanding this ecosystem is important as manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}. 
 We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S\ref{sec:android_ecosystem}.
@@ -112,7 +111,7 @@ We present a better understanding of both the ecosystem of Android development a
 \end{figure}
 
 In order to determine whether an individual smartphone is vulnerable to a particular exploit, we need to combine vulnerability data with the operating system version string and additional update information from the handset. 
-For this we use handset data gathered from over 18,000 participants in the \da~\cite{Wagner2013} project.
+For this we use handset data gathered from \daNumOSDevices\ devices in the \da~\cite{Wagner2013} project.
 This analysis allows us to plot the proportion of Android devices in the \da\ data which were running versions of Android known to have vulnerabilities at the time and is shown in Figure~\ref{fig:proportioninsecure}.
 The Figure shows the proportion of devices split into three categories: 
 (1) \emph{secure} because they are running a version of Android with no known vulnerabilities; 
@@ -125,7 +124,7 @@ One solution is regulation, and indeed there is ongoing legal action to force op
 Indeed, many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates. 
 In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates until April 2014.
 
-An alternative to regulation is better public data. 
+An alternative to regulation is access to publicly available data. 
 Hard numbers provide an incentive to both manufacturers and operators to provide updates.
 Currently corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models which provide the best security. 
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which manufacturers are better.
