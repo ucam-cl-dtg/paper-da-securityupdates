@@ -140,7 +140,7 @@ To address this, we developed a scoring system and provide numbers on the histor
 In summary, the contributions of this paper are:
 \begin{itemize}
  \item We characterise the Android update ecosystem, showing how updates flow between entities, and quantify vulnerabilities by determining what proportion of devices they affected and how that changes over time.
- \item We collate quantitive information on vulnerabilities which affect Android and investigate their time-lines.
+ \item We created an open database to collate quantitative information on vulnerabilities which affect Android, and investigate their time-lines.
  \item We measure the security of Android according to three metrics and compare different manufacturers and device models to allow device purchasers to differentiate between them based on security.
 \end{itemize}
 
@@ -158,7 +158,7 @@ The \da\ data contains info from \daNumDevices\ devices with a total of \daDevic
 Device Analyzer used an Android app which volunteers install on their Android devices to collect data on what happens on Android phones.
 The data collected is available for researchers to use as we do here.
 
-Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.htm}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
+Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
 The API version is a well defined integer, however it does not always change with new Android releases, particularly security bug fixes should not increase this value.
 The build string is `The user-visible version string', fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z opaque marker' and so it is possible to extract the Android version number.
@@ -173,9 +173,9 @@ We compiled a list of critical vulnerabilities in Android, containing informatio
 We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
 Critical vulnerabilities allow a program to escalate to privileges equivalent in scope to root.
 If an application exploits a critical vulnerability then it gains control of the device.
-Some phones can be `rooted' by enabling USB debugging and using the special privileges of the adb shell to root the device but only \daAdbEnabledPerc\dafoot\textsuperscript{,}\footnote{Where possible we indicate the uncertainty in our results by giving them $\pm$ the standard deviation. This is explained further in \S\ref{sec:uncertainty} but occasionally results in $\pm0$.} of devices have USB debugging enabled.
+Some phones can be `rooted' by enabling USB debugging and using the special privileges of the \texttt{adb} shell to root the device but only \daAdbEnabledPerc\dafoot\textsuperscript{,}\footnote{Where possible we indicate the uncertainty in our results by giving them $\pm$ the standard deviation. This is explained further in \S\ref{sec:uncertainty} but occasionally results in $\pm0$.} of devices have USB debugging enabled.
 This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
-Unfortunately many published exploits use adb for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
+Unfortunately many published exploits use \texttt{adb} for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
 
 Some critical vulnerabilities are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below 4.1) they could use known system to root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
@@ -210,7 +210,7 @@ The key events in the lifetime of a vulnerability do not always occur in the sam
  \item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored (the ecosystem equivalent to the per instance `patch installed'~\cite{Frei2010}).
 \end{LaTeXdescription}
 
-Working out the date to use for the date on which a vulnerability was sufficiently well known to pose a threat to users is difficult.
+Establishing when a vulnerability started posing a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
 Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
 Therefore this measure does not work.
@@ -221,7 +221,7 @@ Hence when considering vulnerability from the point of view of an organisation w
 So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular manufacturer or hobbyist.
 %We cannot know if someone reported the vulnerability to the manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they may know.
 
-There are several points we could pick for the point from which a vulnerability poses substantial risk to users.
+There are several plausible points from which a vulnerability poses a threat to users.
 {\bf Creation} and {\bf introduction} are the earliest points which could be used but the risk is mostly latent until someone discovers them.
 Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery, for example Advanced Persistent Threats (APTs) may keep databases of unknown vulnerabilities to use when they have a particular target, in which case there is a high risk to potential targets from the never disclosed point of discovery.
 However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little risk.
@@ -245,7 +245,7 @@ This is shown in Table~\ref{tab:andvulns}.
 
 The dates of discovery of vulnerabilities in the \avo\ is not uniform.
 Figure~\ref{fig:vulnerabilities_timeline} shows the dates of discovery and, when later, the dates when a version of Android which fixed the vulnerability was shipped.
-Some vulnerabilities (RageAgainstTheCage adb, levitator, zergRush abd TwerkMyMoto) were fixed in released versions of Android before they were discovered and so are shown as vertical lines while others were known for months before a version of Android which fixed them was shipped.
+Some vulnerabilities (\emph{levitator}, \emph{zergRush}) were fixed in released versions of Android before they were discovered and so are shown as vertical lines while others were known for months before a version of Android which fixed them was shipped.
 During the period in which \da\ data was collected the date when a version of Android with the fix was observed on a \da\ device is taken as the date that version was released.
 For vulnerabilities prior to the collection period the release date as best as we can determine is used.
 There is no canonical source of Android release dates, our best guesses and supporting references are available from \avo.
@@ -510,14 +510,14 @@ There also tends to be less public information available about manufacturer spec
 For other vulnerabilities which might affect all Android devices it is hard to work out which devices they affect.
 For example \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability, we found 48 commits which fixed it in different branches, it was also accidentally fixed and later reintroduced and so determining which devices were vulnerable relies on knowing where on which branch the kernel was taken from.
 For some vulnerabilities the corresponding patch is not in AOSP despite some manufacturers having shipped builds containing the fix, which makes working out what is going on more difficult.
-For \emph{RageAgainstTheCage adb}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/RageAgainstTheCage_adb}} and \emph{keystore buffer}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/keystore_buffer}} vulnerabilities which we do have sufficient data it is not clear whether they are truly critical vulnerabilities as the former may require physical ADB access and the latter may be protected by a sandbox.
+For \emph{RageAgainstTheCage adb}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/RageAgainstTheCage_adb}} and \emph{keystore buffer}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/keystore_buffer}} vulnerabilities which we do have sufficient data it is not clear whether they are truly critical vulnerabilities as the former may require physical \texttt{adb} access and the latter may be protected by a sandbox.
 However those two vulnerabilities make little difference to our results as they affect few devices.
 
 \subsection{Open questions}
 There are several open questions which we have not yet been able to answer and remain future work.
 \begin{itemize}
  \item Why was there a gap in vulnerability discovery in Android in 2012?
- \item Why do so many devices have ADB enabled? \daAdbEnabledPerc\ seems rather high for a developer feature.
+ \item Why do so many devices have \texttt{adb} enabled? \daAdbEnabledPerc\ seems rather high for a developer feature.
  \item How much of updating is new handsets and how much is updates being deployed? Over time newer versions of Android come to dominate, but quantifying what proportion of that is due to new phones being purchased and what proportion is due to updates to existing devices is a question we cannot answer.
  The only available large data set we know of with longitudinal traces of Android devices OS version numbers is \da\ but that only records \daNumUpdatesUpgrades\ upgrades which broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ is only \FPeval{\daUpdatesPerMonthPerVersion}{round(\daNumUpdatesUpgrades/(\daOSMonthsOfData * \daNumSigOSVersions),1)}\daUpdatesPerMonthPerVersion\ updates per version per month which is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
  \item Why do users downgrade their phones?
