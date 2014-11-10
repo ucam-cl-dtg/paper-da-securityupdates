@@ -75,7 +75,7 @@ Android is the most popular smartphone platform and seeks to provide better secu
 This security relies on the absence of root privilege exploits which allow apps to bypass protections.
 Many such exploits have been found and fixed.
 Fixing them is not enough, we show that these fixes do not promptly reach the users devices and so much of the time users are running versions of Android known to be vulnerable.
-We used \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPerc\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPerc\ of devices run the most recent version of Android.
+We used \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercNominal\ of devices run the most recent version of Android.
 There was also a period of several months when no devices ran secure versions of Android.
 We compare different manufacturers and operators to find which are best at promptly distributing security updates and examine how to improve the situation. %TODO operators analysis
 \end{abstract}
@@ -84,7 +84,7 @@ We compare different manufacturers and operators to find which are best at promp
 %Android is the most popular smartphone operating system today with \percMarketShare\ marketshare.
 
 Support for third-party apps is a key feature of modern smartphone operating systems.
-Such apps are written by many developers from a wide range of backgrounds, which means neither operating system vendors nor users can, in general, fully trust app developers.
+Such apps are written by many developers from a wide range of backgrounds, which means neither operating system vendors nor users can, fully trust app developers.
 Therefore, in order to secure personal data and prevent the use of expensive operations such as the sending of premium-rate text messages, operating system vendors provide a protected execution environment, or \emph{sandbox}, for apps.
 
 In this paper we quantify the extent to which the app sandbox provided by Android protects devices from malicious apps attempting to gain control over the entire handset.
@@ -102,7 +102,7 @@ The development of Android is distributed among many parties.
 The security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform. 
 In addition, manufacturers (of which we are aware of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers. 
 Understanding this ecosystem is important as manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}. 
-We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S~X.
+We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S\ref{sec:android_ecosystem}.
  
 \begin{figure}[h]
 \centering
@@ -112,13 +112,13 @@ We present a better understanding of both the ecosystem of Android development a
 \end{figure}
 
 In order to determine whether an individual smartphone is vulnerable to a particular exploit, we need to combine vulnerability data with the operating system version string and additional update information from the handset. 
-For this we use handset data gathered from over 18,000 participants in the \da~\cite{} project.
+For this we use handset data gathered from over 18,000 participants in the \da~\cite{Wagner2013} project.
 This analysis allows us to plot the proportion of Android devices in the \da\ data which were running versions of Android known to have vulnerabilities at the time and is shown in Figure~\ref{fig:proportioninsecure}.
 The Figure shows the proportion of devices split into three categories: 
 (1) \emph{secure} because they are running a version of Android with no known vulnerabilities; 
 (2) \emph{insecure} because the device was running an insecure version of Android with a build released before the vulnerability was fixed or discovered; and 
 (3) \emph{maybe secure} because the device is running an insecure version of Android but it received an update which we did not see until after the vulnerability was fixed and therefore this update may contain a backport of the fix.
-Further analysis into the propagation of updates in Android are presented in \S~Y.
+Further analysis into the propagation of updates in Android are presented in \S\ref{sec:exp:android_ecosystem}.
 
 It is clear from Figure~\ref{fig:proportioninsecure} that the security of the Android platform is far from perfect.
 One solution is regulation, and indeed there is ongoing legal action to force operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
@@ -257,7 +257,7 @@ Possible explanations are: That since most devices were exposed to known vulnera
 That manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices?
 That manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus.
 
-\section{Android Ecosystem}
+\section{Android Ecosystem}\label{sec:android_ecosystem}
 There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
 In this section we rectify the lack of public information about the size of the Android ecosystem.
 
