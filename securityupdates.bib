@@ -2015,7 +2015,7 @@
     booktitle = "SOSP"
 }
 
-@article{Cappos2008,
+@techreport{Cappos2008,
     author = "Cappos, Justin and Samuel, Justin",
     title = "{Package management security}",
     url = "http://www.cs.arizona.edu/people/jsamuel/papers/TR08-02.pdf",
@@ -2023,7 +2023,7 @@
     pages = "1--20",
     file = ":home/drt24/Downloads/TR08-02.pdf:pdf",
     year = "2008",
-    journal = "University of Arizona \ldots"
+    booktitle = "University of Arizona, Computer Science Department"
 }
 
 @inproceedings{Carneiro2008,
@@ -2424,14 +2424,13 @@
     isbn = "9781595939524",
     title = "{Understanding mobile information needs}",
     url = "http://dl.acm.org/citation.cfm?id=1409240.1409325",
-    abstract = "In this paper we describe the results of a four-week diary study of mobile information needs, focusing on the intent behind mobile needs and the importance on context on such needs. We identified three key intents among diary entries: informational, geographical and personal information management (PIM). Furthermore, we found many of these information needs have high temporal and location dependencies.",
+    booktitle = "Proceedings of the 10th international conference on Human computer interaction with mobile devices and services - MobileHCI '08",
     year = "2008",
     month = "9",
-    pages = "493",
     file = "::",
     address = "New York, New York, USA",
     keywords = "diary study,information needs,intent,mobile",
-    booktitle = "Proceedings of the 10th international conference on Human computer interaction with mobile devices and services - MobileHCI '08"
+    pages = "493"
 }
 
 @inproceedings{Church2011a,
@@ -3033,7 +3032,7 @@
     number = "February",
     file = ":home/drt24/Downloads/AccelPrint\_NDSS14.pdf:pdf",
     year = "2014",
-    booktitle = "NDSS",
+    booktitle = "Network and Distributed System Security Symposium (NDSS)",
     pages = "23--26"
 }
 
@@ -3101,6 +3100,22 @@
     year = "2007",
     keywords = "error detection,inconsis-,satisfiability,static analysis",
     journal = "ACM SIGPLAN Notices"
+}
+
+@article{Ding2013,
+    author = "Ding, Ning and Wagner, Daniel and Chen, Xiaomeng and Hu, Y. Charlie and Rice, Andrew",
+    doi = "10.1145/2494232.2466586",
+    isbn = "9781450319003",
+    title = "{Characterizing and modeling the impact of wireless signal strength on smartphone battery drain}",
+    url = "http://dl.acm.org/citation.cfm?id=2494232.2466586",
+    abstract = "Despite the tremendous market penetration of smartphones, their utility has been and will remain severely limited by their battery life. A major source of smartphone battery drain is accessing the Internet over cellular or WiFi connection when running various apps and services. Despite much anecdotal evidence of smartphone users experiencing quicker battery drain in poor signal strength, there has been limited understanding of how often smartphone users experience poor signal strength and the quantitative impact of poor signal strength on the phone battery drain. The answers to such questions are essential for diagnosing and improving cellular network services and smartphone battery life and help to build more accurate online power models for smartphones, which are building blocks for energy profiling and optimization of smartphone apps. In this paper, we conduct the first measurement and modeling study of the impact of wireless signal strength on smartphone energy consumption. Our study makes four contributions. First, through analyzing traces collected on 3785 smartphones for at least one month, we show that poor signal strength of both 3G and WiFi is routinely experienced by smartphone users, both spatially and temporally. Second, we quantify the extra energy consumption on data transfer induced by poor wireless signal strength. Third, we develop a new power model for WiFi and 3G that incorporates the signal strength factor and significantly improves the modeling accuracy over the previous state of the art. Finally, we perform what-if analysis to quantify the potential energy savings from opportunistically delaying network traffic by exploring the dynamics of signal strength experienced by users.",
+    issn = "01635999",
+    pages = "29",
+    volume = "41",
+    file = ":home/drt24/Downloads/ding-signalstrength.pdf:pdf",
+    year = "2013",
+    keywords = "battery drain,energy,power model,signal strength,smartphone",
+    journal = "ACM SIGMETRICS Performance Evaluation Review"
 }
 
 @inproceedings{Dingledine2004,
@@ -3269,7 +3284,7 @@
     volume = "6027 LNCS",
     file = ":home/drt24/Downloads/chp\%3A10.1007\%2F978-3-642-14379-3\_11.pdf:pdf",
     year = "2010",
-    journal = "Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)"
+    journal = "Lecture Notes in Computer Science"
 }
 
 @article{Dunagan2004,
@@ -3807,7 +3822,7 @@
     doi = "10.1145/2046614.2046618",
     isbn = "9781450310000",
     title = "{A survey of mobile malware in the wild}",
-    journal = "Proceedings of the 1st ACM workshop on Security and privacy in smartphones and mobile devices SPSM 11",
+    journal = "Proceedings of the 1st ACM workshop on Security and privacy in smartphones and mobile devices",
     series = "SPSM '11",
     abstract = "Mobile malware is rapidly becoming a serious threat. In this paper, we survey the current state of mobile malware in the wild. We analyze the incentives behind 46 pieces of iOS, Android, and Symbian malware that spread in the wild from 2009 to 2011. We also use this data set to evalu- ate the effectiveness of techniques for preventing and iden- tifying mobile malware. After observing that 4 pieces of malware use root exploits to mount sophisticated attacks on Android phones, we also examine the incentives that cause non-malicious smartphone tinkerers to publish root exploits and survey the availability of root exploits.",
     pages = "3",
@@ -3976,10 +3991,10 @@
 @online{Forristal2013,
     author = "Forristal, Jeff",
     title = "{Uncovering Android Master Key That Makes 99\% of Devices Vulnerable}",
-    url = "http://bluebox.com/corporate-blog/bluebox-uncovers-android-master-key/",
+    url = "https://bluebox.com/technical/uncovering-android-master-key-that-makes-99-of-devices-vulnerable/",
     abstract = "The Bluebox Security research team – Bluebox Labs – recently discovered a vulnerability in Android’s security model that allows a hacker to modify APK code without breaking an application’s cryptographic signature, to turn any legitimate application into a malicious Trojan, completely unnoticed by the app store, the phone, or the end user. The implications are huge! This vulnerability, around at least since the release of Android 1.6 (codename: “Donut” ), could affect any Android phone released in the last 4 years1 – or nearly 900 million devices2– and depending on the type of application, a hacker can exploit the vulnerability for anything from data theft to creation of a mobile botnet. While the risk to the individual and the enterprise is great (a malicious app can access individual data, or gain entry into an enterprise), this risk is compounded when you consider applications developed by the device manufacturers (e.g. HTC, Samsung, Motorola, LG) or third-parties that work in cooperation with the device manufacturer (e.g. Cisco with AnyConnect VPN) – that are granted special elevated privileges within Android – specifically System UID access.",
     year = "2013",
-    urldate = "2014-02-18",
+    urldate = "2014-11-11",
     booktitle = "Bluebox security corporate blog"
 }
 
@@ -4100,7 +4115,7 @@
     publisher = "Springer",
     doi = "10.1007/978-1-4419-6967-5_6",
     isbn = "978-1-4419-6967-5",
-    title = "{Modeling the Security Ecosystem - The Dynamics of (In)Security}",
+    title = "{Modeling the Security Ecosystem -- The Dynamics of (In)Security}",
     url = "http://dx.doi.org/10.1007/978-1-4419-6967-5_6",
     abstract = "The security of information technology and computer networks is effected by a wide variety of actors and processes which together make up a security ecosystem; here we examine this ecosystem, consolidating many aspects of security that have hitherto been discussed only separately. First, we analyze the roles of the major actors within this ecosystem and the processes they participate in, and the the paths vulnerability data take through the ecosystem and the impact of each of these on security risk. Then, based on a quantitative examination of 27,000 vulnerabilities disclosed over the past decade and taken from publicly available data sources, we quantify the systematic gap between exploit and patch availability. We provide the first examination of the impact and the risks associated with this gap on the ecosystem as a whole. Our analysis provides a metric for the success of the responsible disclosure process. We measure the prevalence of the commercial markets for vulnerability information and highlight the role of security information providers (SIP), which function as the free press of the ecosystem.",
     pages = "79--106",
@@ -4388,7 +4403,7 @@
 }
 
 @article{Gkantsidis2006,
-    author = "Gkantsidis, Christos and Karagiannis, Thomas and VojnoviC, Milan",
+    author = "Gkantsidis, Christos and Karagiannis, Thomas and Vojnovi\'{c}, Milan",
     doi = "10.1145/1151659.1159961",
     isbn = "1595933085",
     title = "{Planet scale software updates}",
@@ -4522,7 +4537,7 @@
     abstract = "Recent years have witnessed a meteoric increase in the adoption of smartphones. To manage information and features on such phones, Android provides a permission-based security model that requires each application to explicitly request permissions before it can be installed to run. In this paper, we analyze eight popular Android smartphones and discover that the stock phone images do not properly enforce the permission model. Several privileged permissions are unsafely exposed to other applications which do not need to request them for the actual use. To identify these leaked permissions or capabilities, we have developed a tool called Woodpecker. Our results with eight phone images show that among 13 privileged permissions examined so far, 11 were leaked, with individual phones leaking up to eight permissions. By exploiting them, an untrusted application can manage to wipe out the user data, send out SMS messages, or record user conversation on the affected phones – all without asking for any permission.",
     file = ":home/drt24/Downloads/NDSS12\_Woodpecker.pdf:pdf",
     year = "2012",
-    journal = "NDSS"
+    journal = "Network and Distributed System Security Symposium (NDSS)"
 }
 
 @inproceedings{Grace2012a,
@@ -6852,7 +6867,7 @@
     abstract = "We present Joe-E, a language designed to support the development of secure software systems. Joe-E is a subset of Java that makes it easier to architect and implement programs with strong security properties that can be checked during a security review. It enables programmers to apply the principle of least privilege to their programs; implement application-specific reference monitors that cannot be bypassed; introduce and use domain-specific security abstractions; safely execute and interact with untrusted code; and build secure, extensible systems. Joe-E demonstrates how it is possible to achieve the strong security properties of an object-capability language while retaining the fea- tures and feel of a mainstream object-oriented language. Additionally, we present ways in which Java’s static type safety complements object-capability analysis and permits additional security properties to be verified statically, com- pared with previous object-capability languages which rely on runtime checks. In this paper, we describe the design and implementation of Joe-E and its advantages for secu- rity and auditability over standard Java. We demonstrate how Joe-E can be used to develop systems with novel secu- rity properties that would be difficult or impossible to en- sure otherwise, including a web application platform that provides transparent, transactional object persistence and can safely host multiple mutually-distrustful applications in a single JVM.",
     file = ":auto/homes/drt24/Downloads/joe-e-ndss10.pdf:pdf",
     year = "2010",
-    booktitle = "NDSS"
+    booktitle = "Network and Distributed System Security Symposium (NDSS)"
 }
 
 @inproceedings{MichaelCohenHaitaoSteveZhuSenemEzgiEmgin2011,
@@ -9386,7 +9401,7 @@
     abstract = "The Android software stack for mobile devices defines and enforces its own security model for apps through its application-layer permissions model. However, at its foundation, Android relies upon the Linux kernel to protect the system from malicious or flawed apps and to isolate apps from one another. At present, Android leverages Linux discretionary access control (DAC) to enforce these guarantees, despite the known shortcomings of DAC. In this pa- per, we motivate and describe our work to bring flexible mandatory access control (MAC) to Android by enabling the effective use of Security Enhanced Linux (SELinux) for kernel-level MAC and by developing a set of middleware MAC extensions to the Android permissions model. We then demonstrate the benefits of our security enhancements for Android through a detailed analysis of how they mitigate a number of previously published exploits and vulnerabilities for Android. Finally, we evaluate the overheads imposed by our security enhancements.",
     file = ":home/drt24/Downloads/NDSS2013-SEAndroid-Paper.pdf:pdf",
     year = "2013",
-    journal = "NDSS"
+    journal = "Network and Distributed System Security Symposium (NDSS)"
 }
 
 @online{Soghoian2013,
@@ -9407,7 +9422,7 @@
     number = "February",
     file = ":home/drt24/Downloads/NDSS14b.pdf:pdf",
     year = "2014",
-    booktitle = "NDSS",
+    booktitle = "Network and Distributed System Security Symposium (NDSS)",
     pages = "23--26"
 }
 
@@ -10050,6 +10065,17 @@
     title = "{A Security Analysis of the Combex DarpaBrowser Architecture}"
 }
 
+@inproceedings{Wagner2009,
+    author = "Wagner, Daniel T and Rice, Andrew and Beresford, Alastair R",
+    title = "{Device Analyzer}",
+    booktitle = "HOTMOBILE 2011 12th Workshop on Mobile Computing Systems and Applications",
+    number = "4",
+    volume = "10",
+    file = ":home/drt24/Downloads/wagner-daabstract (1).pdf:pdf",
+    year = "2009",
+    pages = "505445"
+}
+
 @inproceedings{Wagner2013,
     author = "Wagner, Daniel T. and Rice, Andrew and Beresford, Alastair R.",
     publisher = "ACM",
@@ -10061,6 +10087,16 @@
     file = ":home/drt24/Downloads/bdaw2013\_submission\_5 (1).pdf:pdf",
     address = "Pittsburgh, PA",
     booktitle = "Sigmetrics, Big Data Workshop"
+}
+
+@article{Wagner2013a,
+    author = "Wagner, Daniel T. and Rice, Andrew and Beresford, Alastair R.",
+    title = "{Device Analyzer: Understanding smartphone usage}",
+    abstract = "We describe Device Analyzer, a robust data collection tool which is able to reliably collect information on Android smartphone usage from an open community of contributors.We collected the largest,most detailed dataset of An- droid phone use publicly available to date. In this paper we systematically eval- uate smartphones as a platform for mobile ubiquitous computing by quantifying access to critical resources in the wild. Our analysis of the dataset demonstrates considerable diversity in behaviour between users but also over time.We further demonstrate the value of handset-centric data collection by presenting case-study analyses of human mobility, interaction patterns, and energy management and identify notable differences between our results and those found by other studies.",
+    pages = "1--12",
+    file = ":home/drt24/Downloads/wagner-understanding (7).pdf:pdf",
+    year = "2013",
+    journal = "10th International Conference on Mobile and Ubiquitous Systems: Computing, Networking and Services"
 }
 
 @incollection{Wainer2009,
@@ -10186,21 +10222,21 @@
     booktitle = "USENIX Workshop on Offensive Technologies"
 }
 
-@article{Watson2010,
-    author = "Watson, Robert N M and Anderson, Jonathan and Kennaway, Kris and Laurie, Ben",
+@inproceedings{Watson2010,
+    author = "Watson, Robert N. M. and Anderson, Jonathan and Kennaway, Kris and Laurie, Ben",
     publisher = "USENIX Association",
-    isbn = "8887666655554",
     title = "{Capsicum: practical capabilities for UNIX}",
     url = "http://www.usenix.org/events/sec10/tech/full_papers/Watson.pdf",
     series = "USENIX Security'10",
     abstract = "Capsicum is a lightweight operating system capabil- ity and sandbox framework planned for inclusion in FreeBSD 9. Capsicum extends, rather than replaces, UNIX APIs, providing newkernel primitives (sandboxed capability mode and capabilities) and a userspace sand- box API. These tools support compartmentalisation of monolithic UNIX applications into logical applications, an increasingly common goal supported poorly by dis- cretionary and mandatory access control. We demon- strate our approach by adapting core FreeBSD utilities and Googles Chromium web browser to use Capsicum primitives, and compare the complexity and robustness of Capsicum with other sandboxing techniques.",
     issn = "03601315",
     number = "2",
-    pages = "3",
+    month = "8",
     volume = "46",
+    pages = "29--46",
     file = ":home/drt24/Downloads/Watson.pdf:pdf",
     year = "2010",
-    journal = "Security"
+    booktitle = "USENIX Security Symposium"
 }
 
 @article{Weaver,
@@ -10375,8 +10411,7 @@
     abstract = "It is difficult for end-users to judge the risk posed by software security vulnerabilities. This thesis examines three aspects of the software security vulnerability ecosystem to determine if commonly used metrics are based on sound engineering principals. First, the decision by several security research firms to decrease the grace period before publicly releasing vulnerability details was examined. No evidence was found suggest that periods less than 6 months are effective. Second, two new metrics are presented which are more easily computed, repeatable, and verifiable than previous metrics. Both metrics provide the ability to compare software packages based on number of vulnerabilities and vendor response time. Third, metrics based strictly on known vulnerabilities are brought into question. The number of bugs which represent vulnerabilities is estimated for a particular package and the estimated number of resulting vulnerabilities is found to be far greater than the currently known vulnerabilities.",
     number = "May",
     file = ":home/drt24/Downloads/thesis (1).pdf:pdf",
-    year = "2014",
-    pages = "i--vi,1--108"
+    year = "2014"
 }
 
 @article{Wulf1974,
@@ -10691,7 +10726,7 @@
     number = "2",
     file = ":home/drt24/Downloads/mal\_apps.pdf:pdf",
     year = "2012",
-    booktitle = "NDSS"
+    booktitle = "Network and Distributed System Security Symposium (NDSS)"
 }
 
 @article{Zhou2012b,
