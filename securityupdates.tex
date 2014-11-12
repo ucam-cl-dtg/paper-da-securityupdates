@@ -108,7 +108,7 @@ We present a better understanding of both the ecosystem of Android development a
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
 \caption{Proportion of devices running insecure, maybe insecure and secure versions of Android against time.
-The red vertical lines are caused by vulnerabilities being discovered.
+The red vertical lines are caused by vulnerabilities being discovered with those which have the biggest impact annotated.
 This graph is explained further in XXX.}
 \label{fig:proportioninsecure}
 \end{figure}
@@ -124,7 +124,7 @@ Further analysis into the propagation of updates in Android is presented in \S\r
 
 It is clear from Figure~\ref{fig:proportioninsecure} that Android devices are often exposed to known security vulnerabilities.
 One solution is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
-Indeed, many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates. 
+Indeed, many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates (\daUpdatesPerYear\ per year). 
 In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates until April 2014.
 
 An alternative to regulation is access to publicly available data. 
@@ -378,11 +378,11 @@ Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulne
 However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator}, \emph{exploid} and \emph{zergRush}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/zergRush}} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which still affect a significant proportion of devices years later.
 
 
-\begin{figure}
- \includegraphics[width=\columnwidth]{figures/nvulnerabilities_heat.pdf}
- \caption{Proportion of devices affected by different vulnerabilities}
+\begin{figure*}
+ \includegraphics[width=\textwidth]{figures/nvulnerabilities_heat.pdf}
+ \caption{Proportion of devices affected by different vulnerabilities. The prefix `m-' indicates `maybe insecure' and `d-' indicates `definitely insecure'. The first few vulnerabilities are all `maybe insecure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices.}
  \label{fig:nvulnerabilities_heat}
-\end{figure}
+\end{figure*}
 
 
 \subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
@@ -401,14 +401,14 @@ Instead we have a hopefully representative sample of upgrades which happened whi
 \begin{figure}
  \centering
  \begin{subfigure}[b]{\columnwidth}
-  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
-  \caption{Number of vulnerabilities affecting each device over time}
-  \label{fig:device_data_security}
- \end{subfigure}
- \begin{subfigure}[b]{\columnwidth}
   \includegraphics[width=\columnwidth]{figures/device-data-all-os}
   \caption{OS versions over time. Black vertical lines indicate that the build number changed without changing the OS version at that point.}
   \label{fig:device_data_os}
+ \end{subfigure}
+ \begin{subfigure}[b]{\columnwidth}
+  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
+  \caption{Number of vulnerabilities affecting each device over time}
+  \label{fig:device_data_security}
  \end{subfigure}
  \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device.}
 \end{figure}
