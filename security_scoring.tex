@@ -1,13 +1,13 @@
-\subsection{Experiment 3: Comparing manufacturers, operators and devices}
+\subsection{Experiment 3: Comparing device manufacturers, device models and network operators}
 \label{sec:security_scoring}\label{sec:exp:security_score}
 
-To allow buyers of Android devices to purchase those devices which have the best security they need to know how different manufactuers, devices and network operators compare in terms of the security they provide.
-We propose a method to score a manufacturer, operator or device based on its historic performance at keeping devices up to date and fixing security vulnerabilities.
-We find that Android as a whole gets a score of \daSecurityScore\ out of 10, the highest scoring manufacturer is \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) and the lowest scoring is \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10).
+To allow buyers of Android devices to purchase those devices which have the best security they need to know how different device manufacturers, device models and network operators compare in terms of the security they provide.
+We propose a method to score a device manufacturer, network operator or device model based on its historic performance at keeping devices up to date and fixing security vulnerabilities.
+We find that Android as a whole gets a score of \daSecurityScore\ out of 10, the highest scoring device manufacturer is \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) and the lowest scoring is \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10).
 
 \subsubsection{Method: Scoring for security}
 
-Computing how good a particular manufacturer or device model is from a security standpoint is difficult as it depends on a number of factors which are hard to observe, particularly on a large scale.
+Computing how good a particular device manufacturer or device model is from a security standpoint is difficult as it depends on a number of factors which are hard to observe, particularly on a large scale.
 Ideally we would consider both the prevalence of potential problems which were not exploited and actual security failures.
 %\footnote{A perfectly secure operating system would among other things detect and prevent all phishing attacks, provide perfect principle of least privilege isolation, not have any vulnerabilities, instantly fix all discovered vulnerabilities, not allow any user data to be used in a way which the user does not approve of and be really easy for an ordinary person to use.}
 However in the absence of such data we propose a scheme for assigning a device a score out of ten based on data which can be observed, and which hopefully correlates with the actual security of the devices.
@@ -15,10 +15,10 @@ However in the absence of such data we propose a scheme for assigning a device a
 The FUM score is computed from several components:
 \begin{description}
   \item[free $f$] The proportion of the time where devices were free from known critical vulnerabilities. This is equivalent to Acer and Jackson's proposal to measure the security based on the proportion of users with at least one unpatched critical vulnerability~\cite{Acer2010} and similar to the Vulnerability Free Days (VFD) score~\cite{Wright2014}.
-  Unlike VFD this is the proportion of running devices which were free from critical vulnerabilities, rather than days which the manufacturer was free from outstanding critical vulnerabilities as that does not take account of the update process.
-  \item[update $u$] The proportion of devices which run the latest version of Android shipped to any device produced by that manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
+  Unlike VFD this is the proportion of running devices which were free from critical vulnerabilities, rather than days which the device manufacturer was free from outstanding critical vulnerabilities as that does not take account of the update process.
+  \item[update $u$] The proportion of devices which run the latest version of Android shipped to any device produced by that device manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
   This assumes that newer versions are better with stronger security, historically steps have been taken to improve Android security in newer versions so this assumption should generally hold, but sometimes new updates introduce new vulnerabilities.
-  \item[mean $m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the manufacturer. This is related to the Median Active Vulnerabilities (MAV) measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
+  \item[mean $m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer. This is related to the Median Active Vulnerabilities (MAV) measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
   An example is given in Figure~\ref{fig:mcalculation}.
 %TODO should we compute the median instead?
 \end{description}
@@ -34,7 +34,7 @@ The FUM score is computed from several components:
 These three metrics $f$, $u$ and $m$ together measure the security of a platform with respect to known vulnerabilities and updates.
 $f$ is a key measure of the direct risk to users as if there is any known but unfixed vulnerability then they are vulnerable.
 However it does not capture the increased risk caused by there being multiple known vulnerabilities which gives an attacker more opportunities and increases the likelihood of a piece of malware having a matching exploit.
-This is captured by the $m$ score which measures the size of the manufacturers queue of outstanding vulnerabilities but does not take into account the update process or measure the actual end user security.
+This is captured by the $m$ score which measures the size of the device manufacturers queue of outstanding vulnerabilities but does not take into account the update process or measure the actual end user security.
 Neither of these metrics capture whether devices are being left behind and not being kept up to date with the most recent (and hopefully most secure) version which is captured by $u$.
 
 We want to provide a score out of 10 as this is easy for phone buyers to understand as many ratings are given as a score out of 10.
@@ -53,7 +53,7 @@ Since the numbers involved are large, the uncertainty in $f$ is small.
 $u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 
-\todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each manufacturer and model}
+\todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
 
 If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.
 $f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
@@ -71,12 +71,12 @@ However there are a wide variety of scores depending on the source of the device
 There have been many reports\todolater{citation} that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices.
 Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices.
 \daTabSecScoresmanufacturer
-Different manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
-Manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
+Different device manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ device manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
+Device manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
 Additionally for $m$ and $u$ we ignore days with less than \daSigNumDevicesDay\ devices contributing to that day's score.
 
 \daTabSecScoresmodel
-Even within manufacturers different models can have very different update behaviours and hence security.
+Even within device manufacturers different models can have very different update behaviours and hence security.
 Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with \emph{\daSecScoreBestmodel} (\daSecScoreBestmodelScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmodel} (\daSecScoreWorstmodelScore\ out of 10) scoring lowest.
 We can then test whether this seems fair by comparing the version data for the highest and lowest scoring models.
 Figure~\ref{fig:worst_model_full} shows the full version distribution for \emph{\daSecScoreWorstmodel} and Figure~\ref{fig:best_model_full} shows the same for \emph{\daSecScoreBestmodel} there is a marked difference in the distribution of updates between the two with only \daSecScoreWorstmodelNumFullVersions\ full versions for \emph{\daSecScoreWorstmodel} and \daSecScoreBestmodelNumFullVersions\ for \emph{\daSecScoreBestmodel}.
@@ -97,12 +97,12 @@ Figure~\ref{fig:worst_model_full} shows the full version distribution for \emph{
 \end{figure}
 
 \daTabSecScoresoperator
-We also analysed different operators, for the \daNumSigOperators\ operators with a significant presence in our data Table~\ref{tab:sec_operator} shows the results \emph{\daSecScoreBestoperator} (\daSecScoreBestoperatorScore\ out of 10) scoring highest and \emph{\daSecScoreWorstoperator} (\daSecScoreWorstoperatorScore\ out of 10) scoring lowest.
-However the score of an operator is affected by the manufacturers of the devices which are in use on its network.
-This is in turn affected by both what devices an operator offers to users and upon which devices users choose.
-Hence having a worse score does not necessarily mean that an operator is worse, it could be that its users all pick phones from a worse manufacturer, for example because they were cheaper.
-An operator could use data from this paper to exclude insecure devices from those offered to consumers.
-An added value analysis of operators which takes into account the device mix used by users of that operator would make it possible to determine whether an operator is making the situation better or worse by the way it ships updates to users.
+We also analysed different network operators, for the \daNumSigOperators\ network operators with a significant presence in our data Table~\ref{tab:sec_operator} shows the results \emph{\daSecScoreBestoperator} (\daSecScoreBestoperatorScore\ out of 10) scoring highest and \emph{\daSecScoreWorstoperator} (\daSecScoreWorstoperatorScore\ out of 10) scoring lowest.
+However the score of an network operator is affected by the device manufacturers of the devices which are in use on its network.
+This is in turn affected by both what devices a network operator offers to users and upon which devices users choose.
+Hence having a worse score does not necessarily mean that a network operator is worse, it could be that its users all pick phones from a worse device manufacturer, for example because they were cheaper.
+A network operator could use data from this paper to exclude insecure devices from those offered to consumers.
+An added value analysis of network operators which takes into account the device mix used by users of that network operator would make it possible to determine whether a network operator is making the situation better or worse by the way it ships updates to users.
 However we suspect that our sample size is too small to do that as while we have significant numbers of devices for each of the device models in Table~\ref{tab:sec_model} and for each of the network operators in Table~\ref{tab:sec_operator} we would need a significant number of each model in each network operator.
 We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
