@@ -38,6 +38,10 @@
 \input{countversions}
 \newcommand{\otherProjNum}{\avoNumExternalProjects}%TODO check we are doing the right calculation here and not overcounting
 
+% Blinding function
+\newcommand{\identifying}[1]{#1}%{}
+\newcommand{\blindauthors}[1]{#1}%{Paper \#59}%
+
 \begin{document}
 \title{Timeliness of security updates for Android}
 
@@ -46,6 +50,7 @@
 % use a multiple column layout for up to three different
 % affiliations
 \author{
+\blindauthors{
 \IEEEauthorblockN{Daniel R. Thomas,
 Daniel T. Wagner,
 Alastair R. Beresford,
@@ -55,6 +60,7 @@ Computer Laboratory\\
 University of Cambridge\\
 Cambridge, United Kingdom\\
 Firstname.Lastname@cl.cam.ac.uk
+}
 }
 }
 
@@ -585,11 +591,11 @@ We have compared different models, device manufacturers and network operators an
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
 Android attempts to provide good security to end users but the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities.
 
-
+\identifying{
 \section*{Acknowledgements}
 Thanks to David Robertson for helpful advice on statistical analysis.
 Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities in Android.
-
+}
 
 \printbibliography
 
