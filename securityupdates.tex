@@ -100,7 +100,7 @@ Ordinary malware can be uninstalled by the user, or remotely by Google through t
 Removing an app which has used an exploit to take control of the handset is unlikely to return the device to secure state.
 
 The development of Android is distributed among many parties and the security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform. 
-In addition, device manufacturers (of which we are aware of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers. 
+In addition, device manufacturers (we know of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers. 
 Understanding this ecosystem is important as device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}. 
 We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S\ref{sec:android_ecosystem}.
  
@@ -155,9 +155,9 @@ We need information on the distribution of installed versions of Android so that
 \subsection{Versions of Android running on devices}
 We need historical data on the distributions of versions of Android running on devices and additional data about those devices to allow us to investigate variation between devices and confirm the reliability of these data.
 We used data from the \da\ project~\cite{Wagner2013}.
-The \da\ data contains info from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days, contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
+The \da\ data contains info from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days, and contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
 Device Analyzer used an Android app which volunteers install on their Android devices to collect data on what happens on Android phones.
-The data collected is available for researchers to use as we do here.
+The data collected is available for researchers to use as we do here under agreements which protect the privacy of the users.
 
 Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
 Among these are the build string and API version for the version of Android currently running on the device each day.
@@ -410,7 +410,7 @@ Instead we have a hopefully representative sample of upgrades which happened whi
  \end{subfigure}
  \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device.}
 \end{figure}
-The logitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data_security}.
+The longitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data_security}.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
 It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
 This implies that these devices had been abandoned by the device manufacturer and were not receiving updates which is confirmed by Figure~\ref{fig:device_data_os} which shows which OS versions those devices were running.
@@ -501,9 +501,9 @@ When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsi
 Malicious apps which use exploits to take control of an Android device must be installed on the device and to an extent this can be prevented if all apps are downloaded from the Google Play store.
 This marketplace is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of 0.02\%~\cite{Zhou2012a}.
 However some apps are installed from other markets which are less well policed (infection rates of between 0.20\%~ and 0.47\%~\cite{Zhou2012a}).
-Apps can also dynamically download code at runtime which then cannot be detected by static analysis and so bypasses Bouncer.
+Apps can also dynamically download code at runtime which then cannot be detected by static analysis and so bypass Bouncer.
 
-There are also other ways that malicious code could end up running on Android devices, the addJavascriptInterface vulnerability (CVE-2012-6636 ) allows javascript running in a webview which has an exposed interface to execute arbitrary Java code and hence load exploits.
+There are also other ways that malicious code could end up running on Android devices, and the addJavascriptInterface vulnerability (CVE-2012-6636) allows javascript running in a webview which has an exposed interface to execute arbitrary Java code and hence load exploits.
 While fixes have been produced for this the change is API breaking and so to be safe an app must target an API version greater than 17 and be running on a device with an Android version of at least 4.2.
 Since the html loaded into webviews (for example to display adverts) is often loaded over insecure http, malicious javascript can easily be injected by an attacker on the network.
 
@@ -519,7 +519,7 @@ However those two vulnerabilities make little difference to our results as they 
 There are several open questions which we have not yet been able to answer and remain future work.
 \begin{itemize}
  \item Why was there a gap in vulnerability discovery in Android in 2012?
- \item Why do so many devices have \texttt{adb} enabled? \daAdbEnabledPerc\ seems rather high for a developer feature.
+ \item Why do so many devices have \texttt{adb} enabled? \daAdbEnabledPerc\ seems rather high for a developer feature. This could be a selection bias or device manufacturers could be enabling it by default.
  \item How much of updating is new handsets and how much is updates being deployed? Over time newer versions of Android come to dominate, but quantifying what proportion of that is due to new phones being purchased and what proportion is due to updates to existing devices is a question we cannot answer.
  The only available large data set we know of with longitudinal traces of Android devices OS version numbers is \da\ but that only records \daNumUpdatesUpgrades\ upgrades which broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month which is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
  \item Why do users downgrade their phones?
@@ -541,7 +541,7 @@ There have been other attempts to automatically find vulnerabilities.
 The Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
 The update process itself can allow Android apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
 
-The security protections used in iOS such as, app review, code signing, Data Execution Prevention (DEP) and Address Space Layout Randomisation (ASLR) and mandatory access controls has resulted in a lower level of malware affecting iOS~\cite{Felt2011} but can still be bypassed~\cite{Wang2013a}.
+The security protections used in iOS such as app review, code signing, Data Execution Prevention (DEP) and Address Space Layout Randomisation (ASLR) and mandatory access controls has resulted in a lower level of malware affecting iOS~\cite{Felt2011} but can still be bypassed~\cite{Wang2013a}.
 
 Various attempts have been made to detect malware.
 RiskRanker classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
