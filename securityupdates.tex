@@ -546,17 +546,17 @@ The update process itself can allow Android apps to gain privilege through `Pile
 The security protections used in iOS such as app review, code signing, Data Execution Prevention (DEP) and Address Space Layout Randomisation (ASLR) and mandatory access controls has resulted in a lower level of malware affecting iOS~\cite{Felt2011} but can still be bypassed~\cite{Wang2013a}.
 
 Various attempts have been made to detect malware.
-RiskRanker classified 3,281/118,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
+RiskRanker classified 3\,281/118\,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
 It uses signatures of exploits, static analysis of calls to high risk operations, detection of encrypted native code execution and dynamic Dalvik code loading to detect risky apps.
-DroidRanger found 148/182,823 (0.08\%) apps to be malicious across multiple markets of which 29 were previously unknown~\cite{Zhou2012a}.
+DroidRanger found 148/182\,823 (0.08\%) apps to be malicious across multiple markets of which 29 were previously unknown~\cite{Zhou2012a}.
 It used permission-based behavioural fingerprinting -- looking at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
-AnDarwin detects similar apps, it found 169/265,359 (0.06\%) malicious apps based on the difference in permissions between the malicious app and the app which had been cloned~\cite{Crussell2013}.
+AnDarwin detects similar apps, it found 169/265\,359 (0.06\%) malicious apps based on the difference in permissions between the malicious app and the app which had been cloned~\cite{Crussell2013}.
 It used clustering based on semantic vectors derived from the program dependence graphs to detect similar apps.
-The Malware Genome project collected 1,260 malware samples from 2010--2011~\cite{Zhou2012b}.
+The Malware Genome project collected 1\,260 malware samples from 2010--2011~\cite{Zhou2012b}.
 They found that the best case for anti-malware detection on this data was 79.6\%.
 However DroidChameleon found that antivirus products could not detect malware if it was simply automatically permuted~\cite{Rastogi2013}.
 All these app analysis projects have been hampered by the difficulty of obtaining full datasets of Android apps as Google does not make these available (and researchers who automatically download them violate Google's Terms of Service).
-PlayDrone was a particularly effective project which circumvented Google's protective measures and downloaded over 1,100,000 apps from Google Play, allowing an in depth analysis~\cite{Viennot2014}.
+PlayDrone was a particularly effective project which circumvented Google's protective measures and downloaded over 1\,100\,000 apps from Google Play, allowing an in depth analysis~\cite{Viennot2014}.
 
 Examining security update mechanisms has been used to assess security for many years.
 Many software update systems have been found not to authenticate the connection to the update server and/or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
