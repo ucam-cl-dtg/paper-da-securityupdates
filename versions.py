@@ -136,9 +136,9 @@ def latency(version_dates, version_map):
 def calculate_latencies(version_dates):
     linux_latencies = latency(version_dates['linux'], OrderedDict(avo.os_to_kernel))
     set_latex_value('linuxMeanUpdateLatency', ufloat(statistics.mean(linux_latencies.values()),statistics.stdev(linux_latencies.values())))
-    openssl_latencies = latency(version_dates['openssl'], OrderedDict(avo.os_to_openssl_version))
+    openssl_latencies = latency(version_dates['openssl'], OrderedDict(avo.os_to_project['openssl']))
     set_latex_value('opensslMeanUpdateLatency', ufloat(statistics.mean(openssl_latencies.values()),statistics.stdev(openssl_latencies.values())))
-    bouncycastle_latencies = latency(version_dates['bouncycastle'], OrderedDict(avo.os_to_bouncycastle_version))
+    bouncycastle_latencies = latency(version_dates['bouncycastle'], OrderedDict(avo.os_to_project['bouncycastle']))
     set_latex_value('bouncycastleMeanUpdateLatency',ufloat(statistics.mean(bouncycastle_latencies.values()),statistics.stdev(bouncycastle_latencies.values())))
 
 
