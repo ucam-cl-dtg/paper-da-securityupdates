@@ -147,7 +147,30 @@ In summary, the contributions of this paper are:
  \item We measure the security of Android according to three metrics and compare different device manufacturers and device models to allow device purchasers to differentiate between them based on security.
 \end{itemize}
 
-\section{Background}
+\section{Threat model}
+\label{sec:threatmodel}
+
+In this paper we measure whether an attacker can break out of the app sandbox on Android using a known vulnerability. 
+The main attack vector is through the installation of a malicious app on the device.
+Android devices support the installation of apps through a number of app marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
+By default, many Android devices with Google Play installed will prevent the installation of apps from other sources.
+
+Controlling potential sources of app installation is a good security feature because app marketplaces provide additional protection to prevent the listing of malicious apps.
+For example, the Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
+Nevertheless, Google Play is not immune: 0.02\% of apps are malicious~\cite{Zhou2012a}.
+Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. Previous work has shown that on alternative markets between 0.20\% and 0.47\% of apps are malicious~\cite{Zhou2012a}).
+
+There are also alternative attack vectors available to an adversary.
+Firstly, Android apps can dynamically download and execute code at runtime.
+This allows an attacker to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a remote server under control of the attacker.
+Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does exist in the app binary.
+Instead the attacker can chose to send a malicious payload directly to the app for execution at a later point in time.
+
+Secondly, support for dynamic code loading on Android means malicious code can be injected directly into existing apps installed on the handset. 
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows Javascript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
+This attack works if: (1) the WebView has the Javascript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious Javascript payload into the network traffic between the phone and the web server. Many apps are vulnerable to this type of attack because ad networks typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. The fix for the addJavascriptInterface vulnerability breaks backwards compatibility. Therefore apps are only immune to this attack if their target API level is greater than 16 and are running on Android version 4.2 or greater.
+
+\section{Data sources}
 \label{sec:background}
 There are two sources of data we need for this study: (1) information on the distribution of installed versions of Android over time and (2) information on critical vulnerabilities.
 We need data on critical vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
@@ -499,15 +522,6 @@ There are continuing efforts to reduce the impact of critical vulnerabilities, b
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
-
-Malicious apps which use exploits to take control of an Android device must be installed on the device and to an extent this can be prevented if all apps are downloaded from the Google Play store.
-This marketplace is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of 0.02\%~\cite{Zhou2012a}.
-However some apps are installed from other markets which are less well policed (infection rates of between 0.20\%~ and 0.47\%~\cite{Zhou2012a}).
-Apps can also dynamically download code at runtime which then cannot be detected by static analysis and so bypass Bouncer.
-
-There are also other ways that malicious code could end up running on Android devices, and the addJavascriptInterface vulnerability (CVE-2012-6636) allows javascript running in a webview which has an exposed interface to execute arbitrary Java code and hence load exploits.
-While fixes have been produced for this the change is API breaking and so to be safe an app must target an API version greater than 17 and be running on a device with an Android version of at least 4.2.
-Since the html loaded into webviews (for example to display adverts) is often loaded over insecure http, malicious javascript can easily be injected by an attacker on the network.
 
 We have not included all the vulnerabilities from \avo\, in particular we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about device manufacturer specific vulnerabilities which makes them harder to tie down.
