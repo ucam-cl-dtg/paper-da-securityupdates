@@ -156,42 +156,69 @@ In summary, the contributions of this paper are:
  \item We measure the security of Android according to three metrics and compare different device manufacturers and device models to allow device purchasers to differentiate between them based on security.
 \end{itemize}
 
-\section{Background}
-\label{sec:background}
-There are two sources of data we need for this study: (1) information on the distribution of installed versions of Android over time and (2) information on critical vulnerabilities.
-We need data on critical vulnerabilities so that we know which versions of Android were vulnerable to which known vulnerabilities at what times.
-We need information on the distribution of installed versions of Android so that we know what proportion of Android devices were affected by these vulnerabilities.
+\section{Threat model}
+\label{sec:threatmodel}
 
+In this paper we measure whether an attacker can take control of a handset by breaking out of the app sandbox on Android using a known vulnerability.
+We consider two attack vectors.
+The first attack vector is through the installation of a malicious app on the device.
+Android devices support the installation of apps through a number of app marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
+By default, many Android devices with Google Play installed will prevent the installation of apps from other sources.
+
+Controlling potential sources of app installation is a good security feature because app marketplaces provide additional protection to prevent the listing of malicious apps.
+For example, the Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
+Nevertheless, Google Play is not immune: 0.02\% of apps are malicious~\cite{Zhou2012a}.
+Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
+Previous work has shown that on alternative markets between 0.20\% and 0.47\% of apps are malicious~\cite{Zhou2012a}.
+
+The second attack vector is to persuade an existing app to download and execute code at runtime.
+The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a remote server under control of the attacker.
+Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does exist in the app binary.
+Instead the attacker can chose to send a malicious payload directly to the app for execution at a later point in time. Note that dynamic code loading is not actually needed for this to work---it just makes the task easier---since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a ROP-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{}.
+
+Support for dynamic code loading on Android also permits an indirect method where malicious code can be injected directly into existing apps already installed on the handset. 
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows Javascript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
+This attack works when: (1) the WebView has the Javascript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious Javascript payload into the network traffic between the phone and the web server. 
+Many apps are vulnerable to this type of attack because ad network libraries typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. 
+The fix for the addJavascriptInterface vulnerability breaks backwards compatibility, and therefore apps are only immune to this attack if their target API level is greater than 16 and they are running on an Android device with an OS version of 4.2 or greater.
+Later analysis in Figure~\ref{fig:da_api} in this paper shows that 40\% of handsets connecting to the Google Play store are currently vulnerable to this attack.
+
+\section{Data sources}
+\label{sec:background}
+
+We require two sources of data for this study: (1) information on the distribution of installed versions of Android over time across the Android ecosystem and (2) information on the critical vulnerabilities found to affect specific versions of Android.
+These two datasets can then be combined to determine the proportion of handsets at risk of attack from specific vulnerabilities for particular periods of time.
 
 \subsection{Versions of Android running on devices}
-We need historical data on the distributions of versions of Android running on devices and additional data about those devices to allow us to investigate variation between devices and confirm the reliability of these data.
-We used data from the \da\ project~\cite{Wagner2013}.
-The \da\ data contains info from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days, and contains data for more than \daMonths\ months for \daMonthsDevices\ devices.
-Device Analyzer used an Android app which volunteers install on their Android devices to collect data on what happens on Android phones.
-The data collected is available for researchers to use as we do here under agreements which protect the privacy of the users.
 
-Various different kinds of data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} are collected by the \da\ Android app\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/}}.
-Among these are the build string and API version for the version of Android currently running on the device each day.
-The API version is a well defined integer which increases when new features are added to the API.
-It does not change for all Android releases as (security) bug fixes which do not change the API do not require it to increase.
-The build string is `The user-visible version string', fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z opaque marker' and so it is possible to extract the Android version number `x.y.z'.
-On a large proportion of devices `opaque marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} but different device manufacturers use different schema.
+In our analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
+Device Analyzer collects data from study participants who install the project Android app from the Google Play store.
+Many participants allow researchers around the world to access a subset of their data.
 
-Where possible we indicate the uncertainty in our results by giving them $\pm$ the standard deviation, this occasionally results in ${} \pm 0$ when the uncertainty is less than the number of significant figures we are reporting.
-However this technique is unable to account for systematic errors.
+The \da\ app collects a range of metadata from Android devices.\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}}
+For this paper, we extracted the build string and API version on the device each day.
+The API version is a positive integer which increases when new features are added to the API.
+Consequently security (bug) fixes do not result in a change in the API version.
+The build string is a user-readable version string.
+Fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
+On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
 
-We comment on the validity of the \da\ data in \S\ref{sec:representative}.
+The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days. The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
+
+Where possible we indicate the uncertainty in our results by presenting them $\pm$ one standard deviation, this occasionally results in `${} \pm 0$' when the standard deviation is less than the number of significant figures we are reporting.
+This technique cannot account for systematic errors and therefore we explore the potential for systematic errors in the \da\ data in \S\ref{sec:representative}.
 
 
 
 \subsection{Critical vulnerabilities}
-We compiled a list of critical vulnerabilities in Android, containing information on discovery and publication dates, what versions they affected and which versions fixed the problem.
+
+We compiled a list of critical vulnerabilities in Android, containing information on the discovery and publication dates, the versions affected and which versions fixed the problem.
 We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
 Critical vulnerabilities allow a program to gain privileges equivalent in scope to root.
 If an application exploits a critical vulnerability then it gains control of the device.
-Some phones can be `rooted' by enabling USB debugging and using the special privileges of the \texttt{adb} shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.
-This is not something that applications running on the phone can exploit to break compartmentalisation and so we do not include those vulnerabilities.
-Unfortunately, many published exploits use \texttt{adb} for convenience and so determining whether that is necessary to exploit the vulnerability can be difficult.
+Some phones can be `rooted' by enabling USB debugging and using the special privileges of the ADB shell to root the device but only \daAdbEnabledPerc\dafoot\ of devices have USB debugging enabled.
+This is not something that applications running on the phone can exploit to break out of the app sandbox and so we do not include those vulnerabilities.
+Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
 
 Some critical vulnerabilities are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below version 4.1) malware could use known system-to-root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
@@ -509,15 +536,6 @@ There are continuing efforts to reduce the impact of critical vulnerabilities, b
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
-
-Malicious apps which use exploits to take control of an Android device must be installed on the device and to an extent this can be prevented if all apps are downloaded from the Google Play store.
-This marketplace is protected by Bouncer's static analysis and prompt takedowns of apps reported to be malicious and has been found to have infection rates of 0.02\%~\cite{Zhou2012a}.
-However some apps are installed from other markets which are less well policed (infection rates of between 0.20\%~ and 0.47\%~\cite{Zhou2012a}).
-Apps can also dynamically download code at runtime which then cannot be detected by static analysis and so bypass Bouncer.
-
-There are also other ways that malicious code could end up running on Android devices, and the addJavascriptInterface vulnerability (CVE-2012-6636) allows javascript running in a webview which has an exposed interface to execute arbitrary Java code and hence load exploits.
-While fixes have been produced for this the change is API breaking and so to be safe an app must target an API version greater than 17 and be running on a device with an Android version of at least 4.2.
-Since the html loaded into webviews (for example to display adverts) is often loaded over insecure http, malicious javascript can easily be injected by an attacker on the network.
 
 We have not included all the vulnerabilities from \avo\, in particular we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about device manufacturer specific vulnerabilities which makes them harder to tie down.
