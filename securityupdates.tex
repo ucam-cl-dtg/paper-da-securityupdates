@@ -630,12 +630,14 @@ Anecdotal evidence at least suggests that it is the lack of updates rather the l
 \section{Conclusion}
 \label{sec:conclusion}
 We have investigated the security of the Android operating system with respect to security updates and examined how the Android ecosystem results in different devices receiving different levels of security due to whether or not they get security updates.
-We have compared different models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which device manufacturer and network operator.
+We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which device manufacturer and network operator.
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
-Android attempts to provide good security to end users but the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities.
+Android attempts to provide good security to end users through sandboxing apps.
+However the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPerc\ of devices run the latest version of Android.
 
 \identifying{
 \section*{Acknowledgements}
+Thanks to Richard Clayton, the mobile security reading group and Anil Madhavapeddy for reading various drafts of this paper.
 Thanks to David Robertson for helpful advice on statistical analysis.
 Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities in Android.
 }
