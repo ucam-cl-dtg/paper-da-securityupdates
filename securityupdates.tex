@@ -567,7 +567,7 @@ Using the methods and data described in this paper we have determined that, on a
 Felt et al.\ studied 6 Android handsets in 2011 and found they were exposed to root vulnerabilities at least 74\% of the time~\cite{Felt2011} .
 Our approach differs from their study because they used data from 6 handsets and assumed the best possible update distribution, while our work is based on a large sample of devices tracking the actual update distribution.
 Nevertheless, our own analysis as well as comparison with their work suggests protection against critical vulnerabilities has not improved significantly over the last 3 years. 
-Felt et al.\ also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later (larger) studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
+Felt et al.\ also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later (larger) studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} in 2012.
 
 Currently, finding and exploiting vulnerabilities is typically a time-consuming and manual process.
 Therefore an attacker has to invest significant human resource to first find a bug and then write code to exploit the vulnerability.
@@ -576,7 +576,7 @@ Previous work has shown attackers have taken this approach for the Firefox web b
 Google does not release updates to the Android source code until after the release of the relevant security update.
 This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository from the period (\textbf{first fix}, \textbf{fix deployed}) to (\textbf{fixing release}, \textbf{fix deployed}).
 Unfortunately the time period between the \textbf{fixing release} and \textbf{fix deployed} can be of the order of months. 
-For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed (25 months for 90\% of devices maybe fixed).
+For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed\footnote{Definitely fixed is 1 $-$ (definitely insecure + maybe insecure), maybe fixed is 1 $-$ definitely insecure} (25 months for 90\% of devices maybe fixed).
 
 Recent work by Brumley et al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
 Similarly, the Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
@@ -606,7 +606,7 @@ Therefore detecting risky apps which might contain critical vulnerabilities is a
 The update process for apps, security fixes and OS upgrades also needs to be secure.
 Unfortunately, package management systems designed to provide secure updates have been found to contain vulnerabilities~\cite{Cappos2008} and many software update systems fail to authenticate the connection between the device and the update server or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
 Android does authenticate update binaries and Google Play downloads them over a secure connection~\cite{Viennot2014}.
-In this paper we have analysed three critical vulnerabilities in the Android app update mechanism: APK unsigned shorts, APK unchecked name and APK duplicate file. 
+In this paper we have analysed four critical vulnerabilities in the Android app update mechanism: APK unsigned shorts, APK unchecked name, APK duplicate file and Fake ID.
 Other work has demonstrate complex and subtle errors exist in the Android app update process.
 For example, the process can be exploited to allow apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
 
@@ -631,12 +631,14 @@ Anecdotal evidence at least suggests that it is the lack of updates rather the l
 \section{Conclusion}
 \label{sec:conclusion}
 We have investigated the security of the Android operating system with respect to security updates and examined how the Android ecosystem results in different devices receiving different levels of security due to whether or not they get security updates.
-We have compared different models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which device manufacturer and network operator.
+We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which device manufacturer and network operator.
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
-Android attempts to provide good security to end users but the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities.
+Android attempts to provide good security to end users through sandboxing apps.
+However the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPerc\ of devices run the latest version of Android.
 
 \identifying{
 \section*{Acknowledgements}
+Thanks to Richard Clayton, the mobile security reading group and Anil Madhavapeddy for reading various drafts of this paper.
 Thanks to David Robertson for helpful advice on statistical analysis.
 Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities in Android.
 }
