@@ -187,10 +187,10 @@ These two datasets can then be combined to determine the proportion of handsets 
 
 In our analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
 Device Analyzer collects data from study participants who install the project Android app from the Google Play store.
-Many participants allow researchers around the world to access a subset of their data.
+Most study participants allow researchers around the world to access a subset of their device data, including the data presented in this paper.
 
 The \da\ app collects a range of metadata from Android devices.\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}}
-For this paper, we extracted the build string and API version on the device each day.
+For this paper, we extracted the build string and API version from the device log each day.
 The API version is a positive integer which increases when new features are added to the API.
 Consequently security (bug) fixes do not result in a change in the API version.
 The build string is a user-readable version string.
@@ -219,16 +219,20 @@ On some versions of Android (below version 4.1) malware could use known system-t
 \todolater{break vulnerabilities down by attack vector?}
 \avoTabAndVulns
 
-We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the AndroidVulnerabilities.org\footnote{\url{http://androidvulnerabilities.org/} \textbf{Note to reviewers: do not visit the contact page of this website}} (\avo) website.
+We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the AndroidVulnerabilities.org\footnote{\url{http://androidvulnerabilities.org/} \textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}} (\avo) website.
 We seeded it with data from the CVE database, vendor lists, reports from the literature and various forums.
-We have received submissions or amendments from \avoNumSubmitters\ individuals.
-We collected this data between \avoStartDate\ and \avoEndDate\ and so any information lost before the start of that period cannot be included.
+In addition, we have received submissions or amendments from \avoNumSubmitters\ individuals.
+We collected data between \avoStartDate\ and \avoEndDate\ and so any information lost before the start of that period cannot be included.
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
-We only use the \daNumVulnsUsed\ vulnerabilities which we have sufficient data to use for this analysis because they affect all Android devices rather than particular device manufacturers and we know enough information about the vulnerability to tie it to the particular versions it affects.
-We summarise the \daNumVulnsUsed\ vulnerabilities used for this analysis in Table~\ref{tab:andvulns}.\todolater{We have published full details of the \daNumVulnsUsed\ vulnerabilities used for this analysis in an accompanying technical report~\cite{TODO}}
 
+Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
+We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis.
+In many cases we could not match manufacturer- and model-specific vulnerabilities to individual devices in the \da\ data and therefore attempting to include device-specific vulnerabilities as well would introduce additional uncertainty in our results.
+In contrast, with our chosen set of vulnerabiltiies, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data set.
 
-Tracking vulnerabilities is a manual task as they are not consistently recorded in other databases such as the CVE database and the lack of a widely acknowledged unique identifier made identifying whether two reports referenced the same vulnerability difficult.
+Tracking vulnerabilities is a manual task as they are not consistently recorded in other databases such as the CVE database.
+In addition, the lack of a widely acknowledged unique identifier required manual analysis to identify whether two reports referenced the same vulnerability.
 Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for critical Android vulnerabilities.
 For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
 
@@ -238,8 +242,8 @@ For some of the vulnerabilities without CVE numbers, Google confirmed that there
 The key events in the lifetime of a vulnerability do not always occur in the same order and are:\\
 \textbf{creation} When a vulnerability was created in the source code.\\
 \textbf{introducing release} When the first release was made containing the vulnerability.\\
-\textbf{discovery} When the vulnerability is first discovered\\
-\textbf{exploit} When the vulnerability is first exploited\\
+\textbf{discovery} When the vulnerability is first discovered.\\
+\textbf{exploit} When the vulnerability is first exploited.\\
 \textbf{disclosure} When the vulnerability is first disclosed.\\ % publically or to a smaller set of people?
 \textbf{fix} When a vulnerability was first fixed in the source code.\\
 \textbf{fixing release} When the first release containing the fix was made (equivalent to `patch available'~\cite{Frei2010}).\\
@@ -247,55 +251,52 @@ The key events in the lifetime of a vulnerability do not always occur in the sam
 \todolater{Does this look nice?}
 
 
-Establishing when a vulnerability started posing a threat to users is difficult.
-Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure} when the information about the vulnerability is freely available to the public, from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
+Establishing when a vulnerability starts to pose a threat to users is difficult.
+Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure}. This occurs when the information about the vulnerability is freely available to the public from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
 Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
 Therefore this measure does not work.
 
-Symantec's 2012 analysis of desktop malware has shown that after public disclosure exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public disclosure and the update reaching the user's device is the most critical.
-However they also show that zero day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
-Hence when considering vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those the CESG advice~\cite{CESG2013} is aimed at, the critical period is from when people could have started using the vulnerability to when the update hits the user device.
-So for our vulnerability calculations we use the earliest date we can find recorded evidence that the vulnerability was known about, even if that knowledge might have been confined to a particular device manufacturer or hobbyist.
+Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public \textbf{disclosure} and the date of \textbf{fix deployed} is the most critical.
+However they also show that zero-day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
+Hence when considering a vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those responding to CESG advice~\cite{CESG2013}, the critical period starts with \textbf{discovery} and continues until \textbf{fix deployed}.
+Therefore, in our vulnerability calculations we prefer to use the earliest recorded date of \textbf{discovery}, even if that knowledge might have been confined to a particular device manufacturer or hobbyist.
 %We cannot know if someone reported the vulnerability to the device manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they may know.
 
-There are several plausible points from which a vulnerability poses a threat to users.
-{\bf Creation} and {\bf introducing release} are the earliest points which could be used but the risk is mostly latent until someone discovers them.
-Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery, for example entities with high value targets may keep databases of unknown vulnerabilities for later use, in which case there is a high risk to potential targets from the never disclosed point of discovery.
-However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little danger.
+Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery.
+{\bf Creation} and {\bf introducing release} are the earliest points which could be used, but the risk is mostly latent until someone discovers them and therefore we do not use these dates.
+%, for example entities with high value targets may keep databases of unknown vulnerabilities for later use, in which case there is a high risk to potential targets from the never disclosed point of discovery.
+%However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little danger.
 The date of first {\bf exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
-The date of first {\bf fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party.
-It can, for example, be determined from the authored-on date of the fixing commit in the git repository.
-Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{Brumley2008}.
-When the {\bf fix deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
-
-Hence we use the earliest date we know about for discovery, exploit, disclosure or fix as the date from which a vulnerability poses a substantial risk to users.
-This is shown in Table~\ref{tab:andvulns}.
+The date of first {\bf fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party; we determine this date from the Android Open Source Project repository by examining the authored-on date of the fixing commit.
+%Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{Brumley2008}.
+%When the {\bf fix deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
+Therefore, in this paper we use the earliest known date from \textbf{discovery}, \textbf{exploit}, \textbf{disclosure} or \textbf{fix}. A breakdown of the type of date used per vulnerability is shown in Table~\ref{tab:andvulns}.
 
 
 \subsection{Distribution of vulnerabilities}
 \begin{figure}
  \centering
  \includegraphics[width=\columnwidth]{figures/vulnerabilities_timeline}
- \caption{Timeline of vulnerabilities}
+ \caption{Timeline of vulnerabilities. For each vulnerability we show the dates of \textbf{discovery} and, when later, the dates of the first \textbf{fixing release}}
  \label{fig:vulnerabilities_timeline}
 \end{figure}
 
-The dates of discovery of vulnerabilities in the \avo\ is not uniform.
-Figure~\ref{fig:vulnerabilities_timeline} shows the dates of discovery and, when later, the dates when a version of Android which fixed the vulnerability was shipped.
-Some vulnerabilities (\emph{levitator}, \emph{zergRush}) were fixed in released versions of Android before they were discovered and so are shown as vertical lines while others were known for months before a version of Android which fixed them was shipped.
+Figure~\ref{fig:vulnerabilities_timeline} shows the dates of \textbf{discovery} and, when later, the date of the first \textbf{fixing release}.
+Some vulnerabilities (\emph{levitator}, \emph{zergRush}) were fixed in released versions of Android before they were discovered and so are shown as vertical lines, while others were known for months before a version of Android which fixed them was shipped.
 During the period in which \da\ data was collected the date when a version of Android with the fix was observed on a \da\ device is taken as the date that version was released.
-For vulnerabilities prior to the collection period the release date as best as we can determine is used.
-There is no canonical source of Android release dates, our best guesses and supporting references are available from \avo.
+For vulnerabilities prior to the collection period we estimate the release date as best we can using publicly available data.
+There is no canonical source of Android release dates, and our best guesses and supporting references are available from \avo.
 
-This data shows a large gap from 2011-10-06 to 2013-02-18 where we do not know of any discoveries of critical vulnerabilities affecting Android devices.
+The discovery dates of our vulnerabilities does not appear to be uniform uniform. 
+In particular the data shows a large gap from 2011-10-06 to 2013-02-18 where we do not know of any discoveries of critical vulnerabilities affecting all Android devices.
 The cause of this quiet period is unclear.
-Possible explanations are: (i) That since most devices were exposed to known vulnerabilities there was no point in looking for new ones (from Figure~\ref{fig:proportioninsecure}).
-(ii) That device manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices.
-(iii) That device manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus.
+Possible explanations are that: (i) most devices were exposed to known vulnerabilities so there was no point in looking for new ones (from Figure~\ref{fig:proportioninsecure});
+(ii) device manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices; and
+(iii) device manufacturer specific vulnerabilities (which we are not in our analysis here) were easier to find and therefore attackers looking for vulnerabilities adjusted their focus.
 
 \section{Android Ecosystem}\label{sec:android_ecosystem}
 There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
-In this section we rectify the lack of public information about the nature of the Android ecosystem.
+In this section we describe how the Android ecosystem functions and how Android versions, as seen by the \da\ project, are produced.
 
 
 \subsection{Android update process}
