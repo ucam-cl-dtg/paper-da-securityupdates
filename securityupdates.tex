@@ -117,7 +117,7 @@ We present a better understanding of both the ecosystem of Android development a
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
 \caption{Proportion of devices running insecure, maybe insecure and secure versions of Android against time.
 The red vertical lines are caused by vulnerabilities being discovered with those which have the biggest impact annotated.
-%This graph is explained further in XXX.
+This graph is explained further in \S\ref{sec:exp:versionsecurity}.
 }
 \label{fig:proportioninsecure}
 \end{figure}
@@ -376,6 +376,14 @@ Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} is the 
 We conducted three experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}) and comparisons between different device manufacturers and network operators (\S\ref{sec:exp:security_score}).
 
 %% In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is
+
+\subsection{Experiment 0: vulnerability of Android devices}\label{sec:exp:versionsecurity}
+In Figure~\ref{fig:proportioninsecure} we showed the vulnerability of devices in \da\ to known critical Android vulnerabilities.
+Initially the plot is all `maybe insecure' (yellow) as since \da\ does not have historical data from before that point we cannot distinguish between devices which are running a version of Android which is known to be vulnerable but which have a backported fix and those which do not have a backported fix as we do not have data on what builds existed before the vulnerability was discovered.
+This shows the importance of a longitudinal study as this analysis requires years of data.
+Once \emph{zergRush} was discovered the plot goes mostly `insecure' (red) as most devices were exposed to that vulnerability but some were already running a version of Android which fixed that vulnerability and so from that point until the discovery of \emph{APK duplicate file} the graph shows progressively more `secure' green.
+From that point onwards the more regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
+
 
 \subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 
