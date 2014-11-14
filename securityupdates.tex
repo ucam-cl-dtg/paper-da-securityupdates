@@ -140,8 +140,8 @@ In contrast, Windows XP could be purchased for a one-off payment in October 2001
 An alternative to regulation is access to publicly available data. 
 Comparative data would provide an incentive to both device manufacturers and network operators to provide updates.
 Currently corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security. 
-For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android devices from device manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which device manufacturers these are.
-To address this, we developed a scoring system and provide numbers on the historic performance of devices in the \da\ project in~\S\ref{sec:security_scoring}.
+For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which device manufacturers these are.
+To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
 
 In summary, the contributions of this paper are:
 \begin{itemize}
@@ -199,7 +199,7 @@ On a large proportion of devices `opaque\_marker' is a well defined build number
 
 The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days. The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
-Where possible we indicate the uncertainty in our results by presenting them $\pm$ one standard deviation, this occasionally results in `${} \pm 0$' when the standard deviation is less than the number of significant figures we are reporting.
+Where possible we indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3 significant figures, this occasionally results in `${} \pm 0$' when the standard deviation is less than the number of significant figures we are reporting.
 This technique cannot account for systematic errors and therefore we explore the potential for systematic errors in the \da\ data in \S\ref{sec:representative}.
 
 
@@ -544,13 +544,13 @@ This is responsible for the sudden change in distribution of OS versions in \da\
 Since most \da\ users are self selecting and install \da\ because they want to find out more about what their phone is doing or to aid research they may be biased and perhaps more likely to install updates.
 
 
-\section{Discussion}
+\section{Discussion} \label{sec:discussion}
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and more widely.
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
-We have not included all the vulnerabilities from \avo\, in particular we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+We have not included all the vulnerabilities from \avo\, in particular we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about device manufacturer specific vulnerabilities which makes them harder to tie down.
 For other vulnerabilities which might affect all Android devices it is hard to work out which devices they affect.
 For example \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability, we found 48 commits which fixed it in different branches, it was also accidentally fixed and later reintroduced and so determining which devices were vulnerable relies on knowing where on which branch the kernel was taken from.
@@ -638,8 +638,8 @@ Anecdotal evidence at least suggests that it is the lack of updates rather the l
 
 \section{Conclusion}
 \label{sec:conclusion}
-We have investigated the security of the Android operating system with respect to security updates and examined how the Android ecosystem results in different devices receiving different levels of security due to whether or not they get security updates.
-We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device to buy from which device manufacturer and network operator.
+We have investigated the security of the Android operating system with respect to security updates and examined how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates.
+We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
 Android attempts to provide good security to end users through sandboxing apps.
 However the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPerc\ of devices run the latest version of Android.
