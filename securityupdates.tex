@@ -364,7 +364,7 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \section{Experiments}
 \label{sec:results}
 We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities.
-Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of version changes are downgrades to older versions.
+Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
 Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} is the highest scoring device manufacturer and \emph{\daSecScoreBestoperator} is the highest scoring network operator.
 %\todo{comparison of nexus update rates with iOS}
 We describe four experiments.
@@ -479,8 +479,8 @@ Some devices start off in 2011 exposed to known security vulnerabilities and are
 \end{figure}
 We recorded update events and Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
 Mostly the dark cells are upgrades (above the diagonal) (\daNumUpdatesUpgrades).
-While many upgrades are from one version to the next version there are also a fair number (\daNumUpdatesBigUpgrades, \daPercBigUpgrades) which skip more than \daNumUpdatesSkippedBig\ versions.
-Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngrades) when older versions of Android are installed on to devices.
+While many upgrades are from one version to the next version there are also a fair number (\daNumUpdatesBigUpgrades, \daPercBigUpgradesNominal) which skip more than \daNumUpdatesSkippedBig\ versions.
+Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngradesNominal) when older versions of Android are installed on to devices.
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}.
