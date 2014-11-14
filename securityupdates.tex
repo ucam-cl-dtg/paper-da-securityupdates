@@ -568,48 +568,67 @@ There are several open questions which we have not yet been able to answer and r
 
 \section{Related work}
 \label{sec:related}
-We found that since 2011 \daMeanInsecurityPerc\ of devices on average were exposed to known critical vulnerabilities.
-In 2011 Felt et al.\ \cite{Felt2011} studied 6 Android handsets and found that they were exposed to root vulnerabilities at least 74\% of the time.
-This might indicate that over the last 3 years the security of Android has not improved, but these data are not directly comparable as their study was on 6 handsets considering the best possible update distribution while ours is on a large sample of devices with the real update distribution.
-They also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later larger studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
-Our results show root exploits are still a severe threat.
+Using the methods and data described in this paper we have determined that, on average, \daMeanInsecurityPerc\ of devices were exposed to known critical vulnerabilities between 2011 and 2014.
+Felt et al.\ studied 6 Android handsets in 2011 and found they were exposed to root vulnerabilities at least 74\% of the time~\cite{Felt2011} .
+Our approach differs from their study because they used data from 6 handsets and assumed the best possible update distribution, while our work is based on a large sample of devices tracking the actual update distribution.
+Nevertheless, the our own analysis and comparison with their work suggests protection against critical vulnerabilities has not improved significantly over the last 3 years. 
+Felt et al.\ also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later (larger) studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a}.
 
-Finding vulnerabilities is frequently a time consuming manual process but, Brumley et al. showed that it is possible to automatically generate exploits from binary patches~\cite{Brumley2008}.
-In a similar way some of the vulnerabilities\todolater{which?} in \avo\ which have been exploited were publicly found by examining the commit made to the Android which fixed the vulnerability.
-This effect has been observed before in the Firefox source code repositories~\cite{Barth2011}, Google does not release the source code until after the release of the update reducing this effect to the delay between an update being released and it reaching the last end user device.
-There have been other attempts to automatically find vulnerabilities.
-The Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
-The update process itself can allow Android apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
+Currently, finding and exploiting vulnerabilities is typically a time-consuming and manual process.
+Therefore an attacker has to invest significant human resource to first find a bug and then write code to exploit the vulnerability.
+To reduce the effort involved in finding a bug, attackers can look at security-related commits made to open source repositories.
+Previous work has shown attackers have taken this approach for the Firefox web browser~\cite{Barth2011}.
+Google does not release updates to the Android source code until after the release of the relevant security update.
+This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository from the period (\textbf{first fix}, \textbf{fix deployed}) to (\textbf{fixing release}, \textbf{fix deployed}).
+Unfortunately the time period between \textbf{fixing release} and \textbf{fix deployed} can be of the order of months. 
+For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed (25 months for 90\% of devices maybe fixed).
 
-The security protections used in iOS such as app review, code signing, Data Execution Prevention (DEP) and Address Space Layout Randomisation (ASLR) and mandatory access controls has resulted in a lower level of malware affecting iOS~\cite{Felt2011} but can still be bypassed~\cite{Wang2013a}.
+Recent work by Brumley et al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
+Similarly, the Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
+Once such automated techniques mature, it will become even more important to provide security updates promptly to every Android device in the ecosystem because an attacker can turn the contents of a \textbf{fixing release} into an exploit in a matter of minutes or hours.
 
-Various attempts have been made to detect malware.
-RiskRanker classified 3\,281/118\,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
-It uses signatures of exploits, static analysis of calls to high risk operations, detection of encrypted native code execution and dynamic Dalvik code loading to detect risky apps.
-DroidRanger found 148/182\,823 (0.08\%) apps to be malicious across multiple markets of which 29 were previously unknown~\cite{Zhou2012a}.
-It used permission-based behavioural fingerprinting -- looking at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
-AnDarwin detects similar apps, it found 169/265\,359 (0.06\%) malicious apps based on the difference in permissions between the malicious app and the app which had been cloned~\cite{Crussell2013}.
-It used clustering based on semantic vectors derived from the program dependence graphs to detect similar apps.
+Security in depth is also a useful strategy.
+In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-publication review of code, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}.) the technical prevention of dynamic code loading by an app.
+These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
+
+Rather than fixing critical vulnerabilities, security can be obtained by detect them and preventing the installation or execution of malicious apps.
+Detection strategies include RiskRanker, which classified 3\,281/118\,318 (2.8\%) apps as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an overall infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
+DroidRanger also analysed apps finding 148/182\,823 (0.08\%) apps to be malicious across multiple markets of which 29 were previously unknown~\cite{Zhou2012a}.
+%DroidRanger: It used permission-based behavioural fingerprinting which looked at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
+A common technique used by attackers takes existing popular apps and repackages them to include malicious code. 
+AnDarwin uses this insight to detect similar apps, and found 169/265\,359 (0.06\%) of all apps studied were malicious clones of genuine apps~\cite{Crussell2013}.
+%AnDarwin: It used clustering based on semantic vectors derived from the program dependence graphs to detect similar apps.
+Unfortunately, whilst successful in finding critical vulnerabilities, these techniques are not perfect.
 The Malware Genome project collected 1\,260 malware samples from 2010--2011~\cite{Zhou2012b}.
-They found that the best case for anti-malware detection on this data was 79.6\%.
-However DroidChameleon found that antivirus products could not detect malware if it was simply automatically permuted~\cite{Rastogi2013}.
-All these app analysis projects have been hampered by the difficulty of obtaining full datasets of Android apps as Google does not make these available (and researchers who automatically download them violate Google's Terms of Service).
-PlayDrone was a particularly effective project which circumvented Google's protective measures and downloaded over 1\,100\,000 apps from Google Play, allowing an in depth analysis~\cite{Viennot2014}.
+They found that the best case for anti-malware detection on their data was 79.6\%.
+Similarly, DroidChameleon found that antivirus products could not detect malware if the execution binary was automatically permuted~\cite{Rastogi2013}.
+Therefore detecting risky apps which might contain critical vulnerabilities is a useful tool, but it does not replace the need to provide security updates.
 
-Examining security update mechanisms has been used to assess security for many years.
-Many software update systems have been found not to authenticate the connection to the update server and/or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
-Even package management systems designed to provide secure updates have been found to have vulnerabilities~\cite{Cappos2008}.
-Fortunately Android does authenticate the update binaries (though the APK vulnerabilities circumvented this) and Google Play downloads them over a secure connection~\cite{Viennot2014}.
+%All these app analysis projects have been hampered by the difficulty of obtaining full datasets of Android apps as Google does not make these available (and researchers who automatically download them violate Google's Terms of Service).
+%PlayDrone was a particularly effective project which circumvented Google's protective measures and downloaded over 1\,100\,000 apps from Google Play, allowing an in depth analysis~\cite{Viennot2014}.
 
-The updatedness rate for Android of \daUpdatednessPerc\ compares unfavourably with the more than 90\% rate for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006} though that is within one OS version and only for those computers which did connect to the servers -- but that is the default.
-However 27\% of Windows computers were still running Windows XP in July 2014\footnote{\url{https://archive.today/PLGxn}\todolater{Get updated figures before publication}} -- four months after it went out of security support.
+The security update process itself also needs to be secure.
+Unfortunately, package management systems designed to provide secure updates have been found to contain vulnerabilities~\cite{Cappos2008} and many software update systems fail to authenticate the connection between the device and the update server or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
+Android does authenticate the update binaries and Google Play downloads them over a secure connection~\cite{Viennot2014}.
+In this paper we have analysed critical flaws in the Android app update mechanism through three vulnerabilities: APK unsigned shorts, APK unchecked name and APK duplicate file. 
+Other work has demonstrate complex and subtle errors which exist in an update process.
+For example, the Android update process can be exploited to allow apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
 
-User-Agent strings have been used to investigate how web browser versions change with updates~\cite{Frei2008} and found that at most 80\% of Firefox users were running the most recent version.
+The percentage of Android devices running the most recent version (\daUpdatednessPerc\) compares unfavourably with the rate (>90\% ) for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006}.
+This comparison is a little unfair because only one major OS version was considered in the analysis, and data was only collected from computers which contacted the update server, although this was the default.
+More recent data demonstrates the difficulty of upgrading computers between major OS versions, with 27\% of Windows computers were still running Windows XP in July 2014,\footnote{\url{https://archive.today/PLGxn}} four months after Windows XP stopped receiving security updates.
+
+User-Agent strings have been used to investigate the timeliness of web browser updates~\cite{Frei2008}, with at most 80\% of Firefox users running the most recent version.
 The same analysis was used to show that Chrome's use of silent updates seems to increase uptake of upgrades~\cite{Duebendorfer2010} with 97\% of users running the latest version within 3 weeks of release.
-Android's update process is manual, the user is notified but must action the upgrade which will then download the update and install it, the phone is rendered inoperable during the update process which is inconvenient for users and the phone must have sufficient charge (users are advised to plug it in) so that it will not run out during the update process.
-Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
-The same technique would be more difficult on phones with limited storage space (as many cheap Android phones have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
-Google is deploying the same silent update technique through Google Play Services\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this also bypasses the device manufacturer and network operator.
+By way of comparison, Android's update process is manual.
+The user is notified an update exists, but further action is required, including downloading the update and rebooting the phone to enable installation.
+The phone must have sufficient charge to perform the update and the device itself is rendered inoperable during the update process, two factors which might prevent or delay the update process from taking place.
+In our data we are unable to determine why a device is not updated. 
+It is possible that many more updates arrive at handsets, but are simply not installed.
+Anecdotal evidence at least suggests that it is the lack of updates rather the lack of installation which is the major problem at present. Further work is required to tease apart these numbers.
+%Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
+%The same technique would be more difficult on phones with limited storage space (as many cheap Android phones have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
+%Google is deploying the same silent update technique through Google Play Services\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this also bypasses the device manufacturer and network operator.
 
 
 
