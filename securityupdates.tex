@@ -125,7 +125,7 @@ This graph is explained further in \S\ref{sec:exp:versionsecurity}.
 In order to determine whether an individual smartphone is vulnerable to a particular exploit, we need to combine vulnerability data with the operating system version string and additional update information from the handset. 
 For this we use handset data gathered from \daNumOSDevices\ devices in the \da~\cite{Wagner2013} project.
 This analysis allows us to plot the proportion of Android devices in the \da\ data which were running versions of Android known to have vulnerabilities at the time and is shown in Figure~\ref{fig:proportioninsecure}.
-The Figure shows the proportion of devices split into three categories: 
+The figure shows the proportion of devices split into three categories:
 (1)~\emph{secure} because they are running a version of Android with no known vulnerabilities; 
 (2)~\emph{insecure} because the device was running an insecure version of Android with a build released before the vulnerability was fixed or discovered; and 
 (3)~\emph{maybe insecure} because the device is running a version of Android known to be insecure but has received an update which might contain a backported fix as we did not observe that build number until after the vulnerability was known.
@@ -295,9 +295,9 @@ There is no canonical source of Android release dates, our best guesses and supp
 
 This data shows a large gap from 2011-10-06 to 2013-02-18 where we do not know of any discoveries of critical vulnerabilities affecting Android devices.
 The cause of this quiet period is unclear.
-Possible explanations are: That since most devices were exposed to known vulnerabilities there was no point in looking for new ones (from Figure~\ref{fig:proportioninsecure}).
-That device manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices?
-That device manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus.
+Possible explanations are: (i) That since most devices were exposed to known vulnerabilities there was no point in looking for new ones (from Figure~\ref{fig:proportioninsecure}).
+(ii) That device manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices.
+(iii) That device manufacturer specific vulnerabilities (which we are ignoring) proved to be easier to find and so people looking for vulnerabilities adjusted their focus.
 
 \section{Android Ecosystem}\label{sec:android_ecosystem}
 There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
