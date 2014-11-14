@@ -550,25 +550,20 @@ SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
 When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
-We have not included all the vulnerabilities from \avo\, in particular we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
-There also tends to be less public information available about device manufacturer specific vulnerabilities which makes them harder to tie down.
-For other vulnerabilities which might affect all Android devices it is hard to work out which devices they affect.
-For example \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability, we found 48 commits which fixed it in different branches, it was also accidentally fixed and later reintroduced and so determining which devices were vulnerable relies on knowing where on which branch the kernel was taken from.
-For some vulnerabilities the corresponding patch is not in AOSP despite some device manufacturers having shipped builds containing the fix, which makes working out what is going on more difficult.
-For \emph{RageAgainstTheCage adb}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/RageAgainstTheCage_adb}} and \emph{keystore buffer}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/keystore_buffer}} vulnerabilities which we do have sufficient data it is not clear whether they are truly critical vulnerabilities as the former may require physical ADB access and the latter may be protected by a sandbox.
-However those two vulnerabilities make little difference to our results as they affect few devices.
+We have not included all the vulnerabilities from \avo. 
+In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+There also tends to be less public information available about manufacturer-specific vulnerabilities which makes them harder to tie down.
 
-\subsection{Open questions}
-There are several open questions which we have not yet been able to answer and remain future work.
-\begin{itemize}
- \item Why was there a gap in vulnerability discovery in Android in 2012?
- \item Why do so many devices have ADB enabled? \daAdbEnabledPerc\ seems rather high for a developer feature. This could be a selection bias or device manufacturers could be enabling it by default.
- \item How much of updating is new handsets and how much is updates being deployed? Over time newer versions of Android come to dominate, but quantifying what proportion of that is due to new phones being purchased and what proportion is due to updates to existing devices is a question we cannot answer.
- The only available large data set we know of with longitudinal traces of Android devices OS version numbers is \da\ but that only records \daNumUpdatesUpgrades\ upgrades which broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month which is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
- \item Why do users downgrade their phones?
-\end{itemize}
+For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
+For example, \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability. We found 48 commits which fixed this vulnerability on different branches. On some branches it was also accidentally fixed, and later reintroduced, before finally being fixed properly, and therefore determining which devices were vulnerable relies on knowing where, and on which branch, the kernel code for a specific release was taken from.
+For some vulnerabilities the required patch is not in AOSP. This is despite the fact that some device manufacturers have shipped builds containing the fix. This also made it difficult to determine whether a specific device was vulnerable or not.
+For \emph{RageAgainstTheCage adb}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/RageAgainstTheCage_adb}} and \emph{keystore buffer}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/keystore_buffer}} vulnerabilities we do not have sufficient data to determine whether they fit one of our attack vectors as the former may require physical ADB access and the latter may be thwarted by the sandbox.
+However a sensitivity analysis showed that those two vulnerabilities make little difference to our results as they affect few devices.
 
-
+We still do not know where new versions of Android come from. Over time newer versions of Android come to dominate, but quantifying the proportion due to new phone purchases verses the proportion due to updates of existing devices is unknown.
+ Device Analyzer is the only available large data set we know of with longitudinal traces of Android OS version strings.
+ Unfortunately this data set only records \daNumUpdatesUpgrades\ upgrades which, broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month. This is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
+ 
 \section{Related work}
 \label{sec:related}
 Using the methods and data described in this paper we have determined that, on average, \daMeanInsecurityPerc\ of devices were exposed to known critical vulnerabilities between 2011 and 2014.
