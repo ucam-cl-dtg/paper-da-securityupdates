@@ -287,7 +287,7 @@ During the period in which \da\ data was collected the date when a version of An
 For vulnerabilities prior to the collection period we estimate the release date as best we can using publicly available data.
 There is no canonical source of Android release dates, and our best guesses and supporting references are available from \avo.
 
-The discovery dates of our vulnerabilities does not appear to be uniform uniform. 
+The discovery dates of our vulnerabilities does not appear to be uniform. 
 In particular the data shows a large gap from 2011-10-06 to 2013-02-18 where we do not know of any discoveries of critical vulnerabilities affecting all Android devices.
 The cause of this quiet period is unclear.
 Possible explanations are that: (i) most devices were exposed to known vulnerabilities so there was no point in looking for new ones (from Figure~\ref{fig:proportioninsecure});
@@ -313,16 +313,15 @@ In this section we describe how the Android ecosystem functions and how Android 
 \end{figure}
 To understand how vulnerabilities in Android are fixed we must examine the Android update process which we model in Figure~\ref{fig:update_ecosystem}.
 There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
-Android builds on various open source projects such as the Linux kernel, the OpenSSL and BouncyCastle cryptography libraries and so can include any compatible versions of those projects, including those which fix security vulnerabilities.
+Android builds on various open source projects such as the Linux kernel, OpenSSL and BouncyCastle cryptography libraries.
+Consequently Android can include any compatible versions of those projects, including those which fix security vulnerabilities.
 Android also incorporates various drivers for different bits of hardware.
-The Android platform is then built on top of those with kernel and userspace components by Google.
-The code for each update is kept secret\footnote{\url{https://source.android.com/source/code-lines.html}}\todolater{Can we quantify this keeping the code secret? Is it worth it?} until after the update has been published.
-Device manufacturers may receive advance copies in order to prepare handsets.
-Then the device manufacturers take the update and customise it before passing it on to the network operator.
-The network operator may then make further customisations and do further testing before shipping the update to the Device.
-Sometimes device manufactures ship direct to the user, sometimes the device manufacturer and Google collaborate closely for the purpose of a particular phone, such as with Nexus phones, and hence are harder to separate.
-Sometimes device manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example including a broken daily build of sqlite in their release of Android~\cite{Wagner2013}.
-\todolater{use statistics from samsung-updates.com -> how many binaries are there per device?}
+The Android platform is then built from these components by Google.
+The code for each Android release or update is kept secret\footnote{\url{https://source.android.com/source/code-lines.html}} until after a binary release has been published.
+Device manufacturers likely receive advanced access in order to prepare handsets so they can customise it before passing it on to the network operator.
+The network operator may then make or request further customisations and perform further testing before shipping the update to the Device.
+Sometimes device manufactures ship updates directly to the user, sometimes the device manufacturer and Google collaborate closely to make a particular phone, such as with Nexus devices.
+Sometimes device manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example previous work has recorded evidence of broken nightly builds of sqlite in Android releases~\cite{Wagner2013}.
 
 The numbers of devices (\daNumOSDevices), network operators (\daNumOperators) and device manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
 Device manufacturer and network operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
@@ -364,30 +363,39 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 
 \section{Experiments}
 \label{sec:results}
-We present the results of our analysis showing \daMeanInsecurityPerc\ of devices to have critical vulnerabilities on average.
-On average only \daUpdatesPerYear\ updates reach a device each year and \daPercUpdatesDowngrades\ of version changes are downgrades to older versions.
+We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities.
+Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of version changes are downgrades to older versions.
 Nexus devices are better than others, \emph{\daSecScoreBestmanufacturer} is the highest scoring device manufacturer and \emph{\daSecScoreBestoperator} is the highest scoring network operator.
 %\todo{comparison of nexus update rates with iOS}
-We conducted three experiments examining the behaviour of the Android ecosystem as a whole (\S\ref{sec:exp:android_ecosystem}), updates reaching particular devices (\S\ref{sec:exp:device_updates}) and comparisons between different device manufacturers and network operators (\S\ref{sec:exp:security_score}).
+We describe four experiments.
+We examine the vulnerability of the Android ecosystem as a whole (\S\ref{sec:exp:versionsecurity}, explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}), quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}) and compare the performance of different device manufacturers and network operators (\S\ref{sec:exp:security_score}).
 
 %% In an experiment you test a hypothesis, it needs to be clear what the hypothesis is and what the conclusion of the test is
 
 \subsection{Experiment 0: vulnerability of Android devices}\label{sec:exp:versionsecurity}
-In Figure~\ref{fig:proportioninsecure} we showed the vulnerability of devices in \da\ to known critical Android vulnerabilities.
-Initially the plot is all `maybe insecure' (yellow) as since \da\ does not have historical data from before that point we cannot distinguish between devices which are running a version of Android which is known to be vulnerable but which have a backported fix and those which do not have a backported fix as we do not have data on what builds existed before the vulnerability was discovered.
-This shows the importance of a longitudinal study as this analysis requires years of data.
-Once \emph{zergRush} was discovered the plot goes mostly `insecure' (red) as most devices were exposed to that vulnerability but some were already running a version of Android which fixed that vulnerability and so from that point until the discovery of \emph{APK duplicate file} the graph shows progressively more `secure' green.
-From that point onwards the more regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
+
+In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptable to at least one critical vulnerability.
+
+\subsubsection{Method} 
+To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
+The \da\ data used here was collected between \daStartDate\ and \daEndDate.
+The \avo\ data covers the period from \avoFirstDataDate\ to \avoLastDataDate.
+For each device we collected daily version data  and recorded the running version and any associated vulnerabilities it was exposed to at that time (if any).
+We then normalise these totals for each day by dividing through by the total number of devices with version information seen on that day.
+
+\subsubsection{Results}
+
+Following time from left to right in Figure~\ref{fig:proportioninsecure} we see all devices are initially \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011. This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
+This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
+Once \emph{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as most devices were exposed to that vulnerability.
+The remanding devices were already running a version of Android which fixed the \emph{zergRush} vulnerability and are therefore marked as  \emph{secure} (green).
+From October 2011 until the discovery of \emph{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded. This means more and more devices are marked as \emph{secure} (green) because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
+From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
 
 \subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 
-\subsubsection{Method}
-To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
-The \da\ data used here was collected between \daStartDate\ and \daEndDate.
-The \avo\ data covers the period from \avoFirstDataDate\ to \avoLastDataDate.
-For each device, for every day with version data we record what version it was running and which vulnerabilities it was exposed to at that time (if any).
-We then normalise these totals for each day by the total number of devices with version information seen on that day.
+\subsubsection{Method} As in Experiment 0, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 
 \subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
@@ -429,7 +437,7 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that it allows us to look at what happens to individual devices over time.
 
 \subsubsection{Method}
-As in Experiment 1, for each device we used the version information from each day to calculate which vulnerabilities it was vulnerable to that day.
+As in Experiment 0, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 We also recorded when the version changed and which versions it changed from and to.
 In the \da\ data we have over 1000 devices contributing data in any particular week.
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
