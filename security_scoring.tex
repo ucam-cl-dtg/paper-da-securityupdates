@@ -2,7 +2,7 @@
 \label{sec:security_scoring}\label{sec:exp:security_score}
 
 To allow buyers of Android devices to purchase those devices which have the best security they need to know how different device manufacturers, device models and network operators compare in terms of the security they provide.
-We propose a method to score a device manufacturer, network operator or device model based on its historic performance at keeping devices up to date and fixing security vulnerabilities.
+We propose a method to score a device manufacturer, device model or network operator based on its historic performance at keeping devices up to date and fixing security vulnerabilities.
 We find that Android as a whole gets a score of \daSecurityScore\ out of 10, the highest scoring device manufacturer is \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) and the lowest scoring is \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10).
 
 \subsubsection{Method: Scoring for security}
@@ -50,7 +50,7 @@ We can compute the uncertainty for $f$ and $u$.
 $f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
 The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
 Since the numbers involved are large, the uncertainty in $f$ is small.
-$u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have sqrt uncertainties.
+$u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have square root uncertainties.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 
 \todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
@@ -62,7 +62,7 @@ A high value of $m$ could be achieved by focusing on only one device at a time a
 \footnote{One way to influence our scores would be to add additional devices to Device Analyzer which have good security, these would have to be real end user devices as we could detect fake ones, this would increase the size of our data set and would require providing genuinely good security to some users.}
 
 \subsubsection{Results: Security scores}
-The scores across the whole of android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
+The scores across the whole of Android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
 There are on average \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device.
 Only on average \daUpdatednessPerc\ of devices run the most recent version of Android.
 This gives a security score of \daSecurityScore\ out of 10.

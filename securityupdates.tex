@@ -116,7 +116,7 @@ We present a better understanding of both the ecosystem of Android development a
 \begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
-\caption{Proportion of devices running insecure, maybe insecure and secure versions of Android against time.
+\caption{Proportion of devices running insecure, maybe secure and secure versions of Android against time.
 The red vertical lines are caused by vulnerabilities being discovered with those which have the biggest impact annotated.
 This graph is explained further in \S\ref{sec:exp:versionsecurity}.
 }
@@ -129,7 +129,7 @@ This analysis allows us to plot the proportion of Android devices in the \da\ da
 The figure shows the proportion of devices split into three categories:
 (1)~\emph{secure} because they are running a version of Android with no known vulnerabilities; 
 (2)~\emph{insecure} because the device was running an insecure version of Android with a build released before the vulnerability was fixed or discovered; and 
-(3)~\emph{maybe insecure} because the device is running a version of Android known to be insecure but has received an update which might contain a backported fix as we did not observe that build number until after the vulnerability was known.
+(3)~\emph{maybe secure} because the device is running a version of Android known to be insecure but has received an update which might contain a backported fix as we did not observe that build number until after the vulnerability was known.
 Further analysis into the propagation of updates in Android is presented in \S\ref{sec:exp:android_ecosystem}.
 
 It is clear from Figure~\ref{fig:proportioninsecure} that Android devices are often exposed to known security vulnerabilities.
@@ -428,7 +428,7 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 
 \begin{figure*}
  \includegraphics[width=\textwidth]{figures/nvulnerabilities_heat.pdf}
- \caption{Proportion of devices affected by different vulnerabilities. The prefix `(maybe)' indicates `maybe insecure' and `(definite)' indicates `definitely insecure'. The first few vulnerabilities are all `maybe insecure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices. The change in behaviour after August 2014 is explained in \S\ref{sec:da_changes}}
+ \caption{Proportion of devices affected by different vulnerabilities. The prefix `(maybe)' indicates `maybe secure' and `(definite)' indicates `definitely insecure'. The first few vulnerabilities are all `maybe secure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices. The change in behaviour after August 2014 is explained in \S\ref{sec:da_changes}}
  \label{fig:nvulnerabilities_heat}
 \end{figure*}
 
@@ -524,7 +524,7 @@ This compares badly with the number of critical vulnerabilities discovered per y
 \end{figure}
 The data from \da\ we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
 Unfortunately there is no authoritative source of OS version information and so we cannot check directly whether our data is representative.
-However Google has published API version information every month since December 2009 and we have collated this information.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
+However Google has published API version information almost every month since December 2009 and we have collated this information.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions is similar to the Google Data on API versions then the \da\ data on OS versions should be representative.
 Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from \da\ and they appear similar.
 Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
@@ -551,7 +551,7 @@ Capability based enforcement systems such as Capsicum~\cite{Watson2010} substant
 When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
 
 We have not included all the vulnerabilities from \avo. 
-In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them.\url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about manufacturer-specific vulnerabilities which makes them harder to tie down.
 
 For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
@@ -579,7 +579,7 @@ Previous work has shown attackers have taken this approach for the Firefox web b
 Google does not release updates to the Android source code until after the release of the relevant security update.
 This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository from the period (\textbf{first fix}, \textbf{fix deployed}) to (\textbf{fixing release}, \textbf{fix deployed}).
 Unfortunately the time period between the \textbf{fixing release} and \textbf{fix deployed} can be of the order of months. 
-For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed\footnote{Definitely fixed is 1 $-$ (definitely insecure + maybe insecure), maybe fixed is 1 $-$ definitely insecure} (25 months for 90\% of devices maybe fixed).
+For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed\footnote{Definitely fixed is 1 $-$ (definitely insecure + maybe secure), maybe fixed is 1 $-$ definitely insecure} (25 months for 90\% of devices maybe fixed).
 
 Recent work by Brumley et al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
 Similarly, the Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
