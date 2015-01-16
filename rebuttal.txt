@@ -1,79 +1,41 @@
 
-REVIEWER #59A
+We don't claim to make a technical contribution.
+The call is for "advances in the theory, design, implementation, analysis, verification, or empirical evaluation and measurement of secure systems."
+We have provided an empirical evaluation and measurement of Android.
 
-The plural of anecdote is not data. In this context, this paper is the
-solution to the problem in Android updates: public data quantifying
-which manufacturers and devices are good, and which are bad, is the way
-in which we will see industry improvements in security. We will publish
-(and update this information) on androidvulnerabilities.org.
+We have confirmed the conventional wisdom, but provide solid evidence.
+In this context, this paper is the solution to the problem of slow Android updates: public data comparing manufacturers and device models, provides market pressure for industry improvements in security.
+We will publish (and update) this information on androidvulnerabilities.org.
 
-In terms of sensitivity of our results to the anomaly caused by the
-Bangladesh study: Our headline figure of devices being vulnerable to root
-exploits of 87.6% of the time becomes 87.7% if we discard all data after
-the start of the study.
+Regarding the Bangladesh study anomaly:
+Truncating our data before it starts increases the percentage of vulnerable devices from 87.6% to 87.7% and decreases the percentage of devices running the latest version from 5.58% to 5.43%.
 
-Additionally the bias in the data set doesn't affect our main conclusions
+When we see a new version on one device, often we see all other devices with the same model receive the update promptly, regardless of operator or user behaviour.
+By looking at our data, 50% of devices update to a newly available build number within 26 days, with a long tail thereafter.
+Update behaviour is consistent within device models with some being fast and others slow to deploy.
+This means that the user is unlikely to be the problem and that the bottleneck is with Google, the Manufacturer or, for some devices, the Operator.
+This is based on the significant devices shown in Table V.
+
+This means that the bias in the data doesn't affect our main conclusions
 about particular manufacturers or device models (i.e. "buy a Nexus device").
-Within a device model update behaviour appears to be fairly homogeneous, and
-so bias will affect which device models we have significant data for but not
-the results for a device model.
+While bias will affect which device models we analyse it will not affect the result of that analysis.
 
-To put in the paper (we perhaps should have included this data in the
-first version of the paper, sorry): when we see an update on one device,
-we see all other devices with the same make and model receive the
-update, regardless of Operator. This means that the operator and user
-are unlikely to be the problem. This implies the bottleneck is with
-Google and/or the Manufacturer. We could put more data on this in the paper.
-We want to be able to say something like (BY FRIDAY!): "By looking at our data, 90% of
-devices update to a newly available build number within three weeks.
-This is true for all devices for which we have substantial number,
-including Nexus 4, XXX, YYY, ZZZ."
+Short contributions are not a problem as we are getting a sample from the distribution of all the devices.
 
-Short lifespan is not a problem: we are simply getting a sample from all
-the devices.
-
-We have zero reported cases where Device Analyzer has been broken by an
-OS update. Apps being broken by OS updates is unlikely to be acceptable to
-users and so Google works very hard to ensure backwards compatibility.
-
-We don't believe Google at fault: the fact that Nexus devices are better
-than others means there is a difference between manufacturers. We
-believe it is reasonable to assume that Google tells other manufacturers
-at the same time that they fix Nexus builds. We also know there are long
-delays between a Google AOSP release and a manufacturer update.
-Therefore the problem lies with the manufacturers.
+We have zero cases where Device Analyzer has been broken by an OS update, Android has good backwards compatibility.
 
 "On the other hand, when the proportion of vulnerable devices drops,
 it might be due to vulnerable devices leaving, or patched devices
 joining." -> If a user stops using their phone because it is vulnerable,
-then this is okay: a vulnerable phone is no longer in circulation. If a
-user discovers their phone is vulnerable, and uninstalls DA but carries
-on using it, then this is a problem, but we think this is unlikely.
+then this is okay: as it is no longer in circulation. It is unlikely that a
+user would discover their phone is vulnerable, and uninstall DA but carry
+on using it.
 
-We can expand Table II if the reviewers think this is useful.
+We the paper explains the reason for the exp in the scoring function just before Equation 1.
 
-REVIEWER #59B
-
-We don't claim to make a technical contribution. The call states that
-the conference is looking for "advances in the theory, design,
-implementation, analysis, verification, or empirical evaluation and
-measurement of secure systems." We believe we have provided a thorough
-and detailed empirical evaluation and measurement of Android.
-
-The sample bias and the short periods of device participation are not a
-problem as explained above.
-
-
-The user is unlikely to be at fault. Once we see an update for one
-make/model, we see it deployed quickly and widely as discussed above,
-which suggests that the problem lies in the lack of an update to install. 
-
-We explain in the paper the reason for the exp in the scoring function just
-before Equation 1.
-
-We can of course construct any scoring function we like! We have explained
-why the three variables are useful in the paper. A linear combination of
+We can of course construct any scoring function we like! The paper explains
+why the three variables are useful. A linear combination of
 f, u and 1/exp(m) is reasonable because we are interested in devices which
 perform well against all three measures.
 
-We would happily present tabular data as bar charts if preferred.
+We can expand Table II if useful.
