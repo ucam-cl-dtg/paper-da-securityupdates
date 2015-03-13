@@ -12,10 +12,10 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
-\usepackage[disable]{todonotes}
+\usepackage{todonotes}%[disable]
 \let\OldTodo\todo
 \renewcommand{\todo}{\OldTodo[inline]}
-\newcommand{\todolater}[1]{}%\todo
+\newcommand{\todolater}[1]{\todo{#1}}%{}%
 \RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex, style=ieee]{biblatex}
 \addbibresource{securityupdates.bib}
 \renewcommand{\bibfont}{\small}
@@ -39,8 +39,8 @@
 \newcommand{\otherProjNum}{\avoNumExternalProjects}%TODO check we are doing the right calculation here and not overcounting
 
 % Blinding function
-\newcommand{\identifying}[1]{}%{#1}%
-\newcommand{\blindauthors}[1]{Paper \#59}%{#1}%
+\newcommand{\identifying}[1]{#1}%{}%
+\newcommand{\blindauthors}[1]{#1}%{Paper \#59}%
 
 \begin{document}
 \title{Timeliness of security updates for Android}
@@ -542,7 +542,7 @@ One study was conducted in Norway with 654 installs of \da\ and one was conducte
 This is responsible for the sudden change in distribution of OS versions in \da\ shown towards the end of Figures \ref{fig:norm_os}, \ref{fig:nvulnerabilities_heat} and \ref{fig:proportioninsecure} as for that period Bangladeshi users contributed over half of the \da\ data.
 %We could normalise out the influence of the Bangladeshi users, however they are Android users too and they also need security updates.
 Since most \da\ users are self selecting and install \da\ because they want to find out more about what their phone is doing or to aid research they may be biased and perhaps more likely to install updates.
-
+\todo{Sensitivity analysis for Bangladesh users}
 
 \section{Discussion} \label{sec:discussion}
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and more widely.
