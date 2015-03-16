@@ -1132,6 +1132,15 @@
     pages = "48"
 }
 
+@online{Bergman2012,
+    author = "Bergman, Neil",
+    url = "http://d3adend.org/blog/?p=314",
+    urldate = "2015-01-09",
+    title = "{Abusing WebView JavaScript Bridges}",
+    year = "2012",
+    month = "12"
+}
+
 @article{Berkel2009,
     author = "van Berkel, C.H. (Kees)",
     year = "2009",
@@ -1692,6 +1701,15 @@
     file = "::",
     year = "2006",
     pages = "171--183"
+}
+
+@article{Brazdil2015,
+    author = "Brazdil, David and Xu, Rubin and Beresford, Alastair R.",
+    abstract = "Apps for smartphones today come with a fixed fea- ture set and consequently users are unable to fix bugs, customise their apps, or explore what apps do with their data. In this paper we introduce Dexter, a binary rewriting framework for Android apps which can run on a PC or Android device. Dexter enables developers to add features, explore privacy issues, or fix security flaws in existing apps. Dexter is currently able to recompile 3600 (99\%) out of 3650 apps in our sample database. We showcase the capability of our framework through two case studies. In the first, we demonstrate a method of rewriting an app so that the modified version tracks the informa- tion flows of personal data inside the app itself. In- strumented apps produced by our implementation are, on average, 48\% larger than the original and incur a performance overhead factor of between 1 and 4 times the original for CPU and graphics microbenchmarks. In our second case study we describe how Dexter can be used to fix a serious security vulnerability in Android WebViews. Neither of our case studies require a custom version of Android or a rooted handset, and therefore apps rebuilt using Dexter, as well as Dexter itself, can be run on a normal device.",
+    year = "2015",
+    journal = "Under submission",
+    file = ":home/drt24/Downloads/BrazdilEtAl-Dexter.pdf:pdf",
+    title = "{Dexter: a rewriting framework for Android binaries}"
 }
 
 @article{Bresciani2008,
@@ -3834,6 +3852,21 @@
     institution = "University of California"
 }
 
+@article{Felt2011a,
+    author = "Felt, Adrienne Porter and Chin, Erika and Hanna, Steve and Song, Dawn and Wagner, David",
+    doi = "10.1145/2046707.2046779",
+    isbn = "9781450309486",
+    title = "{Android permissions demystified}",
+    url = "http://dl.acm.org/citation.cfm?doid=2046707.2046779",
+    abstract = "Android provides third-party applications with an extensive API that includes access to phone hardware, settings, and user data. Access to privacy- and security-relevant parts of the API is controlled with an install-time application permis- sion system. We study Android applications to determine whether Android developers follow least privilege with their permission requests. We built Stowaway, a tool that detects overprivilege in compiled Android applications. Stowaway determines the set of API calls that an application uses and then maps those API calls to permissions. We used auto- mated testing tools on the Android API in order to build the permission map that is necessary for detecting overpriv- ilege. We apply Stowaway to a set of 940 applications and find that about one-third are overprivileged. We investigate the causes of overprivilege and find evidence that developers are trying to follow least privilege but sometimes fail due to insufficient API documentation:",
+    issn = "09581669",
+    pages = "627",
+    file = ":home/drt24/Downloads/p627-felt.pdf:pdf",
+    year = "2011",
+    keywords = "android,least privilege,permissions",
+    journal = "Proceedings of the 18th ACM conference on Computer and communications security - CCS '11"
+}
+
 @article{Ferreira2011,
     author = "Ferreira, Denzil and Dey, Anind K. and Kostakos, Vassilis",
     isbn = "978-3-642-21725-8",
@@ -4313,6 +4346,19 @@
     booktitle = "STOC"
 }
 
+@article{Georgiev2014,
+    author = "Georgiev, Martin and Jana, Suman and Shmatikov, Vitaly",
+    publisher = "Internet Society",
+    doi = "10.14722/ndss.2014.23323",
+    isbn = "1891562355",
+    title = "{Breaking and Fixing Origin-Based Access Control in Hybrid Web/Mobile Application Frameworks}",
+    url = "http://www.cs.utexas.edu/users/shmat/shmat_ndss14nofrak.pdf",
+    abstract = "Hybrid mobile applications (apps) combine the features of Web applications and “native” mobile apps. Like Web applications, they are implemented in portable, platform- independent languages such as HTML and JavaScript. Like native apps, they have direct access to local device resources—file system, location, camera, contacts, etc. Hybrid apps are typically developed using hybrid application frameworks such as PhoneGap. The purpose of the framework is twofold. First, it provides an embedded Web browser (for example,WebView on Android) that executes the app’sWeb code. Second, it supplies “bridges” that allow Web code to escape the browser and access local resources on the device. We analyze the software stack created by hybrid frameworks and demonstrate that it does not properly compose the access- control policies governing Web code and local code, respectively. Web code is governed by the same origin policy, whereas local code is governed by the access-control policy of the operating system (for example, user-granted permissions in Android). The bridges added by the framework to the browser have the same local access rights as the entire application, but are not correctly protected by the same origin policy. This opens the door to fracking attacks, which allow foreign-origin Web content included into a hybrid app (e.g., ads confined in iframes) to drill through the layers and directly access device resources. Fracking vulnerabilities are generic: they affect all hybrid frameworks, all embedded Web browsers, all bridge mechanisms, and all platforms on which these frameworks are deployed. We study the prevalence of fracking vulnerabilities in free Android apps based on the PhoneGap framework. Each vul- nerability exposes sensitive local resources—the ability to read and write contacts list, local files, etc.—to dozens of potentially maliciousWeb domains.We also analyze the defenses deployed by hybrid frameworks to prevent resource access by foreign-origin Web content and explain why they are ineffectual. We then present NOFRAK, a capability-based defense against fracking attacks. NOFRAK is platform-independent, compatible with any framework and embedded browser, requires no changes to the code of the existing hybrid apps, and does not break their advertising-supported business model. I.",
+    file = ":home/drt24/Downloads/shmat\_ndss14nofrak (1).pdf:pdf",
+    year = "2014",
+    journal = "NDSS"
+}
+
 @inproceedings{Gersch2012,
     author = "Gersch, Joe and Massey, Dan",
     title = "{Reverse-DNS Naming Convention for CIDR Address Blocks}",
@@ -4579,6 +4625,22 @@
     address = "Tucson, Arizona, USA",
     keywords = "in-app advertisement,privacy,smartphone",
     booktitle = "WiSec"
+}
+
+@article{Grace2012d,
+    author = "Grace, Michael C and Zhou, Wu and Jiang, Xuxian and Sadeghi, Ahmad-Reza",
+    doi = "10.1145/2185448.2185464",
+    isbn = "978-1-4503-1265-3",
+    title = "{Unsafe exposure analysis of mobile in-app advertisements}",
+    url = "http://doi.acm.org/10.1145/2185448.2185464",
+    abstract = {In recent years, there has been explosive growth in smartphone sales, which is accompanied with the availability of a huge number of smartphone applications (or simply apps). End users or consumers are attracted by the many interesting features offered by these devices and the associated apps. The developers of these apps are also benefited by the prospect of financial compensation, either by selling their apps directly or by embedding one of the many ad libraries available on smartphone platforms. In this paper, we focus on potential privacy and security risks posed by these embedded or in-app advertisement libraries (henceforth "ad libraries," for brevity). To this end, we study the popular Android platform and collect 100,000 apps from the official Android Market in March-May, 2011. Among these apps, we identify 100 representative in-app ad libraries (embedded in 52.1\% of them) and further develop a system called AdRisk to systematically identify potential risks. In particular, we first decouple the embedded ad libraries from host apps and then apply our system to statically examine the ad libraries, ranging from whether they will upload privacy-sensitive information to remote (ad) servers or whether they will download untrusted code from remote servers. Our results show that most existing ad libraries collect private information: some of them may be used for legitimate targeting purposes (i.e., the user's location) while others are hard to justify by invasively collecting the information such as the user's call logs, phone number, browser bookmarks, or even the list of installed apps on the phone. Moreover, additional ones go a step further by making use of an unsafe mechanism to directly fetch and run code from the Internet, which immediately leads to serious security risks. Our investigation indicates the symbiotic relationship between embedded ad libraries and host apps is one main reason behind these exposed risks. These results clearly show the need for better regulating the way ad libraries are integrated in Android apps.},
+    number = "Section 2",
+    pages = "101--112",
+    volume = "067",
+    file = ":home/drt24/Downloads/week2b.pdf:pdf",
+    year = "2012",
+    keywords = "in-app advertisement,privacy,smartphone",
+    journal = "Proc. 5th ACM conference on Security and Privacy in Wireless and Mobile Networks"
 }
 
 @inproceedings{Graham1982,
@@ -6471,6 +6533,17 @@
     booktitle = "Proceedings of the 8th ACM Conference on Embedded Networked Sensor Systems - SenSys '10"
 }
 
+@inproceedings{Luo2011,
+    author = "Luo, Tongbo and Hao, Hao and Du, Wenliang and Wang, Yifei and Yin, Heng",
+    isbn = "9781450306720",
+    title = "{Attacks on WebView in the Android System}",
+    abstract = "WebView is an essential component in both Android and iOS platforms, enabling smartphone and tablet apps to embed a simple but powerful browser inside them. To achieve a bet- ter interaction between apps and their embedded“browsers”, WebView provides a number of APIs, allowing code in apps to invoke and be invoked by the JavaScript code within the web pages, intercept their events, and modify those events. Using these features, apps can become customized “browsers” for their intended web applications. Currently, in the Android market, 86 percent of the top 20 most down- loaded apps in 10 diverse categories use WebView. The design ofWebView changes the landscape of theWeb, especially from the security perspective. Two essential pieces of the Web’s security infrastructure are weakened if Web- View and its APIs are used: the Trusted Computing Base (TCB) at the client side, and the sandbox protection im- plemented by browsers. As results, many attacks can be launched either against apps or by them. The objective of this paper is to present these attacks, analyze their funda- mental causes, and discuss potential solutions.",
+    pages = "343----352",
+    file = ":home/drt24/Downloads/p343-luo.pdf:pdf",
+    year = "2011",
+    booktitle = "ACSAC"
+}
+
 @article{Lyle2010,
     author = "Lyle, John",
     title = "{Trusted computing and provenance: Better together}",
@@ -6491,6 +6564,14 @@
     year = "2011",
     volume = "6696",
     address = "Berlin, Heidelberg"
+}
+
+@online{MWRLabs2013,
+    author = "Labs, MWR",
+    url = "https://labs.mwrinfosecurity.com/blog/2013/09/24/webview-addjavascriptinterface-remote-code-execution/",
+    urldate = "2014-12-19",
+    year = "2013",
+    title = "{WebView addJavascriptInterface Remote Code Execution}"
 }
 
 @misc{Mackinlay1986,
@@ -7716,6 +7797,17 @@
     year = "2001",
     pages = "151--162",
     month = "5"
+}
+
+@article{Pearce2012,
+    author = "Pearce, Paul and Felt, Adrienne Porter and Wagner, David",
+    doi = "10.1145/2414456.2414498",
+    isbn = "9781450313032",
+    title = "{AdDroid: Privilege Separation for Applications and Advertisers in Android}",
+    abstract = "Name: AdDroid",
+    file = ":home/drt24/Downloads/p71-pearce.pdf:pdf",
+    year = "2012",
+    journal = "ACM Symposium on Information, Computer and Communication Security (ASIACCS)"
 }
 
 @online{PearsonSiani,
@@ -9191,6 +9283,21 @@
     title = "{Application-independent reconciliation for nomadic applications}"
 }
 
+@article{Shekhar2012,
+    author = "Shekhar, Shashi and Dietz, Michael and Wallach, Dan S.",
+    isbn = "978-931971-95-9",
+    title = "{AdSplit: Separating smartphone advertising from applications}",
+    journal = "Proceedings of the 21st USENIX conference on Security symposium",
+    abstract = "A wide variety of smartphone applications today rely on third-party advertising services, which provide libraries that are linked into the hosting application. This situation is undesirable for both the application author and the advertiser. Advertising libraries require additional permissions, resulting in additional permission requests to users. Likewise, a malicious application could simulate the behavior of the advertising library, forging the user's interaction and effectively stealing money from the advertiser. This paper describes AdSplit, where we extended Android to allow an application and its advertising to run as separate processes, under separate user-ids, eliminating the need for applications to request permissions on behalf of their advertising libraries. We also leverage mechanisms from Quire to allow the remote server to validate the authenticity of client-side behavior. In this paper, we quantify the degree of permission bloat caused by advertising, with a study of thousands of downloaded apps. AdSplit automatically recompiles apps to extract their ad services, and we measure minimal runtime overhead. We also observe that most ad libraries just embed an HTML widget within and describe how AdSplit can be designed with this in mind to avoid any need for ads to have native code.",
+    pages = "28",
+    url = "https://www.usenix.org/system/files/conference/usenixsecurity12/sec12-final101.pdf$\backslash$nhttp://arxiv.org/abs/1202.4030",
+    eprint = "1202.4030",
+    file = ":home/drt24/Downloads/sec12-final101.pdf:pdf",
+    year = "2012",
+    archiveprefix = "arXiv",
+    arxivid = "1202.4030"
+}
+
 @inproceedings{Sheng2006,
     author = "Sheng, Steve and Broderick, Levi and Hyland, Jeremy J and Koranda, Colleen Alison",
     title = "{Why Johnny still can't encrypt: evaluating the usability of email encryption software}",
@@ -9492,6 +9599,16 @@
     booktitle = "2009 Annual Computer Security Applications Conference"
 }
 
+@inproceedings{Stevens2012,
+    author = "Stevens, Ryan and Gibler, Clint and Crussell, Jon and Erickson, Jeremy and Chen, Hao",
+    title = "{Investigating User Privacy in Android Ad Libraries}",
+    url = "http://www.mostconf.org/2012/papers/27.pdf http://www.cs.ucdavis.edu/~hchen/paper/most2012ad.pdf",
+    abstract = "Recent years have witnessed incredible growth in the popularity and prevalence of smart phones. A ﬂourishing mobile application market has evolved to provide users with additional functionality such as interacting with social networks, games, and more. Mobile applications may have a direct purchasing cost or be free but ad-supported. Unlike in-browser ads, the privacy implications of ads in Android applications has not been thoroughly explored. We start by comparing the similarities and differences of in-browser ads and in-app ads. We examine the effect on user privacy of thirteen popular Android ad providers by reviewing their use of permissions. Worryingly, several ad libraries checked for permissions beyond the required and optional ones listed in their documentation, including dangerous permissions like CAMERA, WRITE CALENDAR and WRITE CONTACTS. Further, we discover the insecure use of Android’s JavaScript extension mechanism in several ad libraries. We identify ﬁelds in ad requests for private user information and conﬁrm their presence in network data obtained from a tier-1 network provider. We also show that users can be tracked by a network sniffer across ad providers and by an ad provider across applications. Finally, we discuss several possible solutions to the privacy issues identiﬁed above.",
+    file = ":home/drt24/Downloads/most2012ad.pdf:pdf",
+    year = "2012",
+    booktitle = "IEEE Mobile Security Technologies (MoST)"
+}
+
 @article{Stoica2001,
     author = "Stoica, Ion and Morris, Robert and Karger, David R. and Kaashoek, M. Frans and Balakrishnan, H.",
     publisher = "ACM",
@@ -9670,6 +9787,14 @@
     booktitle = "Computer Laboratory - Digital Technology Group",
     year = "2013",
     title = "{Nigori: Secrets in the cloud}"
+}
+
+@article{Thomas2015,
+    author = "Thomas, Daniel R. and Beresford, Alastair R. and Wagner, Daniel T. and Rice, Andrew",
+    journal = "Under submission",
+    year = "2015",
+    file = ":home/drt24/git/papers/da/securityupdates/securityupdates.pdf:pdf",
+    title = "{Timeliness of security updates for Android}"
 }
 
 @article{Thompson1984,
@@ -10391,6 +10516,14 @@
     keywords = "all or part of,dynamic time warping,gesture recognition,marks,or hard copies of,permission to make digital,rapid prototyping,recognition rates,rubine,statistical classifiers,strokes,symbols,this work for,unistrokes,user interfaces",
     booktitle = "Proceedings of the 20th annual ACM symposium on User interface software and technology",
     pages = "159--168"
+}
+
+@article{Wognsen2012,
+    author = "Wognsen, Erik Ramsgaard and Karlsen, Henrik S\o ndberg",
+    abstract = "Malicious apps pose an important problem on Android, the world’s most popular smart- phone operating system. Android apps are typically written in Java and compiled to run on the register based Dalvik virtual ma- chine. Static analysis can approximate pro- gram behaviour and this approximation can be used to find malicious behaviour, for ex- ample covert sending of expensive text mes- sages. We expand our original operational seman- tics for the Dalvik instruction set to more accurately model the Android implementa- tion, and we update our control flow analy- sis with these changes and improve its pre- cision to achieve useful results when analyz- ing real apps. The analysis is further ex- panded to include support for reflection and Javascript interfaces, two dynamic features that are used extensively in popular Android apps. Finally, we implement a prototype of the analysis which is able to create call graphs and run on real-world apps.",
+    year = "2012",
+    file = ":home/drt24/Downloads/rapport.pdf:pdf",
+    title = "{Static Analysis of Dalvik Bytecode and Reflection in Android}"
 }
 
 @book{Woodwark1992,
