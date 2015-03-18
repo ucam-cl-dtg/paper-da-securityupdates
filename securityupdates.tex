@@ -290,13 +290,13 @@ In this section we describe how the Android ecosystem functions and how Android 
 \subsection{Android update process}
 
 \label{sec:android_update_process}
-\begin{figure}
+\begin{figure}[h]
  \centering
- \def\svgwidth{\columnwidth}
+ \def\svgwidth{0.7\columnwidth}
  \import{figures/}{update_ecosystem.pdf_tex}
  \caption{Flow of updates between participants in the Android ecosystem.
- Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, numbers in brackets represent number of such entities in our data.
- Dotted arrows indicate flows where we do not know how many updates are being produced as we can't measure those flows directly as they are not public.\todolater{Turn into a sankey diagram}}
+ Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, those in brackets represent number of such entities.
+ Dotted arrows indicate flows where we can't measure how many updates are produced as they are not public.}
  \label{fig:update_ecosystem}
 \end{figure}
 To understand how vulnerabilities in Android are fixed we must examine the Android update process which we model in Figure~\ref{fig:update_ecosystem}.
@@ -456,11 +456,12 @@ Some devices start off in 2011 exposed to known security vulnerabilities and are
 
 
 \begin{figure}
- \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
+ \centering
+ \includegraphics[width=0.6\columnwidth]{figures/from_to_updates.pdf}
  \caption{Updates between different Android versions in the \da\ data}
  \label{fig:from_to_updates}
 \end{figure}
-\begin{figure}
+\begin{figure}[h]
  \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
  \caption{Proportion of updates each week which fixed or may have fixed security vulnerabilities}
  \label{fig:weekly_security_updates}
