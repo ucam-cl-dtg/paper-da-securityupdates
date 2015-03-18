@@ -1,0 +1,215 @@
+\documentclass{sig-alternate}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+\graphicspath{figures/}
+\usepackage{import}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{todonotes}%[disable]
+\let\OldTodo\todo
+\renewcommand{\todo}{\OldTodo[inline]}
+\newcommand{\todolater}[1]{\todo{#1}}%{}%
+\RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex, style=ieee]{biblatex}
+\addbibresource{securityupdates.bib}
+\renewcommand{\bibfont}{\small}
+
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+ \clearname{editor} % remove editors
+}
+
+\input{dastats}
+\newcommand{\da}{Device Analyzer}
+\newcommand{\dafoot}{\textsuperscript{\ref{foot:dadata}}}
+\input{avostats}
+\newcommand{\avo}{AVO}
+\newcommand{\percMarketShare}{83.6\%~\footnote{\url{http://www.theinquirer.net/inquirer/news/2379036/android-hits-836-percent-marketshare-while-ios-windows-and-blackberry-slide}}}
+\newcommand{\daNumDevices}{\daNumOSDevices}
+\newcommand{\daDeviceDays}{\daOSTotalDaysData}
+% Num versions since \daStartDate
+\input{countversions}
+\newcommand{\otherProjNum}{\avoNumExternalProjects}%TODO check we are doing the right calculation here and not overcounting
+
+% Blinding function
+\newcommand{\identifying}[1]{#1}%{}%
+\newcommand{\blindauthors}[1]{#1}%{Paper \#XX}%
+
+% Terminology
+
+% Android, Unix, adb
+% update, release, patch: what do we actually mean and what relevance does that have to security?
+% Device manufacturers
+% Network operators
+% Device model TODO check
+% Device handset TODO check
+
+
+\begin{document}
+%
+% --- Author Metadata here ---
+\conferenceinfo{CCS}{2015 Denver, Colorado, USA}
+%\CopyrightYear{2015} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{TODO}
+
+\numberofauthors{3}
+\author{
+Daniel~R.~Thomas
+\and
+Alastair~R.~Beresford\\
+       \affaddr{Computer Laboratory}\\
+       \affaddr{University of Cambridge}\\
+       \affaddr{Cambridge, United Kingdom}\\
+       \email{Firstname.Lastname@cl.cam.ac.uk}
+\and
+Andrew~Rice
+}
+
+
+\maketitle
+
+\begin{abstract}
+We find there is significant variability in the timely delivery of security updates across different device manufacturers and mobile network operators, and we define a security metric to rank the performance of device manufacturers and network operators in our data set.
+TODO
+\end{abstract}
+
+% A category with the (minimum) three required fields
+\category{}{}{}
+
+\terms{}
+
+\keywords{}
+
+\section{Introduction}
+
+The development of Android is distributed among many parties and the security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform. 
+In addition, device manufacturers (we know of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers. 
+Understanding this ecosystem is important as device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}. 
+We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S\ref{sec:android_ecosystem}.
+
+It is clear from Figure~\ref{fig:proportioninsecure} that Android devices are often exposed to known security vulnerabilities.
+One solution is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
+Many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates, with an overall average of \daUpdatesPerYearNominal\ per year. 
+In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates until April 2014.
+
+An alternative to regulation is access to publicly available data. 
+Comparative data would provide an incentive to both device manufacturers and network operators to provide updates.
+Currently corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security. 
+For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures which are good at shipping security updates promptly~\cite{CESG2013} but it does not state which device manufacturers these are.
+To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
+
+In summary, the contributions of this paper are:
+\begin{itemize}
+ \item We measure the security of Android according to three metrics and compare different device manufacturers and device models to allow device purchasers to differentiate between them based on security.
+\end{itemize}
+
+
+\section{Android Ecosystem}\label{sec:android_ecosystem}
+There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
+In this section we describe how the Android ecosystem functions and how Android versions, as seen by the \da\ project, are produced.
+
+
+\subsection{Android update process}
+
+\label{sec:android_update_process}
+\begin{figure}[h]
+ \centering
+ \def\svgwidth{0.7\columnwidth}
+ \import{figures/}{update_ecosystem.pdf_tex}
+ \caption{Flow of updates between participants in the Android ecosystem.
+ Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, those in brackets represent number of such entities.
+ Dotted arrows indicate flows where we can't measure how many updates are produced as they are not public.}
+ \label{fig:update_ecosystem}
+\end{figure}
+To understand how vulnerabilities in Android are fixed we must examine the Android update process which we model in Figure~\ref{fig:update_ecosystem}.
+There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
+Android builds on various open source projects such as the Linux kernel, OpenSSL and BouncyCastle cryptography libraries.
+Consequently Android can include any compatible versions of those projects, including those which fix security vulnerabilities.
+Android also incorporates various drivers for different bits of hardware.
+The Android platform is then built from these components by Google.
+The code for each Android release or update is kept secret\footnote{\url{https://source.android.com/source/code-lines.html}} until after a binary release has been published.
+Device manufacturers likely receive advanced access in order to prepare handsets so they can customise it before passing it on to the network operator.
+The network operator may then make or request further customisations and perform further testing before shipping the update to the Device.
+Sometimes device manufactures ship updates directly to the user, sometimes the device manufacturer and Google collaborate closely to make a particular phone, such as with Nexus devices.
+Sometimes device manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example previous work has recorded evidence of broken nightly builds of sqlite in Android releases~\cite{Wagner2013}.
+
+The numbers of devices (\daNumOSDevices), network operators (\daNumOperators) and device manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
+Device manufacturer and network operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
+This normalisation is a manual task involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `LG'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
+This normalisation is not perfect and so these are overestimates on the \da\ data but they are likely still underestimates as there will be some device manufacturers and network operators which are not included in the \da\ data.
+
+In Figure~\ref{fig:update_ecosystem} the number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
+The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days.
+This significance test is to remove spurious versions recorded in \da\ such as `5.2.0' in 2012 which has still not been released in 2014.
+
+We extracted data on the external projects used in Android and have included this and the scripts which generated it in \avo.
+These scripts analysed the Android Open Source Project's source tree to examine the source code of each of the external projects to find the project version associated with each Android version tag on the repository.
+There are \avoNumExternalProjects\ external open source projects in Android, contributing \avoTotalExternalLines\ lines of code.\footnote{Lines of code were measured using David A. Wheeler's \texttt{sloccount}.}
+We analysed the top \avoNumBigExternalProjects\ by lines of code (\avoBigExternalLinesOfCodePerc\ of the total) and were able to automatically extract the versions of those projects included in different versions of Android for \avoNumAnalysedExternalProjects\ of these (\avoAnalysedExternalLinesOfCodePerc\ of the total).
+We found \avoBigExternalTotalVersions\ distinct versions, a median of \avoBigExternalMedianVersions\ and mean of \avoBigExternalMeanVersions\ versions per project.
+Android rarely changes the version of external projects it includes.
+
+%An analysis by Vidas et al.~\cite{Vidas2011} of the Android 2.1 to 2.2 update found that it took 11 months from when Google released 2.2 for the last device which they were investigating to get the update.
+To compute the latency between upstream releases and their inclusion in Android we scraped the release pages for those projects, to obtain the version numbers and release dates.
+This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
+The versions included in Android were about half a year old when the first version of Android containing it was released.
+\begin{table}
+\centering
+\normalsize
+\begin{tabular}{l|r|r}
+Project	&	\# releases	&	latency (days) \\ \hline
+linux	&	\linuxNumVersions	&	\linuxMeanUpdateLatency \\
+openssl	&	\opensslNumVersions	&	\opensslMeanUpdateLatency \\
+bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
+\end{tabular}
+\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.\todolater{scrape the other 26 websites... is it worth it?}}
+\label{tab:update_ecosystem}
+\end{table}
+
+\input{security_scoring}
+
+\section{Related work}
+The update process for apps, security fixes and OS upgrades also needs to be secure.
+Unfortunately, package management systems designed to provide secure updates have been found to contain vulnerabilities~\cite{Cappos2008} and many software update systems fail to authenticate the connection between the device and the update server or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
+Android does authenticate update binaries and Google Play downloads them over a secure connection~\cite{Viennot2014}.
+In this paper we have analysed four critical vulnerabilities in the Android app update mechanism: APK unsigned shorts, APK unchecked name, APK duplicate file and Fake ID.
+Other work has demonstrate complex and subtle errors exist in the Android app update process.
+For example, the process can be exploited to allow apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
+
+User-Agent strings have been used to investigate the timeliness of web browser updates~\cite{Frei2008}, with at most 80\% of Firefox users running the most recent version.
+The same analysis was used to show that Chrome's use of silent updates seems to increase uptake of upgrades~\cite{Duebendorfer2010} with 97\% of users running the latest version within 3 weeks of release.
+By way of comparison, Android's update process is manual.
+The user is notified an update exists, but further action is required, including downloading the update and rebooting the phone to enable installation.
+The phone must have sufficient charge to perform the update and the device itself is rendered inoperable during the update process, two factors which might prevent or delay the update process from taking place.
+In our data we are unable to determine why a device is not updated. 
+It is possible that many updates arrive at handsets, but are simply not installed.
+Anecdotal evidence at least suggests that it is the lack of updates rather the lack of installation which is the major problem at present. Further work is required to tease these numbers apart.
+%Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
+%The same technique would be more difficult on phones with limited storage space (as many cheap Android phones have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
+%Google is deploying the same silent update technique through Google Play Services\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this also bypasses the device manufacturer and network operator.
+
+\section{Conclusion}
+ and examined how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates
+We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
+We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
+
+\identifying{
+\section*{Acknowledgements}
+Thanks to Richard Clayton, the mobile security reading group and Anil Madhavapeddy for reading various drafts of this paper.
+Thanks to David Robertson for helpful advice on statistical analysis.
+Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities in Android.
+}
+
+\printbibliography
+
+
+\end{document}
