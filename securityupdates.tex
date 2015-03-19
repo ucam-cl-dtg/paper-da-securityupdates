@@ -339,8 +339,8 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 \subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
 Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
 
-{\begin{figure}[p]
- \centering
+{\begin{figure}[h]
+\begin{minipage}{0.49\columnwidth}
  \begin{subfigure}[b]{\columnwidth}
   \includegraphics[width=\columnwidth]{figures/device-data-all-os}
   \caption{OS versions over time. Black lines show where only the build number changed.}
@@ -352,9 +352,15 @@ Those graphs summarise data across all the devices, however one of the advantage
   \label{fig:device_data_security}
  \end{subfigure}
  \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset.}
- \includegraphics[width=0.55\columnwidth]{figures/from_to_updates.pdf}
- \caption{Updates between different Android versions in the \da\ data}
+\end{minipage}\hspace{0.02\columnwidth}
+\begin{minipage}{0.49\columnwidth}
+ \includegraphics[width=\columnwidth]{figures/from_to_updates.pdf}
+ \caption{Updates between different Android versions in \da}
  \label{fig:from_to_updates}
+ \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
+ \caption{Proportion of updates each week which (may have) fixed vulnerabilities}
+ \label{fig:weekly_security_updates}
+\end{minipage}
 \end{figure}}
 
 \subsubsection{Method}
@@ -375,12 +381,6 @@ This implies that these devices had been abandoned by the device manufacturer an
 Some devices start off in 2011 exposed to known security vulnerabilities and are still exposed to those and additional ones in 2014.
 
 
-
-\begin{figure}[h]
- \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
- \caption{Proportion of updates each week which (may have) fixed vulnerabilities}
- \label{fig:weekly_security_updates}
-\end{figure}
 We recorded update events and Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
 Mostly the dark cells are upgrades (above the diagonal) (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number (\daNumUpdatesBigUpgrades, \daPercBigUpgradesNominal) which skip more than \daNumUpdatesSkippedBig\ versions.
@@ -403,8 +403,8 @@ This compares badly with the number of critical vulnerabilities discovered per y
 \label{sec:validity}
 \subsection{The \da\ data gives a conservative estimate of the Android version distribution}
 \label{sec:representative}
-\begin{figure}
- \centering
+\begin{figure}[h]
+\begin{minipage}{0.49\columnwidth}
  \begin{subfigure}[b]{\columnwidth}
  \includegraphics[width=\columnwidth]{figures/googleplayapi}
  \caption{Google Play data on proportion of devices running different API versions}
@@ -415,13 +415,13 @@ This compares badly with the number of critical vulnerabilities discovered per y
  \caption{\da\ data on proportion of devices running different API versions}
  \label{fig:da_api}
 \end{subfigure}
-\caption{Monthly Android API version data}
-\end{figure}
-\begin{figure}
- \centering
+\caption{Monthly Android API version}
+\end{minipage}\hspace{0.02\columnwidth}
+\begin{minipage}{0.49\columnwidth}
  \includegraphics[width=\columnwidth]{figures/api_gpcomp_rdiff}
  \caption{Difference between \da\ and Google Play data on the proportion of devices running different Android API versions}
  \label{fig:da_gp_comp_diff}
+\end{minipage}
 \end{figure}
 The data from \da\ we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
 Unfortunately there is no ground truth of OS version information.
