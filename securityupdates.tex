@@ -28,7 +28,12 @@
 \newcommand{\da}{Device Analyzer}
 \input{avostats}
 \newcommand{\avo}{AVO}
-\newcommand{\avovulnfoot}[1]{}%{\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/#1}}}
+% Evil hackery to provide an optional argument: https://tex.stackexchange.com/questions/308/different-command-definitions-with-and-without-optional-argument/314#314
+\makeatletter
+ \def\avovuln{\@ifnextchar[{\@avovulnsspecific}{\@avovulngeneral}}
+ \def\@avovulnsspecific[#1]#2{\emph{\href{http://androidvulnerabilities.org/vulnerabilities/#1}{#2}}}
+ \def\@avovulngeneral#1{\emph{\href{http://androidvulnerabilities.org/vulnerabilities/#1}{#1}}}
+\makeatother
 \newcommand{\percMarketShare}{83.6\%~\footnote{\url{http://www.theinquirer.net/inquirer/news/2379036/android-hits-836-percent-marketshare-while-ios-windows-and-blackberry-slide}}}
 \newcommand{\daNumDevices}{\daNumOSDevices}
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
@@ -253,7 +258,7 @@ Therefore, in this paper we use the earliest known date from \textbf{discovery},
 \end{figure}
 
 Figure~\ref{fig:vulnerabilities_timeline} shows the dates of \textbf{discovery} and, when later, the date of the first \textbf{fixing release}.
-Some vulnerabilities (\emph{levitator}, \emph{zergRush}) were fixed in released versions of Android before they were discovered and so are shown as vertical lines, while others were known for months before a version of Android which fixed them was shipped.
+Some vulnerabilities (\avovuln{levitator}, \avovuln{zergRush}) were fixed in released versions of Android before they were discovered and so are shown as vertical lines, while others were known for months before a version of Android which fixed them was shipped.
 During the period in which \da\ data was collected the date when a version of Android with the fix was observed on a \da\ device is taken as the date that version was released.
 For vulnerabilities prior to the collection period we estimate the release date using publicly available data.
 There is no canonical source of Android release dates, our best guesses and supporting references are available from \avo.
@@ -287,9 +292,9 @@ We then normalise these totals for each day by dividing through by the total num
 
 Following time from left to right in Figure~\ref{fig:proportioninsecure} we see all devices are initially \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011. This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
-Once \emph{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
-The remanding devices were already running a version of Android which fixed the \emph{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
-From October 2011 until the discovery of \emph{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
+Once \avovuln{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+The remanding devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
+From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
@@ -312,7 +317,7 @@ It shows how old versions are gradually replaced by new ones, and the long tail 
 The vulnerabilities devices are exposed to are shown in Figure~\ref{fig:nvulnerabilities_heat}.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
 The variation of the proportion of devices affected by a vulnerability with time tells us how badly a particular vulnerability affected the Android platform.
-In July 2011 the \emph{exploid}\avovulnfoot{exploid_udev} and \emph{levitator}\avovulnfoot{levitator} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
+In July 2011 the \avovuln[exploid_udev]{exploid} and \avovuln{levitator} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
 However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices (\daVulnAPKDuplicateFileOctoberPerc) were still vulnerable.
 %\begin{figure}%[!b]
 %\centering
@@ -324,7 +329,7 @@ However when in February 2013 the first APK signing vulnerability was found whic
 In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
-However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\avovulnfoot{Gingerbreak}, \emph{levitator}, \emph{exploid} and \emph{zergRush}\avovulnfoot{zergRush} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which affect a significant proportion of devices years later.
+However what is perhaps more worrying is the long tail on the \avovuln{Gingerbreak}, \avovuln{levitator}, \avovuln[exploid_udev]{exploid} and \avovuln{zergRush} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which affect a significant proportion of devices years later.
 
 
 \begin{figure*}
@@ -456,11 +461,11 @@ In particular, we have not included any device manufacturer specific vulnerabili
 There also tends to be less public information available about manufacturer-specific vulnerabilities which makes them harder to tie down.
 
 For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
-For example, \emph{pty race}\avovulnfoot{pty_race} is a Linux kernel vulnerability. We found 48 commits which fixed this vulnerability on different branches. On some branches it was also accidentally fixed, and later reintroduced, before finally being fixed properly, and therefore determining which devices were vulnerable relies on knowing where, and on which branch, the kernel code for a specific release was taken from.
+For example, \avovuln[pty_race]{pty race} is a Linux kernel vulnerability. We found 48 commits which fixed this vulnerability on different branches. On some branches it was also accidentally fixed, and later reintroduced, before finally being fixed properly, and therefore determining which devices were vulnerable relies on knowing where, and on which branch, the kernel code for a specific release was taken from.
 For some vulnerabilities the required patch is not in AOSP.
 This is despite the fact that some device manufacturers have shipped builds containing the fix.
 This makes it difficult to determine whether a specific device is vulnerable.
-For \emph{RageAgainstTheCage adb}\avovulnfoot{RageAgainstTheCage_adb} and \emph{keystore buffer}\avovulnfoot{keystore_buffer} vulnerabilities we do not have sufficient data to determine whether they fit one of our attack vectors as the former may require physical ADB access and the latter may be thwarted by the sandbox.
+For \avovuln[RageAgainstTheCage_adb]{RageAgainstTheCage adb} and \avovuln[keystore_buffer]{keystore buffer} vulnerabilities we do not have sufficient data to determine whether they fit one of our attack vectors as the former may require physical ADB access and the latter may be thwarted by the sandbox.
 However a sensitivity analysis showed that those two vulnerabilities make little difference to our results.
 
 We still do not know where new versions of Android come from.
