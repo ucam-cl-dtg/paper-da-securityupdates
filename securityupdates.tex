@@ -28,6 +28,7 @@
 \newcommand{\da}{Device Analyzer}
 \input{avostats}
 \newcommand{\avo}{AVO}
+\newcommand{\avovulnfoot}[1]{}%{\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/#1}}}
 \newcommand{\percMarketShare}{83.6\%~\footnote{\url{http://www.theinquirer.net/inquirer/news/2379036/android-hits-836-percent-marketshare-while-ios-windows-and-blackberry-slide}}}
 \newcommand{\daNumDevices}{\daNumOSDevices}
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
@@ -309,7 +310,7 @@ It shows how old versions are gradually replaced by new ones, and the long tail 
 The vulnerabilities devices are exposed to are shown in Figure~\ref{fig:nvulnerabilities_heat}.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
 The variation of the proportion of devices affected by a vulnerability with time tells us how badly a particular vulnerability affected the Android platform.
-In July 2011 at the beginning of the \da\ data the \emph{exploid}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}} and \emph{levitator}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/levitator}} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
+In July 2011 the \emph{exploid}\avovulnfoot{exploid_udev} and \emph{levitator}\avovulnfoot{levitator} vulnerabilities both affect most Android devices, slowly these are fixed as updates roll out and devices are replaced until in January 2013 a much smaller proportion of devices are affected by known vulnerabilities.
 However when in February 2013 the first APK signing vulnerability was found which affected all previous versions of Android and even in October 2013 most devices (\daVulnAPKDuplicateFileOctoberPerc) were still vulnerable.
 %\begin{figure}%[!b]
 %\centering
@@ -321,7 +322,7 @@ However when in February 2013 the first APK signing vulnerability was found whic
 In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
-However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}}, \emph{levitator}, \emph{exploid} and \emph{zergRush}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/zergRush}} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which still affect a significant proportion of devices years later.
+However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}\avovulnfoot{Gingerbreak}, \emph{levitator}, \emph{exploid} and \emph{zergRush}\avovulnfoot{zergRush} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which affect a significant proportion of devices years later.
 
 
 \begin{figure*}
