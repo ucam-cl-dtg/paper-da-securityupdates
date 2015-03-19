@@ -87,7 +87,6 @@ What is not known however is the proportion of Android devices which are vulnera
 To the best of our knowledge, this is the first paper to provide detailed numbers.
 
 Not all malicious apps need to break the sandbox in order to misbehave.
-Indeed, the above figures suggest the majority of malicious apps do not attempt to do so.
 We focus on the issue of apps breaking out of the sandbox because malware which is able to take full control of a handset can do significantly more harm and is much harder to remove.
 Ordinary malware can be uninstalled by the user, or remotely by Google through the Play Store, and returns the device to a secure state. 
 Removing an app which has used an exploit to take control of the handset is unlikely to return the device to secure state.
@@ -132,19 +131,21 @@ Controlling potential sources of app installation is a good security feature bec
 For example, the Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
 Nevertheless, Google Play is not immune: 0.02\% of apps are malicious~\cite{Zhou2012a}.
 Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
-Previous work has shown that on alternative markets between 0.20\% and 0.47\% of apps are malicious~\cite{Zhou2012a}.
+In 2012 between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
 
 The second attack vector is to persuade an existing app to download and execute code at runtime.
 The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a remote server under control of the attacker.
 Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does exist in the app binary.
-Instead the attacker can chose to send a malicious payload directly to the app for execution at a later point in time. Note that dynamic code loading is not actually needed for this to work---it just makes the task easier---since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a ROP-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{}.
+Instead the attacker can chose to send a malicious payload directly to the app for execution at a later point in time.
+Note that dynamic code loading is not actually needed for this to work -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a ROP-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
 Support for dynamic code loading on Android also supports the third attack vector in which the attacker injects malicious code directly into existing apps already installed on the handset. 
 For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows Javascript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
 This attack works when: (1) the WebView has the Javascript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious Javascript payload into the network traffic between the phone and the web server. 
-Many apps are vulnerable to this type of attack because ad network libraries typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. 
+Many apps are vulnerable to this type of attack because ad-libraries typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. 
 The fix for the addJavascriptInterface vulnerability breaks backwards compatibility, and therefore apps are only immune to this attack if their target API level is greater than 16 and they are running on an Android device with an OS version of 4.2 or greater.
 Later analysis in Figure~\ref{fig:da_api} in this paper shows that 40\% of handsets connecting to the Google Play store are currently vulnerable to this attack.
+\todo{Make that percentage automatically generated so that it is correct}
 
 \section{Data sources}
 \label{sec:background}
@@ -155,21 +156,22 @@ These two datasets can then be combined to determine the proportion of handsets 
 \subsection{Versions of Android running on devices}
 
 In our analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
-Device Analyzer collects data from study participants who install the project Android app from the Google Play store.
+\da\ collects data from study participants who install the Android app from the Google Play store.
 Most study participants allow researchers around the world to access a subset of their device data, including the data presented in this paper.
 
 The \da\ app collects a range of metadata from Android devices.\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}}
 For this paper, we extracted the build string and API version from the device log each day.
+The build string is a user-readable version string.
 The API version is a positive integer which increases when new features are added to the API.
 Consequently security (bug) fixes do not result in a change in the API version.
-The build string is a user-readable version string.
 Fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
 On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
 
-The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days. The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
+The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
+The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
-Where possible we indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3 significant figures, this occasionally results in `${} \pm 0$' when the standard deviation is less than the number of significant figures we are reporting.
-This technique cannot account for systematic errors and therefore we explore the potential for systematic errors in the \da\ data in \S\ref{sec:representative}.
+Where possible we indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3 significant figures, this occasionally results in `${} \pm 0$' when the standard deviation is less than the number of significant figures.
+This technique cannot account for systematic errors which we explore in \S\ref{sec:representative}.
 
 
 
@@ -177,8 +179,7 @@ This technique cannot account for systematic errors and therefore we explore the
 
 We compiled a list of critical vulnerabilities in Android, containing information on the discovery and publication dates, the versions affected and which versions fixed the problem.
 We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
-Critical vulnerabilities allow a program to gain privileges equivalent in scope to root.
-If an application exploits a critical vulnerability then it gains control of the device.
+If an malicious code exploits a critical vulnerability then it gains control of the device.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the ADB shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
 This is not something that applications running on the phone can exploit to break out of the app sandbox and so we do not include those vulnerabilities.
 Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
@@ -188,17 +189,17 @@ On some versions of Android (below version 4.1) malware could use known system-t
 \todolater{break vulnerabilities down by attack vector?}
 \avoTabAndVulns
 
-We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the AndroidVulnerabilities.org\footnote{\url{http://androidvulnerabilities.org/} \textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}} (\avo) website.
-We seeded it with data from the CVE database, vendor lists, reports from the literature and various forums.
+We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the \href{http://androidvulnerabilities.org/}{AndroidVulnerabilities.org}\footnote{\textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}\vspace{-3em}} (\avo) website.
+We seeded it with data from the CVE database, vendor lists, reports from the literature and forums.
 In addition, we have received submissions or amendments from \avoNumSubmitters\ individuals.
-We collected data between \avoStartDate\ and \avoEndDate\ and so any information lost before the start of that period cannot be included.
+We collected data between \avoStartDate\ and \avoEndDate\ and so does not include any information lost before the start of that period.
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
 Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
-These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate security analysis of the Android ecosystem as a whole.
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate security analysis of Android.
 In many cases we could not match manufacturer- and model-specific vulnerabilities to individual devices in the \da\ data and therefore attempting to include device-specific vulnerabilities as well would introduce additional uncertainty in our results.
-In contrast, with our chosen set of vulnerabiltiies, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data set.
+In contrast, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data set.
 
 Tracking vulnerabilities is a manual task as they are not consistently recorded in other databases such as the CVE database.
 In addition, the lack of a widely acknowledged unique identifier required manual analysis to identify whether two reports referenced the same vulnerability.
@@ -208,38 +209,39 @@ For some of the vulnerabilities without CVE numbers, Google confirmed that there
 
 \subsection{Lifetime of a vulnerability}
 
-The key events in the lifetime of a vulnerability do not always occur in the same order and are:\\
-\textbf{creation} When a vulnerability was created in the source code.\\
-\textbf{introducing release} When the first release was made containing the vulnerability.\\
-\textbf{discovery} When the vulnerability is first discovered.\\
-\textbf{exploit} When the vulnerability is first exploited.\\
-\textbf{disclosure} When the vulnerability is first disclosed.\\ % publically or to a smaller set of people?
-\textbf{fix} When a vulnerability was first fixed in the source code.\\
-\textbf{fixing release} When the first release containing the fix was made (equivalent to `patch available'~\cite{Frei2010}).\\
-\textbf{fix deployed} When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored (the ecosystem equivalent to the per instance `patch installed'~\cite{Frei2010}).
-\todolater{Does this look nice?}
-
+The key events in the lifetime of a vulnerability do not always occur in the same order and are:
+\begin{description}
+\item[creation] When a vulnerability was created in the source code.
+\item[introducing release] When the first release was made containing the vulnerability.
+\item[discovery] When the vulnerability is first discovered.
+\item[exploit] When the vulnerability is first exploited.
+\item[disclosure] When the vulnerability is first disclosed. % publically or to a smaller set of people?
+\item[fix] When a vulnerability was first fixed in the source code.
+\item[fixing release] When the first release containing the fix was made (equivalent to `patch available'~\cite{Frei2010}).
+\item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored (the ecosystem equivalent to the per instance `patch installed'~\cite{Frei2010}).
+\end{description}
 
 Establishing when a vulnerability starts to pose a threat to users is difficult.
-Frei et al.~\cite{Frei2010} propose the definition of the {\bf time of disclosure}. This occurs when the information about the vulnerability is freely available to the public from a widely accepted and independent source and has been validated by security experts so that it has a risk rating.
+Frei et al.~\cite{Frei2010} propose the definition of the \textbf{time of disclosure}.
+This occurs when the information about the vulnerability is freely available to the public from an accepted and independent source and has been validated by security experts so that it has a risk rating.
 Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
 Therefore this measure does not work.
 
 Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public \textbf{disclosure} and the date of \textbf{fix deployed} is the most critical.
 However they also show that zero-day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
-Hence when considering a vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, such as those responding to CESG advice~\cite{CESG2013}, the critical period starts with \textbf{discovery} and continues until \textbf{fix deployed}.
+Hence when considering a vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, the critical period starts with \textbf{discovery} and continues until \textbf{fix deployed}.
 Therefore, in our vulnerability calculations we prefer to use the earliest recorded date of \textbf{discovery}, even if that knowledge might have been confined to a particular device manufacturer or hobbyist.
 %We cannot know if someone reported the vulnerability to the device manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they may know.
 
-Unfortunately {\bf discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery.
-{\bf Creation} and {\bf introducing release} are the earliest points which could be used, but the risk is mostly latent until someone discovers them and therefore we do not use these dates.
+Unfortunately \textbf{discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery.
+\textbf{Creation} and \textbf{introducing release} are the earliest points which could be used, but the risk is mostly latent until someone discovers them and therefore we do not use these dates.
 %, for example entities with high value targets may keep databases of unknown vulnerabilities for later use, in which case there is a high risk to potential targets from the never disclosed point of discovery.
 %However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little danger.
-The date of first {\bf exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
-The date of first {\bf fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party; we determine this date from the Android Open Source Project repository by examining the authored-on date of the fixing commit.
+The date of first \textbf{exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
+The date of first \textbf{fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party; we determine this date from the Android Open Source Project repository by examining the authored-on date of the fixing commit.
 %Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{Brumley2008}.
 %When the {\bf fix deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
-Therefore, in this paper we use the earliest known date from \textbf{discovery}, \textbf{exploit}, \textbf{disclosure} or \textbf{fix}. A breakdown of the type of date used per vulnerability is shown in Table~\ref{tab:andvulns}.
+Therefore, in this paper we use the earliest known date from \textbf{discovery}, \textbf{exploit}, \textbf{disclosure} or \textbf{fix}. A breakdown of the type of date used is shown in Table~\ref{tab:andvulns}.
 
 
 \subsection{Distribution of vulnerabilities}
@@ -253,42 +255,42 @@ Therefore, in this paper we use the earliest known date from \textbf{discovery},
 Figure~\ref{fig:vulnerabilities_timeline} shows the dates of \textbf{discovery} and, when later, the date of the first \textbf{fixing release}.
 Some vulnerabilities (\emph{levitator}, \emph{zergRush}) were fixed in released versions of Android before they were discovered and so are shown as vertical lines, while others were known for months before a version of Android which fixed them was shipped.
 During the period in which \da\ data was collected the date when a version of Android with the fix was observed on a \da\ device is taken as the date that version was released.
-For vulnerabilities prior to the collection period we estimate the release date as best we can using publicly available data.
-There is no canonical source of Android release dates, and our best guesses and supporting references are available from \avo.
+For vulnerabilities prior to the collection period we estimate the release date using publicly available data.
+There is no canonical source of Android release dates, our best guesses and supporting references are available from \avo.
 
-The discovery dates of our vulnerabilities does not appear to be uniform. 
+The discovery dates of our vulnerabilities are not uniform. 
 In particular the data shows a large gap from 2011-10-06 to 2013-02-18 where we do not know of any discoveries of critical vulnerabilities affecting all Android devices.
 The cause of this quiet period is unclear.
-Possible explanations are that: (i) most devices were exposed to known vulnerabilities so there was no point in looking for new ones (from Figure~\ref{fig:proportioninsecure});
+Possible explanations are that: (i) most devices were exposed to known vulnerabilities so there was reason to look for new ones;
 (ii) device manufacturers made it easier to install custom versions of Android, reducing the need for users to root their devices; and
-(iii) device manufacturer specific vulnerabilities (which are not in our analysis here) were easier to find and therefore attackers looking for vulnerabilities adjusted their focus.
+(iii) device manufacturer specific vulnerabilities (which are not in our analysis here) were easier to find and so attackers looking for vulnerabilities adjusted their focus.
 
 
 \section{Experiments}
 \label{sec:results}
 We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities.
 Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
-We describe three experiments.
-We examine the vulnerability of the Android ecosystem as a whole (\S\ref{sec:exp:versionsecurity}, explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}), quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
+We describe three experiments, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}, explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}), quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
 
 \subsection{Experiment 0: vulnerability of Android devices}\label{sec:exp:versionsecurity}
 
-In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptable to at least one critical vulnerability.
+In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptible to at least one critical vulnerability.
 
 \subsubsection{Method} 
-To investigate the behaviour of the Android ecosystem as a whole with respect to Android versions and vulnerabilities we used the OS version information from \da\ and the vulnerability data from \avo.
-The \da\ data used here was collected between \daStartDate\ and \daEndDate.
+To investigate the vulnerability of Android devices, we used the OS version information from \da\ and the vulnerability data from \avo.
+The \da\ data was collected between \daStartDate\ and \daEndDate.
 The \avo\ data covers the period from \avoFirstDataDate\ to \avoLastDataDate.
-For each device we collected daily version data  and recorded the running version and any associated vulnerabilities it was exposed to at that time (if any).
-We then normalise these totals for each day by dividing through by the total number of devices with version information seen on that day.
+For each device we collected daily version data and any vulnerabilities it was exposed to at that time.
+We then normalise these totals for each day by dividing through by the total number of devices with version information on that day.
 
 \subsubsection{Results}
 
 Following time from left to right in Figure~\ref{fig:proportioninsecure} we see all devices are initially \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011. This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
-Once \emph{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as most devices were exposed to that vulnerability.
-The remanding devices were already running a version of Android which fixed the \emph{zergRush} vulnerability and are therefore marked as  \emph{secure} (green).
-From October 2011 until the discovery of \emph{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded. This means more and more devices are marked as \emph{secure} (green) because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
+Once \emph{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+The remanding devices were already running a version of Android which fixed the \emph{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
+From October 2011 until the discovery of \emph{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
+This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
 
@@ -335,7 +337,7 @@ However what is perhaps more worrying is the long tail on the \emph{Gingerbreak}
 
 
 \subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
-Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that it allows us to look at what happens to individual devices over time.
+Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
 
 {\begin{figure}[p]
  \centering
@@ -368,8 +370,8 @@ Instead we have a hopefully representative sample of updates which happened whil
 
 The longitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data_security}.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
-It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and for these devices, mostly not fixed.
-This implies that these devices had been abandoned by the device manufacturer and were not receiving updates which is confirmed by Figure~\ref{fig:device_data_os} which shows which OS versions those devices were running.
+It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, mostly not fixed.
+This implies that these devices had been abandoned by the device manufacturer and were not receiving updates, this is confirmed by Figure~\ref{fig:device_data_os} which shows which OS versions those devices were running.
 Some devices start off in 2011 exposed to known security vulnerabilities and are still exposed to those and additional ones in 2014.
 
 
@@ -386,12 +388,9 @@ Surprisingly there are also a small number of downgrade events (\daNumUpdatesDow
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
 The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}.
-\begin{itemize}
- \item Updates which changed the Android version number from a version with known vulnerabilities to one which had fewer known vulnerabilities are shown in red.
- \item Updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability are shown in yellow.
-\item Updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the version of Android they were already running) are shown in green.
-
-\end{itemize}
+Updates which changed the Android version number so that the number of known vulnerabilities decreased are shown in red.
+Updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability are shown in yellow.
+Updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the existing version of Android) are shown in green.
 
 By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
 This compares badly with the number of critical vulnerabilities discovered per year of between \avoVulnsPerYearAllAndroid\ (affecting all Android) and \avoVulnsPerYear\ (including the device manufacturer specific ones).
@@ -425,9 +424,9 @@ This compares badly with the number of critical vulnerabilities discovered per y
  \label{fig:da_gp_comp_diff}
 \end{figure}
 The data from \da\ we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
-Unfortunately there is no authoritative source of OS version information and so we cannot check directly whether our data is representative.
+Unfortunately there is no ground truth of OS version information.
 However Google has published API version information almost every month since December 2009 and we have collated this information.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
-While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions is similar to the Google Data on API versions then the \da\ data on OS versions should be representative.
+While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
 Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from \da\ and they appear similar.
 Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
 It shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
@@ -438,10 +437,10 @@ This allows us to have confidence in the OS version information.
 
 \subsection{Changes in the \da\ sample}
 \label{sec:da_changes}
-The \da\ data is mostly generated by devices which have the \da\ app installed because their owner happened to come across the app on Google Play as there has been no advertising and few other attempts to increase usage.
-However two collaborations with network operators to install \da\ on customer devices resulted in large numbers of new \da\ users coming from particular areas and network operators.
-One study was conducted in Norway with 654 installs of \da\ and one was conducted in Bangladesh where 2463 users installed \da.
-This is responsible for the sudden change in distribution of OS versions in \da\ shown towards the end of Figures \ref{fig:norm_os}, \ref{fig:nvulnerabilities_heat} and \ref{fig:proportioninsecure} as for that period Bangladeshi users contributed over half of the \da\ data.
+The \da\ data is mostly generated by devices which have the \da\ app installed because their owner happened to come across the app as there has been no advertising and few other attempts to increase usage.
+However two collaborations with network operators to install \da\ on customer devices resulted in large numbers of new \da\ users coming from particular network operators.
+One study was conducted in Norway with 654 installs and one in Bangladesh where 2463 users installed \da.
+This is responsible for the sudden change in distribution of OS versions in \da\ beginning in August 2014 Figures \ref{fig:norm_os}, \ref{fig:nvulnerabilities_heat} and \ref{fig:proportioninsecure} as for that period Bangladeshi users contributed over half of the \da\ data.
 %We could normalise out the influence of the Bangladeshi users, however they are Android users too and they also need security updates.
 To investigate the sensitivity of our results to the Bangladesh study we truncated our data before this study started and found the percentage of vulnerable devices to be 87.7\% rather than \daMeanInsecurityPercNominal, and the percentage of devices running the latest version to be 5.43\% rather than \daUpdatednessPercNominal.
 Hence removing this anomaly would have no effect on our conclusions.
@@ -450,41 +449,42 @@ Since most \da\ users are self selecting and install \da\ because they want to f
 \section{Discussion} \label{sec:discussion}
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and more widely.
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
-Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with.
-When Capsicum is included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence in Android, it could be used to place fine grained restrictions on system daemons, preventing vulnerabilities becoming critical vulnerabilities.
+Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with and could be included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence Android.
 
 We have not included all the vulnerabilities from \avo. 
-In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing the vulnerabilities affecting their code and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing vulnerabilities and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about manufacturer-specific vulnerabilities which makes them harder to tie down.
 
 For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
-For example, \emph{pty race}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/pty_race}} is a Linux kernel vulnerability. We found 48 commits which fixed this vulnerability on different branches. On some branches it was also accidentally fixed, and later reintroduced, before finally being fixed properly, and therefore determining which devices were vulnerable relies on knowing where, and on which branch, the kernel code for a specific release was taken from.
-For some vulnerabilities the required patch is not in AOSP. This is despite the fact that some device manufacturers have shipped builds containing the fix. This also made it difficult to determine whether a specific device was vulnerable or not.
-For \emph{RageAgainstTheCage adb}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/RageAgainstTheCage_adb}} and \emph{keystore buffer}\footnote{\url{http://androidvulnerabilities.org/vulnerabilities/keystore_buffer}} vulnerabilities we do not have sufficient data to determine whether they fit one of our attack vectors as the former may require physical ADB access and the latter may be thwarted by the sandbox.
-However a sensitivity analysis showed that those two vulnerabilities make little difference to our results as they affect few devices.
+For example, \emph{pty race}\avovulnfoot{pty_race} is a Linux kernel vulnerability. We found 48 commits which fixed this vulnerability on different branches. On some branches it was also accidentally fixed, and later reintroduced, before finally being fixed properly, and therefore determining which devices were vulnerable relies on knowing where, and on which branch, the kernel code for a specific release was taken from.
+For some vulnerabilities the required patch is not in AOSP.
+This is despite the fact that some device manufacturers have shipped builds containing the fix.
+This makes it difficult to determine whether a specific device is vulnerable.
+For \emph{RageAgainstTheCage adb}\avovulnfoot{RageAgainstTheCage_adb} and \emph{keystore buffer}\avovulnfoot{keystore_buffer} vulnerabilities we do not have sufficient data to determine whether they fit one of our attack vectors as the former may require physical ADB access and the latter may be thwarted by the sandbox.
+However a sensitivity analysis showed that those two vulnerabilities make little difference to our results.
 
-We still do not know where new versions of Android come from. Over time newer versions of Android come to dominate, but quantifying the proportion due to new phone purchases verses the proportion due to updates of existing devices is unknown.
- Device Analyzer is the only available large data set we know of with longitudinal traces of Android OS version strings.
- Unfortunately this data set only records \daNumUpdatesUpgrades\ upgrades which, broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month. This is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
+We still do not know where new versions of Android come from.
+Over time newer versions of Android come to dominate, but quantifying the proportion due to new phone purchases verses the proportion due to updates of existing devices is unknown.
+Device Analyzer is the only available large data set we know of with longitudinal traces of Android OS version strings.
+Unfortunately this data set only records \daNumUpdatesUpgrades\ upgrades which, broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month. This is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
  
 \section{Related work}
 \label{sec:related}
-Using the methods and data described in this paper we have determined that, on average, \daMeanInsecurityPerc\ of devices were exposed to known critical vulnerabilities between 2011 and 2014.
+Using the methods and data described in this paper we have determined that, on average, \daMeanInsecurityPerc\ of devices were exposed to known critical vulnerabilities between 2011 and 2015.
 Felt et al.\ studied 6 Android handsets in 2011 and found they were exposed to root vulnerabilities at least 74\% of the time~\cite{Felt2011} .
 Our approach differs from their study because they used data from 6 handsets and assumed the best possible update distribution, while our work is based on a large sample of devices tracking the actual update distribution.
-Nevertheless, our own analysis as well as comparison with their work suggests protection against critical vulnerabilities has not improved significantly over the last 3 years. 
+Nevertheless, our own analysis as well as comparison with their work suggests protection against critical vulnerabilities has not improved significantly over the last 4 years. 
 Felt et al.\ also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later (larger) studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} in 2012.
 
-Currently, finding and exploiting vulnerabilities is typically a time-consuming and manual process.
+Currently, finding and exploiting vulnerabilities is typically a time-consuming manual process.
 Therefore an attacker has to invest significant human resource to first find a bug and then write code to exploit the vulnerability.
 To reduce the effort involved in finding a bug, attackers can look at security-related commits made to open source repositories.
-Previous work has shown attackers have taken this approach for the Firefox web browser~\cite{Barth2011}.
-Google does not release updates to the Android source code until after the release of the relevant security update.
-This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository from the period (\textbf{first fix}, \textbf{fix deployed}) to (\textbf{fixing release}, \textbf{fix deployed}).
-Unfortunately the time period between the \textbf{fixing release} and \textbf{fix deployed} can be of the order of months. 
+Attackers have taken this approach for the Firefox web browser~\cite{Barth2011}.
+Google does not release updates to the Android source code until after the release of the relevant update.
+This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository from the period (\textbf{first fix}, \textbf{fix deployed}) to (\textbf{fixing release}, \textbf{fix deployed}), unfortunately this can still take months .
 For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed\footnote{Definitely fixed is 1 $-$ (definitely insecure + maybe secure), maybe fixed is 1 $-$ definitely insecure} (25 months for 90\% of devices maybe fixed).
 
-Recent work by Brumley et al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
+Brumley et al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
 Similarly, the Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
 Once such automated techniques mature, it will become even more important to provide security updates promptly to every Android device in the ecosystem because an attacker can turn the contents of a \textbf{fixing release} into an exploit in a matter of minutes or hours.
 
@@ -492,18 +492,17 @@ Security in depth is also a useful strategy.
 In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution code review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
 These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
 
-Rather than fixing critical vulnerabilities, security can be obtained by detect them and preventing the installation or execution of malicious apps.
-Detection strategies include RiskRanker, which classified 3\,281 out of 118\,318 apps (2.8\%) as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an overall infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
+Rather than fixing critical vulnerabilities, security can be obtained by detecting malicious apps and preventing their installation or execution.
+Detection strategies include RiskRanker, which classified 3\,281 out of 118\,318 apps (2.8\%) as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
 DroidRanger also analysed apps finding 148 out of 182\,823 apps (0.08\%) to be malicious across multiple markets of which 29 were previously unknown~\cite{Zhou2012a}.
 %DroidRanger: It used permission-based behavioural fingerprinting which looked at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
-A common technique used by attackers takes existing popular apps and repackages them to include malicious code. 
-AnDarwin uses this insight to detect similar apps, and found 169 out of 265\,359 of all apps studied (0.06\%) were malicious clones of genuine apps~\cite{Crussell2013}.
+A common technique used by attackers is to include malicious code in repackaged popular apps. 
+AnDarwin uses this insight to detect similar apps, and found 169 out of 265\,359 of all apps studied (0.06\%) were malicious clones~\cite{Crussell2013}.
 %AnDarwin: It used clustering based on semantic vectors derived from the program dependence graphs to detect similar apps.
 
 Unfortunately, whilst these tools were successful in finding critical vulnerabilities, such techniques are not perfect.
-The Malware Genome project collected 1\,260 malware samples from 2010--2011~\cite{Zhou2012b}.
-They found that the best case for anti-malware detection on their data was 79.6\%.
-Similarly, DroidChameleon found that antivirus products could not detect malware if the execution binary was automatically permuted~\cite{Rastogi2013}.
+The Malware Genome project collected 1\,260 malware samples from 2010--2011~\cite{Zhou2012b} and found a best case anti-malware detection rate of 79.6\%.
+Similarly, DroidChameleon found that antivirus products could not detect malware if the binary was automatically permuted~\cite{Rastogi2013}.
 Therefore detecting risky apps which might contain critical vulnerabilities is a useful tool, but it does not replace the need to provide security updates.
 
 %All these app analysis projects have been hampered by the difficulty of obtaining full datasets of Android apps as Google does not make these available (and researchers who automatically download them violate Google's Terms of Service).
