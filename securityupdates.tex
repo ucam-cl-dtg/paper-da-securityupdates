@@ -381,15 +381,7 @@ It shows how some devices had vulnerabilities, which were fixed, and then furthe
 This implies that these devices had been abandoned by the device manufacturer and were not receiving updates, this is confirmed by Figure~\ref{fig:device_data_os} which shows which OS versions those devices were running.
 Some devices start off in 2011 exposed to known security vulnerabilities and are still exposed to those and additional ones in 2014.
 
-
-
-\begin{figure}[h]
- \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
- \caption{Proportion of updates each week which (may have) fixed vulnerabilities}
- \label{fig:weekly_security_updates}
-\end{figure}
-We recorded update events and Figure~\ref{fig:from_to_updates} shows how devices upgrade between different versions of Android.
-Mostly the dark cells are upgrades (above the diagonal) (\daNumUpdatesUpgrades).
+We recorded \daNumFullVersionUpdates\ update events and found most are upgrades (\daNumUpdatesUpgrades).
 While many upgrades are from one version to the next version there are also a fair number (\daNumUpdatesBigUpgrades, \daPercBigUpgradesNominal) which skip more than \daNumUpdatesSkippedBig\ versions.
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngradesNominal) when older versions of Android are installed on to devices.
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
@@ -424,19 +416,14 @@ This compares badly with the number of critical vulnerabilities discovered per y
 \end{subfigure}
 \caption{Monthly Android API version data}
 \end{figure}
-\begin{figure}
- \centering
- \includegraphics[width=\columnwidth]{figures/api_gpcomp_rdiff}
- \caption{Difference between \da\ and Google Play data on the proportion of devices running different Android API versions}
- \label{fig:da_gp_comp_diff}
-\end{figure}
+
 The data from \da\ we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
 Unfortunately there is no ground truth of OS version information.
 However Google has published API version information almost every month since December 2009 and we have collated this information.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
 Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from \da\ and they appear similar.
-Figure~\ref{fig:da_gp_comp_diff} shows the difference between Figures~\ref{fig:play_api} and \ref{fig:da_api}, normalising for days since the API version was released.
-It shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
+We analysed the difference between the API version data from \da\ and Gooble Play, normalising for days since the API version was released.
+This that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions (except for API version 17 which was particularly popular in a focused study discussed in the next section and so was temporarily overestimated when an old version).
 This means that the OS version information from \da\ is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
 This allows us to have confidence in the OS version information.
 \todolater{we want a statistical metric to claim this strongly with.}
