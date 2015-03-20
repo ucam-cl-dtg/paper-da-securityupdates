@@ -451,12 +451,13 @@ Therefore an attacker has to invest significant human resource to first find a b
 To reduce the effort involved in finding a bug, attackers can look at security-related commits made to open source repositories.
 Attackers have taken this approach for the Firefox web browser~\cite{Barth2011}.
 Google does not release updates to the Android source code until after the release of the relevant update.
-This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository from the period (\textbf{first fix}, \textbf{fix deployed}) to (\textbf{fixing release}, \textbf{fix deployed}), unfortunately this can still take months .
+This reduces the time available for an attacker to exploit a vulnerability by looking at security updates disclosed in the source code repository.
+Reducing it from, the interval between the commit of the first fix and the fix being deployed to most devices, to the interval between the first fixing release and the fix being deployed to most devices; unfortunately this can still take months or years.
 For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed\footnote{Definitely fixed is 1 $-$ (definitely insecure + maybe secure), maybe fixed is 1 $-$ definitely insecure} (25 months for 90\% of devices maybe fixed).
 
 Brumley et al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
 Similarly, the Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
-Once such automated techniques mature, it will become even more important to provide security updates promptly to every Android device in the ecosystem because an attacker can turn the contents of a \textbf{fixing release} into an exploit in a matter of minutes or hours.
+Once such automated techniques mature, it will become even more important to provide security updates promptly to every Android device in the ecosystem because an attacker can turn the contents of a released fix into an exploit in a matter of minutes or hours.
 
 Security in depth is also a useful strategy.
 In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution code review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
