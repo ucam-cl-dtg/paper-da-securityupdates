@@ -248,13 +248,13 @@ Possible explanations are that: (i) most devices were exposed to known vulnerabi
 (iii) device manufacturer specific vulnerabilities (which are not in our analysis here) were easier to find and so attackers looking for vulnerabilities adjusted their focus.
 
 
-\section{Experiments}
+\section{Analysis}
 \label{sec:results}
 We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities.
 Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
-We describe three experiments, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
+We describe three analyses, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
 
-\subsection{Experiment 1: vulnerability of Android devices}\label{sec:exp:versionsecurity}
+\subsection{Analysis 1: vulnerability of Android devices}\label{sec:exp:versionsecurity}
 
 In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptible to at least one critical vulnerability.
 
@@ -276,9 +276,9 @@ This means more and more devices are marked as \emph{secure} because they are no
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
 
-\subsection{Experiment 2: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
+\subsection{Analysis 2: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 
-\subsubsection{Method} As in Experiment 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
+\subsubsection{Method} As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 
 \subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
@@ -319,7 +319,7 @@ However what is perhaps more worrying is the long tail on the \avovuln{Gingerbre
 \end{figure*}
 
 
-\subsection{Experiment 3: Updates to particular devices}\label{sec:exp:device_updates}
+\subsection{Analysis 3: Updates to particular devices}\label{sec:exp:device_updates}
 Previous graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
 This allows us to determine whether newer OS versions are being used because people are buying new phones running newer OS versions or whether existing devices receive updates.
 
@@ -342,7 +342,7 @@ This allows us to determine whether newer OS versions are being used because peo
 \end{figure}}
 
 \subsubsection{Method}
-As in Experiment 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
+As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 We also recorded when the version changed and which versions it changed from and to.
 In the \da\ data we have over 1000 devices contributing data in any particular week.
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
