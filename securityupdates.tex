@@ -214,39 +214,16 @@ For some of the vulnerabilities without CVE numbers, Google confirmed that there
 
 \subsection{Lifetime of a vulnerability}
 
-The key events in the lifetime of a vulnerability do not always occur in the same order and are:
-\begin{description}
-\item[creation] When a vulnerability was created in the source code.
-\item[introducing release] When the first release was made containing the vulnerability.
-\item[discovery] When the vulnerability is first discovered.
-\item[exploit] When the vulnerability is first exploited.
-\item[disclosure] When the vulnerability is first disclosed. % publically or to a smaller set of people?
-\item[fix] When a vulnerability was first fixed in the source code.
-\item[fixing release] When the first release containing the fix was made (equivalent to `patch available'~\cite{Frei2010}).
-\item[fix deployed] When the fix has been deployed to a sufficiently large proportion of the population that the vulnerability can be ignored (the ecosystem equivalent to the per instance `patch installed'~\cite{Frei2010}).
-\end{description}
-
 Establishing when a vulnerability starts to pose a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the \textbf{time of disclosure}.
-This occurs when the information about the vulnerability is freely available to the public from an accepted and independent source and has been validated by security experts so that it has a risk rating.
-Unfortunately before we collated this information much of it was not published by an independent source and lacked risk rating information, even months or years after they had been actively used.
-Therefore this measure does not work.
+This occurs when the information about the vulnerability is available to the from an accepted source.
+Unfortunately before we collated this information much of it was not published by an independent source, even months or years after they had been actively used.
 
-Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public \textbf{disclosure} and the date of \textbf{fix deployed} is the most critical.
+Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public disclosure and the date of the fix being deployed to most devices is the most critical.
 However they also show that zero-day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
-Hence when considering a vulnerability from the point of view of an organisation which cares about Advanced Persistent Threats, the critical period starts with \textbf{discovery} and continues until \textbf{fix deployed}.
-Therefore, in our vulnerability calculations we prefer to use the earliest recorded date of \textbf{discovery}, even if that knowledge might have been confined to a particular device manufacturer or hobbyist.
-%We cannot know if someone reported the vulnerability to the device manufacturer and we do know that various agencies are engaged in widespread monitoring of communications and compromise of civilian infrastructure~\cite{TODO} and so they may know.
 
-Unfortunately \textbf{discovery} is the hardest point to obtain concrete data on as discovery may happen multiple times independently and not all discoverers will report their discovery.
-\textbf{Creation} and \textbf{introducing release} are the earliest points which could be used, but the risk is mostly latent until someone discovers them and therefore we do not use these dates.
-%, for example entities with high value targets may keep databases of unknown vulnerabilities for later use, in which case there is a high risk to potential targets from the never disclosed point of discovery.
-%However if the discoverer never discloses the vulnerability to anyone or makes any use of it then there is little danger.
-The date of first \textbf{exploit} is a point when the risk is definitely high, but again a good adversary will not be detected when using such exploits.
-The date of first \textbf{fix} is, assuming that the fix is deliberate, a point at which the vulnerability is known at least within the organisation performing the fix and frequently implies an earlier discovery and notification by a third party; we determine this date from the Android Open Source Project repository by examining the authored-on date of the fixing commit.
-%Once a {\bf fixing release} has been made then the vulnerability is widely known because it can be reverse engineered from the changes in the release~\cite{Brumley2008}.
-%When the {\bf fix deployed} to a sufficiently large proportion of devices then the remaining risk is minimal.
-Therefore, in this paper we use the earliest known date from \textbf{discovery}, \textbf{exploit}, \textbf{disclosure} or \textbf{fix}. A breakdown of the type of date used is shown in Table~\ref{tab:andvulns}.
+Therefore, we use the earliest of: discovery date, date when reported to be exploited, date of disclosure or date of fix in the source code; as the date at which we consider a vulnerability to start being dangerous.
+A breakdown of the type of date used is shown in Table~\ref{tab:andvulns}.
 
 
 \subsection{Distribution of vulnerabilities}
