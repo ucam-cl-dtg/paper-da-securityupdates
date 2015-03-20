@@ -72,10 +72,10 @@ Cambridge, United Kingdom\\
 
 \begin{abstract}
 Modern smartphone operating systems protect users from malicious applications by providing a protected execution environment or sandbox.
-This approach relies on the absence of active exploits which allow apps to break out of the sandbox.
+This approach relies on the absence of exploits which allow apps to break out of the sandbox.
 Many such exploits have been found, and therefore the security of a smartphone operating system relies on the prompt delivery of security updates.
 In this paper we quantify the extent to which the security sandbox provided by Android protects devices from malicious apps.
-We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercNominal\ of devices run the most recent version of Android.
+We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercTwosfNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercTwosfNominal\ of devices run the most recent version of Android.
 \end{abstract}
 
 \section{Introduction}
@@ -184,7 +184,7 @@ This technique cannot account for systematic errors which we explore in \S\ref{s
 
 We compiled a list of critical vulnerabilities in Android, containing information on the discovery and publication dates, the versions affected and which versions fixed the problem.
 We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
-If an malicious code exploits a critical vulnerability then it gains control of the device.
+If malicious code exploits a critical vulnerability then it gains control of the device.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the ADB shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
 This is not something that applications running on the phone can exploit to break out of the app sandbox and so we do not include those vulnerabilities.
 Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
@@ -202,7 +202,7 @@ We collected data between \avoStartDate\ and \avoEndDate\ and so does not includ
 
 Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
-These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate security analysis of Android.
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
 In many cases we could not match manufacturer- and model-specific vulnerabilities to individual devices in the \da\ data and therefore attempting to include device-specific vulnerabilities as well would introduce additional uncertainty in our results.
 In contrast, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data set.
 
@@ -275,9 +275,9 @@ Possible explanations are that: (i) most devices were exposed to known vulnerabi
 \label{sec:results}
 We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities.
 Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
-We describe three experiments, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}, explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}), quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
+We describe three experiments, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
 
-\subsection{Experiment 0: vulnerability of Android devices}\label{sec:exp:versionsecurity}
+\subsection{Experiment 1: vulnerability of Android devices}\label{sec:exp:versionsecurity}
 
 In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptible to at least one critical vulnerability.
 
@@ -293,24 +293,25 @@ We then normalise these totals for each day by dividing through by the total num
 Following time from left to right in Figure~\ref{fig:proportioninsecure} we see all devices are initially \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011. This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
 Once \avovuln{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
-The remanding devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
+The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
 From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
 
-\subsection{Experiment 1: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
+\subsection{Experiment 2: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 
-\subsubsection{Method} As in Experiment 0, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
+\subsubsection{Method} As in Experiment 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 
 \subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
 It shows how old versions are gradually replaced by new ones, and the long tail of devices which do not see updates to more recent versions.
+The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.
 
 \begin{figure*}
  \centering
  \includegraphics[width=\textwidth]{figures/da_norm_os}
- \caption{Android versions in \da\ data over time. The change in behaviour after August 2014 is explained in \S\ref{sec:da_changes}}
+ \caption{Android versions in \da\ data over time. The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
  \label{fig:norm_os}
 \end{figure*}
 
@@ -341,8 +342,9 @@ However what is perhaps more worrying is the long tail on the \avovuln{Gingerbre
 \end{figure*}
 
 
-\subsection{Experiment 2: Updates to particular devices}\label{sec:exp:device_updates}
-Those graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
+\subsection{Experiment 3: Updates to particular devices}\label{sec:exp:device_updates}
+Previous graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
+This allows us to determine whether newer OS versions are being used because people are buying new phones running newer OS versions or whether existing devices receive updates.
 
 {\begin{figure}[p]
  \centering
@@ -357,13 +359,13 @@ Those graphs summarise data across all the devices, however one of the advantage
   \label{fig:device_data_security}
  \end{subfigure}
  \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset.}
- \includegraphics[width=0.55\columnwidth]{figures/from_to_updates.pdf}
- \caption{Updates between different Android versions in the \da\ data}
- \label{fig:from_to_updates}
+  \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
+ \caption{Proportion of updates each week which (may have) fixed vulnerabilities}
+ \label{fig:weekly_security_updates}
 \end{figure}}
 
 \subsubsection{Method}
-As in Experiment 0, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
+As in Experiment 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 We also recorded when the version changed and which versions it changed from and to.
 In the \da\ data we have over 1000 devices contributing data in any particular week.
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
@@ -448,7 +450,8 @@ One study was conducted in Norway with 654 installs and one in Bangladesh where 
 This is responsible for the sudden change in distribution of OS versions in \da\ beginning in August 2014 Figures \ref{fig:norm_os}, \ref{fig:nvulnerabilities_heat} and \ref{fig:proportioninsecure} as for that period Bangladeshi users contributed over half of the \da\ data.
 %We could normalise out the influence of the Bangladeshi users, however they are Android users too and they also need security updates.
 To investigate the sensitivity of our results to the Bangladesh study we truncated our data before this study started and found the percentage of vulnerable devices to be 87.7\% rather than \daMeanInsecurityPercNominal, and the percentage of devices running the latest version to be 5.43\% rather than \daUpdatednessPercNominal.
-Hence removing this anomaly would have no effect on our conclusions.
+Hence removing this anomaly would have no effect on our main conclusions.
+
 Since most \da\ users are self selecting and install \da\ because they want to find out more about what their phone is doing or to aid research they may be biased and perhaps more likely to install updates.
 
 \section{Discussion} \label{sec:discussion}
@@ -462,6 +465,7 @@ There also tends to be less public information available about manufacturer-spec
 
 For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
 For example, \avovuln[pty_race]{pty race} is a Linux kernel vulnerability. We found 48 commits which fixed this vulnerability on different branches. On some branches it was also accidentally fixed, and later reintroduced, before finally being fixed properly, and therefore determining which devices were vulnerable relies on knowing where, and on which branch, the kernel code for a specific release was taken from.
+
 For some vulnerabilities the required patch is not in AOSP.
 This is despite the fact that some device manufacturers have shipped builds containing the fix.
 This makes it difficult to determine whether a specific device is vulnerable.
@@ -476,7 +480,7 @@ Unfortunately this data set only records \daNumUpdatesUpgrades\ upgrades which, 
 \section{Related work}
 \label{sec:related}
 Using the methods and data described in this paper we have determined that, on average, \daMeanInsecurityPerc\ of devices were exposed to known critical vulnerabilities between 2011 and 2015.
-Felt et al.\ studied 6 Android handsets in 2011 and found they were exposed to root vulnerabilities at least 74\% of the time~\cite{Felt2011} .
+Felt et al.\ studied 6 Android handsets in 2011 and found they were exposed to root vulnerabilities at least 74\% of the time~\cite{Felt2011}.
 Our approach differs from their study because they used data from 6 handsets and assumed the best possible update distribution, while our work is based on a large sample of devices tracking the actual update distribution.
 Nevertheless, our own analysis as well as comparison with their work suggests protection against critical vulnerabilities has not improved significantly over the last 4 years. 
 Felt et al.\ also found that 4 of the 46 malware samples (8\%) they analysed contained root exploits, much lower than rates found in later (larger) studies which found rates of 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} in 2012.
@@ -531,6 +535,7 @@ However the latency in the security update process means that on average \daMean
 Thanks to Richard Clayton, the mobile security reading group and Anil Madhavapeddy for reading drafts.
 Thanks to David Robertson for advice on statistical analysis.
 Thanks to Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities in Android.
+This work was partly funded by the EPSRC and Google but the the work presented here does not necessarily reflect their views.
 }
 
 \printbibliography
