@@ -286,12 +286,17 @@ The proportion of devices in the \da\ data running different versions of Android
 It shows how old versions are gradually replaced by new ones, and the long tail of devices which do not see updates to more recent versions.
 The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.
 
-\begin{figure*}
+\begin{figure}[h]
  \centering
  \includegraphics[width=\textwidth]{figures/da_norm_os}
  \caption{Android versions in \da\ data over time. The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
  \label{fig:norm_os}
-\end{figure*}
+ \includegraphics[width=\textwidth]{figures/nvulnerabilities_heat.pdf}
+ \caption{Proportion of devices affected by different vulnerabilities. The prefix `(maybe)' indicates `maybe secure' and `(definite)' indicates `definitely insecure'. The first few vulnerabilities are all `maybe secure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices.
+ %The change in behaviour after August 2014 is explained in \S\ref{sec:da_changes}
+ }
+ \label{fig:nvulnerabilities_heat}
+\end{figure}
 
 The vulnerabilities devices are exposed to are shown in Figure~\ref{fig:nvulnerabilities_heat}.
 For each vulnerability it shows the proportion of devices exposed to that vulnerability and how that changes over time.
@@ -309,15 +314,6 @@ In 2013 three vulnerabilities were found in the way which Android verified the s
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
 However what is perhaps more worrying is the long tail on the \avovuln{Gingerbreak}, \avovuln{levitator}, \avovuln[exploid_udev]{exploid} and \avovuln{zergRush} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which affect a significant proportion of devices years later.
-
-
-\begin{figure*}
- \includegraphics[width=\textwidth]{figures/nvulnerabilities_heat.pdf}
- \caption{Proportion of devices affected by different vulnerabilities. The prefix `(maybe)' indicates `maybe secure' and `(definite)' indicates `definitely insecure'. The first few vulnerabilities are all `maybe secure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices.
- %The change in behaviour after August 2014 is explained in \S\ref{sec:da_changes}
- }
- \label{fig:nvulnerabilities_heat}
-\end{figure*}
 
 
 \subsection{Analysis 3: Updates to particular devices}\label{sec:exp:device_updates}
