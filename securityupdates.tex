@@ -191,7 +191,7 @@ Unfortunately, many published exploits use ADB for convenience and so determinin
 
 Some critical vulnerabilities are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
 On some versions of Android (below version 4.1) malware could use known system-to-root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
-\todolater{break vulnerabilities down by attack vector?}
+The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}.
 \avoTabAndVulns
 
 We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the \href{http://androidvulnerabilities.org/}{AndroidVulnerabilities.org}\footnote{\textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}\vspace{-3em}} (\avo) website.
