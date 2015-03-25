@@ -386,26 +386,12 @@ This compares badly with the number of critical vulnerabilities discovered per y
 \label{sec:validity}
 \subsubsection{Comparing \da\ data with the ground truth}
 \label{sec:representative}
-\begin{figure}[!h]
- \centering
- \begin{subfigure}[b]{\columnwidth}
- \includegraphics[width=\columnwidth]{figures/googleplayapi}
- \caption{Google Play data on proportion of devices running different API versions}
- \label{fig:play_api}
-\end{subfigure}
-\begin{subfigure}[b]{\columnwidth}
- \includegraphics[width=\columnwidth]{figures/norm_api_gpcomp}
- \caption{\da\ data on proportion of devices running different API versions}
- \label{fig:da_api}
-\end{subfigure}
-\caption{Monthly Android API version data}
-\end{figure}
 
 The data from \da\ we used to investigate the proportion of devices exposed to different vulnerabilities is the OS version.
 Unfortunately there is no ground truth of OS version information.
 However Google has published API version information almost every month since December 2009 and we have collated this information.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
-Figure~\ref{fig:play_api} shows the data from Google and Figure~\ref{fig:da_api} shows the data from \da\ and they appear similar.
+We compared the data from Google and from \da\ and they appear similar, except for the anomaly discussed later.
 We analysed the difference between the API version data from \da\ and Google Play, normalising for days since the API version was released.
 This shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions (except for API version 17 which was particularly popular in a focused study discussed in the next section and so was temporarily overestimated when an old version).
 This means that the OS version information from \da\ is likely to be overestimating the prevalence of new OS versions and hence our results are a conservative estimate of the security of Android.
