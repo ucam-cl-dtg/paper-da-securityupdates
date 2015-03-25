@@ -46,7 +46,7 @@
 \newcommand{\blindauthors}[1]{#1}%{Paper \#59}%
 
 \begin{document}
-\title{Timeliness of security updates for Android}
+\title{The thin blue line:\\what protects my Android device?}
 
 
 \author{\blindauthors{Daniel~R.~Thomas \and Alastair~R.~Beresford \and Daniel~T.~Wagner \and Andrew~Rice}}
@@ -79,19 +79,27 @@ We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ dev
 Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year.
 \end{abstract}
 
-
 \section{Introduction}
-%Android is the most popular smartphone operating system today with \percMarketShare\ marketshare.
-\todo{refute conventional wisdom to show novelty and importance of real data}
-Support for third-party apps is a key feature of modern smartphone operating systems.
-Such apps are written by many developers from a wide range of backgrounds, which means neither operating system vendors nor users can fully trust app developers.
-Therefore, in order to secure personal data and prevent theft, such as the sending of premium-rate text messages, operating system vendors provide a protected execution environment, or \emph{sandbox}, for apps.
+We show that the security of Android relies on the centralisation of app deployment with Google.
+Computer systems which run untrusted code are considered secure if there are strong sandboxing mechanisms which prevent the untrusted code doing dangerous things.
+However we show the Android ecosystem is secure even though on average \daMeanInsecurityPercTwosfNominal\ of devices are exposed to known critical vulnerabilities which break the sandboxing mechanisms.
+The recurrent advice on keeping computers secure is to install the latest updates yet only \daUpdatednessPercTwosfNominal\ of Android devices run the latest version and the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year is higher than the rate of updates being delivered of \daUpdatesPerYearTwosfNominal.
+Yet Android malware deployments are not widespread despite the many attempts of malware authors:
+in 2012, between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to enable a malicious app to break the sandbox and thousands of new malware samples are found each year.
 
-In this paper we quantify the extent to which the app sandbox provided by Android protects devices from malicious apps attempting to gain control over the entire handset.
-%We have analysed Android because it is the most popular smartphone operating system by market share (~\percMarketShare) and 
-Previous research has shown that in 2012, between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to enable a malicious app to break the sandbox.
-What is not known however is the proportion of Android devices which are vulnerable to these exploits over time.
-To the best of our knowledge, this is the first paper to provide detailed numbers.
+Android is protected by many layers of security and while the sandbox is usually broken on most Android devices by known vulnerabilities, the outer layers of protection such as the Google Play store prevent the installation of malicious apps.
+The Google Play store provides economic (app developers have to pay to register), technical (Google Bouncer which scans apps) and social (user reviews and reports of malicious software) measures to prevent malicious apps being distributed.
+Even users who cannot use Google Play (e.g.\ because they are in China) may still get its `Verify apps' functionality which scans for malicious apps.
+
+The claim of the open source software `bazzar' is that it is more secure because anyone can review the source code and provide fixes~\cite{Raymond1999}.
+Yet Android is not a `bazzar' in the way that Debian is because while much of the code is open source and available for the many eyes review, end users cannot easily rebuild the binaries that run on their phones due to the binary blobs and closed source components within them.
+Since only manufacturers can do that, rather than any one technically competent user, the availability of updates is controlled by the commercial interests of the manufacturers (and the operators).
+Manufacturers do not even provide updates for the length of the contracts under which the users originally bought the phone, despite efforts by the ACLU to persuade the FTC to force them to do so~\cite{Soghoian2013}, and despite the FTC forcing HTC to do so~\cite{FTCHTC2013}.
+Since only manufacturers can provide updates, malicious parties cannot do so, if manufacturers promptly provided updates this would improve security, but since they do not, it makes it worse.
+
+However, despite the current low level of malicious software deployment on Android, the high level of vulnerability and the slow deployment of updates is still a cause for concern.
+Some users may only be able to use third party app stores or have USB debugging enabled and connect their phone to a malicious machine.
+There have also been two remote code execution vulnerabilities in Android, one in the Javascript-to-Java bridge and one in dhcpd which allow a network attacker to run malicious code in a user context, bypassing all the checks on apps and leaving only the sandbox which we show to be vulnerable.
 
 Not all malicious apps need to break the sandbox in order to misbehave.
 We focus on the issue of apps breaking out of the sandbox because malware which is able to take full control of a handset can do significantly more harm and is much harder to remove.
@@ -99,28 +107,15 @@ Ordinary malware can be uninstalled by the user, or remotely by Google through t
 Removing an app which has used an exploit to take control of the handset is unlikely to return the device to secure state.
 We describe our threat model and three attack vectors in detail in \S\ref{sec:threatmodel}.
 
- 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\columnwidth]{figures/proportioninsecure}
-\caption{Proportion of devices running insecure, maybe secure and secure versions of Android against time.
-The red vertical lines are caused by vulnerabilities being discovered with those which have the biggest impact annotated.
-This graph is explained further in \S\ref{sec:exp:versionsecurity}.
-}
-\label{fig:proportioninsecure}
-\end{figure}
 
-In order to determine whether an individual smartphone is vulnerable to a particular exploit, we need to combine vulnerability data with the operating system version string and build number from the handset. 
+In order to determine whether an individual smartphone is exposed to a particular vulnerability, we need to combine vulnerability data with the operating system version string and build number from the handset.
 For this we use handset data gathered from \daNumOSDevices\ devices in the \da~\cite{Wagner2013} project.
-This analysis allows us to plot the proportion of Android devices in the \da\ data which were running versions of Android known to have vulnerabilities at the time and is shown in Figure~\ref{fig:proportioninsecure}.
-The figure shows the proportion of devices split into three categories:
-(1)~\emph{secure} because they are running a version of Android with no known vulnerabilities; 
-(2)~\emph{insecure} because the device was running an insecure version of Android with a build released before the vulnerability was fixed or discovered; and 
-(3)~\emph{maybe secure} because the device is running a version of Android known to be insecure but has received an update which might contain a backported fix as we did not observe that build number until after the vulnerability was known.
-Further analysis into the propagation of updates in Android is presented in \S\ref{sec:exp:android_ecosystem}.
+From this we have determined that since \daStartDate\ on five occasions all Android devices have been exposed to known critical vulnerabilities and that it takes a year for updates to reach most devices, by which time new vulnerabilities have been discovered.
+
 
 In summary, the contributions of this paper are:
 \begin{itemize}
+ \item We show that the security of Android relies on the centralisation of app deployment with Google rather than the absence of vulnerabilities in its sandbox
  \item We quantify the Android update ecosystem showing how the OS version distribution changes and the frequency of updates.
  \item We quantify vulnerabilities by determining what proportion of devices they affected and how that changes over time.
  \item We created an open database to collate quantitative information on vulnerabilities which affect Android, and investigate their time-lines.
