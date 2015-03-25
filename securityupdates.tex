@@ -183,12 +183,12 @@ This technique cannot account for systematic errors which we explore in \S\ref{s
 
 
 \subsection{Critical vulnerabilities}
-
 We compiled a list of critical vulnerabilities in Android, containing information on the discovery and publication dates, the versions affected and which versions fixed the problem.
 We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
 If malicious code exploits a critical vulnerability then it gains control of the device.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the ADB shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
 This is not something that applications running on the phone can exploit to break out of the app sandbox and so we do not include those vulnerabilities.
+However there have been reports of Windows malware exploiting this vector.\footnote{\url{http://www.symantec.com/connect/blogs/windows-malware-attempts-infect-android-devices}}
 Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
 
 Some critical vulnerabilities are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
@@ -199,7 +199,7 @@ The different categories which the vulnerabilities fall into are shown in Table~
 We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the \href{http://androidvulnerabilities.org/}{AndroidVulnerabilities.org}\footnote{\textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}\vspace{-4em}} (\avo) website.
 We seeded it with data from the CVE database, vendor lists, reports from the literature and forums.
 In addition, we have received submissions or amendments from \avoNumSubmitters\ individuals.
-We collected data between \avoStartDate\ and \avoEndDate\ and so does not include any information lost before the start of that period.
+We collected data between \avoStartDate\ and \avoEndDate\ and so it does not include any information lost before the start of that period.
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
 Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
@@ -211,7 +211,7 @@ In contrast, with our chosen set of vulnerabilities, our analysis represents a l
 Tracking vulnerabilities is a manual task as they are not consistently recorded in other databases such as the CVE database.
 In addition, the lack of a widely acknowledged unique identifier required manual analysis to identify whether two reports referenced the same vulnerability.
 Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for critical Android vulnerabilities.
-For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an Android bug number.
+For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an internal Android bug number.
 
 
 \subsection{Lifetime of a vulnerability}
@@ -219,7 +219,7 @@ For some of the vulnerabilities without CVE numbers, Google confirmed that there
 Establishing when a vulnerability starts to pose a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the \textbf{time of disclosure}.
 This occurs when the information about the vulnerability is available to the from an accepted source.
-Unfortunately before we collated this information much of it was not published by an independent source, even months or years after they had been actively used.
+Unfortunately before we collated this information much of it was not published by an accepted source, even months or years after they had been actively used.
 
 Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public disclosure and the date of the fix being deployed to most devices is the most critical.
 However they also show that zero-day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
