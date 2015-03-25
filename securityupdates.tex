@@ -172,6 +172,7 @@ The API version is a positive integer which increases when new features are adde
 Consequently security (bug) fixes do not result in a change in the API version.
 Fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
 On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
+Google provides API version distribution information but not the OS and build version information we need, we verify that the \da\ data is representative in~\S\ref{sec:representative}.
 
 The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
 The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
@@ -351,6 +352,7 @@ This allows us to determine whether newer OS versions are being used because peo
 As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 We also recorded when the version changed and which versions it changed from and to.
 In the \da\ data we have over 1000 devices contributing data in any particular week.\todolater{Use the real average number of devices contributing each week}
+
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
 Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
 \da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, that is a manual process and few users do it.
@@ -411,7 +413,7 @@ Hence removing this anomaly would have no effect on our main conclusions.
 
 \subsubsection{The selection of vulnerabilities in \avo}
 We have not included all the vulnerabilities from \avo. 
-In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities affecting Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing vulnerabilities and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities in Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing vulnerabilities and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about manufacturer-specific vulnerabilities which makes them harder to tie down.
 
 For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
@@ -455,7 +457,7 @@ Security in depth is also a useful strategy.
 In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution code review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
 These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
 
-There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and more widely.
+There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and elsewhere.
 SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with and could be included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence Android.
 
