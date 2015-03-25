@@ -76,7 +76,9 @@ This approach relies on the absence of exploits which allow apps to break out of
 Many such exploits have been found, and therefore the security of a smartphone operating system relies on the prompt delivery of security updates.
 In this paper we quantify the extent to which the security sandbox provided by Android protects devices from malicious apps.
 We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercTwosfNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercTwosfNominal\ of devices run the most recent version of Android.
+Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year.
 \end{abstract}
+
 
 \section{Introduction}
 %Android is the most popular smartphone operating system today with \percMarketShare\ marketshare.
@@ -250,12 +252,13 @@ There is no canonical source of Android release dates, our best guesses and supp
 
 \section{Analysis}
 \label{sec:results}
-We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities.
-Devices, on average, apply \daUpdatesPerYear\ updates each year and \daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
+We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities and only \daUpdatednessPerc\ run the latest version of Android.
+Devices, on average, apply \daUpdatesPerYear\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
+\daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
 We describe three analyses, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
 
 \subsection{Analysis 1: vulnerability of Android devices}\label{sec:exp:versionsecurity}
-
+In this analysis we calculate the proportion of Android devices which are exposed to critical vulnerabilities and and discuss how that has changed over time.
 In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptible to at least one critical vulnerability.
 
 \subsubsection{Method} 
@@ -275,15 +278,18 @@ From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplic
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
+This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
 
 \subsection{Analysis 2: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
+In this analysis we examine how the distribution of Andriod OS versions changes over time and the impact that has on how different vulnerabilities affect the security of Android.
+We show that some vulnerabilities continue to have a substantial effect long after they have been fixed and the importance of longitudinal studies for determining whether a particular device is exposed to a particular vulnerability.
 
 \subsubsection{Method} As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 
 \subsubsection{Results}
-The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.
+The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.\footnote{The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
 It shows how old versions are gradually replaced by new ones, and the long tail of devices which do not see updates to more recent versions.
-The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.
+This gives a mean proportion of devices running the most recent version of Android is \daUpdatednessPerc.
 
 
 \begin{figure}[!h]
@@ -491,6 +497,7 @@ More recent data demonstrates the difficulty of upgrading computers between majo
 We have investigated the security of the Android operating system with respect to security updates.
 Android attempts to provide good security to end users through sandboxing apps.
 However the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPerc\ of devices run the latest version of Android.
+Devices apply \daUpdatesPerYear\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
 
 \identifying{
 \section*{Acknowledgements}
