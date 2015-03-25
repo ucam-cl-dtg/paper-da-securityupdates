@@ -254,8 +254,16 @@ Devices, on average, apply \daUpdatesPerYear\ updates each year less than the ra
 We describe three analyses, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
 
 \subsection{Analysis 1: vulnerability of Android devices}\label{sec:exp:versionsecurity}
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/proportioninsecure}
+\caption{Proportion of devices running insecure, maybe secure and secure versions of Android against time.
+The red vertical lines are caused by vulnerabilities being discovered with those which have the biggest impact annotated.
+}
+\label{fig:proportioninsecure}
+\end{figure}
 In this analysis we calculate the proportion of Android devices which are exposed to critical vulnerabilities and and discuss how that has changed over time.
-In the introduction, Figure~\ref{fig:proportioninsecure} described the proportion of Android devices susceptible to at least one critical vulnerability.
+In Figure~\ref{fig:proportioninsecure} describes the proportion of Android devices susceptible to at least one critical vulnerability.
 
 \subsubsection{Method} 
 To investigate the vulnerability of Android devices, we used the OS version information from \da\ and the vulnerability data from \avo.
