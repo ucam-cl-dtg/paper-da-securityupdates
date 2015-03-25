@@ -139,16 +139,16 @@ In 2012 between 0.20\% and 0.47\% of apps on alternative markets were malicious~
 The second attack vector is to persuade an existing app to download and execute code at runtime.
 The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a remote server under control of the attacker.
 Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does exist in the app binary.
-Instead the attacker can chose to send a malicious payload directly to the app for execution at a later point in time.
-Note that dynamic code loading is not actually needed for this to work -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a ROP-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+Instead the attacker can choose to send a malicious payload directly to the app for execution at a later point in time.
+Note that dynamic code loading is not actually needed for this to work -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a Return oriented Programming (ROP)-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
 Support for dynamic code loading on Android also supports the third attack vector in which the attacker injects malicious code directly into existing apps already installed on the handset. 
 For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows Javascript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
 This attack works when: (1) the WebView has the Javascript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious Javascript payload into the network traffic between the phone and the web server. 
 Many apps are vulnerable to this type of attack because ad-libraries typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. 
 The fix for the addJavascriptInterface vulnerability breaks backwards compatibility, and therefore apps are only immune to this attack if their target API level is greater than 16 and they are running on an Android device with an OS version of 4.2 or greater.
-Later analysis in Figure~\ref{fig:da_api} in this paper shows that 40\% of handsets connecting to the Google Play store are currently vulnerable to this attack.
-\todo{Make that percentage automatically generated so that it is correct}
+Our analysis shows that on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to the Google Play store were still vulnerable to this attack.
+
 
 \section{Data sources}
 \label{sec:background}
