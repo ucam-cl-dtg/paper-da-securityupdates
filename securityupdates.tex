@@ -80,7 +80,7 @@ We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ dev
 
 \section{Introduction}
 %Android is the most popular smartphone operating system today with \percMarketShare\ marketshare.
-
+\todo{refute conventional wisdom to show novelty and importance of real data}
 Support for third-party apps is a key feature of modern smartphone operating systems.
 Such apps are written by many developers from a wide range of backgrounds, which means neither operating system vendors nor users can fully trust app developers.
 Therefore, in order to secure personal data and prevent theft, such as the sending of premium-rate text messages, operating system vendors provide a protected execution environment, or \emph{sandbox}, for apps.
@@ -315,7 +315,7 @@ In 2013 three vulnerabilities were found in the way which Android verified the s
 These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
 However what is perhaps more worrying is the long tail on the \avovuln{Gingerbreak}, \avovuln{levitator}, \avovuln[exploid_udev]{exploid} and \avovuln{zergRush} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which affect a significant proportion of devices years later.
-
+\todo{quantify this long tail and the APK numbers as headline numbers}
 
 \subsection{Analysis 3: Updates to particular devices}\label{sec:exp:device_updates}
 Previous graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
@@ -342,7 +342,7 @@ This allows us to determine whether newer OS versions are being used because peo
 \subsubsection{Method}
 As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
 We also recorded when the version changed and which versions it changed from and to.
-In the \da\ data we have over 1000 devices contributing data in any particular week.
+In the \da\ data we have over 1000 devices contributing data in any particular week.\todolater{Use the real average number of devices contributing each week}
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
 Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
 \da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, that is a manual process and few users do it.
