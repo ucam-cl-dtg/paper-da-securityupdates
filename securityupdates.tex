@@ -81,11 +81,11 @@ Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the ra
 
 \section{Introduction}
 We show that the security of Android relies on the centralisation of app deployment with Google.
-Computer systems which run untrusted code are considered secure if there are strong sandboxing mechanisms which prevent the untrusted code doing dangerous things.
-However we show the Android ecosystem is secure even though on average \daMeanInsecurityPercTwosfNominal\ of devices are exposed to known critical vulnerabilities which break the sandboxing mechanisms.
-The recurrent advice on keeping computers secure is to install the latest updates yet only \daUpdatednessPercTwosfNominal\ of Android devices run the latest version and the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year is higher than the rate of updates being delivered of \daUpdatesPerYearTwosfNominal.
-Yet Android malware deployments are not widespread despite the many attempts of malware authors:
-in 2012, between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to enable a malicious app to break the sandbox and thousands of new malware samples are found each year.
+Computer systems which run untrusted code are secure if there are strong sandboxing mechanisms which prevent the untrusted code doing dangerous things.
+Google claims 100\% of Android devices have sandboxes and permissions~\cite{Patterson2013} but we show that on average only \daMeanSecurityPercTwosfNominal\ of Android devices have \emph{working} sandboxes and permissions due to known critical vulnerabilities.
+The recurrent advice on keeping computers secure is to install the latest updates, yet only \daUpdatednessPercTwosfNominal\ of Android devices run the latest version and the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year is higher than the rate of updates being delivered of \daUpdatesPerYearTwosfNominal.
+Yet Android malware deployments are not widespread -- despite the many attempts of malware authors:
+in 2012, between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to enable a malicious app to break the sandbox and thousands of new malware samples are found each year\todolater{citation needed}.
 
 Android is protected by many layers of security and while the sandbox is usually broken on most Android devices by known vulnerabilities, the outer layers of protection such as the Google Play store prevent the installation of malicious apps.
 The Google Play store provides economic (app developers have to pay to register), technical (Google Bouncer which scans apps) and social (user reviews and reports of malicious software) measures to prevent malicious apps being distributed.
@@ -99,7 +99,7 @@ Since only manufacturers can provide updates, malicious parties cannot do so, if
 
 However, despite the current low level of malicious software deployment on Android, the high level of vulnerability and the slow deployment of updates is still a cause for concern.
 Some users may only be able to use third party app stores or have USB debugging enabled and connect their phone to a malicious machine.
-There have also been two remote code execution vulnerabilities in Android, one in the Javascript-to-Java bridge and one in dhcpd which allow a network attacker to run malicious code in a user context, bypassing all the checks on apps and leaving only the sandbox which we show to be vulnerable.
+There have also been two remote code execution vulnerabilities in Android, one in the Javascript-to-Java bridge and one in dhcpd which allow a network attacker to run malicious code in a user context, bypassing all the checks on apps and leaving only the sandbox, which we show to be vulnerable.
 
 Not all malicious apps need to break the sandbox in order to misbehave.
 We focus on the issue of apps breaking out of the sandbox because malware which is able to take full control of a handset can do significantly more harm and is much harder to remove.
@@ -132,7 +132,7 @@ By default, many Android devices with Google Play installed will prevent the ins
 
 Controlling potential sources of app installation is a good security feature because app marketplaces provide additional protection to prevent the listing of malicious apps.
 For example, the Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
-Nevertheless, Google Play is not immune: 0.02\% of apps are malicious~\cite{Zhou2012a}.
+Nevertheless, Google Play is not immune: in 2012 0.02\% of apps were malicious~\cite{Zhou2012a}.
 Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
 In 2012 between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
 
@@ -142,7 +142,7 @@ Neither static nor dynamic analysis of this app by the marketplace will uncover 
 Instead the attacker can choose to send a malicious payload directly to the app for execution at a later point in time.
 Note that dynamic code loading is not actually needed for this to work -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a Return oriented Programming (ROP)-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
-Support for dynamic code loading on Android also supports the third attack vector in which the attacker injects malicious code directly into existing apps already installed on the handset. 
+The third attack vector is that the attacker injects malicious code directly into existing apps or programs already installed on the handset. 
 For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows Javascript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
 This attack works when: (1) the WebView has the Javascript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious Javascript payload into the network traffic between the phone and the web server. 
 Many apps are vulnerable to this type of attack because ad-libraries typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. 
