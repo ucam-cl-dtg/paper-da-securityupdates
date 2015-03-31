@@ -80,83 +80,84 @@ Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the ra
 \end{abstract}
 
 \section{Introduction}
-We show that the security of Android relies on the centralisation of app deployment with Google.
-Computer systems which run untrusted code are secure if there are strong sandboxing mechanisms which prevent the untrusted code doing dangerous things.
-Google claims 100\% of Android devices have sandboxes and permissions~\cite{Patterson2013} but we show that on average only \daMeanSecurityPercTwosfNominal\ of Android devices have \emph{working} sandboxes and permissions due to known critical vulnerabilities.
-The recurrent advice on keeping computers secure is to install the latest updates, yet only \daUpdatednessPercTwosfNominal\ of Android devices run the latest version and the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year is higher than the rate of updates being delivered of \daUpdatesPerYearTwosfNominal.
-Yet Android malware deployments are not widespread -- despite the many attempts of malware authors:
-in 2012, between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to enable a malicious app to break the sandbox and thousands of new malware samples are found each year\todolater{citation needed}.
 
-Android is protected by many layers of security and while the sandbox is usually broken on most Android devices by known vulnerabilities, the outer layers of protection such as the Google Play store prevent the installation of malicious apps.
-The Google Play store provides economic (app developers have to pay to register), technical (Google Bouncer which scans apps) and social (user reviews and reports of malicious software) measures to prevent malicious apps being distributed.
-Even users who cannot use Google Play (e.g.\ because they are in China) may still get its `Verify apps' functionality which scans for malicious apps.
+Modern mobile operating systems provide several layers of security whose combined aim is to prevent app malware from taking control of a device. 
+In this paper we explore the security layers present in the Android ecosystem and determine which layers are effective and which are not. 
 
-The claim of the open source software `bazzar' is that it is more secure because anyone can review the source code and provide fixes~\cite{Raymond1999}.
-Yet Android is not a `bazzar' in the way that Debian is because while much of the code is open source and available for the many eyes review, end users cannot easily rebuild the binaries that run on their phones due to the binary blobs and closed source components within them.
-Since only manufacturers can do that, rather than any one technically competent user, the availability of updates is controlled by the commercial interests of the manufacturers (and the operators).
-Manufacturers do not even provide updates for the length of the contracts under which the users originally bought the phone, despite efforts by the ACLU to persuade the FTC to force them to do so~\cite{Soghoian2013}, and despite the FTC forcing HTC to do so~\cite{FTCHTC2013}.
-Since only manufacturers can provide updates, malicious parties cannot do so, if manufacturers promptly provided updates this would improve security, but since they do not, it makes it worse.
+Our focus is on malware whose aim is to gain full control of the device rather than merely abuse permissions granted to it by the user.
+In this context, by full control, or \emph{root}, on a device we mean the malware has unfettered access to all data stored on the device and can control all network interfaces in the device with the same flexibility as the operating system itself.
+We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware which gains root than malware which does not: malware with root can not only perform arbitrary actions on the device, but it is also impossible for the device owner to remove the malware reliably since even a factory reset does not guarantee that the malware has been successfully removed. 
 
-However, despite the current low level of malicious software deployment on Android, the high level of vulnerability and the slow deployment of updates is still a cause for concern.
-Some users may only be able to use third party app stores or have USB debugging enabled and connect their phone to a malicious machine.
-There have also been two remote code execution vulnerabilities in Android, one in the Javascript-to-Java bridge and one in dhcpd which allow a network attacker to run malicious code in a user context, bypassing all the checks on apps and leaving only the sandbox, which we show to be vulnerable.
+This is an important problem: previous studies have shown that a significant proportion of malware attempts to gain root.
+For example, in 2012 between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to gain root-level access.
 
-Not all malicious apps need to break the sandbox in order to misbehave.
-We focus on the issue of apps breaking out of the sandbox because malware which is able to take full control of a handset can do significantly more harm and is much harder to remove.
-Ordinary malware can be uninstalled by the user, or remotely by Google through the Play Store, and returns the device to a secure state. 
-Removing an app which has used an exploit to take control of the handset is unlikely to return the device to secure state.
-We describe our threat model and three attack vectors in detail in \S\ref{sec:threatmodel}.
+Android users are protected from malicious apps by up to three levels of defence. 
+The first level of defence comes from an app marketplace such as Google Play. 
+A marketplace can use three mechanisms to prevent malicious apps from appearing in the marketplace: firstly by economic disincentives, including charging developers to create an account and cancelling accounts used to upload malicious apps; secondly by technical means, such as static and dynamic analysis on submitted apps; and finally via social feedback between users, including the provision of user reviews and ratings. 
 
+The second line of defence occurs on the handset at installation time, and includes checking the signature of any app installation or update as well as verifying the app by local anti-virus tools (e.g. Google's app verification feature). 
+Finally, the third line of defence takes place at runtime: Android apps are run in a \emph{sandbox} which prevents the app from unauthorised actions such as accessing any permissions which weren't granted by the user at install time; in addition, anti-virus products may scan the list of installed apps periodically to detect malware.
 
-In order to determine whether an individual smartphone is exposed to a particular vulnerability, we need to combine vulnerability data with the operating system version string and build number from the handset.
-For this we use handset data gathered from \daNumOSDevices\ devices in the \da~\cite{Wagner2013} project.
-From this we have determined that since \daStartDate\ on five occasions all Android devices have been exposed to known critical vulnerabilities and that it takes a year for updates to reach most devices, by which time new vulnerabilities have been discovered.
+Sandboxes only provide protection if they are free from design errors and implementation flaws. 
+Both of these have occurred in Android, as indeed happens today in many large security systems relying on the sandbox model. 
+Maintaining sandbox security therefore relies on providing timely updates to fix design and implementation flaws as and when they are discovered.
 
+In this paper we show that the Android sandbox only provides effective security on \daMeanSecurityPercTwosfNominal\ of devices today.
+\footnote{In contrast to Google's claims that 100\% of Android devices are protected by sandboxes and permissions~\cite{Patterson2013}}
+This is because most devices do not receive timely updates. 
+Therefore the security of the Android ecosystem is currently reliant on the defences provided by the app marketplace and (when enabled) anti-virus systems. 
+This insight allows us to provide users with a list of concrete actions to improve device security. 
+It also raises broader questions about how modern mobile device security is most effectively achieved, how a secure ecosystem should be construct and managed, and whether security by obscurity is the right way forward.
 
-In summary, the contributions of this paper are:
+In summary, our contributions are:
 \begin{itemize}
- \item We show that the security of Android relies on the centralisation of app deployment with Google rather than the absence of vulnerabilities in its sandbox
  \item We quantify the Android update ecosystem showing how the OS version distribution changes and the frequency of updates.
- \item We quantify vulnerabilities by determining what proportion of devices they affected and how that changes over time.
- \item We created an open database to collate quantitative information on vulnerabilities which affect Android, and investigate their time-lines.
+ \item We created an open database to collate quantitative information on vulnerabilities which affect Android and use this to determine the proportion of devices they affect and how that changes over time.
+ \item We demonstrate that the security of Android relies on the centralisation of app deployment via a marketplace, and the use of install-time anti-virus checks rather than through the security of the app sandbox.
+ \item We use our analysis to develop advice for Android users on what steps they should take to increase the security of their device.
+ 
 \end{itemize}
 
-\section{Threat model}
+\section{Threat model and attack vectors}
 \label{sec:threatmodel}
 
-In this paper we measure whether an attacker can take control of a handset by breaking out of the app sandbox on Android using a known vulnerability.
-We consider three attack vectors.
+In this paper we assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
+We then consider three attack vectors an attacker can use to attempt to gain root on an Android handset.
+
 The first attack vector is through the installation of a malicious app on the device.
 Android devices support the installation of apps through a number of app marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
-By default, many Android devices with Google Play installed will prevent the installation of apps from other sources.
-
-Controlling potential sources of app installation is a good security feature because app marketplaces provide additional protection to prevent the listing of malicious apps.
-For example, the Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
-Nevertheless, Google Play is not immune: in 2012 0.02\% of apps were malicious~\cite{Zhou2012a}.
+By default, many Android devices with Google Play installed will prevent the installation of apps from other sources, and therefore an attacker needs to compromise all three levels of security.
+The Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
+Nevertheless, Google Play is not immune: in 0.02\% of apps were malicious~\cite{Zhou2012a}.
 Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
 In 2012 between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
 
 The second attack vector is to persuade an existing app to download and execute code at runtime.
 The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a remote server under control of the attacker.
-Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does exist in the app binary.
-Instead the attacker can choose to send a malicious payload directly to the app for execution at a later point in time.
-Note that dynamic code loading is not actually needed for this to work -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a Return oriented Programming (ROP)-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does not exist in the app binary.
+The attacker can choose to send a malicious payload directly to the app for execution at a later point in time.
+The marketplace can detect explicit use of dynamic code loading, even if malicious code cannot be detected. Note that dynamic code loading is not actually needed for this to work however -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP)-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
 The third attack vector is that the attacker injects malicious code directly into existing apps or programs already installed on the handset. 
-For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows Javascript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
-This attack works when: (1) the WebView has the Javascript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious Javascript payload into the network traffic between the phone and the web server. 
-Many apps are vulnerable to this type of attack because ad-libraries typically embed adverts into apps by displaying HTML and Javascript inside a WebView with the Javascript-to-Java bridge enabled. 
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app.
+This attack works when: (1) the WebView has the JavaScript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious JavaScript payload into the network traffic between the phone and the web server. 
+Many apps are vulnerable to this type of attack because ad-libraries typically embed adverts into apps by displaying HTML and JavaScript inside a WebView with the JavaScript-to-Java bridge enabled. 
 The fix for the addJavascriptInterface vulnerability breaks backwards compatibility, and therefore apps are only immune to this attack if their target API level is greater than 16 and they are running on an Android device with an OS version of 4.2 or greater.
-Our analysis shows that on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to the Google Play store were still vulnerable to this attack.
+Our analysis shows that as of \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to the Google Play store were still vulnerable to this attack.
+\todo{Do we want to talk about the dhcp vulnerability here?}
 
+In summary, the best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
+Unfortunately, as we will demonstrate, the sandbox for Android apps is weak and anti-virus is either not installed or not activated by default.
+Therefore many Android users implicitly rely on the marketplace for protection by removing apps which are detected as malicious. This detection can only be derived from static and dynamic analysis or after reports of malicious behaviour from users once it is made available for download.
 
 \section{Data sources}
 \label{sec:background}
 
-We require two sources of data for this study: (1) information on the distribution of installed versions of Android over time and (2) information on the critical vulnerabilities found to affect specific versions of Android.
-These two datasets can then be combined to determine the proportion of handsets at risk of attack from specific vulnerabilities for particular periods of time.
+We require two sources of data to determine whether the Android sandbox is secure or not: (1) information on the distribution of installed versions of Android over time and (2) information on the critical vulnerabilities found to affect specific versions of Android.
+These two datasets can then be combined to determine the proportion of sandboxes at risk of attack from specific vulnerabilities for particular periods of time.
 
-Where possible we indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3 significant figures, this occasionally results in `$\pm\, 0$' when the standard deviation is small.\todolater{Do we want to use the 95 percentile instead}
+We indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3 significant figures, this occasionally results in `$\pm\, 0$' when the standard deviation is small.
+\todolater{Do we want to use the 95 percentile instead}
 This technique cannot account for systematic errors which we explore in \S\ref{sec:representative}.
 
 \subsection{Versions of Android running on devices}
@@ -187,8 +188,7 @@ This is not something that applications running on the phone can exploit to brea
 However there have been reports of Windows malware exploiting this vector.\footnote{\url{http://www.symantec.com/connect/blogs/windows-malware-attempts-infect-android-devices}}
 Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
 
-Some critical vulnerabilities are not traditional kernel vulnerabilities, for example the discovery of flaws in the verification of signatures on Android applications in February 2013~\cite{Forristal2013} meant that applications could pretend to be signed with system keys and hence gain root equivalent privileges.
-On some versions of Android (below version 4.1) malware could use known system-to-root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
+Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 2 of our threat model. For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and from there gain root privileges. For example, for some versions of Android (below version 4.1) malware could use known system-to-root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
 The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}.
 \avoTabAndVulns
 
@@ -214,13 +214,13 @@ For some of the vulnerabilities without CVE numbers, Google confirmed that there
 
 Establishing when a vulnerability starts to pose a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the \textbf{time of disclosure}.
-This occurs when the information about the vulnerability is available to the from an accepted source.
+This occurs when the information about the vulnerability is available to the manufacturer from an accepted source.
 Unfortunately before we collated this information much of it was not published by an accepted source, even months or years after they had been actively used.
 
 Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public disclosure and the date of the fix being deployed to most devices is the most critical.
 However they also show that zero-day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
 
-Therefore, we use the earliest of: discovery date, date when reported to be exploited, date of disclosure or date of fix in the source code; as the date at which we consider a vulnerability to start being dangerous.
+Therefore, we use the earliest of: discovery date, date reported, date first exploited, date of disclosure or date of fix in the source code; as the date at which we consider a vulnerability to start being dangerous.
 A breakdown of the type of date used is shown in Table~\ref{tab:andvulns}.
 
 
@@ -262,7 +262,7 @@ The red vertical lines are caused by vulnerabilities being discovered with those
 }
 \label{fig:proportioninsecure}
 \end{figure}
-In this analysis we calculate the proportion of Android devices which are exposed to critical vulnerabilities and and discuss how that has changed over time.
+In this analysis we calculate the proportion of Android devices which are exposed to critical vulnerabilities and discuss how that has changed over time.
 Figure~\ref{fig:proportioninsecure} describes the proportion of Android devices susceptible to at least one critical vulnerability.
 
 \subsubsection{Method} 
@@ -276,7 +276,7 @@ We then normalise these totals for each day by dividing through by the total num
 
 Following time from left to right in Figure~\ref{fig:proportioninsecure} we see all devices are initially \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011. This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
-Once \avovuln{zergRush} was discovered in October 2011 the most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
 The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
 From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
@@ -321,32 +321,51 @@ However when in February 2013 the first APK signing vulnerability was found whic
 %\end{figure}
 
 In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
-These allowed the creation of malicious APKs which appear to be signed as system APKs -- which have root equivalent privileges.
+These are level 2 vulnerabilities in our threat model since they require a new app installation to occur.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
-However what is perhaps more worrying is the long tail on the \avovuln{Gingerbreak}, \avovuln{levitator}, \avovuln[exploid_udev]{exploid} and \avovuln{zergRush} vulnerabilities which are more dangerous root vulnerabilities (not requiring new APK installation) and which affect a significant proportion of devices years later.
-\todo{quantify this long tail and the APK numbers as headline numbers}
+However what is perhaps more worrying is the long tail on the \avovuln{Gingerbreak}, \avovuln{levitator}, \avovuln[exploid_udev]{exploid} and \avovuln{zergRush} vulnerabilities which are more dangerous level 3 vulnerabilities (since they do not require new app installation) and which affect a significant proportion of devices years later.
+%\todo{quantify this long tail and the APK numbers as headline numbers}
 
 \subsection{Analysis 3: Updates to particular devices}\label{sec:exp:device_updates}
 Previous graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
 This allows us to determine whether newer OS versions are being used because people are buying new phones running newer OS versions or whether existing devices receive updates.
 
-{\begin{figure}[p]
- \centering
- \begin{subfigure}[b]{\columnwidth}
-  \includegraphics[width=\columnwidth]{figures/device-data-all-os}
-  \caption{OS versions over time. Black lines show where only the build number changed.}
-  \label{fig:device_data_os}
- \end{subfigure}
- \begin{subfigure}[b]{\columnwidth}
-  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
-  \caption{Number of vulnerabilities affecting each device over time}
-  \label{fig:device_data_security}
- \end{subfigure}
- \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset.}
-  \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
- \caption{Proportion of updates each week which (may have) fixed vulnerabilities}
- \label{fig:weekly_security_updates}
-\end{figure}}
+{
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/device-data-all-security}
+\caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset and each strip shows the number of vulnerabilities affecting each device over time.}
+\label{fig:device_data_security}
+\end{figure}
+}
+
+{
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/device-data-all-os}
+\caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset and each strip shows OS versions over time. Black lines show where an update only changed the build number.}
+\label{fig:device_data_os}
+\end{figure}
+}
+
+%{\begin{figure}[p]
+% \centering
+% \begin{subfigure}[b]{\columnwidth}
+%  \includegraphics[width=\columnwidth]{figures/device-data-all-os}
+%  \caption{OS versions over time. Black lines show where only the build number changed.}
+%  \label{fig:device_data_os}
+% \end{subfigure}
+% ~\\
+% \begin{subfigure}[b]{\columnwidth}
+%  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
+%  \caption{Number of vulnerabilities affecting each device over time}
+%  \label{fig:device_data_security}
+% \end{subfigure}
+% \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset.}
+ % \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
+ %\caption{Proportion of updates each week which (may have) fixed vulnerabilities}
+ %\label{fig:weekly_security_updates}
+%\end{figure}}
 
 \subsubsection{Method}
 As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
@@ -355,7 +374,7 @@ In the \da\ data we have over 1000 devices contributing data in any particular w
 
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
 Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
-\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, that is a manual process and few users do it.
+\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, this is a manual process and consequently few users do it.
 
 
 \subsubsection{Results}
@@ -371,17 +390,13 @@ While many upgrades are from one version to the next version there are also a fa
 Surprisingly there are also a small number of downgrade events (\daNumUpdatesDowngrades, \daPercUpdatesDowngradesNominal) when older versions of Android are installed on to devices.
 Possible reasons why users are downgrading are to free up space on their device, to make it easier to root or because a new version introduced bugs.
 
-The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}.
-Updates which changed the Android version number so that the number of known vulnerabilities decreased are shown in red.
-Updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability are shown in yellow.
-Updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the existing version of Android) are shown in green.
+%The number of devices getting security updates each week, is shown in Figure~\ref{fig:weekly_security_updates}.
+%Updates which changed the Android version number so that the number of known vulnerabilities decreased are shown in red.
+%Updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability are shown in yellow.
+%Updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the existing version of Android) are shown in green.
 
 By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
 This compares badly with the number of critical vulnerabilities discovered per year of between \avoVulnsPerYearAllAndroid\ (affecting all Android) and \avoVulnsPerYear\ (including the device manufacturer specific ones).
-
-
-
-
 
 \section{Threats to validity}
 \label{sec:validity}
@@ -487,10 +502,30 @@ More recent data demonstrates the difficulty of upgrading computers between majo
 
 \section{Conclusion}
 \label{sec:conclusion}
-We have investigated the security of the Android operating system with respect to security updates.
-Android attempts to provide good security to end users through sandboxing apps.
+We have described the three levels of defence provided to Android users today and determined that the app sandbox is the best place to prevent malware from gaining root.
 However the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPerc\ of devices run the latest version of Android.
 Devices apply \daUpdatesPerYear\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
+
+Installing regular updates is the best defence against malware, however, as we have shown, these updates are rarely forthcoming. 
+Therefore Android users need to take additional steps to protect themselves. 
+Firstly, users should only install apps from the Google Play store, which previous research has been shown to have a lower level of malware than third-party markets and is known to contain static and dynamic analysis of available apps.
+Secondly, users should consider installing an anti-virus tool or enabling the Google verify apps feature if available. 
+Thirdly, users should avoid using untrusted WiFi networks or use them in conjunction with a VPN tunnel to a trusted network. 
+Finally, if the user is running a device with API level 17 or above and is technically able to determine the target API version of their apps, they should consider uninstalling all apps with a target API of less than 17.
+
+In the long term, there needs to be greater emphasis on providing timely updates.
+This could be fixed through a variety of mechanisms.
+Increased regulation is one potential solution.
+Currently manufacturers do not even provide updates for the length of the contracts under which the users originally bought the phone, despite efforts by the ACLU to persuade the FTC to force them to do so~\cite{Soghoian2013}, and despite the FTC forcing HTC to do so~\cite{FTCHTC2013}.
+
+Alternatively, decentralised management might work.
+The claim of the open source software `bazzar' is that it is more secure because anyone can review the source code and provide fixes~\cite{Raymond1999}. 
+On the surface, Android is an open source project, and therefore others should be able to step in when the manufacturer fails to provide timely updates.
+Unfortunately only manufacturers can provide updates today because the complete source code for the (often modified) operating system, as well as the drivers and the build environment, are not available for many devices.
+This is unlikely to change since there are economic disincentives from the manufacturers' perspective, and in any case there is a trust issue which needs to be solved: how does the user determine whether a binary from an alternative supplier is more secure than the one they already have installed?
+
+The fundamental problem is really one of a misalignment of incentives in the current Android ecosystem: there are too few reasons why manufacturers should provide timely security updates.
+A more rigid vertically integrated marked would likely improve the security of Android at the cost of some of the freedom it current affords manufacturers and users.
 
 \identifying{
 \section*{Acknowledgements}
