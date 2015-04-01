@@ -107,7 +107,7 @@ In this paper we show that the Android sandbox only provides effective security 
 This is because most devices do not receive timely updates. 
 Therefore the security of the Android ecosystem is currently reliant on the defences provided by the app marketplace and (when enabled) anti-virus systems. 
 This insight allows us to provide users with a list of concrete actions to improve device security. 
-It also raises broader questions about how modern mobile device security is most effectively achieved, how a secure ecosystem should be construct and managed, and whether security by obscurity is the right way forward.
+It also raises broader questions about how modern mobile device security is most effectively achieved, how a secure ecosystem should be constructed and managed, and whether security by obscurity is the right way forward.
 
 In summary, our contributions are:
 \begin{itemize}
@@ -127,8 +127,8 @@ We then consider three attack vectors an attacker can use to attempt to gain roo
 The first attack vector is through the installation of a malicious app on the device.
 Android devices support the installation of apps through a number of app marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
 By default, many Android devices with Google Play installed will prevent the installation of apps from other sources, and therefore an attacker needs to compromise all three levels of security.
-The Google Play marketplace uses Bouncer to automatically analyse apps as well as removing any apps which are reported as malicious.
-Nevertheless, Google Play is not immune: in 0.02\% of apps were malicious~\cite{Zhou2012a}.
+The Google Play marketplace uses Bouncer to automatically analyse apps; any apps which are reported as malicious are removed.
+Nevertheless, Google Play is not immune: in 2012 0.02\% of apps were malicious~\cite{Zhou2012a}.
 Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
 In 2012 between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
 
@@ -173,7 +173,7 @@ The API version is a positive integer which increases when new features are adde
 Consequently security (bug) fixes do not result in a change in the API version.
 Fortunately most (\daOSVersionPercValidLines) entries in the data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
 On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
-Google provides API version distribution information but not the OS and build version information we need, we verify that the \da\ data is representative in~\S\ref{sec:representative}.
+Google provides API version distribution information but not the OS and build version information we need. We verify that the \da\ data is representative in~\S\ref{sec:representative}.
 
 The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
 The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
@@ -195,7 +195,8 @@ The different categories which the vulnerabilities fall into are shown in Table~
 We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the \href{http://androidvulnerabilities.org/}{AndroidVulnerabilities.org}\footnote{\textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}\vspace{-4em}} (\avo) website.
 We seeded it with data from the CVE database, vendor lists, reports from the literature and forums.
 In addition, we have received submissions or amendments from \avoNumSubmitters\ individuals.
-We collected data between \avoStartDate\ and \avoEndDate\ and so it does not include any information lost before the start of that period.
+We collected data between \avoStartDate\ and \avoEndDate.
+Our list therefore does not include any information before the start of that period.
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
 Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
@@ -373,8 +374,7 @@ We also recorded when the version changed and which versions it changed from and
 In the \da\ data we have over 1000 devices contributing data in any particular week.\todolater{Use the real average number of devices contributing each week}
 
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
-Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
-\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, this is a manual process and consequently few users do it.
+investigate updates which were installed on devices that contributed data continuously over long periods of time.
 
 
 \subsubsection{Results}
@@ -470,7 +470,7 @@ Similarly, the Woodpecker tool automatically finds permission leaks in stock And
 Once such automated techniques mature, it will become even more important to provide security updates promptly to every Android device in the ecosystem because an attacker can turn the contents of a released fix into an exploit in a matter of minutes or hours.
 
 Security in depth is also a useful strategy.
-In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution code review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
+In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
 These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
 
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and elsewhere.
@@ -519,7 +519,7 @@ Increased regulation is one potential solution.
 Currently manufacturers do not even provide updates for the length of the contracts under which the users originally bought the phone, despite efforts by the ACLU to persuade the FTC to force them to do so~\cite{Soghoian2013}, and despite the FTC forcing HTC to do so~\cite{FTCHTC2013}.
 
 Alternatively, decentralised management might work.
-The claim of the open source software `bazzar' is that it is more secure because anyone can review the source code and provide fixes~\cite{Raymond1999}. 
+The claim of the open source software `bazaar' is that it is more secure because anyone can review the source code and provide fixes~\cite{Raymond1999}.
 On the surface, Android is an open source project, and therefore others should be able to step in when the manufacturer fails to provide timely updates.
 Unfortunately only manufacturers can provide updates today because the complete source code for the (often modified) operating system, as well as the drivers and the build environment, are not available for many devices.
 This is unlikely to change since there are economic disincentives from the manufacturers' perspective, and in any case there is a trust issue which needs to be solved: how does the user determine whether a binary from an alternative supplier is more secure than the one they already have installed?
