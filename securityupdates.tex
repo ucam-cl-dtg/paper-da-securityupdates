@@ -188,7 +188,9 @@ This is not something that applications running on the phone can exploit to brea
 However there have been reports of Windows malware exploiting this vector.\footnote{\url{http://www.symantec.com/connect/blogs/windows-malware-attempts-infect-android-devices}}
 Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
 
-Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 2 of our threat model. For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and from there gain root privileges. For example, for some versions of Android (below version 4.1) malware could use known system-to-root escalation mechanisms but on all versions they have a greatly increased attack area for further privilege escalation and also have the ability to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials, read the screen and make as well as receive calls.
+Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 2 of our threat model. For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and from there gain root privileges.
+On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
+Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
 The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}.
 \avoTabAndVulns
 
@@ -201,7 +203,7 @@ Our list therefore does not include any information lost before the start of tha
 
 Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
-These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.\todo{can we make this sentence clearer?}
 In many cases we could not match manufacturer- and model-specific vulnerabilities to individual devices in the \da\ data and therefore attempting to include device-specific vulnerabilities as well would introduce additional uncertainty in our results.
 In contrast, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data set.
 
@@ -250,7 +252,7 @@ There is no canonical source of Android release dates, our best guesses and supp
 \section{Analysis}
 \label{sec:results}
 We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities and only \daUpdatednessPerc\ run the latest version of Android.
-Devices, on average, apply \daUpdatesPerYear\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
+Devices, on average, apply \daUpdatesPerYear\ updates each year, which is less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
 \daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
 We describe three analyses, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
 
@@ -280,7 +282,7 @@ This demonstrates the importance of a longitudinal study: this type of analysis 
 Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
 The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
 From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
-This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received a minor update which may have contained a backported fix.
+This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update which did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 
 This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
