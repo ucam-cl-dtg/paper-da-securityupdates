@@ -72,9 +72,8 @@ Cambridge, United Kingdom\\
 
 \begin{abstract}
 Modern smartphone operating systems protect users from malicious applications by providing a protected execution environment or sandbox.
-This approach relies on the absence of exploits which allow apps to break out of the sandbox.
-Many such exploits have been found, and therefore the security of a smartphone operating system relies on the prompt delivery of security updates.
-In this paper we quantify the extent to which the security sandbox provided by Android protects devices from malicious apps.
+A number of exploits have been found which allow apps to break out of the sandbox.
+We quantify for the first time how vulnerable Android devices in the wild are to critical vulnerabilities and how long it takes for vulnerabilities to be fixed on consumer devices.
 We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercTwosfNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercTwosfNominal\ of devices run the most recent version of Android.
 Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year.
 \end{abstract}
@@ -115,6 +114,7 @@ In summary, our contributions are:
  \item We created an open database to collate quantitative information on vulnerabilities which affect Android and use this to determine the proportion of devices they affect and how that changes over time.
  \item We demonstrate that the security of Android relies on the centralisation of app deployment via a marketplace, and the use of install-time anti-virus checks rather than through the security of the app sandbox.
  \item We use our analysis to develop advice for Android users on what steps they should take to increase the security of their device.
+ \item We characterise the impact of critical vulnerabilities on the Android ecosystem as a whole, examine the effectiveness of vulnerabilities and how long vulnerabilities remained available in the wild, and also examine the impact on individual devices over extended periods of time.
  
 \end{itemize}
 
