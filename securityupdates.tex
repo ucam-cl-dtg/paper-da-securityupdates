@@ -196,7 +196,7 @@ We developed and maintain an open platform for filing critical vulnerabilities i
 We seeded it with data from the CVE database, vendor lists, reports from the literature and forums.
 In addition, we have received submissions or amendments from \avoNumSubmitters\ individuals.
 We collected data between \avoStartDate\ and \avoEndDate.
-Our list therefore does not include any information before the start of that period.
+Our list therefore does not include any information lost before the start of that period.
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
 Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
@@ -374,7 +374,8 @@ We also recorded when the version changed and which versions it changed from and
 In the \da\ data we have over 1000 devices contributing data in any particular week.\todolater{Use the real average number of devices contributing each week}
 
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
-investigate updates which were installed on devices that contributed data continuously over long periods of time.
+Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
+\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, this is a manual process and consequently few users do it.
 
 
 \subsubsection{Results}
