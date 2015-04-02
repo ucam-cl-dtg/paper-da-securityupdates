@@ -332,41 +332,24 @@ Previous graphs summarise data across all the devices, however one of the advant
 This allows us to determine whether newer OS versions are being used because people are buying new phones running newer OS versions or whether existing devices receive updates.
 
 {
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
+\begin{subfigure}{\columnwidth}
 \includegraphics[width=\columnwidth]{figures/device-data-all-security}
-\caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset and each strip shows the number of vulnerabilities affecting each device over time.}
+\vspace{-1.5em}
+\caption{Each strip shows the number of vulnerabilities affecting each device over time.}
 \label{fig:device_data_security}
-\end{figure}
-}
-
-{
-\begin{figure}[t]
-\centering
+\end{subfigure}
+\begin{subfigure}{\columnwidth}
 \includegraphics[width=\columnwidth]{figures/device-data-all-os}
-\caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset and each strip shows OS versions over time. Black lines show where an update only changed the build number.}
+\vspace{-1.5em}
+\caption{Each strip shows OS versions over time. Black lines show where an update only changed the build number.}
 \label{fig:device_data_os}
+\end{subfigure}
+\caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset.}
 \end{figure}
 }
 
-%{\begin{figure}[p]
-% \centering
-% \begin{subfigure}[b]{\columnwidth}
-%  \includegraphics[width=\columnwidth]{figures/device-data-all-os}
-%  \caption{OS versions over time. Black lines show where only the build number changed.}
-%  \label{fig:device_data_os}
-% \end{subfigure}
-% ~\\
-% \begin{subfigure}[b]{\columnwidth}
-%  \includegraphics[width=\columnwidth]{figures/device-data-all-security}
-%  \caption{Number of vulnerabilities affecting each device over time}
-%  \label{fig:device_data_security}
-% \end{subfigure}
-% \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset.}
- % \includegraphics[width=\columnwidth]{figures/nw_security_updates.pdf}
- %\caption{Proportion of updates each week which (may have) fixed vulnerabilities}
- %\label{fig:weekly_security_updates}
-%\end{figure}}
 
 \subsubsection{Method}
 As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
