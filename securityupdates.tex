@@ -9,6 +9,14 @@
 \usepackage{import}
 \usepackage{url}
 \usepackage{hyperref}
+% http://tex.stackexchange.com/questions/57865/how-to-use-multiple-urls-for-one-bibtex-reference
+\let\URL\url
+\makeatletter
+\def\url#1{\@URL#1||\@nil}
+\def\@URL#1|#2|#3\@nil{%
+  \URL{#1}\ifx\relax#2\relax\else| \URL{#2}\fi}
+\makeatother
+
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
@@ -34,6 +42,9 @@
  \def\@avovulnsspecific[#1]#2{\emph{\href{http://androidvulnerabilities.org/vulnerabilities/#1}{#2}}}
  \def\@avovulngeneral#1{\emph{\href{http://androidvulnerabilities.org/vulnerabilities/#1}{#1}}}
 \makeatother
+
+
+
 \newcommand{\percMarketShare}{83.6\%~\footnote{\url{http://www.theinquirer.net/inquirer/news/2379036/android-hits-836-percent-marketshare-while-ios-windows-and-blackberry-slide}}}
 \newcommand{\daNumDevices}{\daNumOSDevices}
 \newcommand{\daDeviceDays}{\daOSTotalDaysData}
