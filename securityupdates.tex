@@ -90,32 +90,30 @@ Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the ra
 \end{abstract}
 
 \section{Introduction}
-
+\todo{We talk about root a lot again, rather critical vulnerabilities, and root is not strictly accurate}
 Modern mobile operating systems provide several layers of security whose combined aim is to prevent app malware from taking control of a device. 
 In this paper we explore the security layers present in the Android ecosystem and determine which layers are effective and which are not. 
 
 Our focus is on malware whose aim is to gain full control of the device rather than merely abuse permissions granted to it by the user.
 In this context, by full control, or \emph{root}, on a device we mean the malware has unfettered access to all data stored on the device and can control all network interfaces in the device with the same flexibility as the operating system itself.
-We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware which gains root than malware which does not: malware with root can not only perform arbitrary actions on the device, but it is also impossible for the device owner to remove the malware reliably since even a factory reset does not guarantee that the malware has been successfully removed. 
+We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware which gains root than malware which does not: as it can not only perform arbitrary actions on the device, but it is also impossible for the device owner to remove the malware reliably as even a factory reset does not guarantee that the malware has been removed. 
 
-This is an important problem: previous studies have shown that a significant proportion of malware attempts to gain root.
-For example, in 2012 between 36.7\%~\cite{Zhou2012b} and 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to gain root-level access.
+This is an important problem: previous studies have shown that a significant proportion of malware attempts to gain root: in 2012, 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to gain root.
 
 Android users are protected from malicious apps by up to three levels of defence. 
 The first level of defence comes from an app marketplace such as Google Play. 
-A marketplace can use three mechanisms to prevent malicious apps from appearing in the marketplace: firstly by economic disincentives, including charging developers to create an account and cancelling accounts used to upload malicious apps; secondly by technical means, such as static and dynamic analysis on submitted apps; and finally via social feedback between users, including the provision of user reviews and ratings. 
-
-The second line of defence occurs on the handset at installation time, and includes checking the signature of any app installation or update as well as verifying the app by local anti-virus tools (e.g. Google's app verification feature).
+A marketplace can use three mechanisms to prevent malicious apps from appearing in the marketplace: firstly by economic disincentives, including charging developers to create an account and cancelling malicious accounts; secondly by technical means, such as static and dynamic analysis on submitted apps; and finally via social feedback from users, including the provision of reviews, rating and reporting. 
+The second line of defence occurs on the handset at installation time, and includes checking the signature of any app installation or update as well as statically verifying the app (e.g. Google's Verify Apps feature).
 Finally, the third line of defence takes place at runtime: Android apps are run in a \emph{sandbox} which prevents the app from unauthorised actions such as accessing any permissions which weren't granted by the user at install time; in addition, anti-virus products may scan the list of installed apps periodically to detect malware.
 
 Sandboxes only provide protection if they are free from design errors and implementation flaws. 
 Both of these have occurred in Android, as indeed happens today in many large security systems relying on the sandbox model. 
 Maintaining sandbox security therefore relies on providing timely updates to fix design and implementation flaws as and when they are discovered.
 
-In this paper we show that the Android sandbox only provides effective security on \daMeanSecurityPercTwosfNominal\ of devices today.%
-\footnote{In contrast to Google's claims that 100\% of Android devices are protected by sandboxes and permissions~\cite{Patterson2013}}
+In this paper we show that the Android sandbox only provides effective security on \daMeanSecurityPercTwosfNominal\ of devices.%
+\footnote{In contrast to Google's claims that 100\% of Android devices are protected~\cite{Patterson2013}}
 This is because most devices do not receive timely updates. 
-Therefore the security of the Android ecosystem is currently reliant on the defences provided by the app marketplace~\cite{AndroidSecurity2014} and (when enabled) anti-virus systems.
+Therefore the security of the Android ecosystem is currently reliant on the defences provided by the app marketplace~\cite{AndroidSecurity2014}.
 This insight allows us to provide users with a list of concrete actions to improve device security. 
 It also raises broader questions about how modern mobile device security is most effectively achieved, how a secure ecosystem should be constructed and managed, and whether security by obscurity is the right way forward.
 
@@ -132,25 +130,25 @@ In summary, our contributions are:
 \section{Threat model and attack vectors}
 \label{sec:threatmodel}
 
-In this paper we assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
-We then consider three attack vectors an attacker can use to attempt to gain root on an Android handset.
+We assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
+Here we consider three attack vectors against Android handsets.
 
 The first attack vector is through the installation of a malicious app on the device.
-Android devices support the installation of apps through a number of app marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
+Android devices support the installation of apps through a app marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
 By default, many Android devices with Google Play installed will prevent the installation of apps from other sources, and therefore an attacker needs to compromise all three levels of security.
 The Google Play marketplace uses Bouncer to automatically analyse apps; any apps which are reported as malicious are removed.
-Nevertheless, Google Play is not immune: in 2012 0.02\% of apps were malicious~\cite{Zhou2012a}.
 Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
-In 2012 between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
+In 2012 0.02\% of apps on Google Play and between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
 
-The second attack vector is to persuade an existing app to download and execute code at runtime.
-The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a remote server under control of the attacker.
+The second attack vector is to make an existing app download and execute code at runtime.
+The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app which contains support for dynamic code loading from a malicious server.
 Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does not exist in the app binary.
-The attacker can choose to send a malicious payload directly to the app for execution at a later point in time.
-The marketplace can detect explicit use of dynamic code loading, even if malicious code cannot be detected. Note that dynamic code loading is not actually needed for this to work however -- it just makes the task easier -- since previous work has shown that even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP)-based attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+The attacker can choose to send a malicious payload to the app for execution at a later point in time.
+The marketplace can detect explicit use of dynamic code loading, even if malicious code cannot be detected. 
+However dynamic code loading is not actually needed for this to work -- it just makes the task easier -- even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
 The third attack vector is that the attacker injects malicious code directly into existing apps or programs already installed on the handset. 
-For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app~\cite{Thomas2015}.
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code in the same process address space as the vulnerable app~\cite{Thomas2015a}.
 This attack works when: (1) the WebView has the JavaScript-to-Java bridge enabled; and (2) the attacker is able to inject a malicious JavaScript payload into the network traffic between the phone and the web server. 
 Many apps are vulnerable to this type of attack because ad-libraries typically embed adverts into apps by displaying HTML and JavaScript inside a WebView with the JavaScript-to-Java bridge enabled. 
 The fix for the addJavascriptInterface vulnerability breaks backwards compatibility, and therefore apps are only immune to this attack if their target API level is greater than 16 and they are running on an Android device with an OS version of 4.2 or greater.
