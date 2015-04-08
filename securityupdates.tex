@@ -105,17 +105,17 @@ Android users are protected from malicious apps by up to three levels of defence
 The first level of defence comes from an app marketplace such as Google Play. 
 A marketplace can use three mechanisms to prevent malicious apps from appearing in the marketplace: firstly by economic disincentives, including charging developers to create an account and cancelling accounts used to upload malicious apps; secondly by technical means, such as static and dynamic analysis on submitted apps; and finally via social feedback between users, including the provision of user reviews and ratings. 
 
-The second line of defence occurs on the handset at installation time, and includes checking the signature of any app installation or update as well as verifying the app by local anti-virus tools (e.g. Google's app verification feature). 
+The second line of defence occurs on the handset at installation time, and includes checking the signature of any app installation or update as well as verifying the app by local anti-virus tools (e.g. Google's app verification feature).
 Finally, the third line of defence takes place at runtime: Android apps are run in a \emph{sandbox} which prevents the app from unauthorised actions such as accessing any permissions which weren't granted by the user at install time; in addition, anti-virus products may scan the list of installed apps periodically to detect malware.
 
 Sandboxes only provide protection if they are free from design errors and implementation flaws. 
 Both of these have occurred in Android, as indeed happens today in many large security systems relying on the sandbox model. 
 Maintaining sandbox security therefore relies on providing timely updates to fix design and implementation flaws as and when they are discovered.
 
-In this paper we show that the Android sandbox only provides effective security on \daMeanSecurityPercTwosfNominal\ of devices today.
+In this paper we show that the Android sandbox only provides effective security on \daMeanSecurityPercTwosfNominal\ of devices today.%
 \footnote{In contrast to Google's claims that 100\% of Android devices are protected by sandboxes and permissions~\cite{Patterson2013}}
 This is because most devices do not receive timely updates. 
-Therefore the security of the Android ecosystem is currently reliant on the defences provided by the app marketplace and (when enabled) anti-virus systems. 
+Therefore the security of the Android ecosystem is currently reliant on the defences provided by the app marketplace~\cite{AndroidSecurity2014} and (when enabled) anti-virus systems.
 This insight allows us to provide users with a list of concrete actions to improve device security. 
 It also raises broader questions about how modern mobile device security is most effectively achieved, how a secure ecosystem should be constructed and managed, and whether security by obscurity is the right way forward.
 
