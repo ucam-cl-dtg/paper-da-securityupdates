@@ -877,10 +877,11 @@
     title = "{The security architecture of the Chromium browser}"
 }
 
-@article{Barth2011,
+@techreport{Barth2011,
     author = "Barth, Adam and Li, Saung and Rubinstein, Benjamin I. P. and Song, Dawn",
     title = "{How Open Should Open Source Be?}",
     abstract = "Many open-source projects land security fixes in public repositories before shipping these patches to users. This paper presents attacks on such projects—taking Firefox as a case-study—that exploit patch metadata to efficiently search for security patches prior to shipping. Using access-restricted bug reports linked from patch descriptions, security patches can be immediately identified for 260 out of 300 days of Firefox 3 development. In response to Mozilla obfuscating descriptions, we show that machine learning can exploit metadata such as patch author to search for security patches, extending the total window of vulnerability by 5 months in an 8 month period when examining up to two patches daily. Finally we present strong evidence that further metadata obfuscation is unlikely to prevent information leaks, and we argue that open-source projects instead ought to keep security patches secret until they are ready to be released.",
+    month = "9",
     eprint = "arXiv:1109.0507v1",
     file = ":home/drt24/Downloads/1109.0507v1.pdf:pdf",
     year = "2011",
@@ -2781,12 +2782,17 @@
     title = "{Analysis of the Linux kernel}"
 }
 
-@inproceedings{Crussell2013,
+@incollection{Crussell2013,
+    editor = "Crampton, Jason and Jajodia, Sushil and Mayes, Keith",
     author = "Crussell, Jonathan and Gibler, Clint and Chen, Hao",
-    title = "{Scalable Semantics-Based Detection of Similar Android Applications}",
+    publisher = "Springer Berlin Heidelberg",
+    doi = "10.1007/978-3-642-40203-6_11",
+    isbn = "978-3-642-40202-9",
+    title = "{AnDarwin: Scalable Detection of Semantically Similar Android Applications}",
     url = "http://www.cs.ucdavis.edu/research/tech-reports/2012/CSE-2013-73.pdf",
     abstract = "The popularity and utility of smartphones rely on their vibrant application markets; however, plagiarism threatens the long-term health of these markets. In this paper, we present a scalable approach to detecting similar Android apps based on semantic information. We implement our approach in a tool called AnDarwin and evaluate it on 265,359 apps collected from 17 markets including Google Play and numerous third-party markets. In contrast with earlier approaches, AnDarwin does not compare apps pairwise, thus greatly increasing its scalability. Additionally, AnDarwin does not rely on information other than the app code — such as the app’s market, signature, or description — thus greatly increasing its reliability. AnDarwin can automatically detect library code and remove it from the similarity analysis. We present two use cases for AnDarwin: finding similar apps by different developers (“clones”) and similar apps from the same developer (“rebranded”). In ten hours, AnDarwin detected at least 4,295 apps which have been the victims of cloning and 36,106 apps that are rebranded. By analyzing the clusters found by AnDarwin, we found 88 new variants of malware and identified 169 malicious apps based on differences in the requested permissions. In contrast to earlier approaches, AnDarwin can detect both full and partial app similarity. Additionally, AnDarwin can automatically detect similar code that is injected into many apps, which may indicate the spread of malware. Our evaluation demonstrates AnDarwin’s ability to accurately detect similar apps on a large scale.",
-    file = ":home/drt24/Downloads/CSE-2013-73.pdf:pdf",
+    pages = "pp 182--199",
+    file = ":home/drt24/Downloads/CSE-2013-73.pdf:pdf;:home/drt24/Downloads/chp\%3A10.1007\%2F978-3-642-40203-6\_11.pdf:pdf",
     year = "2013",
     booktitle = "Computer Security–ESORICS"
 }
@@ -4085,8 +4091,9 @@
     title = "{Uncovering Android Master Key That Makes 99\% of Devices Vulnerable}",
     url = "https://bluebox.com/technical/uncovering-android-master-key-that-makes-99-of-devices-vulnerable/",
     abstract = "The Bluebox Security research team – Bluebox Labs – recently discovered a vulnerability in Android’s security model that allows a hacker to modify APK code without breaking an application’s cryptographic signature, to turn any legitimate application into a malicious Trojan, completely unnoticed by the app store, the phone, or the end user. The implications are huge! This vulnerability, around at least since the release of Android 1.6 (codename: “Donut” ), could affect any Android phone released in the last 4 years1 – or nearly 900 million devices2– and depending on the type of application, a hacker can exploit the vulnerability for anything from data theft to creation of a mobile botnet. While the risk to the individual and the enterprise is great (a malicious app can access individual data, or gain entry into an enterprise), this risk is compounded when you consider applications developed by the device manufacturers (e.g. HTC, Samsung, Motorola, LG) or third-parties that work in cooperation with the device manufacturer (e.g. Cisco with AnyConnect VPN) – that are granted special elevated privileges within Android – specifically System UID access.",
+    month = "3",
     year = "2013",
-    urldate = "2014-11-11",
+    urldate = "2015-04-08",
     booktitle = "Bluebox security corporate blog"
 }
 
@@ -5499,6 +5506,18 @@
     booktitle = "Proceedings of the 2010 USENIX conference on USENIX annual technical conference"
 }
 
+@techreport{Inc.2014,
+    author = "Inc., Google and Ludwig, Adrian",
+    title = "{Android Security 2014 Year in Review Table of Contents}",
+    url = "https://source.android.com/devices/tech/security/reports/Google_Android_Security_2014_Report_Final.pdf http://googleonlinesecurity.blogspot.com/2015/04/android-security-state-of-union-2014.html",
+    abstract = "We’re committed to making Android a safe ecosystem for users and developers. That’s why we built Android the way we did—with multiple layers of security in the platform itself and in the services Google provides. In addition to traditional protections like encryption and application sandboxes, these layers use both automated and manual review systems to keep the ecosystem safe from malware, phishing scams, fraud, and spam every day. Android offers an application-focused platform security model rooted in a strong application sandbox. We also use data to improve security in near real time through a combination of reliable products and trusted services, like Google Play, and Verify Apps. And, because we are an open platform, third-party research and reports help make us stronger and users safer. But, every now and then we like to check in to see how we’re doing. So, we’ve been working hard on a report that analyzes billions (!) of data points gathered every day during 2014 and provides comprehensive and in-depth insight into security of the Android ecosystem. We hope this will help us share our approaches and data-driven decisions with the security community in order to keep users safer and avoid risk. It’s lengthy, so if you’ve only got a minute, we pulled out a few of the key findings here: Over 1 billion devices are protected with Google Play which conducts 200 million security scans of devices per day. Fewer than 1\% of Android devices had a Potentially Harmful App (PHA) installed in 2014. Fewer than 0.15\% of devices that only install from Google Play had a PHA installed. The overall worldwide rate of Potentially Harmful Application (PHA) installs decreased by nearly 50\% between Q1 and Q4 2014. SafetyNet checks over 400 million connections per day for potential SSL issues. Android and Android partners responded to 79 externally reported security issues, and over 25,000 applications in Google Play were updated following security notifications from Google Play. We want to ensure that Android is a safe place, and this report has helped us take a look at how we did in the past year, and what we can still improve on. In 2015, we have already announced that we are being even more proactive in reviewing applications for all types of policy violations within Google Play. Outside of Google Play, we have also increased our efforts to enhance protections for specific higher-risk devices and regions.",
+    institution = "Google",
+    file = ":home/drt24/Downloads/Google\_Android\_Security\_2014\_Report\_Final.pdf:pdf",
+    year = "2014",
+    month = "4",
+    pages = "1--43"
+}
+
 @article{Ince2012,
     author = "Ince, Darrel C and Hatton, Leslie and Graham-Cumming, John",
     publisher = "Nature Publishing Group, a division of Macmillan Publishers Limited. All Rights Reserved.",
@@ -5995,18 +6014,40 @@
     booktitle = "2005 International Conference on Parallel Processing (ICPP'05)"
 }
 
+@book{Knuth1970,
+    author = "Knuth, Donald E.",
+    doi = "10.1137/1012065",
+    isbn = "0201896842",
+    title = "{The Art of Computer Programming, Volume 2: Seminumerical Algorithms (Donald E. Knuth)}",
+    abstract = "Volume 2 of Donald Knuth's classic series The Art of Computer Programming covers seminumerical algorithms, with topics ranging from random number generators to floating point operations and other optimized arithmetic algorithms. Truly comprehensive and meticulously written, this book (and series) is that rarest of all creatures - a work of authoritative scholarship in classical computer science, but one that can be read and used profitably by virtually all working programmers.The book begins with fundamental questions regarding random numbers and how to use algorithms to generate them. Subsequent chapters demonstrate efficient computation of single-precision and double-precision arithmetic calculations and modular arithmetic. The text then presents prime factorization (which can be used in cryptography, for instance) and algorithms for calculating fractions. This volume ends with algorithms for polynomial arithmetic and manipulation of power-series topics, which will benefit those with some knowledge of calculus.Throughout this beautifully presented edition, Knuth incorporates hundreds of useful exercises for trying out the algorithms. These range from simple problems to larger research project topics. (The book provides answers, where appropriate, at the end of the book.) The result is a text that's suitable for college or graduate-level computer science courses or individual study by programmers. Volume 2 is an indispensable part of any working programmer's library.",
+    issn = "0036-1445",
+    year = "1970"
+}
+
+@book{Knuth1974,
+    author = "Knuth, Donald E.",
+    doi = "10.2307/2005383",
+    isbn = "0201896850",
+    title = "{The Art of Computer Programming, Volume 3: Sorting and Searching}",
+    url = "http://www.jstor.org/stable/2005383?origin=crossref",
+    abstract = {"The bible of all fundamental algorithms and the work that taught many of today's software developers most of what they know about computer programming."--"Byte," September 1995"I can't begin to tell you how many pleasurable hours of study and recreation they have afforded me! I have pored over them in cars, restaurants, at work, at home... and even at a Little League game when my son wasn't in the line-up."--Charles Long"If you think you're a really good programmer... read [Knuth's]" Art of Computer Programming... "You should definitely send me a resume if you can read the whole thing."--Bill Gates"It's always a pleasure when a problem is hard enough that you have to get the Knuths off the shelf. I find that merely opening one has a very useful terrorizing effect on computers."--Jonathan LaventholThe first revision of this third volume is the most comprehensive survey of classical computer techniques for sorting and searching. It extends the treatment of data structures in Volume 1 to consider both large and small databases and internal and external memories. The book contains a selection of carefully checked computer methods, with a quantitative analysis of their efficiency. Outstanding features of the second edition include a revised section on optimum sorting and new discussions of the theory of permutations and of universal hashing.},
+    issn = "00255718",
+    volume = "3",
+    year = "1974",
+    pages = "1175"
+}
+
 @book{Knuth1997,
     author = "Knuth, Donald E",
     publisher = "Addison Wesley",
     doi = "10.2307/2283757",
     isbn = "0201896834",
-    title = "{Art of Computer Programming, Volume 1: Fundamental Algorithms}",
+    title = "{The Art of Computer Programming, Volume 1: Fundamental Algorithms}",
     url = "http://www.amazon.com/dp/0201896834",
     abstract = "This magnificent tour de force presents a comprehensive overview of a wide variety of algorithms and the analysis of them. Now in its third edition, The Art of Computer Programming, Volume I: Fundamental Algorithms contains substantial revisions by the author and includes numerous new exercises. Although this book was conceived several decades ago, it is still a timeless classic. One of the book's greatest strengths is the wonderful collection of problems that accompany each chapter. The author has chosen problems carefully and indexed them according to difficulty. Solving a substantial number of these problems will help you gain a solid understanding of the issues surrounding the given topic. Furthermore, the exercises feature a variety of classic problems. Fundamental Algorithms begins with mathematical preliminaries. The first section offers a good grounding in a variety of useful mathematical tools: proof techniques, combinatorics, and elementary number theory. Knuth then details the MIX processor, a virtual machine architecture that serves as the programming target for subsequent discussions. This wonderful section comprehensively covers the principles of simple machine architecture, beginning with a register-level discussion of the instruction set. A later discussion of a simulator for this machine includes an excellent description of the principles underlying the implementation of subroutines and co-routines. Implementing such a simulator is an excellent introduction to computer design. In the second section, Knuth covers data structures-stacks, queues, lists, arrays, and trees-and presents implementations (in MIX assembly) along with techniques for manipulating these structures. Knuth follows many of the algorithms with careful time and space analysis. In the section on tree structures, the discussion includes a series of interesting problems concerning the combinatorics of trees (counting distinct trees of a particular form, for example) and some particularly interesting applications. Also featured is a discussion of Huffmann encoding and, in the section on lists, an excellent introduction to garbage collection algorithms and the difficult challenges associated with such a task. The book closes with a discussion of dynamic allocation algorithms. The clear writing in Fundamental Algorithms is enhanced by Knuth's dry humor and the historical discussions that accompany the technical matter. Overall, this text is one of the great classics of computer programming literature-it's not an easy book to grasp, but one that any true programmer will study with pleasure.",
     issn = "01621459",
     volume = "1",
     year = "1997",
-    booktitle = "Journal of the American Statistical Association",
     pages = "401"
 }
 
@@ -6675,20 +6716,6 @@
     title = "{WebView addJavascriptInterface Remote Code Execution}"
 }
 
-@misc{MacLaren1970,
-    author = "MacLaren, M. Donald",
-    doi = "10.1137/1012065",
-    isbn = "0201896842",
-    title = "{The Art of Computer Programming. Volume 2: Seminumerical Algorithms (Donald E. Knuth)}",
-    abstract = "Volume 2 of Donald Knuth's classic series The Art of Computer Programming covers seminumerical algorithms, with topics ranging from random number generators to floating point operations and other optimized arithmetic algorithms. Truly comprehensive and meticulously written, this book (and series) is that rarest of all creatures - a work of authoritative scholarship in classical computer science, but one that can be read and used profitably by virtually all working programmers.The book begins with fundamental questions regarding random numbers and how to use algorithms to generate them. Subsequent chapters demonstrate efficient computation of single-precision and double-precision arithmetic calculations and modular arithmetic. The text then presents prime factorization (which can be used in cryptography, for instance) and algorithms for calculating fractions. This volume ends with algorithms for polynomial arithmetic and manipulation of power-series topics, which will benefit those with some knowledge of calculus.Throughout this beautifully presented edition, Knuth incorporates hundreds of useful exercises for trying out the algorithms. These range from simple problems to larger research project topics. (The book provides answers, where appropriate, at the end of the book.) The result is a text that's suitable for college or graduate-level computer science courses or individual study by programmers. Volume 2 is an indispensable part of any working programmer's library.",
-    issn = "0036-1445",
-    number = "2",
-    pages = "306--308",
-    volume = "12",
-    year = "1970",
-    booktitle = "SIAM Review"
-}
-
 @misc{Mackinlay1986,
     author = "Mackinlay, J. D.",
     year = "1986",
@@ -6945,21 +6972,6 @@
     file = "::",
     year = "1999",
     pages = "193--213"
-}
-
-@book{McClellan1974,
-    author = "McClellan, Michael T. and Minker, Jack and Knuth, Donald E.",
-    doi = "10.2307/2005383",
-    isbn = "0201896850",
-    title = "{The Art of Computer Programming, Vol. 3: Sorting and Searching}",
-    url = "http://www.jstor.org/stable/2005383?origin=crossref",
-    abstract = {"The bible of all fundamental algorithms and the work that taught many of today's software developers most of what they know about computer programming."--"Byte," September 1995"I can't begin to tell you how many pleasurable hours of study and recreation they have afforded me! I have pored over them in cars, restaurants, at work, at home... and even at a Little League game when my son wasn't in the line-up."--Charles Long"If you think you're a really good programmer... read [Knuth's]" Art of Computer Programming... "You should definitely send me a resume if you can read the whole thing."--Bill Gates"It's always a pleasure when a problem is hard enough that you have to get the Knuths off the shelf. I find that merely opening one has a very useful terrorizing effect on computers."--Jonathan LaventholThe first revision of this third volume is the most comprehensive survey of classical computer techniques for sorting and searching. It extends the treatment of data structures in Volume 1 to consider both large and small databases and internal and external memories. The book contains a selection of carefully checked computer methods, with a quantitative analysis of their efficiency. Outstanding features of the second edition include a revised section on optimum sorting and new discussions of the theory of permutations and of universal hashing.},
-    issn = "00255718",
-    number = "128",
-    pages = "1175",
-    volume = "28",
-    year = "1974",
-    booktitle = "Mathematics of Computation"
 }
 
 @inproceedings{McCullough2011,
@@ -8418,7 +8430,7 @@
 @book{Raymond1999,
     editor = "O'Reilly, Tim",
     author = "Raymond, Eric S.",
-    publisher = "O'Reilly $\backslash$\& Associates, Inc.",
+    publisher = "O'Reilly \& Associates, Inc.",
     isbn = "1565927249",
     title = "{The Cathedral and the Bazaar}",
     abstract = "Freedom is not an abstract concept in business. The success of any industry is almost directly related to the degree of freedom the suppliers and the customers of that industry enjoy. just compare the innovation in the US telephone business since AT\&T lost its monopoly control over American consumers, with the previously slow pace of innovation when those customers had no freedom to chose. The world's best example of the benefits of freedom in business is a comparison of the computer hardware business and the computer software business. In computer hardware, where freedom reigns for both the suppliers and consumers alike on a global scale, the industry generates the fastest innovation in product and customer value the world has ever seen. In the computer software industry, on the other hand, change is measured in decades. The office suite, the 1980s killer application, wasn't challenged until the 1990s with the introduction of the Web browser and server. Open source software brings to the computer software industry even greater freedom than the hardware manufacturers and consumers have enjoyed. Computer languages are called languages because they are just that. They enable the educated members of our society (in this case programmers) to build ideas that benefit the other members of our society, including other programmers. To legally restrict access (via the proprietary binary-only software licenses our industry historically has used) to the knowledge of the infrastructure that our society increasingly relies on, has resulted in less freedom and slower innovation. Open source represents some pretty revolutionary concepts being thrown at an industry thatthought it had all of its fundamental structures worked out. It gives customers control over the technologies they use, instead of enabling the vendors to control their customers through restricting access to the code behind the technologies. Supplying open source tools to the market will require new business models. But by delivering unique benefits to the market those companies who develop the business models will be very successful competing with companies who attempt to retain control over their customers. There have always been two things that would be required if open source software was to materially change the world, one was for open source software to become widely used. The other; that the benefits this software development model supplied to its users had to be communicated and understood. This is Eric's great contribution to the success of the open source software revolution, to the adoption of Linux-based operating systems, and to the success of open source users and the companies who supply them. His ability to explain clearly, effectively, and accurately the benefits of this revolutionary software development model has been central to the success of this revolution.",
@@ -10550,7 +10562,6 @@
     publisher = "USENIX Association",
     title = "{Capsicum: practical capabilities for UNIX}",
     url = "http://www.usenix.org/events/sec10/tech/full_papers/Watson.pdf",
-    series = "USENIX Security'10",
     abstract = "Capsicum is a lightweight operating system capabil- ity and sandbox framework planned for inclusion in FreeBSD 9. Capsicum extends, rather than replaces, UNIX APIs, providing newkernel primitives (sandboxed capability mode and capabilities) and a userspace sand- box API. These tools support compartmentalisation of monolithic UNIX applications into logical applications, an increasingly common goal supported poorly by dis- cretionary and mandatory access control. We demon- strate our approach by adapting core FreeBSD utilities and Googles Chromium web browser to use Capsicum primitives, and compare the complexity and robustness of Capsicum with other sandboxing techniques.",
     issn = "03601315",
     number = "2",
@@ -11054,9 +11065,11 @@
     title = "{Hey, you, get off of my market: Detecting malicious apps in official and alternative Android markets}",
     url = "http://www.csd.uoc.gr/~hy558/papers/mal_apps.pdf",
     abstract = "In this paper, we present a systematic study for the detection of malicious applications (or apps) on popular Android Markets. To this end, we first propose a permission- based behavioral footprinting scheme to detect new samples of known Android malware families. Then we apply a heuristics-based filtering scheme to identify certain inherent behaviors of unknown malicious families. We imple- mented both schemes in a system called DroidRanger. The experiments with 204, 040 apps collected from five different Android Markets in May-June 2011 reveal 211 malicious ones: 32 from the official Android Market (0.02\% infection rate) and 179 from alternative marketplaces (infection rates ranging from 0.20\% to 0.47\%). Among those mali- cious apps, our system also uncovered two zero-day malware (in 40 apps): one from the official Android Market and the other from alternative marketplaces. The results show that current marketplaces are functional and rela- tively healthy. However, there is also a clear need for a rigorous policing process, especially for non-regulated alternative marketplaces.",
-    number = "2",
-    file = ":home/drt24/Downloads/mal\_apps.pdf:pdf",
     year = "2012",
+    number = "2",
+    month = "2",
+    file = ":home/drt24/Downloads/mal\_apps.pdf:pdf",
+    address = "San Diego, CA",
     booktitle = "Network and Distributed System Security Symposium (NDSS)"
 }
 
@@ -11221,8 +11234,9 @@
 }
 
 @online{jelly-bean-release,
-    author = "Inc., Google",
+    author = "Google",
     url = "https://developer.android.com/about/versions/jelly-bean.html",
+    urldate = "2015-04-08",
     title = "{Jelly Bean version information}"
 }
 
