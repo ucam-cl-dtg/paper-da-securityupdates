@@ -107,7 +107,7 @@ The second line of defence occurs on the handset at installation time, and inclu
 Finally, the third line of defence takes place at runtime: Android apps run in a \emph{sandbox} that prevents the app from unauthorised actions such as accessing any permissions which weren't granted by the user at install time.
 In addition, anti-malware products may scan the installed apps periodically to detect malware.
 
-Sandboxes only provide protection if they are free from design errors and implementation flaws. 
+Sandboxes only provide protection if they are free from design and implementation flaws. 
 Both of these have occurred in Android, as indeed happens today in many large security systems relying on the sandbox model. 
 Maintaining sandbox security therefore relies on providing timely updates to fix design and implementation flaws as and when they are discovered.
 
@@ -296,7 +296,7 @@ From February 2013 onwards regular discovery of critical vulnerabilities ensures
 This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
 
 \subsection{Analysis 2: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
-In this analysis we examine how the distribution of Andriod OS versions changes over time and the impact that has on how different vulnerabilities affect the security of Android.
+In this analysis we examine how the distribution of Android OS versions changes over time and the impact that has on how different vulnerabilities affect the security of Android.
 We show that some vulnerabilities continue to have a substantial affect long after they have been fixed and the importance of longitudinal studies for determining whether devices are exposed to a particular vulnerabilities.
 
 \subsubsection{Method} As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to each day.
@@ -304,7 +304,7 @@ We show that some vulnerabilities continue to have a substantial affect long aft
 \subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.\footnote{\label{foot:anomaly}The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
 It shows how old versions are gradually replaced by new ones, and the long tail of devices which do not see updates to more recent versions.
-This gives a mean proportion of devices running the most recent version of Android is \daUpdatednessPerc.
+This gives a mean proportion of devices running the most recent version of Android since 2011 is \daUpdatednessPerc.
 
 
 \begin{figure}[!h]
@@ -315,6 +315,7 @@ This gives a mean proportion of devices running the most recent version of Andro
  \includegraphics[width=\textwidth]{figures/nvulnerabilities_heat.pdf}
  \caption{Proportion of devices affected by different vulnerabilities. The prefix `(maybe)' indicates `maybe secure' and `(definite)' indicates `definitely insecure'. The first few vulnerabilities are all `maybe secure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices.
  %The change in behaviour after August 2014 is explained in \S\ref{sec:da_changes}
+ \todo{This plot is confusing and perhaps we should quantise the colour map.}
  }
  \label{fig:nvulnerabilities_heat}
 \end{figure}
@@ -331,7 +332,7 @@ However when in February 2013 the first APK signing vulnerability was found whic
 %\label{fig:vulnerabilities}
 %\end{figure}
 
-In 2013 three vulnerabilities were found in the way which Android verified the signatures on APKs.
+In 2013 three vulnerabilities were found in how Android verified the signatures on APKs.
 These are level 2 vulnerabilities in our threat model since they require a new app installation to occur.
 Figure~\ref{fig:nvulnerabilities_heat} shows how the the \emph{APK signing vulnerabilities} affected all devices and took months to get fixed for any device.
 However what is perhaps more worrying is the long tail on the \avovuln{Gingerbreak}, \avovuln{levitator}, \avovuln[exploid_udev]{exploid} and \avovuln{zergRush} vulnerabilities which are more dangerous level 3 vulnerabilities (since they do not require new app installation) and which affected a significant proportion of devices years later.
@@ -361,7 +362,7 @@ This allows us to determine whether newer OS versions are being used because peo
 \subsubsection{Method}
 As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to each day.
 We also recorded changes in version.
-In the \da\ data we have over 1000 devices contributing data in any particular week. \todolater{Use the real average number of devices contributing each week}
+In the \da\ data we have about 1000 devices contributing data in any particular week. \todolater{Use the real average number of devices contributing each week}
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
 Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
 \da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, this is a manual process and few users do it.
@@ -384,7 +385,7 @@ Possible reasons why users are downgrading are to free up space on their device,
 %Updates which changed the build number but not the version number and so might contain a backported fix for a vulnerability are shown in yellow.
 %Updates which did not fix security vulnerabilities (because there were no known security vulnerabilities in the existing version of Android) are shown in green.
 
-By taking the number of updates observed and the number of device days of data we have collected we can compute the number of updates received by a device per year to be \daUpdatesPerYear.
+By dividing the number of updates observed by the number of device years of data we have collected we compute the number of updates received by a device per year to be \daUpdatesPerYear.
 This compares badly with the number of critical vulnerabilities discovered per year of between \avoVulnsPerYearAllAndroid\ (affecting all Android) and \avoVulnsPerYear\ (including the device manufacturer specific ones).
 
 \section{Threats to validity}
