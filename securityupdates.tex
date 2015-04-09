@@ -20,7 +20,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
-\usepackage{todonotes}%[disable]
+\usepackage[disable]{todonotes}%
 \let\OldTodo\todo
 \renewcommand{\todo}{\OldTodo}%[inline]}
 \newcommand{\todolater}[1]{\todo{#1}}%{}%
@@ -87,8 +87,8 @@ A number of exploits have been found which allow apps to break out of the sandbo
 We quantify for the first time how vulnerable Android devices in the wild are to critical vulnerabilities and how long it takes for vulnerabilities to be fixed on consumer devices.
 We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercTwosfNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercTwosfNominal\ of devices run the most recent version of Android.
 Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year.
-\end{abstract}
 \todo{Abstract does not reflect current spin very well}
+\end{abstract}
 
 \section{Introduction}
 Modern mobile operating systems provide several layers of security whose combined aim is to prevent app malware from taking control of a device. 
@@ -96,7 +96,7 @@ In this paper we explore the security layers present in the Android ecosystem an
 
 Our focus is on vulnerabilities which allow malware to gain full control of the device rather than merely abuse permissions granted to it by the user.
 In this context, by full control, or \emph{root}, on a device we mean the malware has unfettered access to all data stored on the device and can control all network interfaces in the device with the same flexibility as the operating system itself.
-We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware which gains root than malware which does not: as it can not only perform arbitrary actions on the device, but it is also impossible for the device owner to remove the malware reliably as even a factory reset does not guarantee that the malware has been removed. 
+We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware which gains root than malware which does not: as it can not only perform arbitrary actions on the device, but it is also impossible for the device owner to remove the malware reliably as even a factory reset does not guarantee the malware has been removed. 
 
 This is an important problem: previous studies have shown that a significant proportion of malware attempts to gain root: in 2012, 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to gain root.
 
@@ -183,7 +183,7 @@ Fortunately most (\daOSVersionPercValidLines) entries in these data have a build
 On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
 Google provides API version distribution information but not the OS and build version information we need. We verify that the \da\ data is representative in~\S\ref{sec:representative}.
 
-The \da\ project has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
+\da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
 The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
 
@@ -261,8 +261,8 @@ There is no canonical source of Android release dates, our best guesses and supp
 \label{sec:results}
 We present the results of our analysis showing that, on average, \daMeanInsecurityPerc\ of Android devices are exposed to critical vulnerabilities and only \daUpdatednessPerc\ run the latest version of Android.
 Devices, on average, apply \daUpdatesPerYear\ updates each year, which is less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
-\daPercUpdatesDowngrades\ of full version changes are downgrades to older versions.
-We describe three analyses, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on particular devices (\S\ref{sec:exp:device_updates}).
+\daPercUpdatesDowngrades\ of version changes are downgrades to older versions.
+We describe three analyses, examining the vulnerability of Android devices in general (\S\ref{sec:exp:versionsecurity}), explore the upgrade cycle and vulnerability cycle of the ecosystem (\S\ref{sec:exp:android_ecosystem}) and quantify the updates installed on devices (\S\ref{sec:exp:device_updates}).
 
 \subsection{Analysis 1: vulnerability of Android devices}\label{sec:exp:versionsecurity}
 \begin{figure}[h]
@@ -273,7 +273,7 @@ The red vertical lines are caused by vulnerabilities being discovered with those
 }
 \label{fig:proportioninsecure}
 \end{figure}
-In this analysis we calculate the proportion of Android devices which are exposed to critical vulnerabilities and discuss how that has changed over time.
+In this analysis we calculate the proportion of Android devices which are exposed to critical vulnerabilities and how that has changed over time.
 Figure~\ref{fig:proportioninsecure} describes the proportion of Android devices susceptible to at least one critical vulnerability.
 
 \subsubsection{Method} 
@@ -301,7 +301,7 @@ We show that some vulnerabilities continue to have a substantial effect long aft
 \subsubsection{Method} As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to each day.
 
 \subsubsection{Results}
-The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.\footnote{The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
+The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.\footnote{\label{foot:anomaly}The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
 It shows how old versions are gradually replaced by new ones, and the long tail of devices which do not see updates to more recent versions.
 This gives a mean proportion of devices running the most recent version of Android is \daUpdatednessPerc.
 
@@ -309,7 +309,7 @@ This gives a mean proportion of devices running the most recent version of Andro
 \begin{figure}[!h]
  \centering
  \includegraphics[width=\textwidth]{figures/da_norm_os}
- \caption{Android versions in \da\ data over time. The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
+ \caption{Android versions in \da\ data over time.\textsuperscript{\ref{foot:anomaly}}}
  \label{fig:norm_os}
  \includegraphics[width=\textwidth]{figures/nvulnerabilities_heat.pdf}
  \caption{Proportion of devices affected by different vulnerabilities. The prefix `(maybe)' indicates `maybe secure' and `(definite)' indicates `definitely insecure'. The first few vulnerabilities are all `maybe secure' as we do not have data from before that vulnerability was discovered while later ones are mostly `definitely insecure' as we know no fixing update reached the devices.
@@ -340,7 +340,6 @@ However what is perhaps more worrying is the long tail on the \avovuln{Gingerbre
 Previous graphs summarise data across all the devices, however one of the advantages of the \da\ data is that we can look at what happens to individual devices over time.
 This allows us to determine whether newer OS versions are being used because people are buying new phones running newer OS versions or whether existing devices receive updates.
 
-{
 \begin{figure}[!t]
 \centering
 \begin{subfigure}{\columnwidth}
@@ -357,21 +356,17 @@ This allows us to determine whether newer OS versions are being used because peo
 \end{subfigure}
 \caption{The top \daNumDeviceDataDevices\ devices by days of contribution in the \da\ data. One strip per device handset. Black lines show where an update only changed the build number.}
 \end{figure}
-}
-
 
 \subsubsection{Method}
-As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
-We also recorded when the version changed and which versions it changed from and to.
-In the \da\ data we have over 1000 devices contributing data in any particular week.\todolater{Use the real average number of devices contributing each week}
-
+As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to each day.
+We also recorded changes in version.
+In the \da\ data we have over 1000 devices contributing data in any particular week. \todolater{Use the real average number of devices contributing each week}
 However most devices only contribute for a short period of time and so we do not observe updates happening on every device.
 Instead we have a hopefully representative sample of updates which happened while \da\ was installed on the devices.
-\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, this is a manual process and consequently few users do it.
+\da\ cannot distinguish between a device being replaced and the \da\ app being removed as while multiple devices can be linked to the same user account, this is a manual process and few users do it.
 
 
 \subsubsection{Results}
-
 The longitudinal data on the number of vulnerabilities affecting the \daNumDeviceDataDevices\ devices which have contributed the most days of data to \da\ changes over time is shown in Figure~\ref{fig:device_data_security}.
 The trend that we saw in Figure~\ref{fig:proportioninsecure} of security improving and then getting worse is also shown here.
 It shows how some devices had vulnerabilities, which were fixed, and then further vulnerabilities were discovered, and mostly not fixed.
@@ -411,7 +406,7 @@ This allows us to have confidence in the OS version information.
 
 \subsubsection{The effect of focussed studies on \da}
 \label{sec:da_changes}
-The \da\ data is mostly generated by devices which have the \da\ app installed because their owner happened to come across the app as there has been no advertising and few other attempts to increase usage.
+The \da\ data is mostly generated by devices which have the \da\ app installed because their owner happened to come across the app as there has been no advertising and few attempts to increase usage.
 However two collaborations with network operators to install \da\ on customer devices resulted in large numbers of new \da\ users coming from particular network operators.
 One study was conducted in Norway with 654 installs and one in Bangladesh where 2463 users installed \da.
 This latter study is responsible for the sudden change in distribution of OS versions in \da\ beginning in August 2014 in Figures \ref{fig:proportioninsecure}, \ref{fig:norm_os} and \ref{fig:nvulnerabilities_heat} as for that period Bangladeshi users contributed over half of the \da\ data.
@@ -435,10 +430,10 @@ However a sensitivity analysis showed that those two vulnerabilities make little
 
 \subsubsection{Limitations}
 We still do not know where new versions of Android come from.
-Over time newer versions of Android come to dominate, but quantifying the proportion due to new phone purchases verses the proportion due to updates of existing devices is unknown.
+Over time newer versions of Android come to dominate, but the proportion due to new phone purchases verses the proportion due to updates of existing devices is unknown.
 Device Analyzer is the only available large data set we know of with longitudinal traces of Android OS version strings.
-Unfortunately this data set only records \daNumUpdatesUpgrades\ upgrades which, broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month. This is not enough to build a statistically significant prediction of the expected transition to newer versions of Android.
-If manufacturers shipped security updates without changing the build number then we would not be able to detect this, but that would also indicate a level of incompetence likely to damage security and so can be discounted.
+Unfortunately this data set only records \daNumUpdatesUpgrades\ upgrades which, broken down over \daOSMonthsOfData\ months and \daNumSigOSVersions\ OS versions is only \daUpdatesPerMonthPerVersion\ updates per version per month. This is not enough to build a statistically significant prediction of the expected transition between versions of Android.
+If manufacturers shipped security updates without changing the build number then we would not be able to detect this, but that would indicate a level of incompetence likely to damage security.
 
  
 \section{Related work}
@@ -496,15 +491,15 @@ More recent data demonstrates the difficulty of upgrading computers between majo
 \section{Conclusion}
 \label{sec:conclusion}
 We have described the three levels of defence provided to Android users today and determined that the app sandbox is the best place to prevent malware from gaining root.
-However the latency in the security update process means that on average \daMeanInsecurityPerc\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPerc\ of devices run the latest version of Android.
-Devices apply \daUpdatesPerYear\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroid\ and \avoVulnsPerYear.
+However the latency in the security update process means that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPercNominal\ of devices run the latest version of Android.
+Devices apply \daUpdatesPerYearNominal\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidNominal\ and \avoVulnsPerYearNominal.
 
 Installing regular updates is the best defence against malware, however, as we have shown, these updates are rarely forthcoming. 
 Therefore Android users need to take additional steps to protect themselves. 
-Firstly, users should only install apps from Google Play, which previous research has been shown to have a lower level of malware than third-party markets and is known to contain static and dynamic analysis of available apps.
-Secondly, users should enable the Google Verify Apps feature if available or use an anti-malware app if not. 
+Firstly, users should only install apps from Google Play, which has been shown to have a lower level of malware than third-party markets and is known to contain static and dynamic analysis of available apps.
+Secondly, users should enable the Google Verify Apps feature if available or use an anti-malware app. 
 Thirdly, users should avoid using untrusted WiFi networks or use them in conjunction with a VPN tunnel to a trusted network. 
-Finally, if the user is running a device with API level 17 or above and is technically able to determine the target API version of their apps, they should consider uninstalling all apps with a target API of less than 17.
+Finally, if the user is running a device with API level 17 or above and is able to determine the target API version of their apps, they should consider uninstalling all apps with a target API of less than 17.
 
 In the long term, there needs to be greater emphasis on providing timely updates.
 This could be fixed through a variety of mechanisms.
