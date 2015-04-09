@@ -188,45 +188,45 @@ The majority of devices only contribute data for a short period of time, however
 
 
 \subsection{Critical vulnerabilities}
-We compiled a list of critical vulnerabilities in Android, containing information on the discovery and publication dates, the versions affected and which versions fixed the problem.
+We compiled a list of critical vulnerabilities in Android, containing information on the discovery and publication dates, the versions affected and which versions contained fixes.
 We only looked for critical vulnerabilities such as root vulnerabilities which did not require USB debugging to exploit.
 If malicious code exploits a critical vulnerability then it gains control of the device.
 Some phones can be `rooted' by enabling USB debugging and using the special privileges of the ADB shell to root the device but only \daAdbEnabledPerc\ of devices have USB debugging enabled.
-This is not something that applications running on the phone can exploit to break out of the app sandbox and so we do not include those vulnerabilities.
+This is not something that applications running on the phone can exploit and so we do not include those vulnerabilities.
 However there have been reports of Windows malware exploiting this vector.\footnote{\url{http://www.symantec.com/connect/blogs/windows-malware-attempts-infect-android-devices}}
 Unfortunately, many published exploits use ADB for convenience and so determining whether the use of ADB is necessary to exploit the vulnerability can be difficult.
 
-Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 2 of our threat model. For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and from there gain root privileges.
+Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 2 of our threat model. For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and hence be granted system privileges.
 On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
 Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
 The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}.
 \avoTabAndVulns
 
-We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the \href{http://androidvulnerabilities.org/}{AndroidVulnerabilities.org}%\footnote{\textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}\vspace{-4em}} (\avo) website.
+We developed and maintain an open platform for filing critical vulnerabilities in a machine readable format, the \href{http://androidvulnerabilities.org/}{AndroidVulnerabilities.org} %\footnote{\textbf{Note to reviewers:} we have removed our names and affiliation from the website for this review \textbf{with the exception of the contact page. Please do not visit the contact page until the review cycle has completed.}\vspace{-4em}} (\avo) website.
 We seeded it with data from the CVE database, vendor lists, reports from the literature and forums.
 In addition, we have received submissions or amendments from \avoNumSubmitters\ individuals.
 We collected data between \avoStartDate\ and \avoEndDate.
 Our list therefore does not include any information lost before the start of that period.
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
-Unless otherwise stated, we use \daNumVulnsUsed\ vulnerabilities in our analysis as shown in Table~\ref{tab:andvulns}.
+Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
 These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android. \todo{can we make this sentence clearer?}
 In many cases we could not match manufacturer- and model-specific vulnerabilities to individual devices in the \da\ data and therefore attempting to include device-specific vulnerabilities as well would introduce additional uncertainty in our results.
-In contrast, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data set.
+In contrast, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
 
 Tracking vulnerabilities is a manual task as they are not consistently recorded in other databases such as the CVE database.
-In addition, the lack of a widely acknowledged unique identifier required manual analysis to identify whether two reports referenced the same vulnerability.
+In addition, the lack of a unique identifier required manual analysis to identify whether two reports referenced the same vulnerability.
 Previous work has assumed ``any security issue of relevance will eventually get a CVE number assigned"~\cite{Frei2010} which is currently not the case for critical Android vulnerabilities.
-For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an internal Android bug number.
+For some of the vulnerabilities without CVE numbers, Google confirmed that there was no CVE number and that they did not intend to get one, instead providing an internal bug number.
 
 
 \subsection{Lifetime of a vulnerability}
 
 Establishing when a vulnerability starts to pose a threat to users is difficult.
 Frei et al.~\cite{Frei2010} propose the definition of the \textbf{time of disclosure}.
-This occurs when the information about the vulnerability is available to the manufacturer from an accepted source.
-Unfortunately before we collated this information much of it was not published by an accepted source, even months or years after they had been actively used.
+This occurs when the information about the vulnerability is available to the user from an accepted source.
+Unfortunately before we collated this information much of it was not published by an accepted source, even after months or years of active use.
 
 Symantec's 2012 analysis of desktop malware has shown that after public disclosure, exploitation rates increase by 5 orders of magnitude~\cite{Bilge2012} and so from the point of view of widespread danger, the period between public disclosure and the date of the fix being deployed to most devices is the most critical.
 However they also show that zero-day vulnerabilities are typically used for 312 days before they are publicly disclosed, often to target particular organisations.
@@ -297,9 +297,9 @@ This gives us an average exposure to critical vulnerabilities of Android devices
 
 \subsection{Analysis 2: behaviour of the Android ecosystem}\label{sec:exp:android_ecosystem}
 In this analysis we examine how the distribution of Andriod OS versions changes over time and the impact that has on how different vulnerabilities affect the security of Android.
-We show that some vulnerabilities continue to have a substantial effect long after they have been fixed and the importance of longitudinal studies for determining whether a particular device is exposed to a particular vulnerability.
+We show that some vulnerabilities continue to have a substantial effect long after they have been fixed and the importance of longitudinal studies for determining whether devices are exposed to a particular vulnerabilities.
 
-\subsubsection{Method} As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to on a daily basis.
+\subsubsection{Method} As in Analysis 1, we used the version information for each device to calculate which critical vulnerabilities each device was susceptible to each day.
 
 \subsubsection{Results}
 The proportion of devices in the \da\ data running different versions of Android each day is shown in Figure~\ref{fig:norm_os}.\footnote{The anomaly beginning in August 2014 is explained in \S\ref{sec:da_changes}.}
