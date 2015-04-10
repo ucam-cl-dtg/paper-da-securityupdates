@@ -82,12 +82,14 @@ Cambridge, United Kingdom\\
 % Attempts at fine grained restrictions on running arbitrary code are hampered by updates for security vulnerabilities not reaching users in a timely fashion.
 \vspace{-1em}
 \begin{abstract}
-Modern smartphone operating systems protect users from malicious applications by providing a protected execution environment or sandbox.
-A number of exploits have been found that allow apps to break out of the sandbox.
-We quantify for the first time how vulnerable Android devices in the wild are to critical vulnerabilities and how long it takes for vulnerabilities to be fixed on consumer devices.
-We analysed \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that on average \daMeanInsecurityPercTwosfNominal\ of devices were exposed to known root privilege vulnerabilities and only \daUpdatednessPercTwosfNominal\ of devices run the most recent version of Android.
-Devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year.
-\todo{Abstract does not reflect current spin very well}
+Modern mobile operating systems combine up to three layers of security protection to prevent app malware from taking control of a device.
+These are: the defences provided by the app store, additional checks performed at installation time on the device, and a protected execution environment to control the running app.
+In this paper we show that only the app store is currently able to provide effective protection for the majority of Android users.
+In contrast, a number of well-known, publicly disclosed exploits continue to allow apps to bypass installation checks or bypass runtime restrictions.
+We quantify for the first time the vulnerability of Android devices in the wild and how long it takes for critical flaws to be fixed on consumer devices.
+To do so, we analyse \da\ data from over \daOSYearsOfData\ years and \daNumOSDevices\ devices and found that, on average, \daMeanInsecurityPercTwosfNominal\ of devices were exposed to known privilege-escalation attacks.
+% and only \daUpdatednessPercTwosfNominal\ of devices run the most recent version of Android.
+Furthermore, devices apply \daUpdatesPerYearTwosfNominal\ updates each year, less than the critical vulnerability discovery rate of between \avoVulnsPerYearAllAndroidTwosfNominal\ and \avoVulnsPerYearTwosfNominal\ per year.
 \end{abstract}
 
 \section{Introduction}
@@ -96,9 +98,10 @@ In this paper we explore the security layers present in the Android ecosystem an
 
 Our focus is on vulnerabilities that allow malware to gain full control of the device rather than merely abuse permissions granted to it by the user.
 In this context, by full control, or \emph{root}, on a device we mean the malware has unfettered access to all data stored on the device and can control all network interfaces in the device with the same flexibility as the operating system itself.
-We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware that gains root than malware which does not: as it can perform arbitrary actions on the device, and it is also impossible for the device owner to remove the malware reliably as even a factory reset does not guarantee the malware has been removed. 
+We have selected our focus for two reasons: no previous published work has quantified how vulnerable Android devices are to malware gaining root, and secondly the negative impact on the device owner is much higher for malware that gains root than malware which does not. 
+Such malware can perform arbitrary actions on the device, and it is also impossible for the device owner to remove the malware reliably as even a factory reset does not guarantee the malware has been removed. 
 
-This is an important problem: previous studies have shown that a substantial proportion of malware attempts to gain root: in 2012, 40\%~\cite{Zhou2012a} of malware for Android contained exploits designed to gain root.
+This is an important problem: previous studies have shown that a substantial proportion of malware attempts to gain root. For example, in 2012, 40\% of malware for Android contained exploits designed to gain root~\cite{Zhou2012a}.
 
 Android users are protected from malicious apps by up to three levels of defence. 
 The first level of defence comes from an app marketplace such as Google Play. 
@@ -141,7 +144,7 @@ The Google Play marketplace uses Bouncer to automatically analyse apps; any apps
 Alternative markets are also popular, particularly in countries such as China where the Google Play is not available. 
 In 2012 0.02\% of apps on Google Play and between 0.20\% and 0.47\% of apps on alternative markets were malicious~\cite{Zhou2012a}.
 
-The second attack vector is to make an existing app download and execute code at runtime.
+The second attack vector is to coerce an existing app into downloading and executing code at runtime.
 The most direct method available to an attacker is to upload to a marketplace a seemingly innocent app that contains support for dynamic code loading from a malicious server.
 Neither static nor dynamic analysis of this app by the marketplace will uncover any malicious code, since it does not exist in the app binary.
 The attacker can choose to send a malicious payload to the app for execution at a later point in time.
@@ -492,14 +495,17 @@ More recent data demonstrates the difficulty of upgrading computers between majo
 
 \section{Conclusion}
 \label{sec:conclusion}
-We have described the three levels of defence provided to Android users today and determined that the app sandbox is the best place to prevent malware from gaining root.
-However the latency in the security update process means that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to known critical vulnerabilities which break out of the sandbox and only \daUpdatednessPercNominal\ of devices run the latest version of Android.
-Devices apply \daUpdatesPerYearNominal\ updates each year less than the rate of critical vulnerability discovery of between \avoVulnsPerYearAllAndroidNominal\ and \avoVulnsPerYearNominal.
+
+Modern mobile operating systems combine up to three layers of security protection to prevent app malware from taking control of a device.
+These are: the app store, checks performed during app installation, and the app sandbox.
+In this paper we have demonstrated that the app sandbox is the best place to prevent malware from gaining root.
+However the Android sandbox is ineffective in the majority of cases: the latency in the security update process means that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to known critical vulnerabilities which allow a malicious app to break out of the sandbox.
+Furthermore, only \daUpdatednessPercNominal\ of devices run the latest version of Android and devices apply \daUpdatesPerYearNominal\ updates each year, less than the critical vulnerability discovery rate of between \avoVulnsPerYearAllAndroidNominal\ and \avoVulnsPerYearNominal.
 
 Installing regular updates is the best defence against malware, however, as we have shown, these updates are rarely forthcoming. 
 Therefore Android users need to take additional steps to protect themselves. 
 Firstly, users should only install apps from Google Play, which has been shown to have a lower level of malware than third-party markets and is known to contain static and dynamic analysis of available apps.
-Secondly, users should enable the Google Verify Apps feature if available or use an anti-malware app. 
+Secondly, users should enable the Google Verify Apps feature if available. 
 Thirdly, users should avoid using untrusted WiFi networks or use them in conjunction with a VPN tunnel to a trusted network. 
 Finally, if the user is running a device with API level 17 or above and is able to determine the target API version of their apps, they should consider uninstalling all apps with a target API of less than 17.
 
