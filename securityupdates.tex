@@ -421,7 +421,7 @@ Hence removing this anomaly would have no effect on our main conclusions.
 
 \subsubsection{The selection of vulnerabilities in \avo}
 We have not included all the vulnerabilities from \avo. 
-In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities in Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing vulnerabilities and the patches which fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
+In particular, we have not included any device manufacturer specific vulnerabilities, even when these are widespread (such as vulnerabilities in Qualcomm\footnote{Qualcomm is particularly good at publicly disclosing vulnerabilities and the patches that fix them. \url{https://www.codeaurora.org/projects/security-advisories/}} chipsets) because it is difficult to work out which devices are affected.
 There also tends to be less public information available about manufacturer-specific vulnerabilities which makes them harder to tie down.
 
 For some other vulnerabilities which might affect all Android devices it is hard to work out which devices are affected.
@@ -458,7 +458,7 @@ This reduces the time available for an attacker to exploit a vulnerability by lo
 Reducing it from, the interval between the commit of the first fix and the fix being deployed to most devices, to the interval between the first fixing release and the fix being deployed to most devices; unfortunately this can still take months or years.
 For example, the zergRush vulnerability was fixed in a release before it was publicly discovered but it still took 27 months for 90\% of the devices in our study to be definitely fixed\footnote{Definitely fixed is 1 $-$ (definitely insecure + maybe secure), maybe fixed is 1 $-$ definitely insecure} (25 months for 90\% of devices to be maybe fixed).
 
-Brumley et.\ al. has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
+Brumley et al.\ has shown it is possible to automatically generate exploits from binary fixes, for example by using security updates issued by manufacturers~\cite{Brumley2008}. 
 Similarly, the Woodpecker tool automatically finds permission leaks in stock Android phone images~\cite{Grace2012}.
 Once such automated techniques mature, it will become even more important to provide security updates promptly to every Android device in the ecosystem because an attacker can turn the contents of a released fix into an exploit in a matter of minutes or hours.
 
@@ -467,7 +467,7 @@ In this regard, iOS provides additional safeguards beyond those used in Android,
 These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
 
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and elsewhere.
-SEAndroid~\cite{Smalley2013} which is included in Android from version 4.1~\cite{jelly-bean-release} and fully enforcing from version 5.0~\cite{AndroidSecurity2014} claimed to prevent some root vulnerabilities and to reduce the impact of others.
+SEAndroid~\cite{Smalley2013}, which is included in Android from version 4.1~\cite{jelly-bean-release}, and fully enforcing from version 5.0~\cite{AndroidSecurity2014} claimed to prevent some root vulnerabilities and to reduce the impact of others.
 Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with and could be included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence Android.
 
 Rather than fixing critical vulnerabilities, security can be obtained by detecting malicious apps and preventing their installation or execution.
@@ -487,7 +487,7 @@ Therefore detecting risky apps which might contain critical vulnerabilities is a
 %PlayDrone was a particularly effective project which circumvented Google's protective measures and downloaded over 1\,100\,000 apps from Google Play, allowing an in depth analysis~\cite{Viennot2014}.
 
 
-The percentage of Android devices running the most recent version (\daUpdatednessPerc) compares unfavourably with the rate ($>90$\%) for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006}.
+The percentage of Android devices running the most recent version (\daUpdatednessPerc) is much less than the rate ($>90$\%) for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006}.
 A simple numerical comparison is unfair because only one major OS version was considered in the Microsoft analysis, and data was only collected from computers which contacted the update server, although this was the default.
 More recent data demonstrates the difficulty of upgrading computers between major OS versions, with 27\% of Windows computers running Windows XP in July 2014,\footnote{\url{https://archive.today/PLGxn}} four months after Windows XP stopped receiving security updates.
 
