@@ -2,12 +2,12 @@
 
 set -e
 
-fromdir=~drt24/git/da/graphing/pdf/
+fromdir=/mnt/nas04-device-analyzer-graphing/pdf/
 cp "$fromdir"norm_api.pdf da_norm_api.pdf
 cp "$fromdir"norm_api-notitle.pdf da_norm_api-notitle.pdf
 cp "$fromdir"norm_os.pdf da_norm_os.pdf
 cp "$fromdir"os.pdf da_os.pdf
-cp "$fromdir"device_data/device-data-manufacturer-lg-security.pdf device_data-LG.pdf
+cp "$fromdir"device_data/device-data-manufacturer-LG-security.pdf device_data-LG.pdf
 cp "$fromdir"device_data/device-data-all-security.pdf device-data-all-security.pdf
 cp "$fromdir"device_data/device-data-all-os.pdf device-data-all-os.pdf
 cp "$fromdir"from_to_updates.pdf from_to_updates.pdf
@@ -26,8 +26,8 @@ cp "$fromdir"wifi-accounts-ototals-hist.pdf wifi-accounts-ototals-hist.pdf
 cp "$fromdir"wifi-accounts-stotals-hist.pdf wifi-accounts-stotals-hist.pdf
 cp "$fromdir"api_gpcomp_diff.pdf api_gpcomp_diff.pdf
 cp "$fromdir"api_gpcomp_rdiff.pdf api_gpcomp_rdiff.pdf
-cp "$fromdir"ua-versions-android-month-norm.pdf ua-versions-android-month-norm.pdf
-cp "$fromdir"ua-versions-ios-month-norm.pdf ua-versions-ios-month-norm.pdf
+# cp "$fromdir"ua-versions-android-month-norm.pdf ua-versions-android-month-norm.pdf
+# cp "$fromdir"ua-versions-ios-month-norm.pdf ua-versions-ios-month-norm.pdf
 cp "$fromdir""model/Galaxy Nexus/norm_full.pdf" "full_version_Galaxy Nexus.pdf"
 cp "$fromdir""model/HTC Desire HD A9191/norm_full.pdf" "full_version_HTC Desire HD A9191.pdf"
 cp "$fromdir""model/Symphony W68/norm_full.pdf" "full_version_Symphony W68.pdf"
@@ -36,5 +36,5 @@ cp "$fromdir"frvh_os_versions.pdf frvh_os_versions.pdf
 cp "$fromdir"frvh_api_versions.pdf frvh_api_versions.pdf
 cp "$fromdir"frms_os_versions.pdf frms_os_versions.pdf
 cp ~/Library/papers/library.filtered.bib ../securityupdates.bib
-cp ~/git/da/graphing/stats/latex.tex ../dastats.tex
+cp /mnt/nas04-device-analyzer-graphing/stats/latex.tex ../dastats.tex
 cp ~/Documents/androidvulnerabilities/output/latex.tex ../avostats.tex
