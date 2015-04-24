@@ -6,6 +6,14 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 
+\RequirePackage[date=terse, isbn=true, doi=true, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex, style=ieee]{biblatex}
+\addbibresource{securityupdates.bib}
+\renewcommand{\bibfont}{\small}
+
+\AtEveryBibitem{% Clean up the bibtex rather than editing it
+ \clearname{editor} % remove editors
+}
+
 \include{dastats}
 \newcommand{\da}{Device Analyzer}
 
@@ -59,7 +67,7 @@ We plan to periodically release the collected anonymous dataset where participan
 This raises privacy concerns that need to be addressed before such a comprehensive and potentially invasive dataset can be released.
 As a first measure we will only publish data that was collected at least three months ago, giving participants time to view the data they contributed.
 If they are concerned about having their data released they can opt-out of any further data collection and erase all unpublished data from our server.
-Furthermore, while physical location of participants could be an asset of our dataset, such data would need to be handled with great care, as disclosure of even approximate home/work location pairs could lead to deanonymization of participants [2].
+Furthermore, while physical location of participants could be an asset of our dataset, such data would need to be handled with great care, as disclosure of even approximate home/work location pairs could lead to deanonymization of participants~\cite{Golle2009}.
 
 \section{Conclusion}
 A rich dataset of smart phone usage for a large population has undeniable uses for device owners as well as providers and manufacturers.
@@ -72,5 +80,7 @@ Please do contact us if you wish to participate.
 
 \section{Acknowledgements}
 This work was supported by the University of Cambridge Computer Laboratory Premium Studentship scheme, a Google focussed research award and the EPSRC Standard Research Grant EP/P505445/1.
+
+\printbibliography
 
 \end{document}
