@@ -58,7 +58,7 @@ The Python \texttt{uncertainties} library was used to propagate uncertainties th
 If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.
 $f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
 A high value of $u$ could be achieved by only ever shipping one version but that would give low values for $f$ and $m$ (and not be attractive to new customers).
-A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.
+A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.%
 \footnote{One way to influence our scores would be to add additional devices to Device Analyzer which have good security, these would have to be real end user devices as we could detect fake ones, this would increase the size of our data set and would require providing genuinely good security to some users.}
 
 \subsubsection{Results: Security scores}
@@ -105,4 +105,9 @@ An added value analysis of network operators which takes into account the device
 However we suspect that our sample size is too small to do that as while we have significant numbers of devices for each of the device models in Table~\ref{tab:sec_model} and for each of the network operators in Table~\ref{tab:sec_operator} we would need a significant number of each model in each network operator.
 We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
-
+\subsubsection{Sensitivity of scoring metric}
+\daTabDLDistances
+\daTabChangeInScores
+To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Damerau-Levenshtein distance~\cite{Bard2007} between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:dl_distances}.
+The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
+Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores. 
