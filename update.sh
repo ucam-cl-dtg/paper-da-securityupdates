@@ -1,8 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
 fromdir=/mnt/nas04-device-analyzer-graphing/pdf/
+pushd figures
 cp "$fromdir"norm_api.pdf da_norm_api.pdf
 cp "$fromdir"norm_api-notitle.pdf da_norm_api-notitle.pdf
 cp "$fromdir"norm_os.pdf da_norm_os.pdf
@@ -35,6 +36,7 @@ cp "$fromdir"vulnerabilities_timeline.pdf vulnerabilities_timeline.pdf
 cp "$fromdir"frvh_os_versions.pdf frvh_os_versions.pdf
 cp "$fromdir"frvh_api_versions.pdf frvh_api_versions.pdf
 cp "$fromdir"frms_os_versions.pdf frms_os_versions.pdf
-cp ~/Library/papers/library.filtered.bib ../securityupdates.bib
-cp /mnt/nas04-device-analyzer-graphing/stats/latex.tex ../dastats.tex
-cp ~/Documents/androidvulnerabilities/output/latex.tex ../avostats.tex
+popd
+cp ~/Library/papers/library.filtered.bib securityupdates.bib
+cp /mnt/nas04-device-analyzer-graphing/stats/latex.tex dastats.tex
+cp ~/Documents/androidvulnerabilities/output/latex.tex avostats.tex
