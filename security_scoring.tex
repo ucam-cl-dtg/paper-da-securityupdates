@@ -110,4 +110,18 @@ We do not attempt to disambiguate users behaviour in whether they install update
 \daTabChangeInScores
 To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Damerau-Levenshtein distance~\cite{Bard2007} between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:dl_distances}.
 The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
-Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores. 
+Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
+
+\subsubsection{Scores over time}
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/security_score_manufacturer}
+\caption{Security scores for different manufacturers}
+\label{fig:security_score_manufacturer}
+\includegraphics[width=\columnwidth]{figures/security_score_model}
+\caption{Security scores for different device models}
+\label{fig:security_score_model}
+\includegraphics[width=\columnwidth]{figures/security_score_operator}
+\caption{Security scores for different operators}
+\label{fig:security_score_operator}
+\end{figure}
