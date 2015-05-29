@@ -773,6 +773,20 @@
     journal = "ISPRS Journal of Photogrammetry and Remote Sensing"
 }
 
+@article{Bard2007,
+    author = "Bard, Gregory V.",
+    isbn = "192068249X",
+    title = "{Spelling-error tolerant, order-independent pass-phrases via the Damerau-Levenshtein string-edit distance metric}",
+    abstract = "It is well understood that passwords must be very long and complex to have sufficient entropy for secu- rity purposes. Unfortunately, these passwords tend to be hard to memorize, and so alternatives are sought. Smart Cards, Biometrics, and Reverse Turing Tests (human-only solvable puzzles) are options, but an- other option is to use pass-phrases. This paper explores methods for making pass- phrases suitable for use with password-based authen- tication and key-exchange (PAKE) protocols, and in particular, with schemes resilient to server-file compromise. In particular, the $\Omega$-method of Gen- try, MacKenzie and Ramzan, is combined with the Bellovin-Merritt protocol to provide mutual authen- tication (in the random oracle model (Canetti, Gol- dreich \& Halevi 2004, Bellare, Boldyreva \& Palacio 2004, Maurer, Renner \& Holenstein 2004)). Further- more, since common password-related problems are typographical errors, and the CAPSLOCK key, we show how a dictionary can be used with the Damerau- Levenshtein string-edit distance metric to construct a case-insensitive pass-phrase system that can tolerate zero, one, or two spelling-errors per word, with no loss in security. Furthermore, we show that the sys- tem can be made to accept pass-phrases that have been arbitrarily reordered, with a security cost that can be calculated. While a pass-phrase space of 2128 is not achieved by this scheme, sizes in the range of 252 to 2112 result from various selections of parameter sizes. An at- tacker who has acquired the server-file must exhaust over this space, while an attacker without the server- file cannot succeed with non-negligible probability.",
+    issn = "14451336",
+    pages = "117--124",
+    volume = "68",
+    file = ":home/drt24/Downloads/p117-bard.pdf:pdf",
+    year = "2007",
+    keywords = "Damerau-levenshtein string-edit distance Metric,Password-based authentication and key exchange (PA,Passwords,Usable security",
+    journal = "Conferences in Research and Practice in Information Technology Series"
+}
+
 @inproceedings{Barham2003,
     editor = "Scott, Michael L and Peterson, Larry L",
     author = "Barham, Paul and Dragovic, Boris and Fraser, Keir and Hand, Steven and Harris, Tim and Ho, Alex and Neugebauer, Rolf and Pratt, Ian and Warfield, Andrew",
@@ -2467,6 +2481,11 @@
     journal = "Philosophy \& Technology"
 }
 
+@online{Chromium33,
+    url = "https://codereview.chromium.org/213693005/patch/20001/30001",
+    title = "{getClass filter in Chromium: committed as 261801 or afae5d83d66c1d041a1fa433fbb087c5cc604b67 or e55966f4c3773a24fe46f9bab60ab3a3fc19abaf}"
+}
+
 @inproceedings{Chun2012,
     author = "Chun, Byung-gon and Shraer, Alexander and Curino, Carlo and Madden, Samuel and Sears, Russell",
     isbn = "9781450313018",
@@ -2499,13 +2518,14 @@
     isbn = "9781595939524",
     title = "{Understanding mobile information needs}",
     url = "http://dl.acm.org/citation.cfm?id=1409240.1409325",
-    booktitle = "Proceedings of the 10th international conference on Human computer interaction with mobile devices and services - MobileHCI '08",
+    abstract = "In this paper we describe the results of a four-week diary study of mobile information needs, focusing on the intent behind mobile needs and the importance on context on such needs. We identified three key intents among diary entries: informational, geographical and personal information management (PIM). Furthermore, we found many of these information needs have high temporal and location dependencies.",
     year = "2008",
     month = "9",
+    pages = "493",
     file = "::",
     address = "New York, New York, USA",
     keywords = "diary study,information needs,intent,mobile",
-    pages = "493"
+    booktitle = "Proceedings of the 10th international conference on Human computer interaction with mobile devices and services - MobileHCI '08"
 }
 
 @inproceedings{Church2011a,
@@ -2680,7 +2700,7 @@
     file = ":home/drt24/Downloads/fulltext (9).pdf:pdf",
     year = "2010",
     keywords = "android security,context policy,policy enforcement",
-    journal = "LNCS"
+    journal = "Lecture Notes in Computer Science (LNCS)"
 }
 
 @article{Conti2012,
@@ -3370,7 +3390,7 @@
     volume = "6027 LNCS",
     file = ":home/drt24/Downloads/chp\%3A10.1007\%2F978-3-642-14379-3\_11.pdf:pdf",
     year = "2010",
-    journal = "Lecture Notes in Computer Science"
+    journal = "Lecture Notes in Computer Science (LNCS)"
 }
 
 @article{Dunagan2004,
@@ -4434,7 +4454,7 @@
     abstract = "Hybrid mobile applications (apps) combine the features of Web applications and “native” mobile apps. Like Web applications, they are implemented in portable, platform- independent languages such as HTML and JavaScript. Like native apps, they have direct access to local device resources—file system, location, camera, contacts, etc. Hybrid apps are typically developed using hybrid application frameworks such as PhoneGap. The purpose of the framework is twofold. First, it provides an embedded Web browser (for example,WebView on Android) that executes the app’sWeb code. Second, it supplies “bridges” that allow Web code to escape the browser and access local resources on the device. We analyze the software stack created by hybrid frameworks and demonstrate that it does not properly compose the access- control policies governing Web code and local code, respectively. Web code is governed by the same origin policy, whereas local code is governed by the access-control policy of the operating system (for example, user-granted permissions in Android). The bridges added by the framework to the browser have the same local access rights as the entire application, but are not correctly protected by the same origin policy. This opens the door to fracking attacks, which allow foreign-origin Web content included into a hybrid app (e.g., ads confined in iframes) to drill through the layers and directly access device resources. Fracking vulnerabilities are generic: they affect all hybrid frameworks, all embedded Web browsers, all bridge mechanisms, and all platforms on which these frameworks are deployed. We study the prevalence of fracking vulnerabilities in free Android apps based on the PhoneGap framework. Each vul- nerability exposes sensitive local resources—the ability to read and write contacts list, local files, etc.—to dozens of potentially maliciousWeb domains.We also analyze the defenses deployed by hybrid frameworks to prevent resource access by foreign-origin Web content and explain why they are ineffectual. We then present NOFRAK, a capability-based defense against fracking attacks. NOFRAK is platform-independent, compatible with any framework and embedded browser, requires no changes to the code of the existing hybrid apps, and does not break their advertising-supported business model. I.",
     file = ":home/drt24/Downloads/shmat\_ndss14nofrak (1).pdf:pdf",
     year = "2014",
-    journal = "NDSS"
+    journal = "Network and Distributed System Security Symposium (NDSS)"
 }
 
 @inproceedings{Gersch2012,
@@ -4707,18 +4727,17 @@
 
 @article{Grace2012d,
     author = "Grace, Michael C and Zhou, Wu and Jiang, Xuxian and Sadeghi, Ahmad-Reza",
+    publisher = "ACM",
     doi = "10.1145/2185448.2185464",
     isbn = "978-1-4503-1265-3",
     title = "{Unsafe exposure analysis of mobile in-app advertisements}",
     url = "http://doi.acm.org/10.1145/2185448.2185464",
     abstract = {In recent years, there has been explosive growth in smartphone sales, which is accompanied with the availability of a huge number of smartphone applications (or simply apps). End users or consumers are attracted by the many interesting features offered by these devices and the associated apps. The developers of these apps are also benefited by the prospect of financial compensation, either by selling their apps directly or by embedding one of the many ad libraries available on smartphone platforms. In this paper, we focus on potential privacy and security risks posed by these embedded or in-app advertisement libraries (henceforth "ad libraries," for brevity). To this end, we study the popular Android platform and collect 100,000 apps from the official Android Market in March-May, 2011. Among these apps, we identify 100 representative in-app ad libraries (embedded in 52.1\% of them) and further develop a system called AdRisk to systematically identify potential risks. In particular, we first decouple the embedded ad libraries from host apps and then apply our system to statically examine the ad libraries, ranging from whether they will upload privacy-sensitive information to remote (ad) servers or whether they will download untrusted code from remote servers. Our results show that most existing ad libraries collect private information: some of them may be used for legitimate targeting purposes (i.e., the user's location) while others are hard to justify by invasively collecting the information such as the user's call logs, phone number, browser bookmarks, or even the list of installed apps on the phone. Moreover, additional ones go a step further by making use of an unsafe mechanism to directly fetch and run code from the Internet, which immediately leads to serious security risks. Our investigation indicates the symbiotic relationship between embedded ad libraries and host apps is one main reason behind these exposed risks. These results clearly show the need for better regulating the way ad libraries are integrated in Android apps.},
-    number = "Section 2",
     pages = "101--112",
-    volume = "067",
     file = ":home/drt24/Downloads/week2b.pdf:pdf",
     year = "2012",
     keywords = "in-app advertisement,privacy,smartphone",
-    journal = "Proc. 5th ACM conference on Security and Privacy in Wireless and Mobile Networks"
+    journal = "Proceedings of the Fifth ACM Conference on Security and Privacy in Wireless and Mobile Networks (WISEC)"
 }
 
 @inproceedings{Graham1982,
@@ -6590,7 +6609,7 @@
     abstract = "The widely popular browser extensions now become one of the most commonly used malware attack vectors. The Google Chrome browser, which implements the principles of least privileges and privilege separation by design, of- fers a strong security mechanism to protect malicious web- sites from damaging the whole browser system via exten- sions. In this study, we however reveal that Chrome’s ex- tension security model is not a panacea for all possible at- tacks with browser extensions. Through a series of prac- tical bot-based attacks that can be performed even under typical settings, we demonstrate that malicious Chrome ex- tensions pose serious threats, including both information dispersion and harvesting, to browsers. We further con- duct an in-depth analysis of Chrome’s extension security model, and conclude that its vulnerabilities are rooted from the violation of the principles of least privileges and privi- lege separation. Following these principles, we propose a set of countermeasures that enforce the policies of micro- privilege management and differentiating DOM elements. Using a prototype developed on the latest Chrome browser, we show that they can effectively mitigate the threats posed by malicious Chrome extensions with little effect on normal browsing experience.",
     file = ":home/drt24/Downloads/ndss12-chrome.pdf:pdf",
     year = "2012",
-    booktitle = "Network and Distributed System Security Symposium"
+    booktitle = "Network and Distributed System Security Symposium (NDSS)"
 }
 
 @inproceedings{Lloyd2011,
@@ -6677,13 +6696,17 @@
 
 @inproceedings{Luo2011,
     author = "Luo, Tongbo and Hao, Hao and Du, Wenliang and Wang, Yifei and Yin, Heng",
+    publisher = "ACM",
+    doi = "10.1145/2076732.2076781",
     isbn = "9781450306720",
     title = "{Attacks on WebView in the Android System}",
+    url = "http://doi.acm.org/10.1145/2076732.2076781",
     abstract = "WebView is an essential component in both Android and iOS platforms, enabling smartphone and tablet apps to embed a simple but powerful browser inside them. To achieve a bet- ter interaction between apps and their embedded“browsers”, WebView provides a number of APIs, allowing code in apps to invoke and be invoked by the JavaScript code within the web pages, intercept their events, and modify those events. Using these features, apps can become customized “browsers” for their intended web applications. Currently, in the Android market, 86 percent of the top 20 most down- loaded apps in 10 diverse categories use WebView. The design ofWebView changes the landscape of theWeb, especially from the security perspective. Two essential pieces of the Web’s security infrastructure are weakened if Web- View and its APIs are used: the Trusted Computing Base (TCB) at the client side, and the sandbox protection im- plemented by browsers. As results, many attacks can be launched either against apps or by them. The objective of this paper is to present these attacks, analyze their funda- mental causes, and discuss potential solutions.",
+    year = "2011",
     pages = "343----352",
     file = ":home/drt24/Downloads/p343-luo.pdf:pdf",
-    year = "2011",
-    booktitle = "ACSAC"
+    address = "Orlando, Florida, USA",
+    booktitle = "Proceedings of the 27th Annual Computer Security Applications Conference (ACSAC)"
 }
 
 @article{Lyle2010,
@@ -7431,6 +7454,17 @@
 @inproceedings{Nakamoto,
     author = "Nakamoto, Satoshi",
     title = "{Bitcoin: a peer-to-peer electronic cash system}"
+}
+
+@article{Nappa2015,
+    author = "Nappa, Antonio and Johnson, Richard and Bilge, Leyla and Caballero, Juan and Dumitras, Tudor",
+    doi = "10.1109/SP.2015.48",
+    title = "{The Attack of the Clones : A Study of the Impact of Shared Code on Vulnerability Patching}",
+    abstract = "Vulnerability exploits remain an important mechanism for malware delivery, despite efforts to speed up the creation of patches and improvements in software updating mechanisms. Vulnerabilities in client applications (e.g., browsers, multimedia players, document readers and editors) are often exploited in spear phishing attacks and are difficult to characterize using network vulnerability scanners. Analyzing their lifecycle requires observing the deployment of patches on hosts around the world. Using data collected over 5 years on 8.4 million hosts, available through Symantec’s WINE platform, we present the first systematic study of patch deployment in client-side vulnerabilities. We analyze the patch deployment process of 1,593 vulnerabilities from 10 popular client applications, and we identify several new threats presented by multiple installations of the same program and by shared libraries distributed with several applications. For the 80 vulnerabilities in our dataset that affect code shared by two applications, the time between patch releases in the different applications is up to 118 days (with a median of 11 days). Furthermore, as the patching rates differ considerably among applications, many hosts patch the vulnerability in one application but not in the other one. We demonstrate two novel attacks that enable exploitation by invoking old versions of applications that are used infrequently, but remain installed. We also find that the median fraction of vulnerable hosts patched when exploits are released is at most 14\%. Finally, we show that the patching rate is affected by user-specific and application- specific factors; for example, hosts belonging to security analysts and applications with an automated updating mechanism have significantly lower median times to patch",
+    pages = "692--708",
+    file = ":home/drt24/Downloads/6949a692.pdf:pdf",
+    year = "2015",
+    journal = "IEEE Symposium on Security and Privacy"
 }
 
 @article{Narayanan2013,
@@ -8994,6 +9028,21 @@
     booktitle = "Proceedings of the 17th ACM conference on Computer and communications security"
 }
 
+@article{Sands2000,
+    author = "Sands, W A",
+    doi = "10.2165/00007256-200030050-00004",
+    isbn = "0112-1642",
+    title = "{Injury prevention in women's gymnastics.}",
+    abstract = "The most serious problem faced by contemporary gymnasts is injury. Given that prevention is superior to treatment, can the gymnastics community and the scientific and medical community do a better job at injury prevention? Most research in gymnastics has been descriptive in nature. Injury prevention ultimately requires that one can predict the outcome of certain activities and their injurious nature. Making such predictions requires a knowledge of the scientific and medical aspects of injury, but more than that, one must have an intimate knowledge of the sport. Injury prevention efforts must be firmly grounded in science and medicine while making pragmatic linkages to gymnastics as it exists and is practiced. This article attempts to bridge the gap between the scientific and medical community and what actually happens in gymnastics.",
+    issn = "0112-1642",
+    number = "5",
+    pages = "359--373",
+    volume = "30",
+    year = "2000",
+    pmid = "11103849",
+    journal = "Sports medicine (Auckland, N.Z.)"
+}
+
 @article{Santos2008,
     author = "Santos, Jose Renato and Turner, Yoshio and Janakiraman, G. and Pratt, Ian",
     url = "http://dl.acm.org/citation.cfm?id=1404014.1404017",
@@ -9218,7 +9267,7 @@
     doi = "10.1007/0-387-34805-0_22",
     title = "{Efficient identification and signatures for smart cards}",
     url = "http://www.springerlink.com/index/8l9c4bu4nn747wpn.pdf",
-    journal = "Lecture Notes in Computer Science",
+    journal = "Lecture Notes in Computer Science (LNCS)",
     volume = "435/1990",
     file = ":auto/homes/drt24/Downloads/fulltext (8).pdf:pdf",
     year = "1990",
@@ -9798,7 +9847,7 @@
 
 @inproceedings{Stevens2012,
     author = "Stevens, Ryan and Gibler, Clint and Crussell, Jon and Erickson, Jeremy and Chen, Hao",
-    title = "{Investigating User Privacy in Android Ad Libraries}",
+    title = "{Investigating user privacy in Android ad libraries}",
     url = "http://www.mostconf.org/2012/papers/27.pdf| http://www.cs.ucdavis.edu/~hchen/paper/most2012ad.pdf",
     abstract = "Recent years have witnessed incredible growth in the popularity and prevalence of smart phones. A ﬂourishing mobile application market has evolved to provide users with additional functionality such as interacting with social networks, games, and more. Mobile applications may have a direct purchasing cost or be free but ad-supported. Unlike in-browser ads, the privacy implications of ads in Android applications has not been thoroughly explored. We start by comparing the similarities and differences of in-browser ads and in-app ads. We examine the effect on user privacy of thirteen popular Android ad providers by reviewing their use of permissions. Worryingly, several ad libraries checked for permissions beyond the required and optional ones listed in their documentation, including dangerous permissions like CAMERA, WRITE CALENDAR and WRITE CONTACTS. Further, we discover the insecure use of Android’s JavaScript extension mechanism in several ad libraries. We identify ﬁelds in ad requests for private user information and conﬁrm their presence in network data obtained from a tier-1 network provider. We also show that users can be tracked by a network sniffer across ad providers and by an ad provider across applications. Finally, we discuss several possible solutions to the privacy issues identiﬁed above.",
     file = ":home/drt24/Downloads/most2012ad.pdf:pdf",
@@ -9852,7 +9901,7 @@
     volume = "4717",
     file = ":auto/homes/drt24/Downloads/fulltext.pdf:pdf",
     year = "2007",
-    journal = "Lecture Notes in Computer Science"
+    journal = "Lecture Notes in Computer Science (LNCS)"
 }
 
 @article{Systems2009,
@@ -10004,6 +10053,25 @@
     year = "2015",
     keywords = "ad-libraries,android,api security,security updates,webview",
     booktitle = "Security Protocols"
+}
+
+@online{Thomas2015b,
+    author = "Thomas, Daniel R. and Coudray, Thomas and Sutcliffe, Tom",
+    title = {{Supporting data for: ``The Lifetime of Android API vulnerabilities: case study on the JavaScript-to-Java interface"}},
+    url = "https://www.repository.cam.ac.uk/handle/1810/247976",
+    abstract = "List of distinct manufacturers (manufacturers.csv name, count) List of different operators (operators.csv name) Table of API version distribution for Android over time from Google Play (androiddevolperdashboardhistory.ods, androiddevolperdashboardhistory.csv, updated version kept at http://androidvulnerabilities.org/play/historicplaydashboard ) Generated LaTeX macros used in the paper (macros.tex, dastats.tex, avostats.tex, vulnerable\_apps.tex) latex\_value python module used to record data into LaTeX macros (latex\_value.py, updated version kept at https://github.com/ucam-cl-dtg/latex\_value ) Fitted parameters for API version distribution curves (dastats.tex $\backslash$daGPAPIPerAPIParametersTable) App ids of the 102174 APK files collected from the Google Play store along with the analysis of which category they fall into with respect to the JavaScript-to-Java interface (the APK files themselves are not included as we do not have distribution rights for them). (brresults.txt, For the number at the start of the line, '0' means always vulnerable (using addJavascriptInterface and target SDK < 17), '5' means vulnerable on older devices (using addJavascriptInterface and target >= 17), '6' means not using addJavascriptInterface (ie not vulnerable). 128 and 255 indicate a problem scanning the APK. The timestamp that follows is the original creation date of the APK (as given by the timestamp of the APK manifest).) List of those app ids also included in Device Analyzer (https://deviceanalyzer.cl.cam.ac.uk/) (known\_app\_ids.txt, those not in Device Analyzer unknown\_app\_ids.txt) Python source code for processing this data (vulnerable\_apps.py)",
+    month = "5",
+    urldate = "2015-05-26",
+    year = "2015",
+    keywords = "API Security,Android,Java,JavaScript,RCE,WebView,ad-libraries,network attacker,security updates,vulnerabilities",
+    booktitle = "DSpace"
+}
+
+@online{Thomas2015c,
+    author = "Thomas, Daniel R.",
+    url = "http://androidvulnerabilities.org/play/historicplaydashboard",
+    year = "2015",
+    title = "{Historic Google Play Dashboard}"
 }
 
 @article{Thompson1984,
@@ -10363,7 +10431,7 @@
     author = "Viennot, Nicolas and Garcia, Edward and Nieh, Jason",
     doi = "10.1145/2591971.2592003",
     isbn = "9781450327893",
-    title = "{A measurement study of google play}",
+    title = "{A measurement study of Google Play}",
     url = "http://dl.acm.org/citation.cfm?id=2592003",
     abstract = "Although millions of users download and use third-party Android applications from the Google Play store, little in- formation is known on an aggregated level about these ap- plications. We have built PlayDrone, the first scalable Google Play store crawler, and used it to index and analyze over 1,100,000 applications in the Google Play store on a daily basis, the largest such index of Android applications. PlayDrone leverages various hacking techniques to circum- vent Google’s roadblocks for indexing Google Play store con- tent, and makes proprietary application sources available, including source code for over 880,000 free applications. We demonstrate the usefulness of PlayDrone in decompiling and analyzing application content by exploring four pre- viously unaddressed issues: the characterization of Google Play application content at large scale and its evolution over time, library usage in applications and its impact on appli- cation portability, duplicative application content in Google Play, and the ineffectiveness of OAuth and related service authentication mechanisms resulting in malicious users be- ing able to easily gain unauthorized access to user data and resources on Amazon Web Services and Facebook.",
     file = ":home/drt24/Downloads/p221-viennot.pdf:pdf",
@@ -10403,13 +10471,14 @@
     journal = "WET ICE"
 }
 
-@techreport{Wagner2002,
+@online{Wagner2002,
     author = "Wagner, David and Tribble, Dean",
+    title = "{A Security Analysis of the Combex DarpaBrowser Architecture}",
     url = "http://combexin.temp.veriohosting.com/papers/darpa-review/security-review.pdf",
     booktitle = "Online at: http://www. combex. com/papers/darpa-review",
-    year = "2002",
     file = ":auto/homes/drt24/Downloads/security-review.ps:ps",
-    title = "{A Security Analysis of the Combex DarpaBrowser Architecture}"
+    year = "2002",
+    urldate = "2012-03-08"
 }
 
 @inproceedings{Wagner2009,
@@ -10426,8 +10495,9 @@
 @inproceedings{Wagner2013,
     author = "Wagner, Daniel T. and Rice, Andrew and Beresford, Alastair R.",
     publisher = "ACM",
+    doi = "10.1145/2627534.2627553",
     title = "{Device Analyzer: Large-scale mobile data collection}",
-    url = "http://www.sigmetrics.org/sigmetrics2013/bigdataanalytics/abstracts2013/bdaw2013_submission_5.pdf",
+    url = "http://www.sigmetrics.org/sigmetrics2013/bigdataanalytics/abstracts2013/bdaw2013_submission_5.pdf| http://doi.acm.org/10.1145/2627534.2627553",
     abstract = "We collected usage information from 12,500 Android devices in the wild over the course of nearly 2 years. Our dataset contains 53 billion data points from 894 models of devices running 687 ver- sions of Android. Processing the collected data presents a number of challenges ranging from scalability to consistency and privacy considerations. We present our system architecture for collection and analysis of this highly-distributed dataset, discuss how our sys- tem can reliably collect time-series data in the presence of unreli- able timing information, and discuss issues and lessons learned that we believe apply to many other big data collection projects.",
     year = "2013",
     month = "6",
@@ -10741,10 +10811,12 @@
 
 @article{Wognsen2012,
     author = "Wognsen, Erik Ramsgaard and Karlsen, Henrik S\o ndberg",
-    abstract = "Malicious apps pose an important problem on Android, the world’s most popular smart- phone operating system. Android apps are typically written in Java and compiled to run on the register based Dalvik virtual ma- chine. Static analysis can approximate pro- gram behaviour and this approximation can be used to find malicious behaviour, for ex- ample covert sending of expensive text mes- sages. We expand our original operational seman- tics for the Dalvik instruction set to more accurately model the Android implementa- tion, and we update our control flow analy- sis with these changes and improve its pre- cision to achieve useful results when analyz- ing real apps. The analysis is further ex- panded to include support for reflection and Javascript interfaces, two dynamic features that are used extensively in popular Android apps. Finally, we implement a prototype of the analysis which is able to create call graphs and run on real-world apps.",
-    year = "2012",
+    title = "{Static Analysis of Dalvik Bytecode and Reflection in Android}",
+    url = "http://projekter.aau.dk/projekter/files/63640573/rapport.pdf",
+    abstract = "Malicious apps pose an important problem on Android, the world’s most popular smartphone operating system. Android apps are typically written in Java and compiled to run on the register based Dalvik virtual ma- chine. Static analysis can approximate pro- gram behaviour and this approximation can be used to find malicious behaviour, for ex- ample covert sending of expensive text mes- sages. We expand our original operational seman- tics for the Dalvik instruction set to more accurately model the Android implementa- tion, and we update our control flow analy- sis with these changes and improve its pre- cision to achieve useful results when analyz- ing real apps. The analysis is further ex- panded to include support for reflection and Javascript interfaces, two dynamic features that are used extensively in popular Android apps. Finally, we implement a prototype of the analysis which is able to create call graphs and run on real-world apps.",
     file = ":home/drt24/Downloads/rapport.pdf:pdf",
-    title = "{Static Analysis of Dalvik Bytecode and Reflection in Android}"
+    year = "2012",
+    journal = "Master's thesis, Department of Computer Science, Aalborg University, Aalborg, Denmark"
 }
 
 @book{Woodwark1992,

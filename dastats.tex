@@ -1,184 +1,192 @@
-\newcommand{\daNumDataPoints}{144 Billion}
-\newcommand{\daNumStartedApps}{122\,000}
-\newcommand{\daNumInstalledApps}{175\,000}
-\newcommand{\daNumVulnsUsed}{11}
-\newcommand{\daSigNumDevices}{100}
-\newcommand{\daSigNumDays}{100}
-\newcommand{\daNumManufacturers}{294}
-\newcommand{\daNumSigManufacturers}{8}
-\newcommand{\daNumModels}{2\,650}
 \newcommand{\daNumSigModels}{17}
-\newcommand{\daOSVersionPercValidLines}{99.3\%}
-\newcommand{\daOSTotalDaysData}{1\,260\,000}
-\newcommand{\daMeanInsecurityPerc}{$88.3 \pm 0.0\%$}
-\newcommand{\daMeanOutstandingVulnerabilities}{0.571}
-\newcommand{\daUpdatedness}{$0.0515 \pm 0.0002$}
-\newcommand{\daSecurityScore}{$2.79 \pm 0.00$}
-\newcommand{\daNumFullVersions}{1\,230}
-\newcommand{\daNumOSVersions}{49}
-\newcommand{\daNumSigOSVersions}{27}
-\newcommand{\daNumAPIVersions}{16}
-\newcommand{\daNumFullVersionUpdates}{4\,440}
-\newcommand{\daNumOSVersionUpdates}{3\,760}
-\newcommand{\daNumFullOnlyVersionUpdates}{666}
-\newcommand{\daNumSecurityUpdates}{1\,400}
-\newcommand{\daNumPossibleSecurityUpdates}{2\,080}
-\newcommand{\daTabSecScoresmanufacturer}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{Security score} \\ &&&& (out of 10) \\ \hline LG & $0.18 \pm 0.00$ & $0.32 \pm 0.00$ & 0.67 & $3.71 \pm 0.01$ \\  Motorola & $0.16 \pm 0.00$ & $0.13 \pm 0.00$ & 0.78 & $2.93 \pm 0.01$ \\  Samsung & $0.13 \pm 0.00$ & $0.04 \pm 0.00$ & 0.66 & $2.68 \pm 0.00$ \\  Sony & $0.12 \pm 0.00$ & $0.19 \pm 0.00$ & 1.11 & $2.55 \pm 0.01$ \\  HTC & $0.13 \pm 0.00$ & $0.08 \pm 0.00$ & 0.94 & $2.48 \pm 0.00$ \\  asus & $0.18 \pm 0.00$ & $0.52 \pm 0.01$ & 6.01 & $2.30 \pm 0.02$ \\  other & $0.06 \pm 0.00$ & $0.04 \pm 0.00$ & 1.11 & $1.87 \pm 0.00$ \\  Symphony & $0.00 \pm 0.00$ & $0.07 \pm 0.00$ & 5.00 & $0.25 \pm 0.00$ \\  walton & $0.00 \pm 0.00$ & $0.07 \pm 0.00$ & 6.00 & $0.24 \pm 0.01$ \\ \end{tabular} \caption{Security scores for manufacturers} \label{tab:sec_manufacturer} \end{table}}
-\newcommand{\daTabSecScoresmodel}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{Security score} \\ &&&& (out of 10) \\ \hline Galaxy Nexus & $0.51 \pm 0.00$ & $0.53 \pm 0.01$ & 1.53 & $4.71 \pm 0.03$ \\  Nexus 4 & $0.29 \pm 0.00$ & $0.82 \pm 0.01$ & 6.06 & $3.64 \pm 0.04$ \\  Nexus 7 & $0.24 \pm 0.00$ & $0.74 \pm 0.01$ & 5.92 & $3.19 \pm 0.04$ \\  other & $0.09 \pm 0.00$ & $0.14 \pm 0.00$ & 0.58 & $2.93 \pm 0.00$ \\  Desire HD & $0.08 \pm 0.00$ & $0.05 \pm 0.00$ & 0.39 & $2.91 \pm 0.02$ \\  HTC Sensation & $0.35 \pm 0.00$ & $0.01 \pm 0.01$ & 1.59 & $2.43 \pm 0.02$ \\  GT-I9100 & $0.22 \pm 0.00$ & $0.02 \pm 0.00$ & 1.23 & $2.28 \pm 0.01$ \\  HTC Desire S & $0.02 \pm 0.00$ & $0.02 \pm 0.00$ & 1.00 & $1.75 \pm 0.01$ \\  GT-N7000 & $0.24 \pm 0.00$ & $0.00 \pm 0.00$ & 2.53 & $1.42 \pm 0.02$ \\  GT-P1000 & $0.01 \pm 0.00$ & $0.00 \pm 0.01$ & 1.73 & $0.94 \pm 0.02$ \\  GT-I9300 & $0.14 \pm 0.00$ & $0.01 \pm 0.00$ & 6.28 & $0.59 \pm 0.01$ \\  GT-I9505 & $0.00 \pm 0.00$ & $0.14 \pm 0.00$ & 6.87 & $0.44 \pm 0.01$ \\  HTC Desire HD & $0.00 \pm 0.00$ & $0.00 \pm 0.01$ & 3.05 & $0.27 \pm 0.02$ \\  GT-N7100 & $0.06 \pm 0.00$ & $0.00 \pm 0.01$ & 6.90 & $0.26 \pm 0.02$ \\  Symphony W68 & $0.00 \pm 0.00$ & $0.00 \pm 0.01$ & 11.00 & $0.00 \pm 0.03$ \\ \end{tabular} \caption{Security scores for models} \label{tab:sec_model} \end{table}}
-\newcommand{\daTabSecScoressummary}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{Security score} \\ &&&& (out of 10) \\ \hline nexus & $0.40 \pm 0.00$ & $0.49 \pm 0.00$ & 0.62 & $5.14 \pm 0.01$ \\  notnexus & $0.10 \pm 0.00$ & $0.02 \pm 0.00$ & 0.58 & $2.62 \pm 0.00$ \\ \end{tabular} \caption{Security scores for nexus} \label{tab:sec_summary} \end{table}}
-\newcommand{\daUpdatednessPerc}{$5.15 \pm 0.02\%$}
-\newcommand{\daNumOSDevices}{20\,100}
-\newcommand{\daSigNumDevicesDay}{20}
+\newcommand{\daSigNumDevices}{100}
 \newcommand{\daSigNumDeviceDays}{10\,000}
-\newcommand{\daTabAndVulns}{\begin{table} \centering \begin{tabular}{l|c|l} Vulnerability & Date known & How known \\ \hline KillingInTheNameOf psneuter ashmem & 2010-07-13 & Fixed on \\ exploid udev & 2010-07-15 & Discovered on \\ RageAgainstTheCage adb & 2010-08-21 & Discovered on \\ levitator & 2011-03-10 & Discovered on \\ Gingerbreak & 2011-04-18 & Fixed on \\ zergRush & 2011-10-06 & Discovered on \\ APK duplicate file & 2013-02-18 & Discovered on \\ APK unchecked name & 2013-06-30 & Discovered on \\ APK unsigned shorts & 2013-07-03 & Fixed on \\ keystore buffer & 2013-09-09 & Discovered on \\ TwerkMyMoto & 2013-11-24 & Discovered on \\ vold asec & 2014-01-27 & Fixed on \\\end{tabular} \caption{Root equivalent vulnerabilities in Android} \label{tab:andvulns} \end{table}}
-\newcommand{\daOSYearsOfData}{3}
-\newcommand{\daSecScoreBestmanufacturer}{LG}
-\newcommand{\daSecScoreWorstmanufacturer}{walton}
-\newcommand{\daSecScoreBestmodel}{Galaxy Nexus}
-\newcommand{\daSecScoreWorstmodel}{Symphony W68}
-\newcommand{\daSecScoreBestsummary}{nexus}
-\newcommand{\daSecScoreWorstsummary}{notnexus}
-\newcommand{\daSecScoreBestmanufacturerScore}{$3.71 \pm 0.01$}
-\newcommand{\daSecScoreWorstmanufacturerScore}{$0.24 \pm 0.00$}
-\newcommand{\daSecScoreBestmodelScore}{$4.71 \pm 0.02$}
-\newcommand{\daSecScoreWorstmodelScore}{$0.0001 \pm 0.028$}
-\newcommand{\daSecScoreBestsummaryScore}{$4.1 \pm 0.0$}
-\newcommand{\daSecScoreWorstsummaryScore}{$2.9 \pm 0.0$}
-\newcommand{\daVulnFree}{$0.117 \pm 0.000$}
-\newcommand{\daAdbEnabledPerc}{$19.3 \pm 0.0\%$}
-\newcommand{\daNumUpdatesUpgrades}{3\,520}
-\newcommand{\daNumUpdatesDowngrades}{151}
-\newcommand{\daPercUpdatesDowngrades}{$3.49 \pm 0.28\%$}
-\newcommand{\daStartDate}{2011-07-01}
-\newcommand{\daEndDate}{2015-04-01}
-\newcommand{\daNumOperators}{1\,420}
-\newcommand{\daTabSecScoresoperator}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{Security score} \\ &&&& (out of 10) \\ \hline O2 uk & $0.25 \pm 0.00$ & $0.12 \pm 0.00$ & 0.37 & $3.82 \pm 0.01$ \\  T-Mobile & $0.20 \pm 0.00$ & $0.18 \pm 0.00$ & 0.48 & $3.62 \pm 0.01$ \\  Orange & $0.21 \pm 0.00$ & $0.09 \pm 0.00$ & 0.39 & $3.52 \pm 0.02$ \\  Sprint & $0.18 \pm 0.00$ & $0.11 \pm 0.00$ & 0.44 & $3.39 \pm 0.01$ \\  3 & $0.16 \pm 0.00$ & $0.09 \pm 0.00$ & 0.49 & $3.21 \pm 0.01$ \\  Vodafone uk & $0.14 \pm 0.00$ & $0.13 \pm 0.00$ & 0.50 & $3.20 \pm 0.01$ \\  AT\&T & $0.12 \pm 0.00$ & $0.08 \pm 0.00$ & 0.43 & $3.07 \pm 0.01$ \\  Verizon & $0.18 \pm 0.00$ & $0.09 \pm 0.00$ & 0.82 & $2.82 \pm 0.01$ \\  unknown & $0.10 \pm 0.00$ & $0.21 \pm 0.00$ & 0.95 & $2.72 \pm 0.01$ \\  n Telenor & $0.03 \pm 0.00$ & $0.11 \pm 0.00$ & 1.43 & $1.59 \pm 0.01$ \\  Airtel & $0.05 \pm 0.00$ & $0.03 \pm 0.00$ & 1.86 & $1.09 \pm 0.01$ \\  Robi & $0.00 \pm 0.00$ & $0.07 \pm 0.00$ & 2.10 & $0.86 \pm 0.01$ \\  Grameenphone & $0.00 \pm 0.00$ & $0.04 \pm 0.00$ & 2.04 & $0.84 \pm 0.00$ \\  banglalink & $0.00 \pm 0.00$ & $0.04 \pm 0.00$ & 2.72 & $0.48 \pm 0.00$ \\ \end{tabular} \caption{Security scores for operators} \label{tab:sec_operator} \end{table}}
-\newcommand{\daSecScoreBestoperator}{O2 uk}
-\newcommand{\daSecScoreBestoperatorScore}{$3.82 \pm 0.01$}
-\newcommand{\daSecScoreWorstoperator}{banglalink}
-\newcommand{\daSecScoreWorstoperatorScore}{$0.484 \pm 0.004$}
-\newcommand{\daNumSigOperators}{14}
-\newcommand{\daMonthsDevices}{1\,680}
-\newcommand{\daMonths}{6}
+\newcommand{\daSigNumDays}{100}
+\newcommand{\daSigNumDevicesDay}{20}
 \newcommand{\daSigVersionPerc}{1\%}
 \newcommand{\daSigVersionDays}{10}
+\newcommand{\daNumVulnsUsed}{11}
 \newcommand{\daNumDeviceDataDevices}{50}
-\newcommand{\daNumSigFullVersions}{89}
-\newcommand{\daSecScoreBestmanufacturerNumFullVersions}{123}
-\newcommand{\daSecScoreworstmanufacturerNumFullVersions}{239}
-\newcommand{\daSecScoreBestmodelNumFullVersions}{49}
-\newcommand{\daSecScoreworstmodelNumFullVersions}{2}
-\newcommand{\daSecScoreBestsummaryNumFullVersions}{73}
-\newcommand{\daSecScoreworstsummaryNumFullVersions}{1057}
-\newcommand{\daSecScoreBestoperatorNumFullVersions}{93}
-\newcommand{\daSecScoreworstoperatorNumFullVersions}{89}
-\newcommand{\daSecScoreWorstmanufacturerNumFullVersions}{20}
-\newcommand{\daSecScoreWorstmodelNumFullVersions}{1}
-\newcommand{\daSecScoreWorstsummaryNumFullVersions}{1103}
-\newcommand{\daSecScoreWorstoperatorNumFullVersions}{71}
+\newcommand{\daOSYearsOfData}{3}
+\newcommand{\daOSMonthsOfData}{47}
+\newcommand{\daStartDate}{2011-07-01}
+\newcommand{\daEndDate}{2015-05-21}
 \newcommand{\daFullDeployedAt}{95\%}
-\newcommand{\daOSCurveFitParamFirst}{86.8}
-\newcommand{\daOSCurveFitParamSecond}{\num{0.00297}}
-\newcommand{\daOSCurveFitRMSE}{0.116}
-\newcommand{\daAPICurveFitParamFirst}{104}
-\newcommand{\daAPICurveFitParamSecond}{\num{0.00296}}
-\newcommand{\daAPICurveFitRMSE}{0.114}
-\newcommand{\daOSCurvePolyRMSE}{0.116}
-\newcommand{\daOSCurveSplineRMSE}{0.116}
-\newcommand{\daOSCurveHalfDeployed}{$320 \pm 88$}
-\newcommand{\daOSCurveFullDeployed}{$1\,090 \pm 249\,000$}
-\newcommand{\daAPICurvePolyRMSE}{0.115}
-\newcommand{\daAPICurveSplineRMSE}{0.115}
-\newcommand{\daAPICurveHalfDeployed}{$338 \pm 87$}
-\newcommand{\daAPICurveFullDeployed}{$1\,120 \pm 251\,000$}
-\newcommand{\daVulnAPKDuplicateFileOctoberPerc}{91.4\%}
-\newcommand{\daNumUpdatesBigUpgrades}{805}
-\newcommand{\daNumUpdatesSkippedBig}{3}
-\newcommand{\daPercBigUpgrades}{$18.6 \pm 0.7\%$}
-\newcommand{\daUpdatesPerYear}{$1.28 \pm 0.01$}
-\newcommand{\daOSMonthsOfData}{45}
-\newcommand{\daMeanInsecurityPercNominal}{88.3\%}
-\newcommand{\daVulnFreeNominal}{0.117}
-\newcommand{\daUpdatednessNominal}{0.0515}
-\newcommand{\daUpdatednessPercNominal}{5.15\%}
-\newcommand{\daSecurityScoreNominal}{2.79}
-\newcommand{\daUpdatesPerYearNominal}{1.28}
-\newcommand{\daOSCurveHalfDeployedNominal}{320}
-\newcommand{\daOSCurveFullDeployedNominal}{1\,090}
-\newcommand{\daAPICurveHalfDeployedNominal}{338}
-\newcommand{\daAPICurveFullDeployedNominal}{1\,120}
-\newcommand{\daSecScoreBestoperatorScoreNominal}{3.82}
-\newcommand{\daSecScoreWorstoperatorScoreNominal}{0.484}
-\newcommand{\daSecScoreBestmodelScoreNominal}{4.71}
-\newcommand{\daSecScoreWorstmodelScoreNominal}{0.0001}
-\newcommand{\daAdbEnabledPercNominal}{19.3\%}
-\newcommand{\daSecScoreBestmanufacturerScoreNominal}{3.71}
-\newcommand{\daSecScoreWorstmanufacturerScoreNominal}{0.24}
-\newcommand{\daUpdatesPerMonthPerVersion}{$2.89 \pm 0.04$}
-\newcommand{\daNumUpdateFullOnly}{663}
-\newcommand{\daVulnZergRushMonthsDefFixDeployed}{27.3}
-\newcommand{\daUpdatesPerMonthPerVersionNominal}{2.89}
-\newcommand{\daPercBigUpgradesNominal}{18.6\%}
-\newcommand{\daPercUpdatesDowngradesNominal}{3.49\%}
-\newcommand{\daGPAPISeventeenLaterDate}{2015-03-02}
-\newcommand{\daGPAPISeventeenLaterProportion}{69.5\%}
-\newcommand{\daGPAPISeventeenEarlierProportion}{30.5\%}
-\newcommand{\daGPAPICurveFitParamFirst}{80.6}
-\newcommand{\daGPAPICurveFitParamSecond}{\num{0.00262}}
-\newcommand{\daGPAPICurveFitRMSE}{0.183}
-\newcommand{\daGPAPICurvePolyRMSE}{0.183}
-\newcommand{\daGPAPICurveSplineRMSE}{0.183}
-\newcommand{\daGPAPICurveHalfDeployedNominal}{346}
-\newcommand{\daGPAPICurveHalfDeployed}{$346 \pm 175$}
-\newcommand{\daGPAPICurveFullDeployedNominal}{1\,230}
-\newcommand{\daGPAPICurveFullDeployed}{$1\,230 \pm 283\,000$}
-\newcommand{\daAPISeventeenReleaseDate}{2012-10-29}
+\newcommand{\daNumManufacturers}{298}
+\newcommand{\daNumSigManufacturers}{8}
+\newcommand{\daNumModels}{2\,690}
+\newcommand{\daNumOperators}{1\,440}
+\newcommand{\daNumSigOperators}{14}
+\newcommand{\daNumOSDevices}{20\,300}
+\newcommand{\daOSVersionPercValidLines}{99.7\%}
+\newcommand{\daOSTotalDaysData}{1\,290\,000}
+\newcommand{\daMeanInsecurityPercNominal}{87.9\%}
+\newcommand{\daMeanInsecurityPerc}{$87.9 \pm 0.0\%$}
 \newcommand{\daMeanInsecurityPercTwosfNominal}{88\%}
 \newcommand{\daMeanInsecurityPercTwosf}{$88 \pm 0\%$}
-\newcommand{\daModelHalfDeployment}{27}
-\newcommand{\daModelFullDeployment}{316}
-\newcommand{\daModelHalfDeploymentYears}{0.074}
-\newcommand{\daModelFullDeploymentYears}{0.866}
-\newcommand{\daOSCurveHalfDeployedYearsNominal}{0.877}
-\newcommand{\daOSCurveHalfDeployedYears}{$0.877 \pm 0.244$}
-\newcommand{\daOSCurveFullDeployedYearsNominal}{3.0}
-\newcommand{\daOSCurveFullDeployedYears}{$3.0 \pm 6$}
-\newcommand{\daAPICurveHalfDeployedYearsNominal}{0.926}
-\newcommand{\daAPICurveHalfDeployedYears}{$0.926 \pm 0.24$}
-\newcommand{\daAPICurveFullDeployedYearsNominal}{3.06}
-\newcommand{\daAPICurveFullDeployedYears}{$3.06 \pm 68$}
-\newcommand{\daGPAPICurveHalfDeployedYearsNominal}{0.947}
-\newcommand{\daGPAPICurveHalfDeployedYears}{$0.947 \pm 0.479$}
-\newcommand{\daGPAPICurveFullDeployedYearsNominal}{3.36}
-\newcommand{\daGPAPICurveFullDeployedYears}{$3.36 \pm 77$}
-\newcommand{\daGPAPISeventeenCurveFitParamFirst}{274}
-\newcommand{\daGPAPISeventeenCurveFitParamSecond}{\num{0.00184}}
-\newcommand{\daGPAPISeventeenCurveFitRMSE}{0.0283}
-\newcommand{\daGPAPISeventeenCurvePolyRMSE}{0.00903}
-\newcommand{\daGPAPISeventeenCurveSplineRMSE}{0.00903}
-\newcommand{\daGPAPISeventeenCurveHalfDeployedYearsNominal}{1.78}
-\newcommand{\daGPAPISeventeenCurveHalfDeployedYears}{$1.78 \pm 0.08$}
-\newcommand{\daGPAPISeventeenCurveHalfDeployedNominal}{650}
-\newcommand{\daGPAPISeventeenCurveHalfDeployed}{$650 \pm 31$}
-\newcommand{\daGPAPISeventeenCurveFullDeployedYearsNominal}{5.2}
-\newcommand{\daGPAPISeventeenCurveFullDeployedYears}{$5.2 \pm 1.2$}
-\newcommand{\daGPAPISeventeenCurveFullDeployedNominal}{1\,900}
-\newcommand{\daGPAPISeventeenCurveFullDeployed}{$1\,900 \pm 453$}
-\newcommand{\daGPAPISeventeenFullDeployment}{2018-01-10}
-\newcommand{\daGPAPIPerAPIMeanNominal}{0.00454}
-\newcommand{\daGPAPIPerAPIMean}{$0.00454 \pm 0.00337$}
-\newcommand{\daGPAPIPerAPIStdevNominal}{0.0215}
-\newcommand{\daGPAPIPerAPIStdev}{$0.0215 \pm 0.0129$}
-\newcommand{\daGPAPIPerAPIAbsMeanNominal}{0.0148}
-\newcommand{\daGPAPIPerAPIAbsMean}{$0.0148 \pm 0.0068$}
-\newcommand{\daGPAPIPerAPIAbsStdevNominal}{0.0156}
-\newcommand{\daGPAPIPerAPIAbsStdev}{$0.0156 \pm 0.0121$}
-\newcommand{\daGPAPIPerAPIParametersTable}{\begin{table} \centering \begin{tabular}{c|S|S} API Version & ${t_0}$ & $\mathrm{decay}$ \\ \hline2	&	0.0	&	0.0237\\3	&	0.0	&	0.0235\\4	&	0.0	&	0.00689\\5	&	59.1	&	0.00465\\6	&	2.4	&	0.00434\\7	&	0.0	&	0.00499\\8	&	47.7	&	0.00415\\9	&	155	&	0.00365\\10	&	90.2	&	0.00364\\11	&	432	&	0.00227\\12	&	355	&	0.00227\\13	&	303	&	0.00235\\14	&	218	&	0.00238\\15	&	160	&	0.00239\\16	&	141	&	0.00226\\17	&	274	&	0.00184\\18	&	116	&	0.00138\\19	&	118	&	0.00152\\\end{tabular} \caption{Parameters for different API versions} \label{tab:per_api_parameters} \end{table}}
-\newcommand{\daUpdatednessPercTwosfNominal}{5.1\%}
-\newcommand{\daUpdatednessPercTwosf}{$5.1 \pm 0.0\%$}
-\newcommand{\daUpdatesPerYearTwosfNominal}{1.3}
-\newcommand{\daUpdatesPerYearTwosf}{$1.3 \pm 0.0$}
-\newcommand{\daMeanSecurityPercNominal}{11.7\%}
-\newcommand{\daMeanSecurityPerc}{$11.7 \pm 0.0\%$}
+\newcommand{\daMeanSecurityPercNominal}{12.1\%}
+\newcommand{\daMeanSecurityPerc}{$12.1 \pm 0.0\%$}
 \newcommand{\daMeanSecurityPercTwosfNominal}{12\%}
 \newcommand{\daMeanSecurityPercTwosf}{$12 \pm 0\%$}
+\newcommand{\daVulnFreeNominal}{0.121}
+\newcommand{\daVulnFree}{$0.121 \pm 0.000$}
+\newcommand{\daMeanOutstandingVulnerabilities}{0.551}
+\newcommand{\daUpdatednessNominal}{0.0512}
+\newcommand{\daUpdatedness}{$0.0512 \pm 0.0002$}
+\newcommand{\daUpdatednessPercNominal}{5.12\%}
+\newcommand{\daUpdatednessPerc}{$5.12 \pm 0.02\%$}
+\newcommand{\daUpdatednessPercTwosfNominal}{5.1\%}
+\newcommand{\daUpdatednessPercTwosf}{$5.1 \pm 0.0\%$}
+\newcommand{\daSecurityScoreNominal}{2.83}
+\newcommand{\daSecurityScore}{$2.83 \pm 0.00$}
+\newcommand{\daCurrentMeanInsecurityPercNominal}{87.0\%}
+\newcommand{\daCurrentMeanInsecurityPerc}{$87.0 \pm 4.9\%$}
+\newcommand{\daCurrentMeanInsecurityPercTwosfNominal}{87\%}
+\newcommand{\daCurrentMeanInsecurityPercTwosf}{$87 \pm 4\%$}
+\newcommand{\daCurrentMeanSecurityPercNominal}{13.0\%}
+\newcommand{\daCurrentMeanSecurityPerc}{$13.0 \pm 4.9\%$}
+\newcommand{\daCurrentMeanSecurityPercTwosfNominal}{13\%}
+\newcommand{\daCurrentMeanSecurityPercTwosf}{$13 \pm 4\%$}
+\newcommand{\daCurrentVulnFreeNominal}{0.13}
+\newcommand{\daCurrentVulnFree}{$0.13 \pm 4.92$}
+\newcommand{\daCurrentMeanOutstandingVulnerabilities}{0.213}
+\newcommand{\daCurrentUpdatednessNominal}{0.0327}
+\newcommand{\daCurrentUpdatedness}{$0.0327 \pm 0.0006$}
+\newcommand{\daCurrentUpdatednessPercNominal}{3.27\%}
+\newcommand{\daCurrentUpdatednessPerc}{$3.27 \pm 0.06\%$}
+\newcommand{\daCurrentUpdatednessPercTwosfNominal}{3.3\%}
+\newcommand{\daCurrentUpdatednessPercTwosf}{$3.3 \pm 0.0\%$}
+\newcommand{\daCurrentSecurityScoreNominal}{3.3}
+\newcommand{\daCurrentSecurityScore}{$3.3 \pm 0.0$}
+\newcommand{\daDailyParticipationNominal}{906}
+\newcommand{\daDailyParticipation}{$906 \pm 224$}
+\newcommand{\daNumFullVersions}{1\,250}
+\newcommand{\daNumSigFullVersions}{94}
+\newcommand{\daNumOSVersions}{50}
+\newcommand{\daNumSigOSVersions}{27}
+\newcommand{\daNumAPIVersions}{16}
+\newcommand{\daNumFullVersionUpdates}{4\,520}
+\newcommand{\daNumOSVersionUpdates}{3\,830}
+\newcommand{\daUpdatesPerYearNominal}{1.28}
+\newcommand{\daUpdatesPerYear}{$1.28 \pm 0.01$}
+\newcommand{\daUpdatesPerYearTwosfNominal}{1.3}
+\newcommand{\daUpdatesPerYearTwosf}{$1.3 \pm 0.0$}
+\newcommand{\daNumFullOnlyVersionUpdates}{673}
+\newcommand{\daNumSecurityUpdates}{1\,240}
+\newcommand{\daNumPossibleSecurityUpdates}{2\,290}
+\newcommand{\daOSCurveFitParamFirst}{84.9}
+\newcommand{\daOSCurveFitParamSecond}{\num{0.0029}}
+\newcommand{\daOSCurveFitRMSE}{0.116}
+\newcommand{\daOSCurvePolyRMSE}{0.116}
+\newcommand{\daOSCurveSplineRMSE}{0.116}
+\newcommand{\daOSCurveHalfDeployedYearsNominal}{0.887}
+\newcommand{\daOSCurveHalfDeployedYears}{$0.887 \pm 0.248$}
+\newcommand{\daOSCurveHalfDeployedNominal}{324}
+\newcommand{\daOSCurveHalfDeployed}{$324 \pm 90$}
+\newcommand{\daOSCurveFullDeployedYearsNominal}{3.06}
+\newcommand{\daOSCurveFullDeployedYears}{$3.06 \pm 70$}
+\newcommand{\daOSCurveFullDeployedNominal}{1\,120}
+\newcommand{\daOSCurveFullDeployed}{$1\,120 \pm 255\,000$}
+\newcommand{\daAPICurveFitParamFirst}{102}
+\newcommand{\daAPICurveFitParamSecond}{\num{0.0029}}
+\newcommand{\daAPICurveFitRMSE}{0.113}
+\newcommand{\daAPICurvePolyRMSE}{0.114}
+\newcommand{\daAPICurveSplineRMSE}{0.114}
+\newcommand{\daAPICurveHalfDeployedYearsNominal}{0.933}
+\newcommand{\daAPICurveHalfDeployedYears}{$0.933 \pm 0.243$}
+\newcommand{\daAPICurveHalfDeployedNominal}{341}
+\newcommand{\daAPICurveHalfDeployed}{$341 \pm 88$}
+\newcommand{\daAPICurveFullDeployedYearsNominal}{3.11}
+\newcommand{\daAPICurveFullDeployedYears}{$3.11 \pm 70$}
+\newcommand{\daAPICurveFullDeployedNominal}{1\,130}
+\newcommand{\daAPICurveFullDeployed}{$1\,130 \pm 256\,000$}
+\newcommand{\daVulnAPKDuplicateFileOctoberPerc}{91.6\%}
+\newcommand{\daVulnZergRushMonthsDefFixDeployed}{27.3}
+\newcommand{\daTabSecScoresmanufacturer}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{score} \\ &&&& (out of 10) \\ \hline LG & $0.20 \pm 0.00$ & $0.32 \pm 0.00$ & 0.64 & $3.83 \pm 0.01$ \\  Motorola & $0.17 \pm 0.00$ & $0.12 \pm 0.00$ & 0.73 & $3.03 \pm 0.01$ \\  Samsung & $0.13 \pm 0.00$ & $0.04 \pm 0.00$ & 0.63 & $2.71 \pm 0.00$ \\  Sony & $0.13 \pm 0.00$ & $0.19 \pm 0.00$ & 1.09 & $2.61 \pm 0.01$ \\  HTC & $0.14 \pm 0.00$ & $0.09 \pm 0.00$ & 0.89 & $2.58 \pm 0.00$ \\  asus & $0.19 \pm 0.00$ & $0.52 \pm 0.01$ & 6.01 & $2.31 \pm 0.02$ \\  other & $0.06 \pm 0.00$ & $0.04 \pm 0.00$ & 1.04 & $1.94 \pm 0.00$ \\  Symphony & $0.00 \pm 0.00$ & $0.07 \pm 0.00$ & 5.00 & $0.27 \pm 0.01$ \\  walton & $0.00 \pm 0.00$ & $0.07 \pm 0.00$ & 5.97 & $0.24 \pm 0.01$ \\ \end{tabular} \caption{Security scores for manufacturers} \label{tab:sec_manufacturer} \end{table}}
+\newcommand{\daSecScoreBestmanufacturer}{LG}
+\newcommand{\daSecScoreBestmanufacturerScoreNominal}{3.83}
+\newcommand{\daSecScoreBestmanufacturerScore}{$3.83 \pm 0.01$}
+\newcommand{\daSecScoreBestmanufacturerNumFullVersions}{129}
+\newcommand{\daSecScoreWorstmanufacturer}{walton}
+\newcommand{\daSecScoreWorstmanufacturerScoreNominal}{0.236}
+\newcommand{\daSecScoreWorstmanufacturerScore}{$0.236 \pm 0.007$}
+\newcommand{\daSecScoreWorstmanufacturerNumFullVersions}{22}
+\newcommand{\daTabSecScoresmodel}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{score} \\ &&&& (out of 10) \\ \hline Galaxy Nexus & $0.51 \pm 0.00$ & $0.55 \pm 0.01$ & 1.53 & $4.74 \pm 0.03$ \\  Nexus 4 & $0.28 \pm 0.00$ & $0.82 \pm 0.01$ & 6.06 & $3.59 \pm 0.04$ \\  Nexus 7 & $0.24 \pm 0.00$ & $0.74 \pm 0.01$ & 5.92 & $3.18 \pm 0.04$ \\  other & $0.09 \pm 0.00$ & $0.14 \pm 0.00$ & 0.55 & $2.97 \pm 0.00$ \\  Desire HD & $0.08 \pm 0.00$ & $0.05 \pm 0.00$ & 0.39 & $2.91 \pm 0.01$ \\  HTC Sensation & $0.35 \pm 0.00$ & $0.01 \pm 0.01$ & 1.59 & $2.42 \pm 0.02$ \\  GT-I9100 & $0.22 \pm 0.00$ & $0.02 \pm 0.00$ & 1.23 & $2.28 \pm 0.01$ \\  HTC Desire S & $0.02 \pm 0.00$ & $0.02 \pm 0.00$ & 1.00 & $1.75 \pm 0.01$ \\  GT-N7000 & $0.25 \pm 0.00$ & $0.00 \pm 0.00$ & 2.52 & $1.43 \pm 0.02$ \\  GT-P1000 & $0.01 \pm 0.00$ & $0.00 \pm 0.01$ & 1.79 & $0.90 \pm 0.02$ \\  GT-I9300 & $0.13 \pm 0.00$ & $0.01 \pm 0.00$ & 6.25 & $0.59 \pm 0.01$ \\  GT-I9505 & $0.01 \pm 0.00$ & $0.13 \pm 0.00$ & 6.82 & $0.44 \pm 0.01$ \\  HTC Desire HD & $0.00 \pm 0.00$ & $0.00 \pm 0.01$ & 3.05 & $0.27 \pm 0.02$ \\  GT-N7100 & $0.06 \pm 0.00$ & $0.00 \pm 0.01$ & 6.91 & $0.25 \pm 0.02$ \\  Symphony W68 & $0.00 \pm 0.00$ & $0.00 \pm 0.01$ & 11.00 & $0.00 \pm 0.03$ \\ \end{tabular} \caption{Security scores for models} \label{tab:sec_model} \end{table}}
+\newcommand{\daSecScoreBestmodel}{Galaxy Nexus}
+\newcommand{\daSecScoreBestmodelScoreNominal}{4.74}
+\newcommand{\daSecScoreBestmodelScore}{$4.74 \pm 0.02$}
+\newcommand{\daSecScoreBestmodelNumFullVersions}{49}
+\newcommand{\daSecScoreWorstmodel}{Symphony W68}
+\newcommand{\daSecScoreWorstmodelScoreNominal}{0.0001}
+\newcommand{\daSecScoreWorstmodelScore}{$0.0001 \pm 0.0276$}
+\newcommand{\daSecScoreWorstmodelNumFullVersions}{1}
+\newcommand{\daTabSecScoressummary}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{score} \\ &&&& (out of 10) \\ \hline nexus & $0.38 \pm 0.00$ & $0.48 \pm 0.00$ & 0.59 & $5.08 \pm 0.01$ \\  notnexus & $0.10 \pm 0.00$ & $0.02 \pm 0.00$ & 0.55 & $2.66 \pm 0.00$ \\ \end{tabular} \caption{Security scores for nexus} \label{tab:sec_summary} \end{table}}
+\newcommand{\daTabSecScoresoperator}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} Name & $f$ & $u$ & $m$ & \textbf{score} \\ &&&& (out of 10) \\ \hline O2 uk & $0.26 \pm 0.00$ & $0.12 \pm 0.00$ & 0.37 & $3.84 \pm 0.01$ \\  T-Mobile & $0.20 \pm 0.00$ & $0.18 \pm 0.00$ & 0.42 & $3.73 \pm 0.01$ \\  Orange & $0.21 \pm 0.00$ & $0.09 \pm 0.00$ & 0.39 & $3.52 \pm 0.02$ \\  Sprint & $0.18 \pm 0.00$ & $0.11 \pm 0.00$ & 0.40 & $3.46 \pm 0.01$ \\  3 & $0.18 \pm 0.00$ & $0.09 \pm 0.00$ & 0.52 & $3.23 \pm 0.01$ \\  Vodafone uk & $0.13 \pm 0.00$ & $0.13 \pm 0.00$ & 0.50 & $3.18 \pm 0.01$ \\  AT\&T & $0.12 \pm 0.00$ & $0.08 \pm 0.00$ & 0.43 & $3.09 \pm 0.01$ \\  Verizon & $0.18 \pm 0.00$ & $0.09 \pm 0.00$ & 0.82 & $2.83 \pm 0.01$ \\  unknown & $0.11 \pm 0.00$ & $0.20 \pm 0.00$ & 0.87 & $2.80 \pm 0.01$ \\  n Telenor & $0.03 \pm 0.00$ & $0.12 \pm 0.00$ & 1.25 & $1.81 \pm 0.01$ \\  Airtel & $0.05 \pm 0.00$ & $0.03 \pm 0.00$ & 1.62 & $1.27 \pm 0.01$ \\  Robi & $0.00 \pm 0.00$ & $0.07 \pm 0.00$ & 2.08 & $0.88 \pm 0.01$ \\  Grameenphone & $0.00 \pm 0.00$ & $0.05 \pm 0.00$ & 2.03 & $0.85 \pm 0.00$ \\  banglalink & $0.00 \pm 0.00$ & $0.04 \pm 0.00$ & 2.62 & $0.53 \pm 0.01$ \\ \end{tabular} \caption{Security scores for operators} \label{tab:sec_operator} \end{table}}
+\newcommand{\daSecScoreBestoperator}{O2 uk}
+\newcommand{\daSecScoreBestoperatorScoreNominal}{3.84}
+\newcommand{\daSecScoreBestoperatorScore}{$3.84 \pm 0.01$}
+\newcommand{\daSecScoreBestoperatorNumFullVersions}{95}
+\newcommand{\daSecScoreWorstoperator}{banglalink}
+\newcommand{\daSecScoreWorstoperatorScoreNominal}{0.531}
+\newcommand{\daSecScoreWorstoperatorScore}{$0.531 \pm 0.005$}
+\newcommand{\daSecScoreWorstoperatorNumFullVersions}{72}
+\newcommand{\daTabDLDistances}{\begin{table} \centering \begin{tabular}{l|c|c|c|c} & manufacturer & model & operator & summary \\ \hline equal & 0.0 & 0.0 & 0.0714 & 0.0 \\weight $m$ & 0.222 & 0.333 & 0.143 & 0.0 \\weight $u$ & 0.444 & 0.133 & 0.214 & 0.0 \\$f$ & 0.444 & 0.733 & 0.429 & 0.0 \\$m$ & 0.667 & 0.733 & 0.357 & 0.5 \\$u$ & 0.889 & 0.667 & 0.714 & 0.0 \\\end{tabular} \caption{Normalised Damerau-Levenshtein distances for different metrics} \label{tab:dl_distances} \end{table}}
+\newcommand{\daTabChangeInScores}{\begin{table*} \centering \begin{tabular}{l|c|c|c|c} & manufacturer & model & operator & summary \\ \hline $m$ & $-1.91 \pm 2.21$ & $-0.666 \pm 2.5$ & $-3.27 \pm 1.38$ & $-3.35 \pm 1.84$ \\weight $m$ & $-0.295 \pm 0.273$ & $-0.102 \pm 0.314$ & $-0.458 \pm 0.176$ & $-0.485 \pm 0.209$ \\equal & $-0.116 \pm 0.065$ & $-0.0391 \pm 0.112$ & $-0.146 \pm 0.048$ & $-0.166 \pm 0.028$ \\weight $u$ & $-0.0522 \pm 0.127$ & $-0.0154 \pm 0.239$ & $0.0199 \pm 0.0787$ & $-0.0137 \pm 0.127$ \\$u$ & $0.518 \pm 1.6$ & $0.198 \pm 2.14$ & $1.51 \pm 0.95$ & $1.36 \pm 1.52$ \\$f$ & $1.04 \pm 0.58$ & $0.351 \pm 1.01$ & $1.31 \pm 0.44$ & $1.5 \pm 0.2$ \\\end{tabular} \caption{Mean change in scores for different metrics} \label{tab:change_in_scores} \end{table*}}
+\newcommand{\daGPAPICurveFitParamFirst}{80.7}
+\newcommand{\daGPAPICurveFitParamSecond}{\num{0.00259}}
+\newcommand{\daGPAPICurveFitRMSE}{0.18}
+\newcommand{\daGPAPICurvePolyRMSE}{0.18}
+\newcommand{\daGPAPICurveSplineRMSE}{0.18}
+\newcommand{\daGPAPICurveHalfDeployedYearsNominal}{0.954}
+\newcommand{\daGPAPICurveHalfDeployedYears}{$0.954 \pm 0.473$}
+\newcommand{\daGPAPICurveHalfDeployedNominal}{348}
+\newcommand{\daGPAPICurveHalfDeployed}{$348 \pm 173$}
+\newcommand{\daGPAPICurveFullDeployedYearsNominal}{3.39}
+\newcommand{\daGPAPICurveFullDeployedYears}{$3.39 \pm 78$}
+\newcommand{\daGPAPICurveFullDeployedNominal}{1\,240}
+\newcommand{\daGPAPICurveFullDeployed}{$1\,240 \pm 286\,000$}
+\newcommand{\daGPAPIPerAPIMeanNominal}{0.00453}
+\newcommand{\daGPAPIPerAPIMean}{$0.00453 \pm 0.00343$}
+\newcommand{\daGPAPIPerAPIStdevNominal}{0.0211}
+\newcommand{\daGPAPIPerAPIStdev}{$0.0211 \pm 0.0127$}
+\newcommand{\daGPAPIPerAPIAbsMeanNominal}{0.0144}
+\newcommand{\daGPAPIPerAPIAbsMean}{$0.0144 \pm 0.0066$}
+\newcommand{\daGPAPIPerAPIAbsStdevNominal}{0.0154}
+\newcommand{\daGPAPIPerAPIAbsStdev}{$0.0154 \pm 0.012$}
+\newcommand{\daGPAPIPerAPIParametersTable}{\begin{table} \centering \begin{tabular}{c|S|S} API Version & ${t_0}$ & $\mathrm{decay}$ \\ \hline2	&	0.0	&	0.0237\\3	&	0.0	&	0.0235\\4	&	0.0	&	0.00689\\5	&	59.1	&	0.00465\\6	&	0.0	&	0.0043\\7	&	0.0	&	0.00499\\8	&	47.7	&	0.00415\\9	&	155	&	0.00365\\10	&	90.2	&	0.00364\\11	&	432	&	0.00228\\12	&	355	&	0.00228\\13	&	304	&	0.00236\\14	&	218	&	0.00239\\15	&	160	&	0.00239\\16	&	142	&	0.00227\\17	&	288	&	0.00195\\18	&	119	&	0.00141\\19	&	119	&	0.00153\\\end{tabular} \caption{Parameters for different API versions} \label{tab:per_api_parameters} \end{table}}
+\newcommand{\daGPAPISeventeenLaterDate}{2015-05-04}
+\newcommand{\daGPAPISeventeenLaterProportion}{72.4\%}
+\newcommand{\daGPAPISeventeenEarlierProportion}{27.6\%}
+\newcommand{\daAPISeventeenReleaseDate}{2012-10-29}
+\newcommand{\daGPAPISeventeenFullDeployment}{2017-10-29}
+\newcommand{\daGPAPISeventeenCurveFitParamFirst}{288}
+\newcommand{\daGPAPISeventeenCurveFitParamSecond}{\num{0.00195}}
+\newcommand{\daGPAPISeventeenCurveFitRMSE}{0.0272}
+\newcommand{\daGPAPISeventeenCurvePolyRMSE}{0.00888}
+\newcommand{\daGPAPISeventeenCurveSplineRMSE}{0.00888}
+\newcommand{\daGPAPISeventeenCurveHalfDeployedYearsNominal}{1.77}
+\newcommand{\daGPAPISeventeenCurveHalfDeployedYears}{$1.77 \pm 0.07$}
+\newcommand{\daGPAPISeventeenCurveHalfDeployedNominal}{644}
+\newcommand{\daGPAPISeventeenCurveHalfDeployed}{$644 \pm 28$}
+\newcommand{\daGPAPISeventeenCurveFullDeployedYearsNominal}{5.01}
+\newcommand{\daGPAPISeventeenCurveFullDeployedYears}{$5.01 \pm 1.11$}
+\newcommand{\daGPAPISeventeenCurveFullDeployedNominal}{1\,830}
+\newcommand{\daGPAPISeventeenCurveFullDeployed}{$1\,830 \pm 404$}
+\newcommand{\daNumUpdatesUpgrades}{3\,590}
+\newcommand{\daUpdatesPerMonthPerVersionNominal}{2.83}
+\newcommand{\daUpdatesPerMonthPerVersion}{$2.83 \pm 0.04$}
+\newcommand{\daNumUpdatesSkippedBig}{3}
+\newcommand{\daNumUpdatesBigUpgrades}{819}
+\newcommand{\daNumUpdatesDowngrades}{152}
+\newcommand{\daNumUpdateFullOnly}{670}
+\newcommand{\daPercBigUpgradesNominal}{18.6\%}
+\newcommand{\daPercBigUpgrades}{$18.6 \pm 0.7\%$}
+\newcommand{\daPercUpdatesDowngradesNominal}{3.45\%}
+\newcommand{\daPercUpdatesDowngrades}{$3.45 \pm 0.28\%$}
+\newcommand{\daNumDataPoints}{157 Billion}
+\newcommand{\daMonthsDevices}{1\,780}
+\newcommand{\daMonths}{6}
+\newcommand{\daAdbEnabledPercNominal}{19.2\%}
+\newcommand{\daAdbEnabledPerc}{$19.2 \pm 0.0\%$}
+\newcommand{\daNumStartedApps}{126\,000}
+\newcommand{\daNumInstalledApps}{180\,000}
