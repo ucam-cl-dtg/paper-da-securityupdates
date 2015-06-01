@@ -39,6 +39,7 @@ cp "$fromdir"frms_os_versions.pdf frms_os_versions.pdf
 cp "$fromdir"security_score_manufacturer.pdf security_score_manufacturer.pdf
 cp "$fromdir"security_score_model.pdf security_score_model.pdf
 cp "$fromdir"security_score_operator.pdf security_score_operator.pdf
+cp "$fromdir"security_score_summary.pdf security_score_summary.pdf
 popd
 cp ~/Library/papers/library.filtered.bib securityupdates.bib
 cp /mnt/nas04-device-analyzer-graphing/stats/latex.tex dastats.tex
