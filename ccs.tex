@@ -186,6 +186,21 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 
 \input{security_scoring}
 
+\section{Comparison with other data}
+Here we show that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data which provide an upper and lower bound on it.
+The \da\ data is collected from devices across the world where users have voluntarily installed the app.
+We have obtained data comparable on 5\,290 devices from a multinational FTSE 100 company's mobile device management database which includes company owned and BYOD devices and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/dists}
+\caption{Comparison between FTSE, User-Agent and the corresponding \da\ data, error bars indicate 95\% confidence intervals.}
+\label{fig:dists}
+\end{figure}
+We used the data from the FTSE 100 company for the week ending 2015-04-27 and the User-Agent data was collected between 2015-01-31 and 2015-02-12.
+Figure~\ref{fig:dists} shows the proportion of devices running each Android OS version in the two comparison data sets and the comparable periods from \da.
+The general pattern this shows is that in the FTSE data newer versions are more popular than in the \da\ data and that in the Rwanda data old versions are more popular than in the \da\ data.
+This shows that \da\ lies between these two biased samples while being similar to both and so is representative.
+
 \section{Related work}
 The update process for apps, security fixes and OS upgrades also needs to be secure.
 Unfortunately, package management systems designed to provide secure updates have been found to contain vulnerabilities~\cite{Cappos2008} and many software update systems fail to authenticate the connection between the device and the update server or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
