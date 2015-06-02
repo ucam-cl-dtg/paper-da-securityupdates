@@ -91,9 +91,18 @@ TODO
 
 \section{Introduction}
 
-The development of Android is distributed among many parties and the security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform. 
-In addition, device manufacturers (we know of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers. 
-Understanding this ecosystem is important as device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}. 
+We have found that Android devices do not receive security updates when they should and hence are exposed to known critical vulnerabilities~\cite{androidvulnerabilities.org}.
+Here we attempt to determine why by understanding the Android update process, apportioning blame to different entities in the ecosystem and producing a scoring metric to compare different entities.
+
+By producing a scoring metric which compares different entities such as device manufacturers or network operators or specific device models we can provide information which allows device purchasers to select devices with better security.
+We know that organisations want to buy devices with better security and which receive updates, for example the CESG which advises UK government a advocates this~\cite{CESG2013} and we are collaborating with a FTSE 100 company to give them better information.
+Before we provided this information in this paper it was not available.
+We provide the answer to the question ``Who should I buy my Android phone from for best security?''
+
+The Android update process is slow because its development is distributed among many parties and has a long multi stage pipeline.
+The security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform.
+In addition, device manufacturers (we know of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers.
+Understanding this ecosystem is important as device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
 We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S\ref{sec:android_ecosystem}.
 
 \begin{figure}
