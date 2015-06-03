@@ -47,13 +47,18 @@ This gives us Equation~\ref{eq:score}:
 \end{equation}
 
 We can compute the uncertainty for $f$, $u$ and $m$.
-$f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
+$f$ is computed by taking the total secure device days and dividing it by the total insecure and secure device days.
 The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
 Since the numbers involved are large, the uncertainty in $f$ is small.
 $u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have square root uncertainties.
-$m$ is computed by counting the number of vulnerabilities which affected that entity and which have not yet been fixed on any device we have observed from that entity.
-However it could be that the entity has released a fix to some devices but we have not yet observed a device with that fix and so the uncertainty in each vulnerability truly being outstanding is the probability of that, assuming that at least \daMeanOutstandingProbability\ of devices have the fix, i.e. \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data.
+$m$ is computed by counting the number of vulnerabilities which affected that entity and which have not yet been fixed on any device we have observed from that entity every day and averaging over observed days.
+However it could be that the entity has released a fix to some devices but we have not yet observed a device with that fix.
+So the uncertainty in each vulnerability truly being outstanding is the probability of not having observed a fixed device if fixed device existed.
+We assume that if the fix has been released then at least \daMeanOutstandingProbability\ of devices have the fix.
+This gives an uncertainty of \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data for each vulnerability outstanding each day.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
+This does not capture systematic errors such as those due to not including vulnerabilities which do affect devices, but for comparison that does not matter.
+\todo{We don't include manufacturer specific vulnerabilities which will influence comparisons.} 
 
 \todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
 
@@ -71,7 +76,7 @@ This gives a security score of \daSecurityScore\ out of 10.
 \daTabSecScoressummary
 However there are a wide variety of scores depending on the source of the device.
 There have been many reports\todolater{citation} that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices.
-Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices.
+Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices and Figure~\ref{fig:security_score_summary} shows this holds true over time.
 \daTabSecScoresmanufacturer
 Different device manufacturers have very different scores, Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ device manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
 Device manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
@@ -83,17 +88,18 @@ Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device mode
 We can then test whether this seems fair by comparing the version data for the highest and lowest scoring models.
 Figure~\ref{fig:full_version_comp}b shows the full version distribution for \emph{\daSecScoreWorstmodel} and Figure~\ref{fig:full_version_comp}a shows the same for \emph{\daSecScoreBestmodel}.
 There is a marked difference in the distribution of updates between the two with only \daSecScoreWorstmodelNumFullVersions\ full versions for \emph{\daSecScoreWorstmodel} and \daSecScoreBestmodelNumFullVersions\ for \emph{\daSecScoreBestmodel}.
-Both device models start off with the full version string of `2.3.3 GRI40' but the \emph{\daSecScoreBestmodel} receives many more updates over the same time period.
-Other models from the same manufacturer with similar model names to \emph{\daSecScoreWorstmodel} do much better such as the \emph{Desire HD}.
+%Both device models start off with the full version string of `2.3.3 GRI40' but the \emph{\daSecScoreBestmodel} receives many more updates over the same time period.
+%Other models from the same manufacturer with similar model names to \emph{\daSecScoreWorstmodel} do much better such as the \emph{Desire HD}.
 
-If update delays are due to the delay in manufacturers providing the update rather than in operators in supplying the update and users installing the update we would expect the update behaviour of devices with the same device model to be similar.
+If update delays are due to the delay in manufacturers providing the update rather than in operators in supplying the update and users installing the update we would expect the update behaviour of devices with the same device model to be similar and rapid.
 We found that within \daModelHalfDeployment\ days of the first observation of a new version on a device, half of all devices of that model have the new version (or a higher version) installed, and within \daModelFullDeployment\ days \daFullDeployedAt\ of devices have the new version (or a higher version).
+\todo{How does this compare with the average?}
 There is a variation between device models, with the update being distributed to most devices quickly and others having a much slower roll out but since some do update quickly the bottleneck is unlikely to be with the user.
 
 \begin{figure*}
  \centering
  \includegraphics[width=0.9\textwidth]{figures/full_version_comp.pdf}
- \caption{Full version distributions for the highest and lowest scoring model}
+ \caption{Full version distributions for the highest and lowest scoring model\todo{this is wrong now}}
  \label{fig:full_version_comp}
 \end{figure*}
 
@@ -121,12 +127,13 @@ We do not attempt to disambiguate users behaviour in whether they install update
 \caption{Security scores for different operators}
 \label{fig:security_score_operator}
 \includegraphics[width=\columnwidth]{figures/security_score_summary}
-\caption{Security scores for Nexus and non-Nexus devices}
+\caption{Security scores for Nexus and non-Nexus devices\todo{subfig? bridge gaps?}}
 \label{fig:security_score_summary}
 \end{figure}
+\todo{This is method rather than result}
 The scoring metric as originally computed is averaged over the whole history of the device manufacturer, device model or network operator, it gives equal weight to periods years ago as to in the last few months.
-If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\ devices when there have been at least consecutive \daSigNumDays\ days of data with that many devices with an $\alpha$ of $1/\daSigNumDays$ then we can plot how this score has changed over time.
-Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$).
+If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\ devices when there have been at least consecutive \daSigNumDays\ days of data with that many devices then we can plot how this score has changed over time.
+Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$) with an $\alpha$ of $1/\daSigNumDays$.
 \begin{equation}
 v_i = v_{i-1} (1 - \alpha) + n \alpha
 \label{eq:rolling_update}
