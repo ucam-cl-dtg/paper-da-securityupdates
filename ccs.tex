@@ -241,6 +241,31 @@ Partly this is the result of the fact that an operating system update is being i
 The same technique would be more difficult on phones with limited storage space (as many cheap Android phones have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
 Google is deploying the same silent update technique through Google Play Services\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this also bypasses the device manufacturer and network operator.
 
+Security in depth is also a useful strategy.
+In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
+These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
+
+There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and elsewhere.
+SEAndroid~\cite{Smalley2013}, which is included in Android from version 4.1~\cite{jelly-bean-release}, and fully enforcing from version 5.0~\cite{AndroidSecurity2014} claimed to prevent some root vulnerabilities and to reduce the impact of others.
+Capability based enforcement systems such as Capsicum~\cite{Watson2010} substantially reduce the capabilities that an exploit has to try and gain increased privilege with and could be included in Linux\footnote{\url{https://github.com/google/capsicum-linux}} and hence Android.
+
+Rather than fixing critical vulnerabilities, security can be obtained by detecting malicious apps and preventing their installation or execution.
+Detection strategies include RiskRanker, which classified 3\,281 out of 118\,318 apps (2.8\%) as risky of which 718 (22\%) were malware and 322 (10\%) were previously unknown malware, an infection rate of 0.6\% across multiple markets~\cite{Grace2012a}.
+DroidRanger also analysed apps finding 148 out of 182\,823 apps (0.08\%) to be malicious across multiple markets of which 29 were previously unknown~\cite{Zhou2012a}.
+%DroidRanger: It used permission-based behavioural fingerprinting which looked at the permissions of known malware and heuristic-based filtering -- dynamic loading of both Dalvik and native code.
+A common technique used by attackers is to include malicious code in repackaged popular apps. 
+AnDarwin uses this insight to detect similar apps, and found 169 out of 265\,359 of all apps studied (0.06\%) were malicious clones~\cite{Crussell2013}.
+%AnDarwin: It used clustering based on semantic vectors derived from the program dependence graphs to detect similar apps.
+
+The percentage of Android devices running the most recent version (\daUpdatednessPerc) is much less than the rate ($>90$\%) for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006}.
+A simple numerical comparison is unfair because only one major OS version was considered in the Microsoft analysis, and data was only collected from computers which contacted the update server, although this was the default.
+More recent data demonstrates the difficulty of upgrading computers between major OS versions, with 27\% of Windows computers running Windows XP in July 2014,\footnote{\url{https://archive.today/PLGxn}} four months after Windows XP stopped receiving security updates.
+
+\cite{Nappa2015}
+\cite{Zhang2014}
+\cite{Lindorfer2014}
+\cite{Arp2014}
+
 \section{Conclusion}
  and examined how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates
 We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
