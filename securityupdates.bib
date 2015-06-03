@@ -544,6 +544,21 @@
     journal = "Management Science"
 }
 
+@inproceedings{Arp2014,
+    author = "Arp, Daniel and Spreitzenbarth, Michael and Malte, Hubner and Gascon, Hugo and Rieck, Konrad",
+    publisher = "Internet Society",
+    isbn = "1891562355",
+    title = "{Drebin: Effective and Explainable Detection of Android Malware in Your Pocket}",
+    url = "http://www.internetsociety.org/sites/default/files/11_3_1.pdf",
+    abstract = "Malicious applications pose a threat to the security of the Android platform. The growing amount and diversity of these applications render conventional defenses largely ineffective and thus Android smartphones often remain unprotected from novel malware. In this paper, we propose DREBIN, a lightweight method for detection of Android malware that enables identifying malicious applications directly on the smartphone. As the limited resources impede monitoring applications at run-time, DREBIN performs a broad static analysis, gathering as many features of an application as possible. These features are embedded in a joint vector space, such that typical patterns indicative for malware can be automatically identified and used for ex- plaining the decisions of our method. In an evaluation with 123,453 applications and 5,560 malware samples DREBIN outperforms several related approaches and detects 94\% of the malware with few false alarms, where the explanations provided for each detection reveal relevant properties of the detected malware. On five popular smartphones, the method requires 10 seconds for an analysis on average, ren- dering it suitable for checking downloaded applications directly on the device.",
+    year = "2014",
+    month = "2",
+    pages = "23--26",
+    file = ":home/drt24/Downloads/2014-ndss (4).pdf:pdf",
+    address = "San Diego, CA, USA",
+    booktitle = "Symposium on Network and Distributed System Security (NDSS)"
+}
+
 @inproceedings{Arslan2012,
     author = "Arslan, Mustafa Y. and Singh, Indrajeet and Singh, Shailendra and Madhyastha, Harsha V. and Sundaresan, Karthikeyan and Krishnamurthy, Srikanth V.",
     publisher = "ACM Press",
@@ -2079,10 +2094,11 @@
     title = "{Package management security}",
     url = "http://www.cs.arizona.edu/people/jsamuel/papers/TR08-02.pdf",
     abstract = "Package management is the task of determining which packages should be installed on a host and then downloading and installing those packages. This paper examines the popular package managers APT and YUM and presents nine feasible attacks on them. There are attacks that install malicious packages, deny users package updates, or cause the host to crash. This work identifies three rules of package management security: don’t trust the repository, the trusted entity with the most information should be the one who signs, and don’t install untrusted packages. The violation of these rules leads to the described vulnerabilities. Unfortunately, many of the flaws are architectural in nature, so repair requiresmore than patches to APT and YUM. While the rules of packagemanagement security argue that the design of existing packagemanagers is insufficient, they do not prescribe how to provide security. This led to the development of three de- sign principles for building a secure packagemanager: selective trust delegation, customized repository views, and explicitly treating the repository as untrusted. These principleswere used to construct a pack- age manager Stork which is not vulnerable to the attacks identified for YUM and APT. Stork has been in use for four years and has managed over half a million clients.",
-    pages = "1--20",
+    institution = "University of Arizona, Computer Science Department",
     file = ":home/drt24/Downloads/TR08-02.pdf:pdf",
     year = "2008",
-    booktitle = "University of Arizona, Computer Science Department"
+    booktitle = "University of Arizona, Computer Science Department",
+    pages = "1--20"
 }
 
 @inproceedings{Carneiro2008,
@@ -4852,6 +4868,14 @@
     journal = "Proceedings of the twentieth annual ACM symposium on Principles of distributed computing - PODC '01"
 }
 
+@online{HTC2013,
+    author = "HTC",
+    url = "http://www.htc.com/us/go/htc-software-updates-process/",
+    urldate = "2015-06-03",
+    year = "2013",
+    title = "{The anatomy of an Android OS update}"
+}
+
 @inproceedings{Hall1992,
     author = "Hall, Robert J.",
     publisher = "ACM Press",
@@ -6565,6 +6589,17 @@
     address = "New York, New York, USA",
     keywords = "Android permissions,crowdsourcing,mental model,mobile app,privacy as expectations,privacy summary",
     pages = "501"
+}
+
+@inproceedings{Lindorfer2014,
+    author = "Lindorfer, Martina and Neugschwandtner, Matthias and Weichselbaum, Lukas and Fratantonio, Yanick and van der Veen, Victor and Platzer, Christian",
+    title = "{ANDRUBIS - 1,000,000 Apps Later: A View on Current Android Malware Behaviors}",
+    abstract = "Anubis is a dynamic malware analysis platform that executes submitted binaries in a controlled environment. To perform the analysis, the system monitors the invocation of important Windows API calls and system services, it records the network traffic, and it tracks data flows. For each submission, reports are generated that provide comprehensive reports about the activities of the binary under analysis. Anubis receives malware samples through a public web interface and a number of feeds from security organizations and anti-malware companies. Because the samples are collected from a wide range of users, the collected samples represent a comprehensive and diverse mix of malware found in the wild. In this paper, we aim to shed light on common malware behaviors. To this end, we evaluate the Anubis analysis results for almost one million malware samples, study trends and evolution of malicious behaviors over a period of almost two years, and examine the influence of code polymorphism on malware statistics.",
+    year = "2014",
+    month = "9",
+    file = ":home/drt24/Downloads/2014\_badgers\_andrubis (1).pdf:pdf",
+    address = "Wroclaw, Poland",
+    booktitle = "Proceedings of the the 3rd International Workshop on Building Analysis Datasets and Gathering Experience Returns for Security (BADGERS)"
 }
 
 @inproceedings{Linnap2011,
@@ -10498,7 +10533,7 @@
     doi = "10.1145/2627534.2627553",
     title = "{Device Analyzer: Large-scale mobile data collection}",
     url = "http://www.sigmetrics.org/sigmetrics2013/bigdataanalytics/abstracts2013/bdaw2013_submission_5.pdf| http://doi.acm.org/10.1145/2627534.2627553",
-    abstract = "We collected usage information from 12,500 Android devices in the wild over the course of nearly 2 years. Our dataset contains 53 billion data points from 894 models of devices running 687 ver- sions of Android. Processing the collected data presents a number of challenges ranging from scalability to consistency and privacy considerations. We present our system architecture for collection and analysis of this highly-distributed dataset, discuss how our sys- tem can reliably collect time-series data in the presence of unreli- able timing information, and discuss issues and lessons learned that we believe apply to many other big data collection projects.",
+    abstract = "We collected usage information from 12,500 Android devices in the wild over the course of nearly 2 years. Our dataset contains 53 billion data points from 894 models of devices running 687 versions of Android. Processing the collected data presents a number of challenges ranging from scalability to consistency and privacy considerations. We present our system architecture for collection and analysis of this highly-distributed dataset, discuss how our system can reliably collect time-series data in the presence of unreli- able timing information, and discuss issues and lessons learned that we believe apply to many other big data collection projects.",
     year = "2013",
     month = "6",
     file = ":home/drt24/Downloads/bdaw2013\_submission\_5 (1).pdf:pdf",
@@ -11131,6 +11166,20 @@
     journal = "SOSP"
 }
 
+@inproceedings{Zhang2014,
+    author = "Zhang, Mu and Duan, Yue and Yin, Heng and Zhao, Zhiruo",
+    publisher = "ACM",
+    doi = "10.1145/2660267.2660359",
+    isbn = "9781450329576",
+    title = "{Semantics-Aware Android Malware Classification Using Weighted Contextual API Dependency Graphs}",
+    url = "https://dl.acm.org/citation.cfm?id=2660359",
+    abstract = "The drastic increase of Android malware has led to a strong interest in developing methods to automate the malware analysis process. Existing automated Android malware detection and classification methods fall into two general categories: 1) signature-based and 2) machine learning-based. Signature-based approaches can be easily evaded by bytecode-level transformation attacks. Prior learning- based works extract features from application syntax, rather than program semantics, and are also subject to evasion. In this paper, we propose a novel semantic-based approach that classifies Android malware via dependency graphs. To battle transformation attacks, we extract a weighted contextual API dependency graph as program semantics to construct feature sets. To fight against malware variants and zero-day malware, we introduce graph similarity metrics to uncover homogeneous application behaviors while toler- ating minor implementation differences. We implement a prototype system, DroidSIFT, in 23 thousand lines of Java code. We evaluate our system using 2200 malware samples and 13500 benign samples. Experiments show that our signature detection can correctly label 93\% of malware instances; our anomaly detector is capable of detecting zero-day malware with a low false negative rate (2\%) and an acceptable false positive rate (5.15\%) for a vetting purpose.",
+    file = ":home/drt24/Downloads/p1105-zhang.pdf:pdf",
+    year = "2014",
+    keywords = "Android,Anomaly detection,Graph similarity,Malware classification,Semantics-aware,Signature detection",
+    booktitle = "CCS"
+}
+
 @inproceedings{Zhou2006,
     author = "Zhou, Chao and Lejeune, Christophe and B\'{e}nel, Aur\'{e}lien",
     publisher = "IOS Press",
@@ -11254,6 +11303,7 @@
 @online{androidvulnerabilities.org,
     author = "Thomas, Daniel R. and Beresford, Alastair R.",
     url = "http://androidvulnerabilities.org/",
+    year = "2015",
     title = "{AndroidVulnerabilities.org}"
 }
 
