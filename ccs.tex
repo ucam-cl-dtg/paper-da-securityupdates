@@ -11,6 +11,15 @@
 \usepackage{import}
 \usepackage{url}
 \usepackage{hyperref}
+
+% http://tex.stackexchange.com/questions/57865/how-to-use-multiple-urls-for-one-bibtex-reference
+\let\URL\url
+\makeatletter
+\def\url#1{\@URL#1||\@nil}
+\def\@URL#1|#2|#3\@nil{%
+  \URL{#1}\ifx\relax#2\relax\else| \URL{#2}\fi}
+\makeatother
+
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
