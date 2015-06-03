@@ -1,11 +1,11 @@
-\subsection{Comparing device manufacturers, device models and network operators}
+\section{Comparing device manufacturers, device models and network operators}
 \label{sec:security_scoring}\label{sec:exp:security_score}
 
 To allow buyers of Android devices to purchase those devices which have the best security they need to know how different device manufacturers, device models and network operators compare in terms of the security they provide.
 We propose a method to score a device manufacturer, device model or network operator based on its historic performance at keeping devices up to date and fixing security vulnerabilities.
 We find that Android as a whole gets a score of \daSecurityScore\ out of 10, the highest scoring device manufacturer is \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) and the lowest scoring is \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10).
 
-\subsubsection{Method: Scoring for security}
+\subsection{Method: Scoring for security}\label{sec:security_scoring:method}
 
 Computing how good a particular device manufacturer or device model is from a security standpoint is difficult as it depends on a number of factors which are hard to observe, particularly on a large scale.
 Ideally we would consider both the prevalence of potential problems which were not exploited and actual security failures.
@@ -63,7 +63,7 @@ A high value of $u$ could be achieved by only ever shipping one version but that
 A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.%
 \footnote{One way to influence our scores would be to add additional devices to Device Analyzer which have good security, these would have to be real end user devices as we could detect fake ones, this would increase the size of our data set and would require providing genuinely good security to some users.}
 
-\subsubsection{Results: Security scores}\label{sec:security_scoring:results}
+\subsection{Results: Security scores}\label{sec:security_scoring:results}
 The scores across the whole of Android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
 There are on average \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device.
 Only on average \daUpdatednessPerc\ of devices run the most recent version of Android.
@@ -107,15 +107,8 @@ An added value analysis of network operators which takes into account the device
 However we suspect that our sample size is too small to do that as while we have significant numbers of devices for each of the device models in Table~\ref{tab:sec_model} and for each of the network operators in Table~\ref{tab:sec_operator} we would need a significant number of each model in each network operator.
 We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
-\subsubsection{Sensitivity of scoring metric}
-\daTabDLDistances
-\daTabChangeInScores
-To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Damerau-Levenshtein distance~\cite{Bard2007} between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:dl_distances}.
-The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
-Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
-\todo{Give some of the actual orderings as well for the most important ones}
 
-\subsubsection{Scores over time}
+\subsection{Scores over time}
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/security_score_manufacturer}
@@ -142,3 +135,14 @@ Figure~\ref{fig:security_score_manufacturer} shows this for manufacturers, Figur
 These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (due to things like new vulnerabilities affecting all Android being discovered) these lines still have crossings due to the different behaviour of the different entities.
 It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
 The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
+
+
+\subsection{Sensitivity of scoring metric}
+\daTabDLDistances
+\daTabChangeInScores
+To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Damerau-Levenshtein distance~\cite{Bard2007} between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:dl_distances}.
+The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
+Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
+\todo{Showing?}
+\todo{Give some of the actual orderings as well for the most important ones}
+\todo{Sensitivity of time based vs. global scores}
