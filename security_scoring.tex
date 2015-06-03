@@ -46,11 +46,13 @@ This gives us Equation~\ref{eq:score}:
 \mathrm{score} = 4 \cdot f + 3 \cdot u + 3 \cdot \frac{2}{1+e^m} \label{eq:score}
 \end{equation}
 
-We can compute the uncertainty for $f$ and $u$.
+We can compute the uncertainty for $f$, $u$ and $m$.
 $f$ is calculated by taking the total secure device days and dividing it by the total insecure and secure device days.
 The total secure device days and total insecure device days are both counting experiments and so their measurement error is their square root~\cite{Taylor1997}.
 Since the numbers involved are large, the uncertainty in $f$ is small.
 $u$ is computed by taking the sum of the proportions of devices running the most recent version each day, both the count of devices running the maximum version and total count have square root uncertainties.
+$m$ is computed by counting the number of vulnerabilities which affected that entity and which have not yet been fixed on any device we have observed from that entity.
+However it could be that the entity has released a fix to some devices but we have not yet observed a device with that fix and so the uncertainty in each vulnerability truly being outstanding is the probability of that, assuming that at least \daMeanOutstandingProbability\ of devices have the fix, i.e. \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 
 \todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
