@@ -60,7 +60,7 @@ The Python \texttt{uncertainties} library was used to propagate uncertainties th
 This does not capture systematic errors such as those due to not including vulnerabilities which do affect devices, but for comparison that does not matter.
 \todo{We don't include manufacturer specific vulnerabilities which will influence comparisons.} 
 
-\todo{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
+\todolater{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
 
 If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.
 $f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
@@ -93,7 +93,8 @@ There is a marked difference in the distribution of updates between the two with
 
 If update delays are due to the delay in manufacturers providing the update rather than in operators in supplying the update and users installing the update we would expect the update behaviour of devices with the same device model to be similar and rapid.
 We found that within \daModelHalfDeployment\ days of the first observation of a new version on a device, half of all devices of that model have the new version (or a higher version) installed, and within \daModelFullDeployment\ days \daFullDeployedAt\ of devices have the new version (or a higher version).
-\todo{How does this compare with the average?}
+This compares with the average rates of deployment for Android OS versions of 350 days for half and 1\,100 days for \daFullDeployedAt.
+\todolater{Compute these values automatically and with error.}
 There is a variation between device models, with the update being distributed to most devices quickly and others having a much slower roll out but since some do update quickly the bottleneck is unlikely to be with the user.
 
 \begin{figure*}

@@ -157,7 +157,7 @@ In this section we describe how the Android ecosystem functions and how Android 
  \import{figures/}{update_ecosystem.pdf_tex}
  \caption{Flow of updates between participants in the Android ecosystem.
  Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, those in brackets represent number of such entities.
- Dotted arrows indicate flows where we can't measure how many updates are produced as they are not public.\todo{Check this against the HTC infographic~\cite{HTC2013}}}
+ Dotted arrows indicate flows where we can't measure how many updates are produced as they are not public.}
  \label{fig:update_ecosystem}
 \end{figure}
 To understand how vulnerabilities in Android are fixed we examine the Android update process which we model in Figure~\ref{fig:update_ecosystem}.
@@ -205,13 +205,15 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \label{tab:update_ecosystem}
 \end{table}
 
+\todo{Do we want to talk about more stuff from the Esorics submission?}
+
 \input{security_scoring}
 
 \section{Comparison with other data}
 Here we show that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data which provide an upper and lower bound on it.
 The \da\ data is collected from devices across the world where users have voluntarily installed the app.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
-\todo{citation}
+\todo{citation for Rwanda dataset}
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/dists}
