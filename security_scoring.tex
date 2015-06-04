@@ -123,7 +123,7 @@ We do not attempt to disambiguate users behaviour in whether they install update
 \caption{Security scores for different operators}
 \label{fig:security_score_operator}
 \includegraphics[width=\columnwidth]{figures/security_score_summary}
-\caption{Security scores for Nexus and non-Nexus devices\todo{subfig? bridge gaps?}}
+\caption{Security scores for Nexus and non-Nexus devices\todo{subfig?}\todolater{bridge gaps?}}
 \label{fig:security_score_summary}
 \end{figure}
 \todo{This is method rather than result}
@@ -146,7 +146,7 @@ The clearest results are for Figure~\ref{fig:security_score_summary} with a larg
 To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Damerau-Levenshtein distance~\cite{Bard2007} between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:dl_distances}.
 The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
 Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
-\todo{Showing?}
+This shows that $m$ tends to drag down scores.
 \todo{Give some of the actual orderings as well for the most important ones}
 \todo{Sensitivity of time based vs. global scores}
 
