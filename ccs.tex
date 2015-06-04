@@ -88,9 +88,11 @@ Andrew~Rice
 \maketitle
 
 \begin{abstract}
-The security of Android is severely damaged by the lack of security updates for known critical vulnerabilities  being shipped to devices.
-We find there is significant variability in the timely delivery of security updates across different device manufacturers and mobile network operators, and we define a security metric to rank the performance of device manufacturers and network operators in our data set.
-This provides the comparable data required for purchasers to determine which device manufacturers and network operators to use and hence incentives them to ship security updates.
+The security of Android depends on security updates for critical vulnerabilities  being shipped to devices.
+Using a corpus of \daNumOSDevices\ devices we show that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
+We define a security metric to rank the performance of device manufacturers and network operators.
+This provides a comparison point for purchasers to determine which device manufacturers and network operators to use.
+We argue that publishing metrics like this provides an important incentive to manufacturers and operators to ship security updates.
 \end{abstract}
 
 % A category with the (minimum) three required fields
@@ -103,7 +105,7 @@ This provides the comparable data required for purchasers to determine which dev
 
 \section{Introduction}
 
-We have found that Android devices do not receive security updates promptly when critical vulnerabilities are publicly disclosed and hence \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities~\cite{androidvulnerabilities.org}.
+It has been previously shown that Android devices do not receive security updates promptly when critical vulnerabilities are publicly disclosed and hence \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities on average~\cite{androidvulnerabilities.org}.
 Here we attempt to determine why by understanding the Android update process, apportioning blame to different entities in the ecosystem and producing a scoring metric to compare different entities.
 
 By producing a scoring metric which compares different entities such as device manufacturers, network operators or specific device models we can provide information which allows device purchasers to select devices with better security.
@@ -111,13 +113,13 @@ Currently corporate and public sector buyers are encouraged to purchase secure d
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures which are good at shipping security updates promptly but it does not state which device manufacturers these are~\cite{CESG2013}.
 We are also collaborating with a FTSE 100 company to give them concrete information to answer this question.
 To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
-We provide the answer to the question ``Who should I buy my Android phone from for best security?'', in general Nexus devices are better, further details are given in \S\ref{sec:security_scoring:results}.
+We provide the answer to the question ``Who should I buy my Android phone from for best security?'', showing that in general Nexus devices are better, further details are given in~\S\ref{sec:security_scoring:results}.
 
 The Android update process is slow because its development is distributed among many parties and has a long multi-stage pipeline~\cite{HTC2013}.
-The security of Android relies on many open source projects, include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform.
+The security of Android relies on many open source projects, these include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform.
 In addition, device manufacturers (we know of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers.
 Understanding this ecosystem is important as device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
-We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in \S\ref{sec:android_ecosystem}.
+We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in~\S\ref{sec:android_ecosystem}.
 
 \begin{figure}
 \centering
@@ -183,7 +185,7 @@ This significance test is to remove spurious versions recorded in \da\ such as `
 
 We extracted data on the external projects used in Android and have included this and the scripts which generated it in AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
 These scripts analysed the Android Open Source Project's source tree to examine the source code of each of the external projects to find the project version associated with each Android version tag on the repository.
-There are \avoNumExternalProjects\ external open source projects in Android, contributing \avoTotalExternalLines\ lines of code.\footnote{Lines of code were measured using David A. Wheeler's \texttt{sloccount}.}
+There are \avoNumExternalProjects\ external open source projects in Android, contributing \avoTotalExternalLines\ lines of code.
 We analysed the top \avoNumBigExternalProjects\ by lines of code (\avoBigExternalLinesOfCodePerc\ of the total) and were able to automatically extract the versions of those projects included in different versions of Android for \avoNumAnalysedExternalProjects\ of these (\avoAnalysedExternalLinesOfCodePerc\ of the total).
 We found \avoBigExternalTotalVersions\ distinct versions, a median of \avoBigExternalMedianVersions\ and mean of \avoBigExternalMeanVersions\ versions per project.
 Android rarely changes the version of external projects it includes.
