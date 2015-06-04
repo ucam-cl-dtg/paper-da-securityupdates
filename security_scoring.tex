@@ -12,12 +12,13 @@ Ideally we would consider both the prevalence of potential problems which were n
 %\footnote{A perfectly secure operating system would among other things detect and prevent all phishing attacks, provide perfect principle of least privilege isolation, not have any vulnerabilities, instantly fix all discovered vulnerabilities, not allow any user data to be used in a way which the user does not approve of and be really easy for an ordinary person to use.}
 However in the absence of such data we propose a scheme for assigning a device a score out of ten based on data which can be observed, and which hopefully correlates with the actual security of the devices.
 
-The FUM score is computed from several components:
+The FUM score is computed from three components:
 \begin{description}
-  \item[free $f$] The proportion of the time where devices were free from known critical vulnerabilities. This is equivalent to Acer and Jackson's proposal to measure the security based on the proportion of users with at least one unpatched critical vulnerability~\cite{Acer2010} and similar to the Vulnerability Free Days (VFD) score~\cite{Wright2014}.
-  Unlike VFD this is the proportion of running devices which were free from critical vulnerabilities, rather than days which the device manufacturer was free from outstanding critical vulnerabilities as that does not take account of the update process.
+  \item[free $f$] The proportion of running devices which were free from critical vulnerabilities over time. This is equivalent to Acer and Jackson's proposal to measure the security based on the proportion of users with at least one unpatched critical vulnerability~\cite{Acer2010} and similar to the Vulnerability Free Days (VFD) score~\cite{Wright2014}.
+  Unlike VFD this is the proportion of running devices which were free from critical vulnerabilities over time, rather than days which the device manufacturer was free from outstanding critical vulnerabilities as that does not take account of the update process.
   \item[update $u$] The proportion of devices which run the latest version of Android shipped to any device produced by that device manufacturer. This is a measure of internal updatedness, a low score would mean many devices are being left behind.
-  This assumes that newer versions are better with stronger security, historically steps have been taken to improve Android security in newer versions so this assumption should generally hold, but sometimes new updates introduce new vulnerabilities.
+  This assumes that newer versions are better with stronger security.
+  Historically steps have been taken to improve Android security in newer versions so this assumption should generally hold, but sometimes new updates introduce new vulnerabilities.
   \item[mean $m$] The mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer. This is related to the Median Active Vulnerabilities (MAV) measure~\cite{Wright2014} but is the mean rather than the median, as this gives a continuous value.
   An example is given in Figure~\ref{fig:mcalculation}.
 %TODO should we compute the median instead?
@@ -58,15 +59,9 @@ We assume that if the fix has been released then at least \daMeanOutstandingProb
 This gives an uncertainty of \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data for each vulnerability outstanding each day.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 This does not capture systematic errors such as those due to not including vulnerabilities which do affect devices, but for comparison that does not matter.
-\todo{We don't include manufacturer specific vulnerabilities which will influence comparisons.} 
+However we do not include manufacturer specific vulnerabilities which will influence comparisons, but we expect that performance in fixing manufacturer specific vulnerabilities is strongly correlated with performance fixing vulnerabilities affecting all of Android.
 
 \todolater{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
-
-If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.
-$f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
-A high value of $u$ could be achieved by only ever shipping one version but that would give low values for $f$ and $m$ (and not be attractive to new customers).
-A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.%
-\footnote{One way to influence our scores would be to add additional devices to Device Analyzer which have good security, these would have to be real end user devices as we could detect fake ones, this would increase the size of our data set and would require providing genuinely good security to some users.}
 
 \subsection{Results: Security scores}\label{sec:security_scoring:results}
 The scores across the whole of Android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
@@ -87,7 +82,7 @@ Even within device manufacturers different models can have very different update
 Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with \emph{\daSecScoreBestmodel} (\daSecScoreBestmodelScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmodel} (\daSecScoreWorstmodelScore\ out of 10) scoring lowest.
 We can then test whether this seems fair by comparing the version data for the highest and lowest scoring models.
 Figure~\ref{fig:full_version_comp}b shows the full version distribution for \emph{\daSecScoreWorstmodel} and Figure~\ref{fig:full_version_comp}a shows the same for \emph{\daSecScoreBestmodel}.
-There is a marked difference in the distribution of updates between the two with only \daSecScoreWorstmodelNumFullVersions\ full versions for \emph{\daSecScoreWorstmodel} and \daSecScoreBestmodelNumFullVersions\ for \emph{\daSecScoreBestmodel}.
+There is a marked difference in the distribution of updates between the two with only \daSecScoreWorstmodelNumFullVersions\ full version for \emph{\daSecScoreWorstmodel} and \daSecScoreBestmodelNumFullVersions\ for \emph{\daSecScoreBestmodel}.
 %Both device models start off with the full version string of `2.3.3 GRI40' but the \emph{\daSecScoreBestmodel} receives many more updates over the same time period.
 %Other models from the same manufacturer with similar model names to \emph{\daSecScoreWorstmodel} do much better such as the \emph{Desire HD}.
 
@@ -111,7 +106,7 @@ This is in turn affected by both what devices a network operator offers to users
 Hence having a worse score does not necessarily mean that a network operator is worse, it could be that its users all pick phones from a worse device manufacturer, for example because they were cheaper.
 A network operator could use data from this paper to exclude insecure devices from those offered to consumers.
 An added value analysis of network operators which takes into account the device mix used by users of that network operator would make it possible to determine whether a network operator is making the situation better or worse by the way it ships updates to users.
-However we suspect that our sample size is too small to do that as while we have significant numbers of devices for each of the device models in Table~\ref{tab:sec_model} and for each of the network operators in Table~\ref{tab:sec_operator} we would need a significant number of each model in each network operator.
+However our sample size is too small to do that as while we have significant numbers of devices for each of the device models (Table~\ref{tab:sec_model}) and for each of the network operators (Table~\ref{tab:sec_operator}) we would need a significant number of each model in each network operator.
 We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
 
@@ -139,7 +134,7 @@ Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$
 v_i = v_{i-1} (1 - \alpha) + n \alpha
 \label{eq:rolling_update}
 \end{equation}
-Figure~\ref{fig:security_score_manufacturer} shows this for manufacturers, Figure~\ref{fig:security_score_model} for device models, Figure~\ref{fig:security_score_operator} for operators Figure~\ref{fig:security_score_summary} for Nexus and non-Nexus devices.
+Figure~\ref{fig:security_score_manufacturer} shows this for manufacturers, Figure~\ref{fig:security_score_model} for device models, Figure~\ref{fig:security_score_operator} for operators Figure~\ref{fig:security_score_summary} for Nexus and non-Nexus devices; these figures are shown with their 95\% confidence intervals.
 These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (due to things like new vulnerabilities affecting all Android being discovered) these lines still have crossings due to the different behaviour of the different entities.
 It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
 The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
@@ -154,3 +149,11 @@ Changing the scoring metric also impacts the scores given for each entity Table~
 \todo{Showing?}
 \todo{Give some of the actual orderings as well for the most important ones}
 \todo{Sensitivity of time based vs. global scores}
+
+\subsection{Gaming the score}
+If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.
+$f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
+A high value of $u$ could be achieved by only ever shipping one version but that would give low values for $f$ and $m$ (and not be attractive to new customers).
+A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that gets updates but ignoring all others, but that would lower $f$ and $u$.%
+\footnote{One way to influence our scores would be to add additional devices to Device Analyzer which have good security, these would have to be real end user devices as we could detect fake ones, this would increase the size of our data set and would require providing genuinely good security to some users.}
+Therefore our score is secure against gaming.

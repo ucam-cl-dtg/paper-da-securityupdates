@@ -113,12 +113,13 @@ Currently corporate and public sector buyers are encouraged to purchase secure d
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures which are good at shipping security updates promptly but it does not state which device manufacturers these are~\cite{CESG2013}.
 We are also collaborating with a FTSE 100 company to give them concrete information to answer this question.
 To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
-We provide the answer to the question ``Who should I buy my Android phone from for best security?'', showing that in general Nexus devices are better, further details are given in~\S\ref{sec:security_scoring:results}.
+We provide the answer to the question ``Who should I buy my Android phone from for best security?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
 
 The Android update process is slow because its development is distributed among many parties and has a long multi-stage pipeline~\cite{HTC2013}.
 The security of Android relies on many open source projects, these include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform.
 In addition, device manufacturers (we know of \daNumManufacturers\footnote{\label{foot:dadata}We computed this from the \da~\cite{Wagner2013} data, see \S\ref{sec:android_update_process}.}) and network operators (\daNumOperators\dafoot) may make further modifications before devices are shipped to customers.
 Understanding this ecosystem is important as device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
+The cause of the slow update process could be: upstream open source projects releasing patches slowly, Google including them slowly, manufacturers including them slowly, network operators shipping them slowly or customers not installing them.
 We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in~\S\ref{sec:android_ecosystem}.
 
 \begin{figure}
@@ -139,7 +140,7 @@ Comparative data, which we provide in this paper, would provide an incentive to 
 
 In summary, the contributions of this paper are:
 \begin{itemize}
- \item We quantify the Android update process~\S\ref{sec:android_ecosystem}.
+ \item We quantify the Android update process, providing concrete numbers on the flow of updates and their latency~\S\ref{sec:android_ecosystem}.
  \item We propose the FUM scoring metric to evaluate the security of different instances of a platform~\S\ref{sec:security_scoring:method}.
  \item We measure the security of Android according to this and compare different device manufacturers, device models and network operators to allow device purchasers to differentiate between them based on security~\S\ref{sec:security_scoring:results}.
 \end{itemize}
@@ -149,8 +150,9 @@ We indicate the uncertainty in our results by presenting them $\pm$ one standard
 We explore systematic errors in \S\ref{sec:representative}.
 
 \section{Android Ecosystem}\label{sec:android_ecosystem}
-There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
-In this section we describe how the Android ecosystem functions and how Android versions are produced, as seen by the \da\ project.
+There is a complex Android ecosystem that creates and distributes updates which fix vulnerabilities.
+In this section we describe how the Android ecosystem functions and how Android versions are produced, as seen by the \da\ project and by analysing the Android source code and upstream projects.
+We quantify the number of updates shipped by various entities in the ecosystem and the number of entities.
 
 
 \subsection{Android update process}
@@ -193,10 +195,11 @@ The numbers of devices (\daNumOSDevices), network operators (\daNumOperators) an
 Device manufacturer and network operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
 This normalisation is a manual task involves removing invalid values (such as `manufacturer' or `airplane mode is on'), collating across company name changes (e.g.\ `lge' to `LG'), normalising punctuation, removing extra strings sometimes added such as (`(2g)' or `communications') and mapping some incorrectly placed model names back to their manufacturer.
 This normalisation is not perfect and so these are overestimates on the \da\ data but they are likely still underestimates as there will be some device manufacturers and network operators which are not included in the \da\ data.
+The representativeness of \da\ is discussed in \S\ref{sec:representative}.
 
 In Figure~\ref{fig:update_ecosystem} the number of updates received by devices (\daNumFullVersions) is the number of different full version strings observed in \da.
 The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ which affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days.
-This significance test is to remove spurious versions recorded in \da\ such as `5.2.0' in 2012 which had still not been released in 2014.
+This significance test is to remove spurious versions recorded in \da\ such as `5.2.0' in 2012 which had still not been released at time of writing.\todolater{Check if this has now been released}
 
 We extracted data on the external projects used in Android and have included this and the scripts which generated it in AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
 These scripts analysed the Android Open Source Project's source tree to examine the source code of each of the external projects to find the project version associated with each Android version tag on the repository.
@@ -211,6 +214,7 @@ This allows us to compute the latency between an upstream project being released
 The versions included in Android were about half a year old when the first version of Android containing it was released.
 
 \todo{We need to rerun the analysis on the AOSP data for its current state}
+\todo{What is the significance of having done this quantification?}
 \section{Threat model and attack vectors}
 \label{sec:threatmodel}
 
@@ -305,7 +309,7 @@ Google is deploying the same silent update technique through Google Play Service
 
 Security in depth is also a useful strategy.
 In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
-These features, as well as Address Space Layout Randomisation (ASLR) and mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
+These features, combined with mandatory access controls, has resulted in a lower level of malware affecting iOS when compared to Android~\cite{Felt2011}.
 
 There are continuing efforts to reduce the impact of critical vulnerabilities, both in Android and elsewhere.
 SE\-Android~\cite{Smalley2013}, which is included in Android from version 4.1~\cite{jelly-bean-release}, and fully enforcing from version 5.0~\cite{AndroidSecurity2014} claimed to prevent some root vulnerabilities and to reduce the impact of others.
@@ -323,18 +327,20 @@ The percentage of Android devices running the most recent version (\daUpdatednes
 A simple numerical comparison is unfair because only one major OS version was considered in the Microsoft analysis, and data was only collected from computers which contacted the update server, although this was the default.
 More recent data demonstrates the difficulty of upgrading computers between major OS versions, with 27\% of Windows computers running Windows XP in July 2014,\footnote{\url{https://archive.today/PLGxn}} four months after Windows XP stopped receiving security updates.
 
+\todo{Work these references into the text}
 \cite{Nappa2015}
 \cite{Zhang2014}
 \cite{Lindorfer2014}
 \cite{Arp2014}
 
 \section{Conclusion}
+\todo{Write this}
  and examined how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates
 We have compared different device models, device manufacturers and network operators and found that there are differences between them which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
 
 \section*{Dataset}
-The raw and processed data and source code will be made available where possible.
+The raw and processed data and source code will be made available where possible when this paper is finalised.
 Data from \da\ and \avo\ used in this paper is already available.
 
 \sloppy
