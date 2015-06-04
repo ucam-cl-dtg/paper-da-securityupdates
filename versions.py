@@ -85,7 +85,12 @@ def load_from_csv(name):
 
 def update_versions():
     targz = re.compile(r'.*\.tar\.gz.*')
-    openssl_version_dates = get_version_dates(get_lines('https://www.openssl.org/source/', targz),re.compile(r'.*"openssl-([^"]+)\.tar\.gz".*'),re.compile(r'.*?\d+ ([^<]+) <.*')) 
+    openssl_lines = get_lines('https://www.openssl.org/source/', targz)
+    openssl_lines.extend(get_lines('https://www.openssl.org/source/old/0.9.x/', targz))
+    openssl_lines.extend(get_lines('https://www.openssl.org/source/old/1.0.0/', targz))
+    openssl_lines.extend(get_lines('https://www.openssl.org/source/old/1.0.1/', targz))
+    openssl_lines.extend(get_lines('https://www.openssl.org/source/old/1.0.2/', targz))
+    openssl_version_dates = get_version_dates(openssl_lines, re.compile(r'.*"openssl-([^"]+)\.tar\.gz".*'),re.compile(r'.*?\d+ ([^<]+) <.*'))
     set_latex_value('opensslNumVersions', num_in_range(openssl_version_dates))
     save_to_csv('openssl', openssl_version_dates)
 
