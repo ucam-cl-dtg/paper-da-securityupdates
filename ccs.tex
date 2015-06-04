@@ -258,7 +258,7 @@ Hence, with our chosen set of vulnerabilities, our analysis represents a lower-b
 \input{security_scoring}
 
 \section{Comparison with other data}\label{sec:representative}
-Here we show that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data which provide an upper and lower bound on it.
+Here we show that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data.
 The \da\ data is collected from devices across the world where users have voluntarily installed the app.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
 \todo{citation for Rwanda dataset}
@@ -272,7 +272,14 @@ We used the data from the FTSE 100 company for the week ending 2015-04-27 and th
 Figure~\ref{fig:dists} shows the proportion of devices running each Android OS version in the two comparison data sets and the comparable periods from \da.
 The general pattern this shows is that in the FTSE data newer versions are more popular than in the \da\ data and that in the Rwanda data old versions are more popular than in the \da\ data.
 \todo{Can we quantify this?}
-This shows that \da\ lies between these two biased samples while being similar to both and so is representative.
+
+Unfortunately there is no ground truth of OS version information.
+However we have collated the API version information that Google has published most months since 2009.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
+While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
+We compared the data from Google and from \da\ and they appear similar.
+We analysed the difference between the API version data from \da\ and Google Play, normalising for days since the API version was released.
+This shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
+This means that the OS version information from \da\ is likely to be overestimating the prevalence of new OS versions and hence our results are conservative.
 
 \section{Related work}
 The update process for apps, security fixes and OS upgrades also needs to be secure.
