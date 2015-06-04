@@ -165,6 +165,18 @@ In this section we describe how the Android ecosystem functions and how Android 
  Dotted arrows indicate flows where we can't measure how many updates are produced as they are not public.}
  \label{fig:update_ecosystem}
 \end{figure}
+\begin{table}
+\centering
+\normalsize
+\begin{tabular}{l|r|r}
+Project	&	\# releases	&	latency (days) \\ \hline
+linux	&	\linuxNumVersions	&	\linuxMeanUpdateLatency \\
+openssl	&	\opensslNumVersions	&	\opensslMeanUpdateLatency \\
+bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
+\end{tabular}
+\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.\todolater{scrape the other 26 websites... is it worth it?}}
+\label{tab:update_ecosystem}
+\end{table}
 To understand how vulnerabilities in Android are fixed we examine the Android update process which we model in Figure~\ref{fig:update_ecosystem}.
 There are five entities or groups which contribute towards Android updates: the network operators, the device manufacturers, the hardware developers, Google and the upstream open source projects.
 Android builds on various open source projects such as the Linux kernel, OpenSSL and BouncyCastle cryptography libraries.
@@ -197,19 +209,8 @@ Android rarely changes the version of external projects it includes.
 To compute the latency between upstream releases and their inclusion in Android we scraped the release pages for those projects, to obtain the version numbers and release dates.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
 The versions included in Android were about half a year old when the first version of Android containing it was released.
-\begin{table}
-\centering
-\normalsize
-\begin{tabular}{l|r|r}
-Project	&	\# releases	&	latency (days) \\ \hline
-linux	&	\linuxNumVersions	&	\linuxMeanUpdateLatency \\
-openssl	&	\opensslNumVersions	&	\opensslMeanUpdateLatency \\
-bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
-\end{tabular}
-\caption{Flow of updates from upstream projects into Android. Number of updates as in Figure~\ref{fig:update_ecosystem}, latency in days for all pairs of versions we have data on.\todolater{scrape the other 26 websites... is it worth it?}}
-\label{tab:update_ecosystem}
-\end{table}
 
+\todo{We need to rerun the analysis on the AOSP data for its current state}
 \section{Threat model and attack vectors}
 \label{sec:threatmodel}
 
