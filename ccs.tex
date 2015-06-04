@@ -144,6 +144,9 @@ In summary, the contributions of this paper are:
  \item We measure the security of Android according to this and compare different device manufacturers, device models and network operators to allow device purchasers to differentiate between them based on security~\S\ref{sec:security_scoring:results}.
 \end{itemize}
 
+We indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3~s.f., this occasionally results in `$\pm\, 0$' when the standard deviation is small.
+\todolater{Do we want to use the 95 percentile instead}
+We explore systematic errors in \S\ref{sec:representative}.
 
 \section{Android Ecosystem}\label{sec:android_ecosystem}
 There is a complex Android ecosystem which creates and distributes updates to Android which fix vulnerabilities.
@@ -211,7 +214,7 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 
 \input{security_scoring}
 
-\section{Comparison with other data}
+\section{Comparison with other data}\label{sec:representative}
 Here we show that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data which provide an upper and lower bound on it.
 The \da\ data is collected from devices across the world where users have voluntarily installed the app.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
