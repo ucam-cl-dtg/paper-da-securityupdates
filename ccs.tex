@@ -210,7 +210,50 @@ bouncycastle	&	\bouncycastleNumVersions	&	\bouncycastleMeanUpdateLatency \\
 \label{tab:update_ecosystem}
 \end{table}
 
-\todo{Do we want to talk about more stuff from the Esorics submission?}
+\section{Threat model and attack vectors}
+\label{sec:threatmodel}
+
+We assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
+Here we consider three attack vectors against Android handsets.
+
+The first attack vector is through the installation of a malicious app on the device.
+Android devices can install apps through marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
+By default, many Android devices will only allow the installation of apps from Google play which uses Bouncer to automatically analyse apps; and quickly takes down apps that are reported as malicious.
+However alternative markets are also popular, particularly in countries where Google Play is not available.
+
+The second attack vector is to make an existing app into download and execute code at runtime.
+The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code.
+Neither static nor dynamic analysis of this app will uncover any malicious code, since it does not exist in the app.
+The marketplace can detect explicit use of dynamic code loading, however dynamic code loading is not actually needed for this to work -- it just makes the task easier -- even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+
+The third attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user~\cite{Thomas2015a}.
+The fix for the addJavascriptInterface vulnerability breaks backwards compatibility and requires a two sided fix.
+While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack.
+
+The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
+Unfortunately, it has been demonstrated that the sandbox for Android apps is weak~\cite{androidvulnerabilities.org}.
+
+
+\section{Critical vulnerabilities}
+We have used data on critical vulnerabilities in Android from AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
+It contains information on the discovery and publication dates, the versions affected and which versions contained fixes.
+It only contains critical vulnerabilities such as root vulnerabilities that did not require USB debugging to exploit.
+If malicious code exploits a critical vulnerability then it gains control of the device.
+
+Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 1 of our threat model.
+For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and hence be granted system privileges.
+On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
+Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
+The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are level 1 while kernel and system vulnerabilities are level 2.\todo{What is going on with these levels?}
+\avoTabAndVulns
+
+\avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
+
+Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
+We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android. \todo{can we make this sentence clearer?}
+Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
 
 \input{security_scoring}
 
