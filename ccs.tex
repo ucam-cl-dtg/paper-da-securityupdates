@@ -20,6 +20,9 @@
   \URL{#1}\ifx\relax#2\relax\else| \URL{#2}\fi}
 \makeatother
 
+% To stop problems with links in footnotes spanning columns or pages.
+\interfootnotelinepenalty=10000
+
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{siunitx}
@@ -296,7 +299,7 @@ For example, the process can be exploited to allow apps to gain privilege throug
 
 We used \da\ to record data on the OS versions of Android installed on devices, Nappa et.\ al. performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data, they did not assign client applications scores~\cite{Nappa2015}.
 
-\interfootnotelinepenalty=10000 %To stop the lifehacker footnote below from spanning multiple pages and breaking
+
 We use User-Agent strings from Rwandan internet traffic to examine the version distribution of Android OS versions.
 User-Agent strings have been used to investigate the timeliness of web browser updates, with at most 80\% of Firefox users running the most recent version~\cite{Frei2008}.
 The same analysis was used to show that Chrome's use of silent updates seems to increase uptake of upgrades~\cite{Duebendorfer2010} with 97\% of users running the latest version within 3 weeks of release.
@@ -341,13 +344,13 @@ We hope that this analysis will encourage device manufacturers and network opera
 The raw and processed data and source code will be made available where possible when this paper is finalised.
 Data from \da\ and \avo\ used in this paper is already available, the Rwanda and FTSE data cannot be made available.
 
-\sloppy
+
 \section*{Acknowledgements}
 \identifying{
 This work was supported by a Google focussed research award; and the EPSRC [grant number EP/P505445/1].
 Thanks to Sherif Akoush and Ripduman Sohan for supplying the Rwanda data and to staff at the FTSE 100 company for supplying their mobile device management data.
 }
-
+\sloppy
 \printbibliography
 
 
