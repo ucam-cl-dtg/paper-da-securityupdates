@@ -93,6 +93,7 @@ Andrew~Rice
 \begin{abstract}
 The security of Android depends on security updates for critical vulnerabilities  being shipped to devices.
 Using a corpus of \daNumOSDevices\ devices we show that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
+This is the first paper to quantify security update performance of device manufacturers and network operators.
 We define a security metric to rank the performance of device manufacturers and network operators.
 This provides a comparison point for purchasers to determine which device manufacturers and network operators to use.
 We argue that publishing metrics like this provides an important incentive to manufacturers and operators to ship security updates.
@@ -109,14 +110,14 @@ We argue that publishing metrics like this provides an important incentive to ma
 \section{Introduction}
 
 It has been previously shown that Android devices do not receive security updates promptly when critical vulnerabilities are publicly disclosed and hence \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities on average~\cite{androidvulnerabilities.org}.
-Here we attempt to determine why by understanding the Android update process, apportioning blame to different entities in the ecosystem and producing a scoring metric to compare different entities.
+Here we attempt to determine why by understanding the Android update process, evaluating different entities in the ecosystem and producing a scoring metric to compare different entities.
 
 By producing a scoring metric which compares different entities such as device manufacturers, network operators or specific device models we can provide information which allows device purchasers to select devices with better security.
 Currently corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures which are good at shipping security updates promptly but it does not state which device manufacturers these are~\cite{CESG2013}.
 We are also collaborating with a FTSE 100 company to give them concrete information to answer this question.
 To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
-We provide the answer to the question ``Who should I buy my Android phone from for best security?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
+We provide the answer to the question ``Which is the most secure Android provider I can buy from?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
 
 The Android update process is slow because its development is distributed among many parties and has a long multi-stage pipeline~\cite{HTC2013}.
 The security of Android relies on many open source projects, these include the Linux kernel, OpenSSL and BouncyCastle as well as Google who build the core platform.
@@ -134,18 +135,18 @@ The red vertical lines are caused by vulnerabilities being discovered with those
 \label{fig:proportioninsecure}
 \end{figure}
 By using data from \da~\cite{Wagner2013} we can examine the versions of Android running on user devices over time and through comparison with data on which versions of Android were vulnerable to different critical vulnerabilities~\cite{androidvulnerabilities.org} we can plot the exposure of Android devices to known critical vulnerabilities.
-Figure~\ref{fig:proportioninsecure} shows that Android devices are often exposed to known security vulnerabilities.
+Figure~\ref{fig:proportioninsecure} uses data from \da\ and the \avo\ vulnerabilities database and shows that Android devices are often exposed to known security vulnerabilities.
 One solution to this problem is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
 Many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates, with an overall average of \daUpdatesPerYearNominal\ per year. 
 In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates monthly until April 2014.
 An alternative to regulation is access to publicly available data.
-Comparative data, which we provide in this paper, would provide an incentive to both device manufacturers and network operators to provide updates.
+Comparative data, which we provide in this paper, and will continue to publish on our companion website, provides an incentive to both device manufacturers and network operators to provide updates.
 
 In summary, the contributions of this paper are:
 \begin{itemize}
- \item We quantify the Android update process, providing concrete numbers on the flow of updates and their latency~\S\ref{sec:android_ecosystem}.
- \item We propose the FUM scoring metric to evaluate the security of different instances of a platform~\S\ref{sec:security_scoring:method}.
- \item We measure the security of Android according to this and compare different device manufacturers, device models and network operators to allow device purchasers to differentiate between them based on security~\S\ref{sec:security_scoring:results}.
+ \item We quantify the Android update process, providing concrete numbers on the flow of updates and their latency~(\S\ref{sec:android_ecosystem}).
+ \item We propose the FUM scoring metric to evaluate the security of different instances of a platform~(\S\ref{sec:security_scoring:method}).
+ \item We measure the security of Android against our scoring metric and compare different device manufacturers, device models and network operators to allow device purchasers to differentiate between them based on security~(\S\ref{sec:security_scoring:results}).
 \end{itemize}
 
 We indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3~s.f., this occasionally results in `$\pm\, 0$' when the standard deviation is small.
@@ -167,7 +168,7 @@ We quantify the number of updates shipped by various entities in the ecosystem a
  \import{figures/}{update_ecosystem.pdf_tex}
  \caption{Flow of updates between participants in the Android ecosystem.
  Numbers on edges indicate updates shipped between \daStartDate\ and \daEndDate, those in brackets represent number of such entities.
- Dotted arrows indicate flows where we can't measure how many updates are produced as they are not public.}
+ Dotted arrows indicate flows where we can't measure because no public data is available.}
  \label{fig:update_ecosystem}
 \end{figure}
 \begin{table}
@@ -224,23 +225,23 @@ The versions included in Android were about half a year old when the first versi
 We assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
 Here we consider three attack vectors against Android handsets.
 
-The first attack vector is through the installation of a malicious app on the device.
+The \emph{installation} attack vector is through the installation of a malicious app on the device.
 Android devices can install apps through marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
-By default, many Android devices will only allow the installation of apps from Google play which uses Bouncer to automatically analyse apps; and quickly takes down apps that are reported as malicious.
+By default, many Android devices will only allow the installation of apps from Google Play which uses Bouncer to automatically analyse apps; and quickly takes down apps that are reported as malicious.
 However alternative markets are also popular, particularly in countries where Google Play is not available.
 
-The second attack vector is to make an existing app into download and execute code at runtime.
+The \emph{dynamic code loading} attack vector is to make an existing app into download and execute code at runtime.
 The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code.
 Neither static nor dynamic analysis of this app will uncover any malicious code, since it does not exist in the app.
 The marketplace can detect explicit use of dynamic code loading, however dynamic code loading is not actually needed for this to work -- it just makes the task easier -- even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
-The third attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
-For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user~\cite{Thomas2015a}.
+The \emph{injection} attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user.
 The fix for the addJavascriptInterface vulnerability breaks backwards compatibility and requires a two sided fix.
-While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack.
+While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack~\cite{Thomas2015a}.
 
 The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
-Unfortunately, it has been demonstrated that the sandbox for Android apps is weak~\cite{androidvulnerabilities.org}.
+Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak.
 
 
 \section{Critical vulnerabilities}
@@ -249,24 +250,24 @@ It contains information on the discovery and publication dates, the versions aff
 It only contains critical vulnerabilities such as root vulnerabilities that did not require USB debugging to exploit.
 If malicious code exploits a critical vulnerability then it gains control of the device.
 
-Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in level 1 of our threat model.
+Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in \emph{installation} in our threat model.
 For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and hence be granted system privileges.
 On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
 Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
-The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are level 1 while kernel and system vulnerabilities are level 2.\todo{What is going on with these levels?}
+The different categories which the vulnerabilities fall into are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are \emph{installation} while kernel and system vulnerabilities are used with \emph{installation, dynamic code loading} and \emph{injection}.
 \avoTabAndVulns
 
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
 Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
-These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android. \todo{can we make this sentence clearer?}
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
 Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
 
 \input{security_scoring}
 
 \section{Comparison with other data}\label{sec:representative}
-Here we show that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data.
+Here we provide evidence that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data.
 The \da\ data is collected from devices across the world where users have voluntarily installed the app.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
 \todo{citation for Rwanda dataset}
@@ -276,28 +277,30 @@ We have obtained comparable data on 5\,290 devices from a multinational FTSE 100
 \caption{Comparison between FTSE, User-Agent and the corresponding \da\ data, error bars indicate 95\% confidence intervals.}
 \label{fig:dists}
 \end{figure}
-We used the data from the FTSE 100 company for the week ending 2015-04-27 and the User-Agent data was collected between 2015-01-31 and 2015-02-12.
+We used the data from the FTSE 100 company for a week in April 2015 and the User-Agent data was collected in February 2015. %between 2015-01-31 and 2015-02-12.% FTSE 2015-04-27
 Figure~\ref{fig:dists} shows the proportion of devices running each Android OS version in the two comparison data sets and the comparable periods from \da.
 The general pattern this shows is that in the FTSE data newer versions are more popular than in the \da\ data and that in the Rwanda data old versions are more popular than in the \da\ data.
+Therefore the \da\ data on OS versions is bounded by these two data sets.
 \todolater{Can we quantify this?}
 
 Unfortunately there is no ground truth of OS version information.
 However we have collated the API version information that Google has published most months since 2009.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
 While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
-We compared the data from Google and from \da\ and they appear similar.
+We compared the data from Google and from \da\ and they are similar.
 We analysed the difference between the API version data from \da\ and Google Play, normalising for days since the API version was released.
 This shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
-This means that the OS version information from \da\ is likely to be overestimating the prevalence of new OS versions and hence our results are conservative.
+This means that the OS version information from \da\ is likely to be overestimating the prevalence of new OS versions and hence our results are likely to be conservative.
 
 \section{Related work}
-We assume updates make security better but, the update process for apps, security fixes and OS upgrades also needs to be secure.
+We assume updates make security better, however the update process for apps, security fixes and OS upgrades also needs to be secure.
 Unfortunately, package management systems designed to provide secure updates have been found to contain vulnerabilities~\cite{Cappos2008} and many software update systems fail to authenticate the connection between the device and the update server or do not authenticate the downloaded binaries~\cite{Bellissimo2006}.
 Android does authenticate update binaries and Google Play downloads them over a secure connection~\cite{Viennot2014}.
 In this paper we have analysed four critical vulnerabilities in the Android app update mechanism: APK unsigned shorts, APK unchecked name, APK duplicate file and Fake ID.
 Other work has demonstrated complex and subtle errors exist in the Android app update process.
 For example, the process can be exploited to allow apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
 
-We used \da\ to record data on the OS versions of Android installed on devices, Nappa et.\ al. performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data, they did not assign client applications scores~\cite{Nappa2015}.
+We used \da\ to record data on the OS versions of Android installed on devices.
+Nappa et.\ al. performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data, they did not assign client applications scores~\cite{Nappa2015}.
 
 
 We use User-Agent strings from Rwandan internet traffic to examine the version distribution of Android OS versions.
@@ -342,7 +345,8 @@ We hope that this analysis will encourage device manufacturers and network opera
 
 \section*{Dataset}
 The raw and processed data and source code will be made available where possible when this paper is finalised.
-Data from \da\ and \avo\ used in this paper is already available, the Rwanda and FTSE data cannot be made available.
+Data from \da\ and \avo\ used in this paper is already available.
+The Rwanda and FTSE data cannot be made available due to the terms under which they were obtained.
 
 
 \section*{Acknowledgements}
