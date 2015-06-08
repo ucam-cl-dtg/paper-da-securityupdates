@@ -111,8 +111,19 @@ An added value analysis of network operators which takes into account the device
 However our sample size is too small to do that as while we have significant numbers of devices for each of the device models (Table~\ref{tab:sec_model}) and for each of the network operators (Table~\ref{tab:sec_operator}) we would need a significant number of each model in each network operator.
 %We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
-
+\pagebreak
 \subsection{Scores over time}
+The scoring metric as originally computed is averaged over the whole history of the device manufacturer, device model or network operator, it gives equal weight to periods years ago as to in the last few months.
+If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\ devices when there have been at least consecutive \daSigNumDays\ days of data with that many devices then we can plot how this score has changed over time.
+Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$) with an $\alpha$ of $1/\daSigNumDays$.
+\begin{equation}
+v_i = v_{i-1} (1 - \alpha) + n \alpha
+\label{eq:rolling_update}
+\end{equation}
+Figure~\ref{fig:security_scores} shows this for manufacturers, device models, network operators and for Nexus and non-Nexus devices.
+These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (due to things like new vulnerabilities affecting all Android being discovered) these lines still have crossings due to the different behaviour of the different entities.
+It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
+The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
 \begin{figure}
 \centering
 \begin{subfigure}{\columnwidth}
@@ -141,19 +152,6 @@ However our sample size is too small to do that as while we have significant num
 \caption{Security scores for device manufacturers, device models, network operators and Nexus devices. 95\% confidence intervals indicated.\todolater{bridge gaps?}}
 \label{fig:security_scores}
 \end{figure}
-\todo{This is method rather than result}
-The scoring metric as originally computed is averaged over the whole history of the device manufacturer, device model or network operator, it gives equal weight to periods years ago as to in the last few months.
-If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\ devices when there have been at least consecutive \daSigNumDays\ days of data with that many devices then we can plot how this score has changed over time.
-Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$) with an $\alpha$ of $1/\daSigNumDays$.
-\begin{equation}
-v_i = v_{i-1} (1 - \alpha) + n \alpha
-\label{eq:rolling_update}
-\end{equation}
-Figure~\ref{fig:security_scores} shows this for manufacturers, device models, network operators and for Nexus and non-Nexus devices.
-These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (due to things like new vulnerabilities affecting all Android being discovered) these lines still have crossings due to the different behaviour of the different entities.
-It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
-The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
-
 
 \subsection{Sensitivity of scoring metric}
 \daTabDLDistances
