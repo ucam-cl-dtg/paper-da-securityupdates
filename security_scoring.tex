@@ -172,8 +172,9 @@ If the comparative data given here is used to influence purchasing decisions the
 $f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
 A high value of $u$ could be achieved by only ever shipping one version but that would give low values for $f$ and $m$ (and not be attractive to new customers).
 A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that it gets updates but ignoring all others, but that would lower $f$ and $u$.
-One way to influence our scores would be to add additional devices to Device Analyzer, which have good security, these would have to be real end user devices since we could detect fake ones.
+One way to influence our scores would be to add additional devices to Device Analyzer, which have good security, these would have to be real end user devices since we could detect fake ones if they deviated from the behaviour of real devices in \da.
 This would increase the size of our data set and would require providing genuinely good security to some users.
+Some active attacks like blocking access to the \da\ servers from the mobile data network would not be effective as \da\ would retry on Wi-Fi, others like denial of service attacks on the \da\ servers might be effective but illegal, however some entities might be able to force the uninstallation of the app from all devices.
 Therefore, our score is secure against passive gaming attacks which change the measured distribution, but would require active defence against active gaming attacks, which target the measurement devices.
 
 \subsection{Utilitarianism}
