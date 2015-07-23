@@ -16,7 +16,7 @@
 \makeatletter
 \def\url#1{\@URL#1||\@nil}
 \def\@URL#1|#2|#3\@nil{%
-  \URL{#1}\ifx\relax#2\relax\else| \URL{#2}\fi}
+  \URL{#1}\ifx\relax#2\relax\else\ -- \URL{#2}\fi}
 \makeatother
 
 % To stop problems with links in footnotes spanning columns or pages.
