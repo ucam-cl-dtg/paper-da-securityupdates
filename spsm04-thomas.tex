@@ -247,9 +247,9 @@ By default, many Android devices will only allow the installation of apps from G
 However, alternative markets are also popular, particularly in countries where Google Play is not available.
 
 The \emph{dynamic code loading} attack vector is to make an existing app download and execute code at runtime.
-The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code.
+The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code, either as additional davik bytecode, as a native library or by embedding an interpreter and executing received instructions.
 Neither static nor dynamic analysis of this app will uncover any malicious code, since it does not exist in the app.
-The marketplace can detect explicit use of dynamic code loading, however dynamic code loading is not actually needed for this to work -- it just makes the task easier -- even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+The marketplace can try to detect explicit use of dynamic code loading, however there are ways to dynamically load code which are hard to detect even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
 The \emph{injection} attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
 For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user.
