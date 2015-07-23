@@ -53,6 +53,13 @@
 \newcommand{\identifying}[1]{#1}%{}%
 \newcommand{\blindauthors}[1]{#1}%{Paper \#XX}%
 
+% Evil hackery to provide an optional argument: https://tex.stackexchange.com/questions/308/different-command-definitions-with-and-without-optional-argument/314#314
+\makeatletter
+ \def\avovuln{\@ifnextchar[{\@avovulnsspecific}{\@avovulngeneral}}
+ \def\@avovulnsspecific[#1]#2{\emph{\href{http://androidvulnerabilities.org/vulnerabilities/#1}{#2}}}
+ \def\@avovulngeneral#1{\emph{\href{http://androidvulnerabilities.org/vulnerabilities/#1}{#1}}}
+\makeatother
+
 % Terminology
 
 % Android, Unix, adb
@@ -121,8 +128,8 @@ This is the first paper to quantify security update performance of device manufa
 
 \section{Introduction}
 
-It has been previously shown that Android devices do not receive security updates promptly when critical vulnerabilities\footnote{If malicious code exploits a critical vulnerability then it gains control of the device.} are publicly disclosed and hence, on average, \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities~\cite{androidvulnerabilities.org}.
-Here we attempt to determine why by understanding the Android update process, evaluating different entities in the ecosystem and producing a scoring metric to compare different entities.
+We show that Android devices do not receive security updates promptly when critical vulnerabilities\footnote{If malicious code exploits a critical vulnerability then it gains control of the device.} are publicly disclosed and hence, on average, \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities.
+We attempt to determine why by understanding the Android update process, evaluating different entities in the ecosystem and producing a scoring metric to compare different entities.
 
 By producing a scoring metric which compares different entities such as device manufacturers, network operators or specific device models, we can provide information that allows device purchasers to select devices with better security.
 Currently, corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
@@ -296,6 +303,17 @@ Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Ta
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
 These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
 Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
+
+\section{Vulnerability of Android dev\-ices}
+Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
+This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
+This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
+Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
+From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
+This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
+From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
+This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
 
 \input{security_scoring}
 
