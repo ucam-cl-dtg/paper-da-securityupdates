@@ -259,6 +259,23 @@ While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daG
 The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
 Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
 
+\section{Versions of Android running on devices}
+
+In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
+\da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
+Most study participants allow researchers around the world to access a subset of their device data, including the data presented here.
+
+We extracted the build string and API version for each device each day.
+The build string is a user-readable version string.
+The API version is a positive integer that increases when new features are added to the API.
+Consequently security (bug) fixes do not result in a change in the API version.
+Fortunately most (\daOSVersionPercValidLines) entries in these data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
+On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
+Google provides API version distribution information but not the OS and build version information we need.
+We verify that the \da\ data is representative in~\S\ref{sec:representative}.
+
+\da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
+The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
 \section{Critical vulnerabilities}
 We have used data on critical vulnerabilities in Android from AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
