@@ -56,7 +56,7 @@ $u$ is computed by taking the sum of the proportions of devices running the most
 $m$ is computed by counting the number of vulnerabilities which affected that entity and which have not yet been fixed on any device we have observed from that entity every day and averaging over observed days.
 However, it could be that the entity has released a fix to some devices but we have not yet observed a device with that fix.
 So the uncertainty in each vulnerability truly being outstanding is the probability of not having observed a fixed device if a fixed device existed.
-We assume that if the fix has been released then at least \daMeanOutstandingProbability\ of devices have the fix.
+We assume that if the fix has been released then at least \daMeanOutstandingProbability\ of devices have the fix.\footnote{The selection of \daMeanOutstandingProbability\ is arbitrary, but if a version has only been deployed to a smaller proportion then it does not have a substantial penetration.}
 This gives an uncertainty of \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data for each vulnerability outstanding each day.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 This does not capture systematic errors such as those due to not including vulnerabilities which do affect devices, but for comparison that does not matter.
