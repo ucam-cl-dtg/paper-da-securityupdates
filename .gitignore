@@ -45,3 +45,4 @@ latex_value.py
 version_dates_*.csv
 *.lock
 spsm-submission
+spsm-data
