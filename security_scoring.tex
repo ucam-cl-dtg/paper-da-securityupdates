@@ -57,11 +57,12 @@ $u$ is computed by taking the sum of the proportions of devices running the most
 $m$ is computed by counting the number of vulnerabilities which affected that entity and which have not yet been fixed on any device we have observed from that entity every day and averaging over observed days.
 However, it could be that the entity has released a fix to some devices but we have not yet observed a device with that fix.
 So the uncertainty in our measurement is the probability of not having observed a fixed device if a fixed device existed.
-We assume that if the fix has been released then at least \daMeanOutstandingProbability\ of devices have the fix.\footnote{The selection of \daMeanOutstandingProbability\ is arbitrary, but if a version has only been deployed to a smaller proportion then it does not have a substantial penetration.}
+We assume that if the fix has been released then at least \daMeanOutstandingProbability\ of devices have the fix.
+This represents a trade-off between a proportion so small that the fix has not really been deployed and a reasonable estimate of the error.
 This gives an uncertainty of \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data for each vulnerability outstanding each day.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
-This does not capture systematic errors such as those due to not including vulnerabilities which do affect devices, but for comparison that does not matter.
-However, we do not include manufacturer specific vulnerabilities that will influence comparisons, but we expect that performance in fixing manufacturer specific vulnerabilities is strongly correlated with performance fixing vulnerabilities affecting all of Android.
+This does not capture systematic errors.
+For example, we do not include manufacturer specific vulnerabilities, but we expect that performance in fixing manufacturer specific vulnerabilities is strongly correlated with performance fixing vulnerabilities affecting all of Android.
 
 \todolater{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
 
@@ -72,7 +73,7 @@ On average \daUpdatednessPerc\ of devices run the most recent version of Android
 This gives a security score of \daSecurityScore\ out of 10.
 
 However there are a wide variety of scores depending on the source of the device.
-There is anecdotal evidence that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices\footnote{\url{http://www.howtogeek.com/139391/htg-explains-why-android-geeks-buy-nexus-devices/}} (but the plural of anecdote is not data).
+There is anecdotal evidence that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices\footnote{\url{http://www.howtogeek.com/139391/htg-explains-why-android-geeks-buy-nexus-devices/}}.
 Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices and Figure~\ref{fig:security_score_summary} shows this holds true over time.
 
 Different device manufacturers have very different scores; Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ device manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
@@ -89,7 +90,7 @@ Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device mode
 We can then test whether this seems fair by comparing the version data for the highest and lowest scoring models.
 Figure~\ref{fig:full_version_comp}c shows the full version distribution for \emph{\daSecScoreWorstmodel}, which we only observe running one version.
 Figure~\ref{fig:full_version_comp}b shows the full version distribution for \emph{HTC Desire HD A9191}, which used to be our worst model and for which we have more historical data; it shows how it received one update at the beginning of 2012, which was deployed fairly rapidly to most devices, but received no further updates.
-Figure~\ref{fig:full_version_comp}a shows the same information for \emph{\daSecScoreBestmodel} but it is very different with \daSecScoreBestmodelNumFullVersions\ different versions, some of which were only deployed to small numbers of devices, but the distribution for all devices regularly and rapidly transitions from one version to another before ending up on `4.3 JWR66Y'.
+Figure~\ref{fig:full_version_comp}a shows the same information for \emph{\daSecScoreBestmodel} which received \daSecScoreBestmodelNumFullVersions\ different versions, some of which were only deployed to small numbers of devices, but the distribution for all devices regularly and rapidly transitions from one version to another before ending up on `4.3 JWR66Y'.
 Both \emph{Galaxy Nexus} and \emph{HTC Desire HD A9191} device models start off with the full version string of `2.3.3 GRI40' but the \emph{\daSecScoreBestmodel} receives many more updates over the same time period.
 Other models from the same manufacturer with similar model names to \emph{HTC Desire HD A9191} do much better such as the \emph{Desire HD}.
 
@@ -108,9 +109,9 @@ They could install updates automatically or pester the user into installing them
  \label{fig:full_version_comp}
 \end{figure*}
 
-We also analysed different network operators, for the \daNumSigOperators\ network operators with a significant presence in our data.
+We also analysed the \daNumSigOperators\ network operators with a significant presence in our data.
 Table~\ref{tab:sec_operator} shows the results \emph{\daSecScoreBestoperator} (\daSecScoreBestoperatorScore\ out of 10) scoring highest and \emph{\daSecScoreWorstoperator} (\daSecScoreWorstoperatorScore\ out of 10) scoring lowest.
-However, the score of a network operator is affected by the device manufacturers of the devices which are in use on its network.
+However, the score of a network operator is affected by the manufacturers of the devices which are in use on its network.
 This is in turn affected by both the device models a network operator offers to users and upon user's choice of device models.
 Hence, having a worse score does not necessarily mean that a network operator is worse, it could be that its users all pick phones from a worse device manufacturer, for example, because they were cheaper.
 A network operator could use data from this paper to exclude insecure devices from those offered to consumers.
@@ -119,6 +120,7 @@ However our sample size is too small to do that because while we have significan
 A large enough sample size would contain at least 100 unique devices each day for each device model for each network operator, hence for our 14 significant models and 13 significant network operators, a daily average of at least 18\,000 unique devices would be needed, for a period of at least a year.
 Since the distribution of devices is unlikely to be uniformly distributed across device models and network operators a more realistic estimate is 100\,000 unique devices each day.
 This is not an unobtainable number but it is two orders of magnitude more than is available in \da.
+\todo{Could abbreviate if necessary}
 %We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
 \subsection{Scores over time}
@@ -180,7 +182,9 @@ A high value of $u$ could be achieved by only ever shipping one version but that
 A high value of $m$ could be achieved by focusing on only one device at a time and ensuring that it gets updates but ignoring all others, but that would lower $f$ and $u$.
 One way to influence our scores would be to add additional devices to Device Analyzer, which have good security, these would have to be real end user devices since we could detect fake ones if they deviated from the behaviour of real devices in \da.
 This would increase the size of our data set and would require providing genuinely good security to some users.
-Some active attacks like blocking access to the \da\ servers from the mobile data network would not be effective as \da\ would retry on Wi-Fi, others like denial of service attacks on the \da\ servers might be effective but illegal, however some entities might be able to force the uninstallation of the app from all devices.
+Some active attacks like blocking access to the \da\ servers from the mobile data network would not be effective as \da\ would retry on Wi-Fi.
+Other denial of service attacks on the \da\ servers might be effective but illegal.
+Some entities might be able to force the uninstallation of the app from all devices.
 Therefore, our score is secure against passive gaming attacks which change the measured distribution, but would require active defence against active gaming attacks, which target the measurement devices.
 
 \subsection{Utilitarianism}

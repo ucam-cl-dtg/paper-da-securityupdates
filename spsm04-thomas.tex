@@ -340,7 +340,8 @@ Therefore the \da\ data on OS versions is bounded by these two data sets.
 
 Unfortunately, there is no ground truth of OS version information.
 However, we have collated the API version information that Google has published most months since 2009.\footnote{\url{http://androidvulnerabilities.org/play/historicplaydashboard}}
-While API versions are too coarse grained to use for security update detection they are closely related to OS versions and so if the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
+While API versions are too coarse grained to use for security update detection they are closely related to OS versions.
+If the \da\ data on API versions are similar to the Google data on API versions then the \da\ data on OS versions should be representative.
 We compared the data from Google and from \da\ and they are similar.
 We analysed the difference between the API version data from \da\ and Google Play, normalising for days since the API version was released.
 This shows that the \da\ data systematically overestimates the prevalence of new API versions and underestimates the prevalence of old API versions.
@@ -397,6 +398,7 @@ We examined how the Android ecosystem results in different device models receivi
 We have defined the FUM score, which evaluates the security performance of companies and organisations in shipping security updates.
 We have used this to compare different device models, device manufacturers and network operators and found that there are differences between them, which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
+\todo{Rewrite conclusion}
 
 \section*{Dataset}
 Much of the raw and processed data and source code is available, excluding that which might identify individuals~\cite{Thomas2015e}.
@@ -407,7 +409,7 @@ The Rwanda and FTSE data cannot be made available due to the terms under which t
 \identifying{
 This work was supported by a Google focussed research award; and the EPSRC [grant number EP/P505445/1].
 Thanks to \href{https://www.cl.cam.ac.uk/~sa497/}{Sherif Akoush} and \href{http://orcid.org/0000-0003-0740-8650}{Ripduman Sohan} for supplying the Rwanda data and to staff at the FTSE 100 company for supplying their mobile device management data.
-Thanks to our anonymous reviewers for their excellent insightful comments.
+Thanks to our anonymous reviewers for their insightful comments.
 }
 \sloppy
 \printbibliography
