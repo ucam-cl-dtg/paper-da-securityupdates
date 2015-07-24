@@ -1,16 +1,28 @@
-Title: Supporting data for: 
-List of authors: 
+Title: Supporting data for: "Security metrics for the Android ecosystem"
+List of authors: Daniel R. Thomas, Daniel T. Wagner, Alastair R. Beresford, Andrew Rice
 Description of data:
 
-Keywords: 
-Title of publication: 
-Name of Journal: 
-Link to publication: 
+A snapshot of androidvulnerabilities.org is contained in androidvulnerabilities.zip, the live site is at http://androidvulnerabilities.org/ and the full up to date data and source code: https://github.com/ucam-cl-dtg/android-vulnerabilities
+
+The LaTeX source of the paper: spsm04-thomas.tex and security_scoring.tex and the bibtex spsm04-thomas.{bib,bbl}
+
+The LaTeX source of the data included in the paper: avostats.tex, countversions.tex, dastats.tex the data was stored in these files using latex_value.py, the current version of which is available from: https://github.com/ucam-cl-dtg/latex_value
+
+The python code used to do version scraping: versions.py and the resulting data: version_dates_bouncycastle.csv, version_dates_linux.csv, version_dates_openssl.csv
+
+The python code used to analyse the device analyzer data and plot the graphs: contribution_analysis.py, dahelpers.py, iohelpers.py, iso8601.py, manufacturer_model_analysis.py, operator_analysis.py, os-version.py, plot_tools.py, version_security.py, version_tools.py
+
+The figures included in the paper along with some additional figures: figures.zip
+
+Keywords: Android, updates, vulnerabilities, metrics, ecosystems, python, Device Analyzer
+Title of publication: Security metrics for the Android ecosystem
+Name of Journal: ACM CCS Workshop on Security and Privacy in Smartphones and Mobile Devices (SPSM)
+Link to publication: https://www.cl.cam.ac.uk/~drt24/papers/spsm-scoring.pdf
 Already published? No
 Needs embargo? No
 Funders: EPSRC
 Grant IDs: EP/P505445/1
-File formats and software: 
+File formats and software: py, pdf, dia, csv, txt, zip, tex
 Size of dataset: Below 1GB
 Your name: Daniel R. Thomas
 Your email address: Daniel.Thomas@cl.cam.ac.uk
@@ -18,4 +30,4 @@ Your department/institute: Computer Laboratory
 ORCID ID: 0000-0001-8936-0683
 Name of PI: Alastair R. Beresford
 Additional information:
-License for data: CC BY-SA-NC
+License for data: CC BY-NC-SA

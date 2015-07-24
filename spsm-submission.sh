@@ -1,5 +1,5 @@
 #!/bin/bash
-cp spsm04-thomas.{pdf,tex} spsm-submission/
+cp spsm04-thomas.{pdf,tex,bbl} spsm-submission/
 cp security_scoring.tex spsm-submission/
 cp countversions.tex spsm-submission/
 cp avostats.tex spsm-submission/
