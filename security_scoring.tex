@@ -1,4 +1,25 @@
-\section{Comparing device manufacturers, device models and network operators}
+\section{Security metrics}\label{sec:androidvulnerability}
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{figures/proportioninsecure}
+\caption{Proportion of devices running insecure, maybe secure and secure versions of Android.}
+\label{fig:proportioninsecure}
+\end{figure}
+Table~\ref{tab:andvulns} lists the \daNumVulnsUsed\ vulnerabilities used, the red vertical lines are caused by their discovery and the most important are annotated.
+A device is insecure if it is running a vulnerable version of Android and the device has not received an update which might fix it;
+it is maybe secure if it is running a vulnerable version and but received an update which could have fixed the vulnerability if it contained a backported fix;
+and it is secure if it is running a secure version.
+Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
+This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
+This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
+Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
+From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
+This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
+From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
+This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
+
+\subsection{Comparing device manufacturers, device models and network operators}
 \label{sec:security_scoring}\label{sec:exp:security_score}
 
 To allow buyers of Android devices to purchase those devices with the best security, they need to know how different device manufacturers, device models and network operators compare in terms of the security they provide.
@@ -175,7 +196,7 @@ This shows that $m$ tends to drag down scores.
 \todolater{Sensitivity of time based vs. global scores}
 \todo{Reviewer 3 thinks we should use the Spearman rank correlation coefficient instead, and they might be right, currently being computed}
 
-\subsection{Gaming the score}
+\subsection{Gaming the score}\label{sec:gaming}
 If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.
 $f$ is hard to game without doing a good job at security but it doesn't get any worse if there is already one known vulnerability and another is found.
 A high value of $u$ could be achieved by only ever shipping one version but that would give low values for $f$ and $m$ (and not be attractive to new customers).

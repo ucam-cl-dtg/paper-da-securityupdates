@@ -132,7 +132,12 @@ This is the first paper to quantify security update performance of device manufa
 We show that Android devices do not receive security updates promptly when critical vulnerabilities\footnote{If malicious code exploits a critical vulnerability then it gains control of the device.} are publicly disclosed and hence, on average, \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities.
 We attempt to determine why by understanding the Android update process, evaluating different entities in the ecosystem and producing a scoring metric to compare different entities.
 
-By producing the FUM scoring metric which compares different entities such as device manufacturers, network operators or specific device models, we can provide information that allows device purchasers to select devices with better security.
+We propose scoring metrics to compare compares different entities such as device manufacturers, network operators or specific device models:
+$f$ the proportion of running devices free from critical vulnerabilities over time;
+$u$ the proportion of devices that run the latest version of Android shipped to any device produced by that device manufacturer;
+$m$ the mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer;
+and a composite score FUM which is hard to game (\S\ref{sec:gaming}).
+This information allows device purchasers to select devices with better security.
 Currently, corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures that are good at promptly shipping security updates, but it does not state which device manufacturers these are~\cite{CESG2013} though they have since certified one device model~\cite{CESG2015}.
 We are also collaborating with a FTSE 100 company to help answer this question.
@@ -146,17 +151,7 @@ Understanding this ecosystem is important because device manufacturers have intr
 The cause of the slow update process could be: upstream open source projects releasing patches slowly, Google including them slowly, manufacturers including them slowly, network operators shipping them slowly or customers not installing them.
 We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in~\S\ref{sec:android_ecosystem}.
 
-\begin{figure}
-\centering
-\includegraphics[width=\columnwidth]{figures/proportioninsecure}
-\caption{Proportion of devices running insecure, maybe secure and secure versions of Android.
-Table~\ref{tab:andvulns} lists the \daNumVulnsUsed\ vulnerabilities used, the red vertical lines are caused by their discovery and the most important are annotated.
-A device is insecure if it is running a vulnerable version of Android and the device has not received an update which might fix it;
-it is maybe secure if it is running a vulnerable version and but received an update which could have fixed the vulnerability if it contained a backported fix;
-and it is secure if it is running a secure version.
-}
-\label{fig:proportioninsecure}
-\end{figure}
+
 By using data from \da~\cite{Wagner2013} we can examine the versions of Android running on user devices over time and through comparison with data on which versions of Android were vulnerable to different critical vulnerabilities~\cite{androidvulnerabilities.org} we can plot the exposure of Android devices to known critical vulnerabilities.
 Figure~\ref{fig:proportioninsecure} uses data from \da\ (\S\ref{sec:da}) and the AndroidVulnerabilities.org (\avo) vulnerabilities database (\S\ref{sec:avo}) and shows that Android devices are often exposed to known security vulnerabilities (\S\ref{sec:androidvulnerability}).
 One solution to this problem is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
@@ -223,16 +218,24 @@ These vulnerabilities affect all Android devices regardless of manufacturer, and
 Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
 
 
-\section{Vulnerability of Android dev\-ices}\label{sec:androidvulnerability}
-Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
-This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
-This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
-Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
-The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
-From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
-This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
-From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
-This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
+
+\section{Device Analyzer data}\label{sec:da}
+
+In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
+\da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
+Most study participants allow researchers around the world to access a subset of their device data, including the data presented here.
+
+We extracted the build string and API version for each device each day.
+The build string is a user-readable version string.
+The API version is a positive integer that increases when new features are added to the API.
+Consequently security (bug) fixes do not always result in a change in the API version.
+Fortunately most (\daOSVersionPercValidLines) entries in these data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
+On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
+Google provides API version distribution information but not the OS and build version information we need.
+We verify that the \da\ data is representative in~\S\ref{sec:representative}.
+
+\da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
+The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
 
 \section{Android Ecosystem}\label{sec:android_ecosystem}
@@ -297,25 +300,6 @@ Android rarely changes the version of external projects it includes.
 To compute the latency between upstream releases and the release of the first version of Android containing that release we scraped the release pages for those projects, to obtain the version numbers and release dates.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
 The versions included in Android were about half a year old when the first version of Android containing it was released.
-
-
-\section{Device Analyzer data}\label{sec:da}
-
-In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
-\da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
-Most study participants allow researchers around the world to access a subset of their device data, including the data presented here.
-
-We extracted the build string and API version for each device each day.
-The build string is a user-readable version string.
-The API version is a positive integer that increases when new features are added to the API.
-Consequently security (bug) fixes do not always result in a change in the API version.
-Fortunately most (\daOSVersionPercValidLines) entries in these data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
-On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
-Google provides API version distribution information but not the OS and build version information we need.
-We verify that the \da\ data is representative in~\S\ref{sec:representative}.
-
-\da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
-The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
 
 \input{security_scoring}
