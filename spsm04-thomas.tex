@@ -135,7 +135,7 @@ We attempt to determine why by understanding the Android update process, evaluat
 By producing the FUM scoring metric which compares different entities such as device manufacturers, network operators or specific device models, we can provide information that allows device purchasers to select devices with better security.
 Currently, corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures that are good at promptly shipping security updates, but it does not state which device manufacturers these are~\cite{CESG2013}.
-We are also collaborating with a FTSE 100 company to give them concrete information to answer this question.
+We are also collaborating with a FTSE 100 company to help answer this question.
 To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
 We provide the answer to the question ``Which is the most secure Android provider I can buy from?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
 
@@ -187,15 +187,16 @@ Android devices can install apps through marketplaces, email attachments, URLs a
 By default, many Android devices will only allow the installation of apps from Google Play, which uses Bouncer to automatically analyse apps, and quickly takes down apps that are reported as malicious.
 However, alternative markets are also popular, particularly in countries where Google Play is not available.
 
-The \emph{dynamic code loading} attack vector is to make an existing app download and execute code at runtime.
+The \emph{dynamic code loading} attack vector occurs when an existing app download and execute code at runtime.
 The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code, either as additional davik bytecode, as a native library or by embedding an interpreter and executing received instructions.
 Neither static nor dynamic analysis of this app will uncover any malicious code, since it does not exist in the app.
-The marketplace can try to detect explicit use of dynamic code loading, however there are ways to dynamically load code which are hard to detect even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+The marketplace can try to detect explicit use of dynamic code loading, however there are ways to dynamically load code which are hard to detect even on a platform such as iOS, which does not permit dynamic code loading.
+For example, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
 
-The \emph{injection} attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
+The \emph{injection} attack vector occurs when the attacker injects malicious code directly into existing code already on the handset. 
 For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user.
 The fix for the addJavascriptInterface vulnerability breaks backwards compatibility and requires a two sided fix.
-While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack~\cite{Thomas2015a}.
+While the fix was released in December 2012, by \daGPAPISeventeenLaterDateMonth, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack~\cite{Thomas2015a}.
 
 The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
 Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
@@ -216,7 +217,7 @@ The different categories in which the vulnerabilities fall are shown in Table~\r
 
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities, of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
 
-Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
+We use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
 We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
 These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
 Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
@@ -269,8 +270,8 @@ Consequently Android can include any compatible versions of those projects, incl
 Android also incorporates various drivers for different bits of hardware.
 The Android platform is then built from these components by Google.
 The code for each Android release or update is kept secret until after a binary release has been published.\footnote{\url{https://source.android.com/source/code-lines.html}}
-Device manufacturers are presumed to receive advanced access in order to prepare handsets so they can customise it before passing it on to the network operator.
-The network operator may then make or request further customisations and perform further testing before shipping the update to the device.
+Device manufacturers receive advanced access in order to prepare handsets.
+The network operator may then make or request customisations and perform testing before shipping the update to the device.
 Sometimes device manufactures ship updates directly to the user without involving the network operator.
 Sometimes the device manufacturer and Google collaborate closely to make a particular phone, such as with Nexus devices and so Google ships directly to the device.
 Sometimes device manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example previous work has recorded evidence of broken nightly builds of sqlite in Android releases on some device models~\cite{Wagner2013}.
@@ -296,9 +297,6 @@ Android rarely changes the version of external projects it includes.
 To compute the latency between upstream releases and the release of the first version of Android containing that release we scraped the release pages for those projects, to obtain the version numbers and release dates.
 This allows us to compute the latency between an upstream project being released and it being included in Android, this is shown in Table~\ref{tab:update_ecosystem}.
 The versions included in Android were about half a year old when the first version of Android containing it was released.
-
-We have quantified the complexity due to the large number of participants in the ecosystem, the many updates flowing between them and the high latency of updates reaching devices.
-
 
 
 \section{Device Analyzer data}\label{sec:da}
@@ -357,7 +355,7 @@ Other work has demonstrated complex and subtle errors exist in the Android app u
 For example, the process can be exploited to allow apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
 
 We used \da\ to record data on the OS versions of Android installed on devices.
-Nappa et al. performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data, they did not assign client applications scores~\cite{Nappa2015}.
+Nappa et al.\ performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data, they did not assign client applications scores~\cite{Nappa2015}.
 
 
 We use User-Agent strings from Rwandan internet traffic to examine the version distribution of Android OS versions.
