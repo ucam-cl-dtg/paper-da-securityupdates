@@ -42,6 +42,7 @@ cp "$fromdir"security_score_operator.pdf security_score_operator.pdf
 cp "$fromdir"security_score_summary.pdf security_score_summary.pdf
 cp ~drt24/git/da/graphing/pdf/dists.pdf dists.pdf
 popd
+update_bib 2> /dev/null
 cp ~/Library/papers/library.filtered.bib securityupdates.bib
 cp /mnt/nas04-device-analyzer-graphing/stats/latex.tex dastats.tex
 cp ~/Documents/androidvulnerabilities/output/latex.tex avostats.tex
