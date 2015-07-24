@@ -14,6 +14,20 @@ The python code used to analyse the device analyzer data and plot the graphs: co
 
 The figures included in the paper along with some additional figures: figures.zip
 
+Comparisons between Google Play API data and Device Analyzer: api_gpcomp_diff.csv, api_gpcomp_rdiff.csv, gp_per_api_diff.csv, norm_api_gpcomp.csv
+
+First observations of API and OS versions: first_api_versions.csv, first_os_versions.csv
+
+Recorded instances of updates: security_updates.csv, updates.csv
+
+Significant manufacturers, models and operators: s_manufacturers.csv, s_models.csv, s_operators.csv
+
+The Device Analyzer data used is available under contract, details at: https://deviceanalyzer.cl.cam.ac.uk/
+
+Those interested in the Rwanda data should speak to Sherif Akoush: https://www.cl.cam.ac.uk/~sa497/
+
+The FTSE 100 company data is not available for external use.
+
 Keywords: Android, updates, vulnerabilities, metrics, ecosystems, python, Device Analyzer
 Title of publication: Security metrics for the Android ecosystem
 Name of Journal: ACM CCS Workshop on Security and Privacy in Smartphones and Mobile Devices (SPSM)
@@ -29,5 +43,5 @@ Your email address: Daniel.Thomas@cl.cam.ac.uk
 Your department/institute: Computer Laboratory
 ORCID ID: 0000-0001-8936-0683
 Name of PI: Alastair R. Beresford
-Additional information:
+Additional information: This data will need to be updated early next week with the final version of the data, we need a reference to add to the paper now.
 License for data: CC BY-NC-SA
