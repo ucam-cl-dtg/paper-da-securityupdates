@@ -176,6 +176,64 @@ We indicate the uncertainty in our results by presenting them $\pm$ one standard
 \todolater{Do we want to use the 95 percentile instead}
 We explore systematic errors in \S\ref{sec:representative}.
 
+\section{Threat model}
+\label{sec:threatmodel}
+
+We assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
+Here, we consider three attack vectors against Android handsets.
+
+The \emph{installation} attack vector is through the installation of a malicious app on the device.
+Android devices can install apps through marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
+By default, many Android devices will only allow the installation of apps from Google Play, which uses Bouncer to automatically analyse apps, and quickly takes down apps that are reported as malicious.
+However, alternative markets are also popular, particularly in countries where Google Play is not available.
+
+The \emph{dynamic code loading} attack vector is to make an existing app download and execute code at runtime.
+The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code, either as additional davik bytecode, as a native library or by embedding an interpreter and executing received instructions.
+Neither static nor dynamic analysis of this app will uncover any malicious code, since it does not exist in the app.
+The marketplace can try to detect explicit use of dynamic code loading, however there are ways to dynamically load code which are hard to detect even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
+
+The \emph{injection} attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
+For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user.
+The fix for the addJavascriptInterface vulnerability breaks backwards compatibility and requires a two sided fix.
+While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack~\cite{Thomas2015a}.
+
+The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
+Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
+
+
+\section{Critical vulnerabilities}\label{sec:avo}
+We have used data on critical vulnerabilities in Android from AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
+It contains information on the discovery and publication dates, the versions affected and which versions contained fixes.
+It only contains critical vulnerabilities such as root vulnerabilities that did not require USB debugging to exploit.
+If malicious code exploits a critical vulnerability then it gains control of the device.
+
+Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in \emph{installation} in our threat model.
+For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and hence be granted system privileges.
+On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
+Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
+The different categories in which the vulnerabilities fall are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are \emph{installation}, while kernel and system vulnerabilities are used with \emph{installation, dynamic code loading} and \emph{injection}.
+\avoTabAndVulns
+
+\avo\ currently contains \avoNumVulnerabilities\ vulnerabilities, of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
+
+Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
+We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
+These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
+Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
+
+
+\section{Vulnerability of Android dev\-ices}\label{sec:androidvulnerability}
+Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
+This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
+This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
+Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
+From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
+This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
+From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
+This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
+
+
 \section{Android Ecosystem}\label{sec:android_ecosystem}
 There is a complex Android ecosystem that creates and distributes updates which fix vulnerabilities.
 In this section we describe how the Android ecosystem functions and how Android versions are produced, as seen by the \da\ project and by analysing the Android source code and upstream projects.
@@ -241,31 +299,9 @@ The versions included in Android were about half a year old when the first versi
 
 We have quantified the complexity due to the large number of participants in the ecosystem, the many updates flowing between them and the high latency of updates reaching devices.
 
-\section{Threat model and attack vectors}
-\label{sec:threatmodel}
 
-We assume the defender can deploy security controls at three levels: in an online marketplace, at app installation, and during app execution.
-Here, we consider three attack vectors against Android handsets.
 
-The \emph{installation} attack vector is through the installation of a malicious app on the device.
-Android devices can install apps through marketplaces, email attachments, URLs and via the Android Debug Bridge (ADB).
-By default, many Android devices will only allow the installation of apps from Google Play, which uses Bouncer to automatically analyse apps, and quickly takes down apps that are reported as malicious.
-However, alternative markets are also popular, particularly in countries where Google Play is not available.
-
-The \emph{dynamic code loading} attack vector is to make an existing app download and execute code at runtime.
-The most direct method is to upload to a marketplace a seemingly innocent app that dynamically loads malicious code, either as additional davik bytecode, as a native library or by embedding an interpreter and executing received instructions.
-Neither static nor dynamic analysis of this app will uncover any malicious code, since it does not exist in the app.
-The marketplace can try to detect explicit use of dynamic code loading, however there are ways to dynamically load code which are hard to detect even on a platform such as iOS, which does not permit dynamic code loading, a Return-Oriented Programming (ROP) attack is relatively easy if the attacker creates an app with carefully crafted flaws~\cite{Wang2013a}.
-
-The \emph{injection} attack vector is that the attacker injects malicious code directly into existing code already on the handset. 
-For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows JavaScript running in an Android WebView to execute arbitrary code as the vulnerable app's user.
-The fix for the addJavascriptInterface vulnerability breaks backwards compatibility and requires a two sided fix.
-While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack~\cite{Thomas2015a}.
-
-The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
-Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
-
-\section{Versions of Android running on devices}\label{sec:da}
+\section{Device Analyzer data}\label{sec:da}
 
 In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
 \da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
@@ -283,38 +319,9 @@ We verify that the \da\ data is representative in~\S\ref{sec:representative}.
 \da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
 The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
-\section{Critical vulnerabilities}\label{sec:avo}
-We have used data on critical vulnerabilities in Android from AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
-It contains information on the discovery and publication dates, the versions affected and which versions contained fixes.
-It only contains critical vulnerabilities such as root vulnerabilities that did not require USB debugging to exploit.
-If malicious code exploits a critical vulnerability then it gains control of the device.
-
-Some critical vulnerabilities are not traditional kernel vulnerabilities, but are vulnerabilities in \emph{installation} in our threat model.
-For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and hence be granted system privileges.
-On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
-Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
-The different categories in which the vulnerabilities fall are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are \emph{installation}, while kernel and system vulnerabilities are used with \emph{installation, dynamic code loading} and \emph{injection}.
-\avoTabAndVulns
-
-\avo\ currently contains \avoNumVulnerabilities\ vulnerabilities, of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
-
-Unless otherwise stated, we use the \daNumVulnsUsed\ vulnerabilities shown in Table~\ref{tab:andvulns} in our analysis.
-We have chosen these vulnerabilities to fit the attack vectors introduced in \S\ref{sec:threatmodel}.
-These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
-Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
-
-\section{Vulnerability of Android dev\-ices}\label{sec:androidvulnerability}
-Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
-This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
-This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
-Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
-The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
-From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
-This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
-From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
-This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
 
 \input{security_scoring}
+
 
 \section{Comparison with other data}\label{sec:representative}
 Here we provide evidence that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with three other sources of data.
