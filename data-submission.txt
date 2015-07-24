@@ -1,0 +1,21 @@
+Title: Supporting data for: 
+List of authors: 
+Description of data:
+
+Keywords: 
+Title of publication: 
+Name of Journal: 
+Link to publication: 
+Already published? No
+Needs embargo? No
+Funders: EPSRC
+Grant IDs: EP/P505445/1
+File formats and software: 
+Size of dataset: Below 1GB
+Your name: Daniel R. Thomas
+Your email address: Daniel.Thomas@cl.cam.ac.uk
+Your department/institute: Computer Laboratory
+ORCID ID: 0000-0001-8936-0683
+Name of PI: Alastair R. Beresford
+Additional information:
+License for data: CC BY-SA-NC
