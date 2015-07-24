@@ -41,7 +41,7 @@ Neither of these metrics capture whether devices are being left behind and not b
 
 We want to provide a score out of 10 as this is easy for phone buyers to understand because many ratings are given as a score out of 10.
 Since $f$ is the most important metric we weight it more highly.
-Since $m$ is an unbounded positive real number, we map it into the range [0--1).
+Since $m$ is an unbounded positive real number, we map it into the range (0--1].
 This gives us Equation~\ref{eq:score}:
 
 \begin{equation}
@@ -72,8 +72,8 @@ This gives a security score of \daSecurityScore\ out of 10.
 
 However there are a wide variety of scores depending on the source of the device.
 There is anecdotal evidence that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices\footnote{\url{http://www.howtogeek.com/139391/htg-explains-why-android-geeks-buy-nexus-devices/}} (but the plural of anecdote is not data).
-
 Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices and Figure~\ref{fig:security_score_summary} shows this holds true over time.
+
 Different device manufacturers have very different scores; Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ device manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
 Device manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.
 Additionally, for $m$ and $u$ we ignore the days with less than \daSigNumDevicesDay\ devices contributing to that day's score.
@@ -97,8 +97,8 @@ We found that within \daModelHalfDeployment\ days of the first observation of a 
 This compares with the average rates of deployment for Android OS versions of 350 days for half and 1\,100 days for \daFullDeployedAt.
 \todolater{Compute these values automatically and with error.}
 There is a variation between device models, with the update being distributed to most devices quickly and others having a much slower roll out, but since some do update quickly the bottleneck is unlikely to be with the user.
-Perhaps some device models are preferred by user who are more likely to install updates than others, however we do observe updates being rolled out to device models quickly and user behaviour is not beyond the control of the device manufacturer.
-They could make updates be installed automatically or pester the user into installing them and at least some of them do pester, silent automatic updates do boost uptake~\cite{Duebendorfer2009}.
+Perhaps some device models are preferred by users who are more likely to install updates than others, however we do observe updates being rolled out to device models quickly and user behaviour is not beyond the control of the device manufacturer.
+They could install updates automatically or pester the user into installing them, and at least some of them do pester, silent automatic updates do boost uptake~\cite{Duebendorfer2009}.
 
 \begin{figure*}
  \centering
@@ -122,7 +122,7 @@ This is not an unobtainable number but it is two orders of magnitude more than i
 
 \subsection{Scores over time}
 The scoring metric as originally computed, is averaged over the whole history of the device manufacturer, device model or network operator, it gives equal weight to both periods years ago and to the last few months.
-If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\, devices when there have been at least consecutive \daSigNumDays\, days of data with that many devices then we can plot how this score has changed over time.
+If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\, devices when there have been at least \daSigNumDays\ consecutive days of data with that many devices then we can plot how this score has changed over time.
 Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$) with an $\alpha$ of $1/\daSigNumDays$.
 \begin{equation}
 v_i = v_{i-1} (1 - \alpha) + n \alpha
@@ -168,9 +168,9 @@ To evaluate whether the ranking of different manufacturers is sensitive to the f
 The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
 Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
 This shows that $m$ tends to drag down scores.
-\todo{Give some of the actual orderings as well for the most important ones}
+\todo{Give some of the actual orderings as well for the most important ones - no space}
 \todo{Sensitivity of time based vs. global scores}
-\todo{Reviewer 3 thinks we should use the Spearman rank correlation coefficient instead, and they might be right}
+\todo{Reviewer 3 thinks we should use the Spearman rank correlation coefficient instead, and they might be right, currently being computed}
 
 \subsection{Gaming the score}
 If the comparative data given here is used to influence purchasing decisions then entities in the Android ecosystem might try to game the score rather than genuinely improve security.

@@ -111,11 +111,12 @@ DOI: \href{http://dx.doi.org/10.1145/2808117.2808118}{http://dx.doi.org/10.1145/
 
 \begin{abstract}
 The security of Android depends on security updates for critical vulnerabilities being shipped to devices.
-We define a security metric to rank the performance of device manufacturers and network operators, based on their provision of updates and exposure to critical vulnerabilities.
+We define the FUM security metric to rank the performance of device manufacturers and network operators, based on their provision of updates and exposure to critical vulnerabilities.
 Using a corpus of \daNumOSDevices\ devices we show that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
 This provides a comparison point for purchasers to determine which device manufacturers and network operators to use.
 We argue that publishing metrics like this provides an important incentive to manufacturers and operators to ship security updates.
 This is the first paper to quantify security update performance of device manufacturers and network operators.
+\todo{Do we want to pull numeric results into the abstract or leave them out to emphasise the method rather than the results?}
 \end{abstract}
 
 % A category with the (minimum) three required fields
@@ -131,7 +132,7 @@ This is the first paper to quantify security update performance of device manufa
 We show that Android devices do not receive security updates promptly when critical vulnerabilities\footnote{If malicious code exploits a critical vulnerability then it gains control of the device.} are publicly disclosed and hence, on average, \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities.
 We attempt to determine why by understanding the Android update process, evaluating different entities in the ecosystem and producing a scoring metric to compare different entities.
 
-By producing a scoring metric which compares different entities such as device manufacturers, network operators or specific device models, we can provide information that allows device purchasers to select devices with better security.
+By producing the FUM scoring metric which compares different entities such as device manufacturers, network operators or specific device models, we can provide information that allows device purchasers to select devices with better security.
 Currently, corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures that are good at promptly shipping security updates, but it does not state which device manufacturers these are~\cite{CESG2013}.
 We are also collaborating with a FTSE 100 company to give them concrete information to answer this question.
@@ -157,7 +158,7 @@ and it is secure if it is running a secure version.
 \label{fig:proportioninsecure}
 \end{figure}
 By using data from \da~\cite{Wagner2013} we can examine the versions of Android running on user devices over time and through comparison with data on which versions of Android were vulnerable to different critical vulnerabilities~\cite{androidvulnerabilities.org} we can plot the exposure of Android devices to known critical vulnerabilities.
-Figure~\ref{fig:proportioninsecure} uses data from \da\ and the \avo\ vulnerabilities database and shows that Android devices are often exposed to known security vulnerabilities.
+Figure~\ref{fig:proportioninsecure} uses data from \da\ (\S\ref{sec:da}) and the AndroidVulnerabilities.org (\avo) vulnerabilities database (\S\ref{sec:avo}) and shows that Android devices are often exposed to known security vulnerabilities (\S\ref{sec:androidvulnerability}).
 One solution to this problem is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
 Many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates, with an overall average of \daUpdatesPerYearNominal\ per year. 
 In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates monthly until April 2014.
@@ -180,8 +181,6 @@ There is a complex Android ecosystem that creates and distributes updates which 
 In this section we describe how the Android ecosystem functions and how Android versions are produced, as seen by the \da\ project and by analysing the Android source code and upstream projects.
 We quantify the number of updates shipped by various entities in the ecosystem and the number of entities.
 
-
-\subsection{Android update process}
 
 \label{sec:android_update_process}
 \begin{figure}[h]
@@ -216,7 +215,7 @@ Device manufacturers are presumed to receive advanced access in order to prepare
 The network operator may then make or request further customisations and perform further testing before shipping the update to the device.
 Sometimes device manufactures ship updates directly to the user without involving the network operator.
 Sometimes the device manufacturer and Google collaborate closely to make a particular phone, such as with Nexus devices and so Google ships directly to the device.
-Sometimes device manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example previous work has recorded evidence of broken nightly builds of sqlite in Android releases~\cite{Wagner2013}.
+Sometimes device manufacturers incorporate upstream open source project releases directly, and sometimes incorrectly -- for example previous work has recorded evidence of broken nightly builds of sqlite in Android releases on some device models~\cite{Wagner2013}.
 
 The numbers of devices (\daNumOSDevices), network operators (\daNumOperators) and device manufacturers (\daNumManufacturers) in Figure~\ref{fig:update_ecosystem} come from the \da\ data.
 Device manufacturer and network operator counts were obtained by normalising the results reported by Android to \da\ of the device manufacturer and active network operator.
@@ -266,7 +265,7 @@ While the fix was released in December 2012, on \daGPAPISeventeenLaterDate, \daG
 The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
 Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
 
-\section{Versions of Android running on devices}
+\section{Versions of Android running on devices}\label{sec:da}
 
 In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
 \da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
@@ -275,7 +274,7 @@ Most study participants allow researchers around the world to access a subset of
 We extracted the build string and API version for each device each day.
 The build string is a user-readable version string.
 The API version is a positive integer that increases when new features are added to the API.
-Consequently security (bug) fixes do not result in a change in the API version.
+Consequently security (bug) fixes do not always result in a change in the API version.
 Fortunately most (\daOSVersionPercValidLines) entries in these data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
 On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
 Google provides API version distribution information but not the OS and build version information we need.
@@ -284,7 +283,7 @@ We verify that the \da\ data is representative in~\S\ref{sec:representative}.
 \da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
 The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
-\section{Critical vulnerabilities}
+\section{Critical vulnerabilities}\label{sec:avo}
 We have used data on critical vulnerabilities in Android from AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
 It contains information on the discovery and publication dates, the versions affected and which versions contained fixes.
 It only contains critical vulnerabilities such as root vulnerabilities that did not require USB debugging to exploit.
@@ -304,7 +303,7 @@ We have chosen these vulnerabilities to fit the attack vectors introduced in \S\
 These vulnerabilities affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
 Hence, with our chosen set of vulnerabilities, our analysis represents a lower-bound on the vulnerability of devices in the \da\ data.
 
-\section{Vulnerability of Android dev\-ices}
+\section{Vulnerability of Android dev\-ices}\label{sec:androidvulnerability}
 Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
 This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
@@ -318,7 +317,7 @@ This gives us an average exposure to critical vulnerabilities of Android devices
 \input{security_scoring}
 
 \section{Comparison with other data}\label{sec:representative}
-Here we provide evidence that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with two other sources of data.
+Here we provide evidence that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with three other sources of data.
 The \da\ data is collected from devices across the world where users have voluntarily installed the app.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database, which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
 \todo{citation for Rwanda dataset}
