@@ -1,15 +1,22 @@
 \section{Security metrics}\label{sec:androidvulnerability}
+\label{sec:security_scoring}\label{sec:exp:security_score}
+
+To allow buyers of Android devices to purchase those devices with the best security, they need to know how different device manufacturers, device models and network operators compare in terms of the security they provide.
+We propose a method to score a device manufacturer, device model or network operator based on its historic performance at keeping devices up-to-date and fixing security vulnerabilities.
+We find that Android as a whole gets a score of \daSecurityScore\ out of 10, the highest scoring device manufacturer is \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) and the lowest scoring is \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10).
+
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/proportioninsecure}
-\caption{Proportion of devices running insecure, maybe secure and secure versions of Android.}
+\caption{Proportion of devices running insecure, maybe secure and secure versions of Android.
+Table~\ref{tab:andvulns} lists the \daNumVulnsUsed\ vulnerabilities used, the red vertical lines are caused by their discovery and the most important are annotated.}
 \label{fig:proportioninsecure}
 \end{figure}
-Table~\ref{tab:andvulns} lists the \daNumVulnsUsed\ vulnerabilities used, the red vertical lines are caused by their discovery and the most important are annotated.
-A device is insecure if it is running a vulnerable version of Android and the device has not received an update which might fix it;
-it is maybe secure if it is running a vulnerable version and but received an update which could have fixed the vulnerability if it contained a backported fix;
+By combining data on critical vulnerabilities in Android and the versions of Android running on devices we can determine which vulnerabilities each device was vulnerable to each day.
+Then we consider a device is insecure if it is running a vulnerable version of Android and the device has not received an update which might fix it;
+it is maybe secure if it is running a vulnerable version but received an update which could have fixed the vulnerability if it contained a backported fix;
 and it is secure if it is running a secure version.
-Combining the data on critical vulnerabilities and versions of Android allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
+This allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
 This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
 Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
@@ -18,15 +25,9 @@ From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplic
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
 This gives us an average exposure to critical vulnerabilities of Android devices of \daMeanInsecurityPerc.
+This is $1 - f$, the proportion of devices free from critical vulnerabilities, however this is only one component of a more robust score, the FUM score.
 
-\subsection{Comparing device manufacturers, device models and network operators}
-\label{sec:security_scoring}\label{sec:exp:security_score}
-
-To allow buyers of Android devices to purchase those devices with the best security, they need to know how different device manufacturers, device models and network operators compare in terms of the security they provide.
-We propose a method to score a device manufacturer, device model or network operator based on its historic performance at keeping devices up-to-date and fixing security vulnerabilities.
-We find that Android as a whole gets a score of \daSecurityScore\ out of 10, the highest scoring device manufacturer is \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) and the lowest scoring is \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10).
-
-\subsection{Method: Scoring for security}\label{sec:security_scoring:method}
+\subsection{Method: The FUM score}\label{sec:security_scoring:method}
 
 Computing how good a particular device manufacturer or device model is from a security standpoint is difficult because it depends on a number of factors which are hard to observe, particularly on a large scale.
 Ideally, we would consider both the prevalence of potential problems that were not exploited and actual security failures.
