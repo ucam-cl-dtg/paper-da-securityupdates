@@ -144,18 +144,28 @@ There is a variation between device models, with the update being distributed to
 Perhaps some device models are preferred by users who are more likely to install updates than others, however we do observe updates being rolled out to device models quickly and user behaviour is not beyond the control of the device manufacturer.
 They could install updates automatically or pester the user into installing them, and at least some of them do pester, silent automatic updates do boost uptake~\cite{Duebendorfer2009}.
 
+
+\subsection{Sensitivity of scoring metric}
+\daTabSpearmanRanks
+\daTabChangeInScores
+To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Spearman's Rank correlation coefficient between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:spearman_ranks}.
+The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
+Similarly weighting $u$ or $m$ more highly rather than $f$ makes little difference.
+While the $f$, $u$ and $m$ components do have some correlation with the overall FUM score, the rankings produced vary substantially.
+Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
+This shows that $m$ tends to drag down scores.
+\todolater{Give some of the actual orderings as well for the most important ones - no space}
+\todolater{Sensitivity of time based vs. global scores - no time}
+
+
+\subsection{Utilitarianism}
+From a utilitarian standpoint, while small manufacturers like Symphony and Walton do badly on our scores, they do not have as many customers as higher scoring manufacturers.
+Hence the total risk to users from the higher scoring popular manufacturers is higher than the risk from the lower scoring unpopular manufacturers.
+We could normalise for market penetration and so give a score reflecting the risk posed by that manufacturer's performance, which would tend to decrease the difference between manufacturers in our current scoring.
+Since our scores are provided so that customers can chose which devices to buy then it is the marginal risk to that individual of that device which is of interest rather than the aggregate risk to all users.
+
+
 \subsection{Scores over time}
-The scoring metric as originally computed, is averaged over the whole history of the device manufacturer, device model or network operator, it gives equal weight to both periods years ago and to the last few months.
-If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\, devices when there have been at least \daSigNumDays\ consecutive days of data with that many devices then we can plot how this score has changed over time.
-Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$) with an $\alpha$ of $1/\daSigNumDays$.
-\begin{equation}
-v_i = v_{i-1} (1 - \alpha) + n \alpha
-\label{eq:rolling_update}
-\end{equation}
-Figure~\ref{fig:security_scores} shows this for manufacturers, device models, network operators and for Nexus and non-Nexus devices.
-These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (for instance, when new vulnerabilities affecting all Android are discovered), these lines still have crossings due to the different behaviour of the various entities.
-It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
-The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
 \begin{figure}
 \centering
 \begin{subfigure}{\columnwidth}
@@ -184,18 +194,18 @@ The clearest results are for Figure~\ref{fig:security_score_summary} with a larg
 \caption{Security scores for device manufacturers, device models, network operators and Nexus devices. 95\% confidence intervals indicated.}
 \label{fig:security_scores}
 \end{figure}
+The scoring metric as originally computed, is averaged over the whole history of the device manufacturer, device model or network operator, it gives equal weight to both periods years ago and to the last few months.
+If instead we take an exponential moving average of the daily score for days with more than \daSigNumDevicesDay\, devices when there have been at least \daSigNumDays\ consecutive days of data with that many devices then we can plot how this score has changed over time.
+Equation~\ref{eq:rolling_update} shows how the value for a particular day ($v_i$) is computed from the previous day's value and the input for the current day ($n$) with an $\alpha$ of $1/\daSigNumDays$.
+\begin{equation}
+v_i = v_{i-1} (1 - \alpha) + n \alpha
+\label{eq:rolling_update}
+\end{equation}
+Figure~\ref{fig:security_scores} shows this for manufacturers, device models, network operators and for Nexus and non-Nexus devices.
+These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (for instance, when new vulnerabilities affecting all Android are discovered), these lines still have crossings due to the different behaviour of the various entities.
+It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
+The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
 
-\subsection{Sensitivity of scoring metric}
-\daTabSpearmanRanks
-\daTabChangeInScores
-To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Spearman's Rank correlation coefficient between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:spearman_ranks}.
-The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
-Similarly weighting $u$ or $m$ more highly rather than $f$ makes little difference.
-While the $f$, $u$ and $m$ components do have some correlation with the overall FUM score, the rankings produced vary substantially.
-Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
-This shows that $m$ tends to drag down scores.
-\todolater{Give some of the actual orderings as well for the most important ones - no space}
-\todolater{Sensitivity of time based vs. global scores - no time}
 
 
 \subsection{Gaming the score}\label{sec:gaming}
@@ -210,8 +220,3 @@ Other denial of service attacks on the \da\ servers might be effective but illeg
 Some entities might be able to force the uninstallation of the app from all devices.
 Therefore, our score is secure against passive gaming attacks which change the measured distribution, but would require active defence against active gaming attacks, which target the measurement devices.
 
-\subsection{Utilitarianism}
-From a utilitarian standpoint, while small manufacturers like Symphony and Walton do badly on our scores, they do not have as many customers as higher scoring manufacturers.
-Hence the total risk to users from the higher scoring popular manufacturers is higher than the risk from the lower scoring unpopular manufacturers.
-We could normalise for market penetration and so give a score reflecting the risk posed by that manufacturer's performance, which would tend to decrease the difference between manufacturers in our current scoring.
-Since our scores are provided so that customers can chose which devices to buy then it is the marginal risk to that individual of that device which is of interest rather than the aggregate risk to all users.
