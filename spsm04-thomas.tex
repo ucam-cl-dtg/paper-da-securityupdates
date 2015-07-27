@@ -196,8 +196,11 @@ While the fix was released in December 2012, by \daGPAPISeventeenLaterDateMonth,
 The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
 Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
 
+\section{Data}
+We use two sources of data to measure the security of Android: (1) information on the distribution of Android versions over time and (2) information on the critical vulnerabilities found to affect Android.
+These two datasets can then be combined to determine the proportion of devices at risk of attack from specific vulnerabilities.
 
-\section{Critical vulnerabilities}\label{sec:avo}
+\subsection{Critical vulnerabilities}\label{sec:avo}
 We have used data on critical vulnerabilities in Android from AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
 It contains information on the discovery and publication dates, the versions affected and which versions contained fixes.
 It only contains critical vulnerabilities such as root vulnerabilities that did not require USB debugging to exploit.
@@ -219,7 +222,7 @@ Hence, with our chosen set of vulnerabilities, our analysis represents a lower-b
 
 
 
-\section{Device Analyzer data}\label{sec:da}
+\subsection{Device Analyzer data}\label{sec:da}
 
 In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
 \da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
