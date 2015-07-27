@@ -128,19 +128,19 @@ On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities
 
 \section{Introduction}
 
-We show that Android devices do not receive security updates promptly when critical vulnerabilities\footnote{If malicious code exploits a critical vulnerability then it gains control of the device.} are publicly disclosed and hence, on average, \daMeanInsecurityPercNominal\ are exposed to known critical vulnerabilities.
-We attempt to determine why by understanding the Android update process, evaluating different entities in the ecosystem and producing a scoring metric to compare different entities.
+\todo{new opening paragraph}
 
-We propose scoring metrics to compare compares different entities such as device manufacturers, network operators or specific device models:
-$f$ the proportion of running devices free from critical vulnerabilities over time;
-$u$ the proportion of devices that run the latest version of Android shipped to any device produced by that device manufacturer;
-$m$ the mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer;
-and a composite score FUM which is hard to game (\S\ref{sec:gaming}).
+We propose scoring metrics to compare compares different entities such as device manufacturers, network operators or specific device models.
 This information allows device purchasers to select devices with better security.
 Currently, corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
 For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures that are good at promptly shipping security updates, but it does not state which device manufacturers these are~\cite{CESG2013} though they have since certified one device model~\cite{CESG2015}.
 We are also collaborating with a FTSE 100 company to help answer this question.
 To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
+We propose three metrics:
+$f$ the proportion of running devices free from critical vulnerabilities over time;
+$u$ the proportion of devices that run the latest version of Android shipped to any device produced by that device manufacturer;
+$m$ the mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer;
+and a composite score FUM which is hard to game (\S\ref{sec:gaming}).
 We provide the answer to the question ``Which is the most secure Android provider I can buy from?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
 
 The Android update process is slow because its development is distributed among many parties and has a long multi-stage pipeline~\cite{HTC2013}.
