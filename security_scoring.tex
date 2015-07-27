@@ -138,11 +138,9 @@ This is in turn affected by both the device models a network operator offers to 
 Hence, having a worse score does not necessarily mean that a network operator is worse, it could be that its users all pick phones from a worse device manufacturer, for example, because they were cheaper.
 A network operator could use data from this paper to exclude insecure devices from those offered to consumers.
 An added value analysis of network operators, which takes into account the device mix used by users of that network operator, would make it possible to determine whether a network operator is making the situation better or worse by the way it ships updates to users.
-However our sample size is too small to do that because while we have significant numbers of devices for each of the device models (Table~\ref{tab:sec_model}) and for each of the network operators (Table~\ref{tab:sec_operator}), we would need a significant number of each model in each network operator.
-A large enough sample size would contain at least 100 unique devices each day for each device model for each network operator, hence for our \daNumSigModels significant models and \daNumSigOperators significant network operators, a daily average of at least 18\,000 unique devices would be needed, for a period of at least a year.
-Since the distribution of devices is unlikely to be uniformly distributed across device models and network operators a more realistic estimate is 100\,000 unique devices each day.
+However our sample size is too small to do that because while we have significant numbers of devices for each of the \daNumSigModels\ device models (Table~\ref{tab:sec_model}) and for each of the \daNumSigOperators\ network operators (Table~\ref{tab:sec_operator}), we would need a significant number of each model in each network operator.
+Since the distribution of devices is unlikely to be uniformly distributed across device models and network operators we estimate that 100\,000 unique devices are required each day for at least a year.
 This is not an unobtainable number but it is two orders of magnitude more than is available in \da.
-\todo{Could abbreviate if necessary}
 %We do not attempt to disambiguate users behaviour in whether they install updates from network operators using rolling upgrades.
 
 \subsection{Scores over time}
