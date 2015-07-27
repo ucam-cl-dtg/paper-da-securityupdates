@@ -13,9 +13,9 @@ Table~\ref{tab:andvulns} lists the \daNumVulnsUsed\ vulnerabilities used, the re
 \label{fig:proportioninsecure}
 \end{figure}
 By combining data on critical vulnerabilities in Android and the versions of Android running on devices we can determine which vulnerabilities each device was vulnerable to each day.
-Then we consider a device is insecure if it is running a vulnerable version of Android and the device has not received an update which might fix it;
-it is maybe secure if it is running a vulnerable version but received an update which could have fixed the vulnerability if it contained a backported fix;
-and it is secure if it is running a secure version.
+Then we consider a device is \emph{insecure} if it is running a vulnerable version of Android and the device has not received an update which might fix it;
+it is \emph{maybe secure} if it is running a vulnerable version but received an update which could have fixed the vulnerability if it contained a backported fix;
+and it is \emph{secure} if it is running a secure version.
 This allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
 This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
@@ -96,7 +96,7 @@ This gives a security score of \daSecurityScore\ out of 10.
 
 However there are a wide variety of scores depending on the source of the device.
 There is anecdotal evidence that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices\footnote{\url{http://www.howtogeek.com/139391/htg-explains-why-android-geeks-buy-nexus-devices/}}.
-Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices and Figure~\ref{fig:security_score_summary} shows this holds true over time.
+Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices.
 
 Different device manufacturers have very different scores; Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ device manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
 Device manufacturers are considered significant if we have data from at least \daSigNumDevices\ devices and at least \daSigNumDeviceDays\ days of contributions.

@@ -114,8 +114,8 @@ The security of Android depends on timely delivery of security updates for criti
 We define the FUM security metric to rank the performance of device manufacturers and network operators, based on their provision of updates and exposure to critical vulnerabilities.
 Using a corpus of \daNumOSDevices\ devices we show that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
 This provides a comparison point for purchasers to determine which device manufacturers and network operators to use.
-We find that \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities and assign a FUM security score of \daSecurityScoreNominal\ out of 10 while Nexus devices gets \daSecScoreBestsummaryScoreNominal\ and \daSecScoreBestmanufacturer\ \daSecScoreBestmanufacturerScoreNominal.
-On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities are not fixed on any device and only \daUpdatednessPercNominal\ of devices run the current version of Android.
+We find that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities and assign a FUM security score of \daSecurityScoreNominal\ out of 10 while Nexus devices gets \daSecScoreBestsummaryScoreNominal\ and \daSecScoreBestmanufacturer\ \daSecScoreBestmanufacturerScoreNominal.
+On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities are not fixed on any device and on average only \daUpdatednessPercNominal\ of devices run the current version of Android.
 \end{abstract}
 
 % A category with the (minimum) three required fields
@@ -128,7 +128,8 @@ On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities
 
 \section{Introduction}
 
-\todo{new opening paragraph}
+To evaluate the security of a system we need to be able to measure it.
+Only then can customers and regulators behave appropriately and without it then they are stuck with a lemons market.
 
 We propose scoring metrics to compare compares different entities such as device manufacturers, network operators or specific device models.
 This information allows device purchasers to select devices with better security.
@@ -148,13 +149,12 @@ The security of Android relies on many open source projects, including the Li\-n
 In addition, device manufacturers (we know of \daNumManufacturers) and network operators (\daNumOperators) may make further modifications before devices are shipped to customers.
 Understanding this ecosystem is important because device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
 The cause of the slow update process could be: upstream open source projects releasing patches slowly, Google including them slowly, manufacturers including them slowly, network operators shipping them slowly or customers not installing them.
-We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in~\S\ref{sec:android_ecosystem}.
+We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in~\S\ref{sec:android_ecosystem} and the update bottleneck in \S\ref{sec:bottleneck}.
 
 
-By using data from \da~\cite{Wagner2013} we can examine the versions of Android running on user devices over time and through comparison with data on which versions of Android were vulnerable to different critical vulnerabilities~\cite{androidvulnerabilities.org} we can plot the exposure of Android devices to known critical vulnerabilities.
-Figure~\ref{fig:proportioninsecure} uses data from \da\ (\S\ref{sec:da}) and the AndroidVulnerabilities.org (\avo) vulnerabilities database (\S\ref{sec:avo}) and shows that Android devices are often exposed to known security vulnerabilities (\S\ref{sec:androidvulnerability}).
+By using data from \da~\cite{Wagner2013} we can examine the versions of Android running on user devices over time and through comparison with data on which versions of Android were vulnerable to different critical vulnerabilities~\cite{androidvulnerabilities.org} we can measure the exposure of Android devices to known critical vulnerabilities.
 One solution to this problem is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
-Many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates, with an overall average of \daUpdatesPerYearNominal\ per year. 
+Many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates, with an overall average of \daUpdatesPerYearNominal\ updates per year. 
 In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates monthly until April 2014.
 An alternative to regulation is access to publicly available data.
 Comparative data, which we provide in this paper, and will continue to publish on our companion website, provides an incentive to both device manufacturers and network operators to provide updates.
@@ -162,9 +162,9 @@ Comparative data, which we provide in this paper, and will continue to publish o
 In summary, the contributions of this paper are:
 \begin{itemize}
  \item We quantify the Android update process, providing concrete numbers on the flow of updates and their latency~(\S\ref{sec:android_ecosystem}).
- \item We determine that the main update bottleneck lies with manufacturers rather than operators or users~(\S\ref{sec:bottleneck}).
  \item We propose the FUM scoring metric to evaluate the security of different instances of a platform~(\S\ref{sec:security_scoring:method}).
  \item We measure the security of Android against our scoring metric and compare different device manufacturers, device models and network operators to allow device purchasers to differentiate between them based on security~(\S\ref{sec:security_scoring:results}).
+ \item We determine that the main update bottleneck lies with manufacturers rather than operators or users~(\S\ref{sec:bottleneck}).
 \end{itemize}
 
 We indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3~s.f., this occasionally results in `$\pm\, 0$' when the standard deviation is small.
@@ -194,10 +194,10 @@ The fix for the addJavascriptInterface vulnerability breaks backwards compatibil
 While the fix was released in December 2012, by \daGPAPISeventeenLaterDateMonth, \daGPAPISeventeenEarlierProportion\ of handsets connecting to Google Play were still vulnerable to this attack~\cite{Thomas2015a}.
 
 The best place to prevent attacks is at runtime, since all three attack vectors can be prevented at this level. 
-Unfortunately, as Figure~\ref{fig:proportioninsecure} shows, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
+Unfortunately, the sandbox for Android apps is weak, since on most devices there are known critical vulnerabilities in it.
 
 \section{Data}
-We use two sources of data to measure the security of Android: (1) information on the distribution of Android versions over time and (2) information on the critical vulnerabilities found to affect Android.
+We use two sources of data to measure the security of Android: (1) information on the critical vulnerabilities found to affect Android and (2) information on the distribution of Android versions over time.
 These two datasets can then be combined to determine the proportion of devices at risk of attack from specific vulnerabilities.
 
 \subsection{Critical vulnerabilities}\label{sec:avo}
@@ -210,7 +210,7 @@ Some critical vulnerabilities are not traditional kernel vulnerabilities, but ar
 For example improper verification of signatures at installation time was discovered in February 2013~\cite{Forristal2013} and meant that applications could pretend to be signed with system keys and hence be granted system privileges.
 On versions of Android below 4.1 malware could then use known system-to-root escalation mechanisms.
 Regardless of version, this exposed an increased attack area and would also provide the ability for malware to control all user internet traffic (via VPNs), brick the phone, remove and install apps, steal user credentials and read the screen.
-The different categories in which the vulnerabilities fall are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are \emph{installation}, while kernel and system vulnerabilities are used with \emph{installation, dynamic code loading} and \emph{injection}.
+The different categories in which the vulnerabilities fall are shown in Table~\ref{tab:andvulns}, `signature' vulnerabilities are \emph{installation}, while `kernel' and `system' vulnerabilities are used with \emph{installation, dynamic code loading} and \emph{injection}.
 \avoTabAndVulns
 
 \avo\ currently contains \avoNumVulnerabilities\ vulnerabilities, of which \avoNumVulnAllAndroid\ affect all Android devices and \avoNumVulnSpecific\ are specific to particular devices or device manufacturers.
@@ -223,8 +223,7 @@ Hence, with our chosen set of vulnerabilities, our analysis represents a lower-b
 
 
 \subsection{Device Analyzer data}\label{sec:da}
-
-In this analysis we use historical data collected by the \da\ project~\cite{Wagner2013}.
+We use historical data collected by the \da\ project~\cite{Wagner2013}.
 \da\ collects data\footnote{\url{https://deviceanalyzer.cl.cam.ac.uk/collected.html}} from study participants who install the Android app from Google Play.
 Most study participants allow researchers a\-round the world to access a subset of their device data, including the data presented here.
 
@@ -237,7 +236,7 @@ On a large proportion of devices `opaque\_marker' is a well defined build number
 Google provides API version distribution information but not the OS and build version information we need.
 We verify that the \da\ data is representative in~\S\ref{sec:representative}.
 
-\da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\footnote{Here we are only counting devices and days for which we have valid OS version data.} device days.
+\da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays device days.
 The majority of devices only contribute data for a short period of time, however \daMonthsDevices\ devices have contributed data for more than \daMonths~months.
 
 
@@ -309,8 +308,7 @@ The versions included in Android were about half a year old when the first versi
 
 
 \section{Comparison with other data}\label{sec:representative}
-Here we provide evidence that the \da\ data~\cite{Wagner2013} is representative for our purposes by comparing it with three other sources of data.
-The \da\ data is collected from devices across the world where users have voluntarily installed the app.
+We compare the Device Analyzer data with three other sources of data and show it is representative for our purposes.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database, which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
 \todo{citation for Rwanda dataset}
 \begin{figure}
@@ -321,7 +319,7 @@ We have obtained comparable data on 5\,290 devices from a multinational FTSE 100
 \end{figure}
 We used the data from the FTSE 100 company for a week in April 2015 and the User-Agent data was collected in February 2015. %between 2015-01-31 and 2015-02-12.% FTSE 2015-04-27
 Figure~\ref{fig:dists} shows the proportion of devices running each Android OS version in the two comparison data sets and the comparable periods from \da.
-The general pattern this shows is that in the FTSE data newer versions are more popular than in the \da\ data and that in the Rwanda data old versions are more popular than in the \da\ data.
+The general pattern this shows is that in the FTSE data newer versions are more popular than in the \da\ data and that in the Rwanda data old versions are more popular.
 Therefore the \da\ data on OS versions is bounded by these two data sets.
 \todolater{Can we quantify this?}
 
