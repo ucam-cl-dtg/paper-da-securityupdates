@@ -379,11 +379,16 @@ Later data demonstrates the difficulty of upgrading computers between major OS v
 
 
 \section{Conclusion}
-We examined how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates.
+We quantified how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates.
+We found that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities.
+On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities are not fixed on any device and on average only \daUpdatednessPercNominal\ of devices run the current version of Android.
 We have defined the FUM score, which evaluates the security performance of companies and organisations in shipping security updates.
 We have used this to compare different device models, device manufacturers and network operators and found that there are differences between them, which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
+While Android has a score of \daSecurityScoreNominal\ out of 10, Nexus devices get \daSecScoreBestsummaryScoreNominal\ and \daSecScoreBestmanufacturer\ \daSecScoreBestmanufacturerScoreNominal.
 We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
-\todo{Rewrite conclusion}
+
+The FUM score is applicable to other software ecosystems, as long as information on vulnerabilities and the versions they affected, as well as data on which versions were running on real devices is available.
+
 
 \section*{Dataset}
 Much of the raw and processed data and source code is available, excluding that which might identify individuals~\cite{Thomas2015e}.
