@@ -354,7 +354,7 @@ It is possible that many updates arrive at handsets, but are simply not installe
 Anecdotal evidence at least suggests that it is the lack of updates rather the lack of installation, which is the major problem at present and \S\ref{sec:security_scoring:results} supports this. Further work is required to tease these numbers apart.
 Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
 The same technique would be more difficult on phones with limited storage space (as many cheap Android phones have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
-Google is deploying the same silent update technique through Google Play Services,\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this also bypasses the device manufacturer and network operator.
+Google is deploying the same silent update technique through Google Play Services,\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this bypasses the device manufacturer and network operator.
 
 As well as supplying security updates promptly, the impact of vulnerabilities can be reduced through security in depth.
 In this regard, iOS provides additional safeguards beyond those used in Android, including a pre-distribution review, mandatory code-signing by the manufacturer, and (with the important exception of ROP-based attacks~\cite{Wang2013a}) the technical prohibition of dynamic code loading by an app.
@@ -372,9 +372,9 @@ An\-Darwin uses this insight to detect similar apps, and found 169 out of 265\,3
 Other approaches have made further use of malware dependency graphs~\cite{Lindorfer2014} or tried to extract further semantic information to avoid malware being able to avoid detection~\cite{Zhang2014} but simpler approaches based on extracting strings from the binaries can be more effective~\cite{Arp2014} in terms of false positives and false negatives.
 There is a lack of ground truth data, a danger in training algorithms based on APK files that other algorithms have already found which might lead to new malware being missed and DroidChameleon showed that existing AntiVirus apps could be fooled by simple permutations of malicious APKs~\cite{Rastogi2013}.
 
-The percentage of Android devices running the most recent version (\daUpdatednessPerc) is much less than the rate ($>90$\%) for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006}.
-A simple numerical comparison is unfair because only one major OS version was considered in the Microsoft analysis, and data was only collected from computers that contacted the update server, although this was the default.
-More recent data demonstrates the difficulty of upgrading computers between major OS versions, with 27\% of Windows computers running Windows XP in July 2014,\footnote{\url{https://archive.today/PLGxn}} four months after Windows XP stopped receiving security updates.
+The percentage of Android devices running the current version (\daUpdatednessPercNominal) is much less than the rate ($>90$\%) for Windows XP SP2 computers contacting the Microsoft update servers~\cite{Gkantsidis2006}.
+A simple numerical comparison is unfair because only one major OS version was considered in the Microsoft analysis, and data was only collected from computers that contacted the update server (this was the default).
+Later data demonstrates the difficulty of upgrading computers between major OS versions, with 27\% of Windows computers running Windows XP in July 2014,\footnote{\url{https://archive.today/PLGxn}} four months after Windows XP stopped receiving security updates.
 
 
 \section{Conclusion}
