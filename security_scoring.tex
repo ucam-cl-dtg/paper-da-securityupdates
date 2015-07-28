@@ -13,17 +13,17 @@ Table~\ref{tab:andvulns} lists the \daNumVulnsUsed\ vulnerabilities used, the re
 \label{fig:proportioninsecure}
 \end{figure}
 By combining data on critical vulnerabilities in Android and the versions of Android running on devices we can determine which vulnerabilities each device was vulnerable to each day.
-Then we consider a device is \emph{insecure} if it is running a vulnerable version of Android and the device has not received an update which might fix it;
+We consider a device is \emph{insecure} if it is running a vulnerable version of Android and the device has not received an update which might fix it;
 it is \emph{maybe secure} if it is running a vulnerable version but received an update which could have fixed the vulnerability if it contained a backported fix;
 and it is \emph{secure} if it is running a secure version.
 This allows us to plot Figure~\ref{fig:proportioninsecure}, initially all devices are \emph{maybe secure} (yellow) since \da\ does not have historical data prior to May 2011.
 This means we cannot distinguish between devices which are running a version of Android which is known to be vulnerable from one which may have received a backported fix.
 This demonstrates the importance of a longitudinal study: this type of analysis requires years of data.
-Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were exposed to that vulnerability.
+Once \avovuln{zergRush} was discovered in October 2011 then most devices are recorded as \emph{insecure} (red) as they were vulnerable.
 The remaining devices were already running a version of Android which fixed the \avovuln{zergRush} vulnerability and are therefore marked as \emph{secure} (green).
-From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded.
+From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded or replaced.
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
-From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are exposed to known critical vulnerabilities.
+From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are vulnerable.
 This means that \daMeanInsecurityPerc\ of devices were classified as \emph{insecure} to at least one critical vulnerability between \daStartDateMonth\ and \daEndDateMonth\ (ignoring devices classed as \emph{maybe secure}).
 %This is $1 - f$, the proportion of devices free from critical vulnerabilities, however this is only one component of a more robust score, the FUM score.
 
@@ -62,7 +62,7 @@ However it does not capture the increased risk caused by there being multiple kn
 This is captured by the $m$ score, which measures the size of the device manufacturers queue of outstanding vulnerabilities but does not take into account the update process or measure the actual end user security.
 Neither of these metrics capture whether devices are being left behind and not being kept up-to-date with the most recent (and hopefully most secure) version, which is captured by $u$.
 
-We want to provide a score out of 10 as this is easy for phone buyers to understand because many ratings are given as a score out of 10.
+We want to provide a score out of 10 as many other ratings are given as a score out of 10.
 Since $f$ is the most important metric we weight it more highly.
 Since $m$ is an unbounded positive real number, we map it into the range (0--1].
 This gives us the FUM score:
@@ -202,7 +202,7 @@ v_i = v_{i-1} (1 - \alpha) + n \alpha
 \label{eq:rolling_update}
 \end{equation}
 Figure~\ref{fig:security_scores} shows this for manufacturers, device models, network operators and for Nexus and non-Nexus devices.
-These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (for instance, when new vulnerabilities affecting all Android are discovered), these lines still have crossings due to the different behaviour of the various entities.
+These show how the scores for different entities are different and change over time, while there is correlated behaviour for different entities (for instance, when new vulnerabilities affecting all Android are discovered), these lines still cross due to the different behaviour of the entities.
 It also shows that we do not have sufficient data for all the entities all of the time, resulting in gaps in the data.
 The clearest results are for Figure~\ref{fig:security_score_summary} with a large gap between the scores for Nexus and non-Nexus devices across the whole data set.
 

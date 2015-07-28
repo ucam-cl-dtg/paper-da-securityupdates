@@ -157,7 +157,7 @@ We then derive a composite FUM score which is hard to game (\S\ref{sec:gaming}).
 
 The FUM score enables corporate and public sector buyers, as well as individuals, to make more informed purchasing decisions by reducing the information asymmetry.
 The FUM score also supports better regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
-We will continue to provide updated versions of our FUM scores on our companion website~\cite{androidvulnerabilities.org}.
+We will continue to provide updated versions of our FUM scores on our website~\cite{androidvulnerabilities.org}.
 
 In summary, the contributions of this paper are:
 \begin{itemize}
@@ -189,7 +189,7 @@ For example, a Return-Oriented Programming (ROP) attack on iOS is relatively eas
 
 The \emph{injection} attack vector occurs when the attacker injects malicious code directly into existing code already running on the handset. 
 For example, the addJavascriptInterface vulnerability (CVE-2012-6636) allows an attacker to inject JavaScript into HTTP traffic destined for the device and execute arbitrary code with all the privileges of the app.
-The fix for the addJavascriptInterface vulnerability breaks backwards compatibility and requires a two-sided fix.
+The fix for this vulnerability breaks backwards compatibility and requires a two-sided fix.
 While the fix was released in December 2012, by \daGPAPISeventeenLaterDateMonth, \daGPAPISeventeenEarlierProportion\ of handsets connecting to the Play Store were still vulnerable to this attack~\cite{Thomas2015a}.
 
 Security for the Android ecosystem can be deployed at three levels: in an online marketplace, at app installation time on the device, and during app execution. 
@@ -230,7 +230,7 @@ We extracted the build string and API version for each device each day.
 The build string is a user-readable version string and the API version is a positive integer that increases when new features are added to the API.
 Consequently security (bug) fixes do not always result in a change in the API version.
 Fortunately most (\daOSVersionPercValidLines) entries in these data have a build string of the form `x.y.z opaque\_marker' and so it is possible to extract the Android version number `x.y.z'.
-On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however different device manufacturers use different schema.
+On a large proportion of devices `opaque\_marker' is a well defined build number\footnote{\url{https://source.android.com/source/build-numbers.html}} however this is not universal.
 %Google provides API version distribution information but not the OS and build version information we need.
 
 \da\ has collected data from \daNumDevices\ devices with a total of \daDeviceDays\ device days.
@@ -289,7 +289,7 @@ In Figure~\ref{fig:update_ecosystem} the number of updates received by devices (
 The number of updates shipped by Google (\daNumSigOSVersions) is the number of Android versions reported in \da\ that affected more than \daSigVersionPerc\ of devices for more than \daSigVersionDays\ days.
 This significance test is to remove spurious versions recorded in \da\ such as `5.2.0' in 2012 which had still not been released at time of writing.\todolater{Check if this has now been released}
 
-We extracted data on the external projects used in Android and have included this and the scripts which generated it in AndroidVulnerabilities.org (\avo)~\cite{androidvulnerabilities.org}.
+We extracted data on the external projects used in Android and have included this and the scripts which generated it in \avo.
 These scripts analysed the Android Open Source Project's source tree to examine the source code of each of the external projects to find the project version associated with each Android version tag on the repository.
 There are \avoNumExternalProjects\ external open source projects in Android, contributing \avoTotalExternalLines\ lines of code.
 We analysed the top \avoNumBigExternalProjects\ by lines of code (\avoBigExternalLinesOfCodePerc\ of the total) and were able to automatically extract the versions of those projects included in different versions of Android for \avoNumAnalysedExternalProjects\ of these (\avoAnalysedExternalLinesOfCodePerc\ of the total).
@@ -306,7 +306,7 @@ The versions included in Android were about half a year old when the first versi
 
 
 \section{Comparison with other data}\label{sec:representative}
-We compare the Device Analyzer data with three other sources of data and find similar distributions which bound the Device Analyzer data, indicating that it is likely to be typical of the true distribution.
+We compare the Device Analyzer data with three other sources of data and find similar distributions which bound the Device Analyzer data, indicating that it is likely to be typical.
 We have obtained comparable data on 5\,290 devices from a multinational FTSE 100 company's mobile device management database, which includes company and employee owned devices, and from 5\,170\,000 matching User-Agent headers on all HTTP traffic for 30\% of Rwanda for a week.
 \todo{citation for Rwanda dataset}
 \begin{figure}
