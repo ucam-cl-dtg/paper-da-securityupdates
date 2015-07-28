@@ -126,7 +126,7 @@ We find that on average \daMeanInsecurityPercNominal\ of Android devices are exp
 \terms{Security, Measurement, Economics}
 
 \keywords{Android; updates; vulnerabilities; metrics; ecosystems}
-
+\vfill\eject
 \section{Introduction}
 
 All large software systems today contain undiscovered security vulnerabilities.
@@ -206,7 +206,7 @@ These two datasets can then be combined to determine the proportion of devices a
 
 \subsection{Critical vulnerabilities}\label{sec:avo}
 
-We obtained our list of critical Android vulnerabilities from our AndroidVulnerabilities.org~(\avo) website~\cite{androidvulnerabilities.org}.
+We built a list of critical Android vulnerabilities for our AndroidVulnerabilities.org~(\avo) website~\cite{androidvulnerabilities.org}.
 The site contains \avoNumVulnerabilities\ critical vulnerabilities such as root vulnerabilities that do not require USB debugging to exploit.
 We have chosen \daNumVulnsUsed\ vulnerabilities as shown in Table~\ref{tab:andvulns} for our analysis in this paper.
 We selected these vulnerabilities since they fit the attack vectors introduced in \S\ref{sec:threatmodel} and because they affect all Android devices regardless of manufacturer, and as a result our selected vulnerabilities will dominate any security analysis of Android.
@@ -239,7 +239,7 @@ We verify that the \da\ data is representative in~\S\ref{sec:representative}.
 
 \section{Android Ecosystem}\label{sec:android_ecosystem}
 There is a complex Android ecosystem that creates and distributes updates which fix vulnerabilities.
-In this section we describe how the Android ecosystem functions and how Android versions are produced, as seen by the \da\ project and by analysing the Android source code and upstream projects.
+In this section we describe how the Android ecosystem functions and how Android versions are produced, using \da\ data and by analysing the Android source code and upstream projects.
 We quantify the number of updates shipped by various entities in the ecosystem and the number of entities.
 
 
