@@ -110,61 +110,61 @@ DOI: \href{http://dx.doi.org/10.1145/2808117.2808118}{http://dx.doi.org/10.1145/
 \maketitle
 
 \begin{abstract}
-The security of Android depends on timely delivery of security updates for critical vulnerabilities .
+The security of Android depends on the timely delivery of security updates for critical vulnerabilities across a complex ecosystem.
+In this paper we map the major players in the Android ecosystem who must collaborate to provide updates, and determine that inaction by some manufacturers and network operators means many handsets are vulnerable to critical vulnerabilities.
 We define the FUM security metric to rank the performance of device manufacturers and network operators, based on their provision of updates and exposure to critical vulnerabilities.
 Using a corpus of \daNumOSDevices\ devices we show that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
-This provides a comparison point for purchasers to determine which device manufacturers and network operators to use.
-We find that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities and assign a FUM security score of \daSecurityScoreNominal\ out of 10 while Nexus devices gets \daSecScoreBestsummaryScoreNominal\ and \daSecScoreBestmanufacturer\ \daSecScoreBestmanufacturerScoreNominal.
-On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities are not fixed on any device and on average only \daUpdatednessPercNominal\ of devices run the current version of Android.
+This provides a comparison point for purchasers and regulators to determine which device manufacturers and network operators provide security updates and which do not.
+We find that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities and, across the ecosystem as a whole, assign a FUM security score of \daSecurityScoreNominal\ out of 10. In our data, Nexus devices do considerably better than average with a score of \daSecScoreBestsummaryScoreNominal; LG is the best manufacturer with a score of \daSecScoreBestmanufacturer\ \daSecScoreBestmanufacturerScoreNominal.
+%On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities are not fixed on any device and on average only \daUpdatednessPercNominal\ of devices run the current version of Android.
 \end{abstract}
 
 % A category with the (minimum) three required fields
 \category{Security and privacy}{Systems security}{Operating systems security}[Mobile platform security]
 \category{Security and privacy}{Systems security}{Vulnerability management}
 
-\terms{Economics, Measurement, Security}
+\terms{Security, Measurement, Economics}
 
 \keywords{Android; updates; vulnerabilities; metrics; ecosystems}
 
 \section{Introduction}
 
-To evaluate the security of a system we need to be able to measure it.
-Only then can customers and regulators behave appropriately and without it then they are stuck with a lemons market.
+All large software systems today contain undiscovered security vulnerabilities.
+Once discovered, these flaws are often exploited, and therefore the timely delivery of security updates is important to protect such systems, particularly when devices are connected to the Internet and therefore can be exploited remotely.
+Manufactures and software companies have known about this issue for many years and are expected to provide regular updates to protect their users.
+For example, Windows XP could be purchased for a one-off payment in October 2001 and received monthly security updates until support ended in April 2014.
 
-We propose scoring metrics to compare compares different entities such as device manufacturers, network operators or specific device models.
-This information allows device purchasers to select devices with better security.
-Currently, corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing the best security.
-For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures that are good at promptly shipping security updates, but it does not state which device manufacturers these are~\cite{CESG2013} though they have since certified one device model~\cite{CESG2015}.
-We are also collaborating with a FTSE 100 company to help answer this question.
-To address this, we developed a scoring system and provide numbers on the historic performance of device models in the \da\ project in~\S\ref{sec:security_scoring}.
+Unfortunately something has gone wrong with the provision of security updates in the Android market. 
+Many smartphones are sold on 12--24 month contracts, and yet our data shows few Android devices receive many security updates, with an overall average of just \daUpdatesPerYearNominal\ updates per year, leaving devices unpatched for many months or years.
+
+In order to improve our understanding, we need to know more about the Android ecosystem as a whole.
+It is a complex system with many parties involved in a long multi-stage pipeline~\cite{HTC2013}.
+We map and quantify the major players in this space who must collaborate to provide updates~(\S\ref{sec:android_ecosystem}) and determine that inaction~(\S\ref{sec:bottleneck}) by some of the manufacturers (we know of \daNumManufacturers) and network operators (\daNumOperators) means many handsets are vulnerable to critical vulnerabilities.
+Understanding this ecosystem is all the more important because device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
+
+Corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing timely security updates.
+For example, CESG, which advises the UK government on how to secure its computer systems, recommends picking Android device models from device manufactures that are good at promptly shipping security updates, but it does not state which device manufacturers these are~\cite{CESG2013} and so far they have only certified one Android device model~\cite{CESG2015}.
+Similarly, we are collaborating with a FTSE 100 company who wish to know which devices are secure and which manufacturers provide updates.
+
+The difficulty is that the market for Android security today is like the market for lemons: there is information asymmetry between the manufacturer, who knows whether the device is currently secure and will receive security updates, and the customer, who does not.
+To address the asymmetry, we develop a scoring system and provide numbers on the historic performance of device models found in the \da~\cite{Wagner2013} project~(\S\ref{sec:security_scoring}).
 We propose three metrics:
 $f$ the proportion of running devices free from critical vulnerabilities over time;
-$u$ the proportion of devices that run the latest version of Android shipped to any device produced by that device manufacturer;
-$m$ the mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer;
-and a composite score FUM which is hard to game (\S\ref{sec:gaming}).
-We provide the answer to the question ``Which is the most secure Android provider I can buy from?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
+$u$ the proportion of devices that run the latest version of Android shipped to any device produced by that device manufacturer; and
+$m$ the mean number of outstanding vulnerabilities affecting devices not fixed on any device shipped by the device manufacturer.
+We then derive a composite FUM score which is hard to game (\S\ref{sec:gaming}).
+%We provide the answer to the question ``Which is the most secure Android provider I can buy from?'', showing that in general Nexus devices are better; further details are given in~\S\ref{sec:security_scoring:results}.
 
-The Android update process is slow because its development is distributed among many parties and has a long multi-stage pipeline~\cite{HTC2013}.
-The security of Android relies on many open source projects, including the Li\-nux kernel, Open\-SSL and Bouncy\-Castle, as well as Google, who build the core platform.
-In addition, device manufacturers (we know of \daNumManufacturers) and network operators (\daNumOperators) may make further modifications before devices are shipped to customers.
-Understanding this ecosystem is important because device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
-The cause of the slow update process could be: upstream open source projects releasing patches slowly, Google including them slowly, manufacturers including them slowly, network operators shipping them slowly or customers not installing them.
-We present a better understanding of both the ecosystem of Android development and associated vulnerabilities more fully in~\S\ref{sec:android_ecosystem} and the update bottleneck in \S\ref{sec:bottleneck}.
-
-
-By using data from \da~\cite{Wagner2013} we can examine the versions of Android running on user devices over time and through comparison with data on which versions of Android were vulnerable to different critical vulnerabilities~\cite{androidvulnerabilities.org} we can measure the exposure of Android devices to known critical vulnerabilities.
-One solution to this problem is regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
-Many smartphones are sold on 12--24 month contracts, and yet our data shows many devices do not receive many security updates, with an overall average of \daUpdatesPerYearNominal\ updates per year. 
-In contrast, Windows XP could be purchased for a one-off payment in October 2001 and received security updates monthly until April 2014.
-An alternative to regulation is access to publicly available data.
-Comparative data, which we provide in this paper, and will continue to publish on our companion website, provides an incentive to both device manufacturers and network operators to provide updates.
+The FUM score enables corporate and public sector buyers, as well as individuals, to make more informed purchasing decisions by reducing the information asymmetry.
+The FUM score also supports better regulation, and indeed there is ongoing legal action to force network operators to ship updates for security vulnerabilities~\cite{Soghoian2013}.\todolater{Check on the status of this legal action}
+We will continue to provide updated versions of our FUM scores on our companion website~\cite{androidvulnerabilities.org}.
 
 In summary, the contributions of this paper are:
 \begin{itemize}
  \item We quantify the Android update process, providing concrete numbers on the flow of updates and their latency~(\S\ref{sec:android_ecosystem}).
  \item We propose the FUM scoring metric to evaluate the security of different instances of a platform~(\S\ref{sec:security_scoring:method}).
  \item We measure the security of Android against our scoring metric and compare different device manufacturers, device models and network operators to allow device purchasers to differentiate between them based on security~(\S\ref{sec:security_scoring:results}).
- \item We determine that the main update bottleneck lies with manufacturers rather than operators or users~(\S\ref{sec:bottleneck}).
+ \item We determine that the main update bottleneck lies with manufacturers rather than Google, operators or users~(\S\ref{sec:bottleneck}).
 \end{itemize}
 
 We indicate the uncertainty in our results by presenting them $\pm$ one standard deviation and give results to 3~s.f., this occasionally results in `$\pm\, 0$' when the standard deviation is small.
