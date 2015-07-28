@@ -110,8 +110,8 @@ DOI: \href{http://dx.doi.org/10.1145/2808117.2808118}{http://dx.doi.org/10.1145/
 \maketitle
 
 \begin{abstract}
-The security of Android depends on the timely delivery of security updates for critical vulnerabilities across a complex ecosystem.
-In this paper we map the major players in the Android ecosystem who must collaborate to provide updates, and determine that inaction by some manufacturers and network operators means many handsets are vulnerable to critical vulnerabilities.
+The security of Android depends on the timely delivery of updates to fix critical vulnerabilities.
+In this paper we map the complex network of players in the Android ecosystem who must collaborate to provide updates, and determine that inaction by some manufacturers and network operators means many handsets are vulnerable to critical vulnerabilities.
 We define the FUM security metric to rank the performance of device manufacturers and network operators, based on their provision of updates and exposure to critical vulnerabilities.
 Using a corpus of \daNumOSDevices\ devices we show that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
 This provides a comparison point for purchasers and regulators to determine which device manufacturers and network operators provide security updates and which do not.
@@ -135,7 +135,7 @@ Manufactures and software companies have known about this issue for many years a
 For example, Windows XP could be purchased for a one-off payment in October 2001 and received monthly security updates until support ended in April 2014.
 
 Unfortunately something has gone wrong with the provision of security updates in the Android market. 
-Many smartphones are sold on 12--24 month contracts, and yet our data shows few Android devices receive many security updates, with an overall average of just \daUpdatesPerYearNominal\ updates per year, leaving devices unpatched for many months or years.
+Many smartphones are sold on 12--24 month contracts, and yet our data shows few Android devices receive many security updates, with an overall average of just \daUpdatesPerYearNominal\ updates per year, leaving devices unpatched for long periods of time.
 
 In order to improve our understanding, we need to know more about the Android ecosystem as a whole.
 It is a complex system with many parties involved in a long multi-stage pipeline~\cite{HTC2013}.
@@ -377,16 +377,17 @@ Later data demonstrates the difficulty of upgrading computers between major OS v
 
 
 \section{Conclusion}
-We quantified how the Android ecosystem results in different device models receiving different levels of security due to whether or not they get security updates.
-We found that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities.
-On average \daMeanOutstandingVulnerabilitiesNominal\ outstanding vulnerabilities are not fixed on any device and on average only \daUpdatednessPercNominal\ of devices run the current version of Android.
-We have defined the FUM score, which evaluates the security performance of companies and organisations in shipping security updates.
-We have used this to compare different device models, device manufacturers and network operators and found that there are differences between them, which the discerning purchaser might use to influence their decision about which device model to buy from which device manufacturer and network operator.
-While Android has a score of \daSecurityScoreNominal\ out of 10, Nexus devices get \daSecScoreBestsummaryScoreNominal\ and \daSecScoreBestmanufacturer\ \daSecScoreBestmanufacturerScoreNominal.
-We hope that this analysis will encourage device manufacturers and network operators to improve the support they provide for devices after sale.
+The security of Android depends on the timely delivery of updates to fix critical vulnerabilities.
+Unfortunately few devices receive prompt updates, with an overall average of \daUpdatesPerYearNominal\ updates per year, leaving devices unpatched for long periods.
+We showed that the bottleneck for the delivery of updates in the Android ecosystem rests with the manufacturers and network operators, who fail to provide updates to fix critical vulnerabilities.
+This arises in part because the market for Android security today is like the market for lemons: there is information asymmetry between the manufacturer, who knows whether the device is currently secure and will receive updates, and the consumer, who does not.
 
-The FUM score is applicable to other software ecosystems, as long as information on vulnerabilities and the versions they affected, as well as data on which versions were running on real devices is available.
+Consequently there is little incentive for manufacturers to provide updates.
+To address this issue we developed the FUM security metric to quantify and rank the performance of device manufacturers and network operators, based on their provision of updates and exposure to critical vulnerabilities.
+The metric enables purchasers and regulators to determine which device manufacturers and network operators provide updates and which do not.
 
+Using a corpus of \daNumOSDevices\ devices we demonstrated that there is significant variability in the timely delivery of security updates across different device manufacturers and network operators.
+We find that on average \daMeanInsecurityPercNominal\ of Android devices are exposed to at least one of \daNumVulnsUsed\ known critical vulnerabilities and, across the ecosystem as a whole, assign a FUM security score of \daSecurityScoreNominal\ out of 10. In our data, Nexus devices do considerably better than average with a score of \daSecScoreBestsummaryScoreNominal; \daSecScoreBestmanufacturer\ is the best manufacturer with a score of \daSecScoreBestmanufacturerScoreNominal.
 
 \section*{Dataset}
 Much of the raw and processed data and source code is available, excluding that which might identify individuals~\cite{Thomas2015e}.
