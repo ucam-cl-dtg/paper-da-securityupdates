@@ -139,7 +139,7 @@ Many smartphones are sold on 12--24 month contracts, and yet our data shows few 
 
 In order to improve our understanding, we need to know more about the Android ecosystem as a whole.
 It is a complex system with many parties involved in a long multi-stage pipeline~\cite{HTC2013}.
-We map and quantify the major players in this space who must collaborate to provide updates~(\S\ref{sec:android_ecosystem}) and determine that inaction~(\S\ref{sec:bottleneck}) by some of the manufacturers (we know of \daNumManufacturers) and network operators (\daNumOperators) means many handsets are vulnerable to critical vulnerabilities.
+We map and quantify the major players in this space who must collaborate to provide updates~(\S\ref{sec:android_ecosystem}) and determine that inaction~(\S\ref{sec:bottleneck}) by some of the manufacturers and network operators means many handsets are vulnerable to critical vulnerabilities.
 Understanding this ecosystem is all the more important because device manufacturers have introduced additional vulnerabilities in the past~\cite{Grace2012}.
 
 Corporate and public sector buyers are encouraged to purchase secure devices, but we have found little concrete guidance on the specific makes and models providing timely security updates.
@@ -193,11 +193,11 @@ The fix for this vulnerability breaks backwards compatibility and requires a two
 While the fix was released in December 2012, by \daGPAPISeventeenLaterDateMonth, \daGPAPISeventeenEarlierProportion\ of handsets connecting to the Play Store were still vulnerable to this attack~\cite{Thomas2015a}.
 
 Security for the Android ecosystem can be deployed at three levels: in an online marketplace, at app installation time on the device, and during app execution. 
-Indeed, Google provides its users with security in all these places: through analysis of apps by the Play Store, using the Verify Apps feature on the smartphone at installation time, and by an app sandbox on the smartphone during execution. 
-The best place to prevent attacks is by sandboxing the app during execution, since all three attack vectors can be prevented at this level whereas not all users install apps exclusively via the Play Store or enable Verify Apps.
+Google provides its users with security in all these places: through analysis of apps by the Play Store, using the Verify Apps feature on the smartphone at installation time, and by an app sandbox on the smartphone during execution. 
+The best place to prevent attacks is by sandboxing the app during execution, since all three attack vectors can be prevented at this level, whereas not all users install apps exclusively via the Play Store or enable Verify Apps.
 In addition, dynamic code loading and injection attacks cannot be discovered at installation time and can be difficult for a marketplace to detect.
 Unfortunately, as we shall see, the security sandbox for Android has known critical vulnerabilities on most devices.
-This does not mean these devices are attacked, but that they are susceptible to it.
+This does not mean these devices are attacked, but that they are vulnerable.
 The likelihood of a successful attack then depends on what apps the user installs and where from, as well as the computer networks the device is connected to and the actions the user takes whilst connected.
 
 \section{Data}
@@ -339,7 +339,8 @@ Other work has demonstrated complex and subtle errors exist in the Android app u
 For example, the process can be exploited to allow apps to gain privilege through `Pileup' vulnerabilities by registering for new permissions before the update which creates that permission is installed~\cite{Xing2014}.
 
 We used \da\ to record data on the OS versions of Android installed on devices.
-Nappa et al.\ performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data, they did not assign client applications scores~\cite{Nappa2015}.
+Nappa et al.\ performed a similar analysis using WINE to record data on installed versions of Windows client programs and used cleaned NVD data rather than \avo\ for vulnerability data.
+They did not assign client applications scores~\cite{Nappa2015}.
 
 
 We use User-Agent strings from Rwandan internet traffic to examine the version distribution of Android OS versions.
@@ -350,8 +351,10 @@ The user is notified an update exists, but further action is required, including
 The phone must have sufficient charge to perform the update and the device itself is rendered inoperable during the update process, two factors that might prevent or delay the update process from taking place.
 In our data we are unable to determine why a device is not updated. 
 It is possible that many updates arrive at handsets, but are simply not installed.
-Anecdotal evidence at least suggests that it is the lack of updates rather the lack of installation, which is the major problem at present and \S\ref{sec:security_scoring:results} supports this. Further work is required to tease these numbers apart.
-Partly this is the result of the fact that an operating system update is being installed and so a reboot is required, but Chrome installs the new version side by side with the old one and switches the next time it is restarted.
+Anecdotal evidence suggests that it is the lack of updates rather the lack of installation, which is the major problem at present.
+Our analysis in \S\ref{sec:bottleneck} supports this view.
+Nevertheless it is problematic that an operating system update requires a reboot.
+Chrome installs the new version side by side with the old one and switches the next time it is restarted.
 The same technique would be more difficult on phones with limited storage space (as many cheap Android phones have barely enough space to install just the update) but is a plausible improvement for more high-end devices.
 Google is deploying the same silent update technique through Google Play Services,\footnote{\href{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}{http://lifehacker.com/why-google-play-services-are-now-more-important-than-an-975970197}} which automatically installs updates for core Google components of Android, this bypasses the device manufacturer and network operator.
 
@@ -392,7 +395,7 @@ We find that on average \daMeanInsecurityPercNominal\ of Android devices are exp
 \section*{Dataset}
 Much of the raw and processed data and source code is available, excluding that which might identify individuals~\cite{Thomas2015e}.
 Data from \da\ and \avo\ used in this paper is already available.
-The Rwanda and FTSE data cannot be made available due to the terms they were obtained under.
+The Rwanda and FTSE data cannot be made available.
 
 \section*{Acknowledgements}
 \identifying{

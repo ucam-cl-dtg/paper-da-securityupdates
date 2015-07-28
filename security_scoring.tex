@@ -24,8 +24,9 @@ The remaining devices were already running a version of Android which fixed the 
 From October 2011 until the discovery of \avovuln[APK_duplicate_file]{APK duplicate file} in February 2013 the graph shows progressive improvement as devices are upgraded or replaced.
 This means more and more devices are marked as \emph{secure} because they are now running a secure version of Android, or marked as \emph{maybe secure} because they received an OS update that did not update to a known-good version of Android but which may still have included a backport of a fix, as the update was made available after the vulnerability was disclosed.
 From February 2013 onwards regular discovery of critical vulnerabilities ensures that most devices are vulnerable.
-This means that \daMeanInsecurityPerc\ of devices were classified as \emph{insecure} to at least one critical vulnerability between \daStartDateMonth\ and \daEndDateMonth\ (ignoring devices classed as \emph{maybe secure}).
+Ignoring devices classed as \emph{maybe secure}, we find that on average \daMeanInsecurityPerc\ of devices were classed as \emph{insecure} and \daMeanSecurityPercNominal\ classified as \emph{secure} between \daStartDateMonth\ and \daEndDateMonth.
 %This is $1 - f$, the proportion of devices free from critical vulnerabilities, however this is only one component of a more robust score, the FUM score.
+
 
 \subsection{Method: The FUM score}\label{sec:security_scoring:method}
 
@@ -84,18 +85,16 @@ This represents a trade-off between a proportion so small that the fix has not r
 This gives an uncertainty of \daMeanOutstandingUncertaintyEquation\ where $n$ is the number of devices contributing to that day's data for each vulnerability outstanding each day.
 The Python \texttt{uncertainties} library was used to propagate uncertainties through calculations.
 This does not capture systematic errors.
-For example, we do not include manufacturer specific vulnerabilities, we expect that performance in fixing manufacturer specific vulnerabilities is strongly correlated with performance fixing vulnerabilities affecting all of Android.
+For example, we do not include manufacturer specific vulnerabilities, however we expect that performance in fixing manufacturer specific vulnerabilities is strongly correlated with performance fixing vulnerabilities affecting all of Android.
 
 \todolater{There must be some way of putting an error bound on our results by considering the error on the whole DA set and the size of the subset used for each device manufacturer and device model}
 
 \subsection{Results: Security scores}\label{sec:security_scoring:results}
-The scores across the whole of Android are that \daMeanInsecurityPerc\ of devices are exposed to known root exploits.
-There are on average \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device.
-On average \daUpdatednessPerc\ of devices run the most recent version of Android.
+On average, between \daStartDateMonth\ and \daEndDateMonth\, we found \daMeanOutstandingVulnerabilities\ outstanding vulnerabilities not fixed on any device and \daUpdatednessPerc\ of devices to run the most recent version of Android.
 This gives a security score of \daSecurityScore\ out of 10.
 
 However there are a wide variety of scores depending on the source of the device.
-There is anecdotal evidence that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices\footnote{\url{http://www.howtogeek.com/139391/htg-explains-why-android-geeks-buy-nexus-devices/}}.
+There is anecdotal evidence that Google's Nexus devices are better at getting updates than other Android devices because Google makes the original updates and ships them to its devices.\footnote{\url{http://www.howtogeek.com/139391/htg-explains-why-android-geeks-buy-nexus-devices/}}
 Table~\ref{tab:sec_summary} shows that this is the case with Nexus devices getting much better scores than non-Nexus devices.
 
 Different device manufacturers have very different scores; Table~\ref{tab:sec_manufacturer} shows the scores for the \daNumSigManufacturers\ device manufacturers with a significant presence in our data with \emph{\daSecScoreBestmanufacturer} (\daSecScoreBestmanufacturerScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmanufacturer} (\daSecScoreWorstmanufacturerScore\ out of 10) scoring lowest.
@@ -111,7 +110,7 @@ Even within device manufacturers, different models can have very different updat
 Table~\ref{tab:sec_model} shows the results for the \daNumSigModels\ device models which have a significant presence by the same metric with \emph{\daSecScoreBestmodel} (\daSecScoreBestmodelScore\ out of 10) scoring highest and \emph{\daSecScoreWorstmodel} (\daSecScoreWorstmodelScore\ out of 10) scoring lowest.
 We can then test whether this seems fair by comparing the version data for the highest and lowest scoring models.
 Figure~\ref{fig:full_version_comp}c shows the full version distribution for \emph{\daSecScoreWorstmodel}, which we only observe running one version.
-Figure~\ref{fig:full_version_comp}b shows the full version distribution for \emph{HTC Desire HD A9191}, which used to be our worst model and for which we have more historical data; it shows how it received one update at the beginning of 2012, which was deployed fairly rapidly to most devices, but received no further updates.
+Figure~\ref{fig:full_version_comp}b shows the full version distribution for \emph{HTC Desire HD A9191}, which used to be our worst model and for which we have more historical data; it shows it received one update at the beginning of 2012, which was deployed fairly rapidly to most devices, but received no further updates.
 Figure~\ref{fig:full_version_comp}a shows the same information for \emph{\daSecScoreBestmodel} which received \daSecScoreBestmodelNumFullVersions\ different versions, some of which were only deployed to small numbers of devices, but the distribution for all devices regularly and rapidly transitions from one version to another before ending up on `4.3 JWR66Y'.
 Both \emph{Galaxy Nexus} and \emph{HTC Desire HD A9191} device models start off with the full version string of `2.3.3 GRI40' but the \emph{\daSecScoreBestmodel} receives many more updates over the same time period.
 Other models from the same manufacturer with similar model names to \emph{HTC Desire HD A9191} do much better such as the \emph{Desire HD}.
@@ -124,7 +123,7 @@ Other models from the same manufacturer with similar model names to \emph{HTC De
 \end{figure*}
 
 We also analysed the \daNumSigOperators\ network operators with a significant presence in our data.
-Table~\ref{tab:sec_operator} shows the results \emph{\daSecScoreBestoperator} (\daSecScoreBestoperatorScore\ out of 10) scoring highest and \emph{\daSecScoreWorstoperator} (\daSecScoreWorstoperatorScore\ out of 10) scoring lowest.
+Table~\ref{tab:sec_operator} shows the results with \emph{\daSecScoreBestoperator} (\daSecScoreBestoperatorScore\ out of 10) scoring highest and \emph{\daSecScoreWorstoperator} (\daSecScoreWorstoperatorScore\ out of 10) scoring lowest.
 However, the score of a network operator is affected by the manufacturers of the devices which are in use on its network.
 This is in turn affected by both the device models a network operator offers to users and upon user's choice of device models.
 Hence, having a worse score does not necessarily mean that a network operator is worse, it could be that its users all pick phones from a worse device manufacturer, for example, because they were cheaper.
@@ -149,7 +148,7 @@ They could install updates automatically or pester the user into installing them
 \daTabSpearmanRanks
 \daTabChangeInScores
 To evaluate whether the ranking of different manufacturers is sensitive to the form of the scoring metric we computed the normalised Spearman's Rank correlation coefficient between the lists ordered using different forms of the scoring metric, this is shown in Table~\ref{tab:spearman_ranks}.
-The `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
+In the table, the `equal' metric weights $f$, $u$ and $m$ equally rather than favouring $f$ and makes little difference.
 Similarly weighting $u$ or $m$ more highly rather than $f$ makes little difference.
 While the $f$, $u$ and $m$ components do have some correlation with the overall FUM score, the rankings produced vary substantially.
 Changing the scoring metric also impacts the scores given for each entity Table~\ref{tab:change_in_scores} shows the mean impact on the scores.
