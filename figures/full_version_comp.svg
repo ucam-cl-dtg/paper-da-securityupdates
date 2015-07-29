@@ -13,7 +13,7 @@
    height="860"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.91 r13725"
    sodipodi:docname="full_version_comp.svg">
   <defs
      id="defs4">
@@ -2322,10 +2322,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="58.245397"
-     inkscape:cy="543.21147"
+     inkscape:cx="356.86089"
+     inkscape:cy="400.35433"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g10196-3"
      showgrid="false"
      fit-margin-top="0"
      fit-margin-left="10"
@@ -2344,7 +2344,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -4159,14 +4159,14 @@
       <text
          style="font-size:15px"
          y="1018.6777"
-         x="-10.031397"
+         x="-0.031396866"
          id="text8686">
         <tspan
            id="tspan8688"
            sodipodi:role="line"
            y="1018.6777"
-           x="-10.031397 -0.49141923 4.2786002 13.818579 18.588598 28.128576 32.898594 44.523594 54.948589 59.373577 68.913589"
-           style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:BitstreamVeraSans-Roman">2.3.3 GRI40</tspan>
+           x="-0.031396866"
+           style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:BitstreamVeraSans-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none">2.3.3 GRI40</tspan>
       </text>
     </g>
     <text
@@ -4266,7 +4266,7 @@
          id="tspan7608">other</tspan>
     </text>
     <rect
-       style="fill:#ffffff;fill-opacity:0.33175355;fill-rule:nonzero;stroke:none"
+       style="fill:#6580ff;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="rect4198"
        width="18.571428"
        height="80"
@@ -4953,18 +4953,18 @@
          height="17.857143"
          width="91.428574"
          id="rect9355-2"
-         style="fill:#55abff;fill-opacity:0.56807514;fill-rule:nonzero;stroke:none" />
+         style="fill:#6f79ff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
       <text
          style="font-size:15px"
          y="1018.6777"
-         x="-10.031397"
+         x="-0.031396866"
          id="text8686-8">
         <tspan
            id="tspan8688-6"
            sodipodi:role="line"
            y="1018.6777"
-           x="-10.031397 -0.49141923 4.2786002 13.818579 18.588598 28.128576 32.898594 44.523594 54.948589 59.373577 68.913589"
-           style="font-size:12px;font-variant:normal;font-weight:normal;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:BitstreamVeraSans-Roman">2.3.3 GRI40</tspan>
+           x="-0.031396866"
+           style="font-variant:normal;font-weight:normal;font-size:12px;font-family:'Bitstream Vera Sans';-inkscape-font-specification:BitstreamVeraSans-Roman;writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none">2.3.3 GRI40</tspan>
       </text>
     </g>
     <g
@@ -5368,7 +5368,7 @@
        transform="translate(-699.85786,-14.254528)">
       <path
          id="path4112"
-         style="fill:#ffffff;fill-opacity:0.57345976;fill-rule:nonzero;stroke:none"
+         style="fill:#6f6fff;fill-opacity:1;fill-rule:nonzero;stroke:none"
          d="m 1263.2508,941.23085 66.3655,0 0,-13.53046 -66.3655,0 0,13.53046 z"
          inkscape:connector-curvature="0" />
       <text
