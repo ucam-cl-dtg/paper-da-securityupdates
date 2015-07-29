@@ -1,4 +1,7 @@
 \documentclass{sig-alternate-2013}
+\setlength{\paperheight}{11in}
+\setlength{\paperwidth}{8.5in}
+
 
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -29,7 +32,52 @@
 \let\OldTodo\todo
 \renewcommand{\todo}{\OldTodo[inline]}
 \newcommand{\todolater}[1]{}%{\todo{#1}}%
-\RequirePackage[date=terse, isbn=true, doi=false, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex, style=ieee]{biblatex}
+\RequirePackage[date=terse, isbn=true, doi=false, url=false, urldate=iso8601, maxbibnames=9, backref=false, backend=bibtex,firstinits=true]{biblatex}
+
+\DeclareNameAlias{default}{last-first}
+
+\AtBeginBibliography{%
+  \renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}%
+  %% commas between authors
+  \renewcommand{\multinamedelim}{\addcomma\space}
+  \renewcommand{\finalnamedelim}{\addcomma\addspace\textsc{and}\space}
+}
+
+\DefineBibliographyStrings{english}{%
+ andothers = {\addcomma\addspace\textsc{et\addabbrvspace al}\adddot},
+ and = {\textsc{and}}
+}
+
+\renewcommand*{\labelnamepunct}{\space\space}
+
+\DeclareFieldFormat
+  [article,inbook,incollection,inproceedings,patent,thesis,unpublished]
+  {title}{#1}
+
+\renewbibmacro{in:}{%
+  \ifentrytype{article}{%
+  }{%
+    \printtext{\bibstring{in}\intitlepunct}%
+  }%
+}
+
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+  \setunit*{\addcomma\space}%
+  \printfield{number}%
+  \setunit{\addcomma\space}%
+  \printfield{eid}}
+
+\DeclareFieldFormat{pages}{#1}
+
+\renewbibmacro*{publisher+location+date}{%
+  \printlist{publisher}%
+  \setunit*{\addcomma\space}%
+  \printlist{location}%
+  \setunit*{\addcomma\space}%
+  \usebibmacro{date}%
+  \newunit}
+
 \addbibresource{securityupdates.bib}
 \renewcommand{\bibfont}{\small}
 
@@ -405,7 +453,7 @@ Thanks to our anonymous reviewers for their insightful comments; Richard Clayton
 David Robertson for statistical advice;
 and Laurent Simon, Thomas Coudray, Adrian Taylor, Justin Case, Giant Pune and Khilan Gudka for reporting vulnerabilities.
 }
-\sloppy
+\raggedright
 \printbibliography
 
 \end{document}
