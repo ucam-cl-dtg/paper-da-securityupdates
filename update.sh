@@ -14,6 +14,8 @@ cp "$fromdir"device_data/device-data-all-os.pdf device-data-all-os.pdf
 cp "$fromdir"from_to_updates.pdf from_to_updates.pdf
 cp "$fromdir"googleplayapi.pdf googleplayapi.pdf
 cp "$fromdir"googleplayapi-notitle.pdf googleplayapi-notitle.pdf
+cp "$fromdir"googleplayapi_single.pdf googleplayapi_single.pdf
+cp "$fromdir"googleplayapi_single.svg googleplayapi_single.svg
 cp "$fromdir"norm_api_gpcomp.pdf norm_api_gpcomp.pdf
 cp "$fromdir"norm_api_heat.pdf norm_api_heat.pdf
 cp "$fromdir"norm_os_heat.pdf norm_os_heat.pdf
