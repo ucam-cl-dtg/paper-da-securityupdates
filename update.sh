@@ -46,6 +46,7 @@ cp "$fromdir"security_score_manufacturer.pdf security_score_manufacturer.pdf
 cp "$fromdir"security_score_model.pdf security_score_model.pdf
 cp "$fromdir"security_score_operator.pdf security_score_operator.pdf
 cp "$fromdir"security_score_summary.pdf security_score_summary.pdf
+cp "$fromdir"security_score_summary.svg security_score_summary.svg
 cp ~drt24/git/da/graphing/pdf/dists.pdf dists.pdf
 popd
 update_bib 2> /dev/null
