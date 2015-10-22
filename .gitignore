@@ -46,3 +46,4 @@ version_dates_*.csv
 *.lock
 spsm-submission
 spsm-data
+.DS_Store
