@@ -13,6 +13,12 @@ cp "$fromdir"device_data/device-data-manufacturer-LG-os.pdf device_data-LG-os.pd
 cp "$fromdir"device_data/device-data-manufacturer-LG-os.svg device_data-LG-os.svg
 cp "$fromdir"device_data/device-data-manufacturer-HTC-os.pdf device_data-HTC-os.pdf
 cp "$fromdir"device_data/device-data-manufacturer-HTC-os.svg device_data-HTC-os.svg
+cp "$fromdir"device_data/device-data-manufacturer-HTC-security.pdf device_data-HTC-security.pdf
+cp "$fromdir"device_data/device-data-manufacturer-HTC-security.svg device_data-HTC-security.svg
+cp "$fromdir"device_data/device-data-manufacturer-Samsung-os.pdf device_data-Samsung-os.pdf
+cp "$fromdir"device_data/device-data-manufacturer-Samsung-os.svg device_data-Samsung-os.svg
+cp "$fromdir"device_data/device-data-manufacturer-Samsung-security.pdf device_data-Samsung-security.pdf
+cp "$fromdir"device_data/device-data-manufacturer-Samsung-security.svg device_data-Samsung-security.svg
 cp "$fromdir"device_data/device-data-all-security.pdf device-data-all-security.pdf
 cp "$fromdir"device_data/device-data-all-os.pdf device-data-all-os.pdf
 cp "$fromdir"from_to_updates.pdf from_to_updates.pdf

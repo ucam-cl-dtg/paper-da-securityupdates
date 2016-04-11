@@ -1,26 +1,26 @@
-\newcommand{\avoNumSubmitters}{8}
+\newcommand{\avoNumSubmitters}{11}
 \newcommand{\avoTotalExternalLines}{25 million}
 \newcommand{\avoNumExternalProjects}{176}
 \newcommand{\avoNumBigExternalLinesOfCode}{25 million}
 \newcommand{\avoBigExternalLinesOfCodePerc}{99.7\%}
-\newcommand{\avoNumVulnerabilities}{33}
-\newcommand{\avoNumVulnAllAndroid}{16}
-\newcommand{\avoNumVulnSpecific}{17}
+\newcommand{\avoNumVulnerabilities}{42}
+\newcommand{\avoNumVulnAllAndroid}{20}
+\newcommand{\avoNumVulnSpecific}{22}
 \newcommand{\avoStartDate}{2013-08-28}
-\newcommand{\avoEndDate}{2015-03-24}
+\newcommand{\avoEndDate}{2016-03-21}
 \newcommand{\avoFirstDataDateMonth}{July 2010}
 \newcommand{\avoFirstDataDate}{2010-07-13}
-\newcommand{\avoLastDataDateMonth}{March 2015}
-\newcommand{\avoLastDataDate}{2015-03-12}
-\newcommand{\avoVulnsPerYearNominal}{7.07}
-\newcommand{\avoVulnsPerYear}{$7.07 \pm 1.23$}
-\newcommand{\avoVulnsPerYearAllAndroidNominal}{3.43}
-\newcommand{\avoVulnsPerYearAllAndroid}{$3.43 \pm 0.85$}
-\newcommand{\avoVulnsPerYearTwosfNominal}{7.1}
-\newcommand{\avoVulnsPerYearTwosf}{$7.1 \pm 1.2$}
-\newcommand{\avoVulnsPerYearAllAndroidTwosfNominal}{3.4}
-\newcommand{\avoVulnsPerYearAllAndroidTwosf}{$3.4 \pm 0.0$}
-\newcommand{\avoTabAndVulns}{\begin{table} \centering \small \begin{tabular}{l|l|c|c} Vulnerability & How known & Date & Categories\\ \hline KillingInTheNameOf & Fixed on & 2010-07-13 & system, kernel\\ exploid udev & Discovered on & 2010-07-15 & kernel\\ levitator & Discovered on & 2011-03-10 & kernel\\ Gingerbreak & Fixed on & 2011-04-18 & system\\ zergRush & Discovered on & 2011-10-06 & system\\ APK duplicate file & Discovered on & 2013-02-18 & signature\\ APK unchecked name & Discovered on & 2013-06-30 & signature\\ APK unsigned shorts & Fixed on & 2013-07-03 & signature\\ vold asec & Fixed on & 2014-01-27 & system\\ Fake ID & Fixed on & 2014-04-17 & signature\\ TowelRoot & Discovered on & 2014-05-03 & kernel\\ ObjectInputStream_deserializable & Discovered on & 2014-06-22 & system\\\end{tabular} \caption{Critical vulnerabilities in Android} \label{tab:andvulns} \end{table}}
+\newcommand{\avoLastDataDateMonth}{October 2015}
+\newcommand{\avoLastDataDate}{2015-10-22}
+\newcommand{\avoVulnsPerYearNominal}{7.96}
+\newcommand{\avoVulnsPerYear}{$7.96 \pm 1.23$}
+\newcommand{\avoVulnsPerYearAllAndroidNominal}{3.79}
+\newcommand{\avoVulnsPerYearAllAndroid}{$3.79 \pm 0.84$}
+\newcommand{\avoVulnsPerYearTwosfNominal}{8.0}
+\newcommand{\avoVulnsPerYearTwosf}{$8.0 \pm 1.2$}
+\newcommand{\avoVulnsPerYearAllAndroidTwosfNominal}{3.8}
+\newcommand{\avoVulnsPerYearAllAndroidTwosf}{$3.8 \pm 0.0$}
+\newcommand{\avoTabAndVulns}{\begin{table} \centering \begin{tabular}{l|l|c|c|p{19.5em}} Vulnerability & How known & Date & Categories & CVEs\\ \hline \href{http://androidvulnerabilities.org/vulnerabilities/KillingInTheNameOf_psneuter_ashmem}{KillingInTheNameOf} & Fixed on & 2010-07-13 & system, kernel & CVE-2011-1149~\cite{CVE-2011-1149}\\ \href{http://androidvulnerabilities.org/vulnerabilities/exploid_udev}{exploid udev} & Discovered on & 2010-07-15 & kernel & CVE-2009-1185~\cite{CVE-2009-1185}\\ \href{http://androidvulnerabilities.org/vulnerabilities/levitator}{levitator} & Discovered on & 2011-03-10 & kernel & CVE-2011-1350~\cite{CVE-2011-1350}, CVE-2011-1352~\cite{CVE-2011-1352}\\ \href{http://androidvulnerabilities.org/vulnerabilities/Gingerbreak}{Gingerbreak} & Fixed on & 2011-04-18 & system & CVE-2011-1823~\cite{CVE-2011-1823}\\ \href{http://androidvulnerabilities.org/vulnerabilities/zergRush}{zergRush} & Discovered on & 2011-10-06 & system & CVE-2011-3874~\cite{CVE-2011-3874}\\ \href{http://androidvulnerabilities.org/vulnerabilities/APK_duplicate_file}{APK duplicate file} & Discovered on & 2013-02-18 & signature & ANDROID-8219321, CVE-2013-4787~\cite{CVE-2013-4787}\\ \href{http://androidvulnerabilities.org/vulnerabilities/APK_unchecked_name}{APK unchecked name} & Discovered on & 2013-06-30 & signature & ANDROID-9950697\\ \href{http://androidvulnerabilities.org/vulnerabilities/APK_unsigned_shorts}{APK unsigned shorts} & Fixed on & 2013-07-03 & signature & ANDROID-9695860\\ \href{http://androidvulnerabilities.org/vulnerabilities/Fake_ID}{Fake ID} & Fixed on & 2014-04-17 & signature & \\ \href{http://androidvulnerabilities.org/vulnerabilities/TowelRoot}{TowelRoot} & Discovered on & 2014-05-03 & kernel & CVE-2014-3153~\cite{CVE-2014-3153}\\ \href{http://androidvulnerabilities.org/vulnerabilities/ObjectInputStream_deserializable}{ObjectInputStream} & Discovered on & 2014-06-22 & system & CVE-2014-7911~\cite{CVE-2014-7911}\\ \href{http://androidvulnerabilities.org/vulnerabilities/Stagefright}{Stagefright} & Fixed on & 2015-04-08 & system, network & CVE-2015-1538~\cite{CVE-2015-1538}, CVE-2015-1539~\cite{CVE-2015-1539}, CVE-2015-3824~\cite{CVE-2015-3824}, CVE-2015-3826~\cite{CVE-2015-3826}, CVE-2015-3827~\cite{CVE-2015-3827}, CVE-2015-3828~\cite{CVE-2015-3828}, CVE-2015-3829~\cite{CVE-2015-3829}\\ \href{http://androidvulnerabilities.org/vulnerabilities/One_class_to_rule_them_all}{One class to rule} & Discovered on & 2015-05-22 & system & CVE-2015-3837~\cite{CVE-2015-3837}, CVE-2015-3825~\cite{CVE-2015-3825}, ANDROID-21437603, ANDROID-21583849\\ \href{http://androidvulnerabilities.org/vulnerabilities/Stagefright2}{Stagefright2} & Discovered on & 2015-08-15 & system, network & CVE-2015-6602~\cite{CVE-2015-6602}, CVE-2015-3876~\cite{CVE-2015-3876}\\\end{tabular} \caption{Critical vulnerabilities in Android} \label{tab:andvulns} \end{table}}
 \newcommand{\avoNumBigExternalProjects}{40}
 \newcommand{\avoNumAnalysedExternalProjects}{28}
 \newcommand{\avoNumAnalysedExternalLinesOfCode}{6 million}
