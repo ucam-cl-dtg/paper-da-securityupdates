@@ -30,6 +30,7 @@ cp "$fromdir"norm_api_gpcomp.pdf norm_api_gpcomp.pdf
 cp "$fromdir"norm_api_heat.pdf norm_api_heat.pdf
 cp "$fromdir"norm_os_heat.pdf norm_os_heat.pdf
 cp "$fromdir"norm_versionsecurity.pdf proportioninsecure.pdf
+cp "$fromdir"norm_versionsecurity.svg norm_versionsecurity.svg
 cp "$fromdir"norm_versionsecurity-notitle.pdf proportioninsecure-notitle.pdf
 cp "$fromdir"updates_between.pdf updates_between_versions.pdf
 cp "$fromdir"nvulnerabilities.pdf vulnerabilities.pdf
